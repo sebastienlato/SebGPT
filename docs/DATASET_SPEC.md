@@ -2,7 +2,7 @@
 
 ## Status
 
-- **Specification version:** 1.3
+- **Specification version:** 1.4
 - **Corpus design:** Approved 2026-09-06
 - **Dataset specification and acquisition contract:** Approved 2026-09-06
 - **Acquisition authorized:** Yes, for the raw-source acquisition and structural-inspection milestone only
@@ -11,6 +11,7 @@
 - **Preflight contract clarification:** Approved 2026-09-06
 - **Read-only preflight implementation authorized:** Yes
 - **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
+- **In-memory extraction contract clarification:** Approved 2026-09-06
 - **Extraction implementation authorized:** No
 - **Extraction implemented:** No
 - **Tokenization implemented:** No
@@ -252,7 +253,7 @@ This contract is approved as policy. It does not authorize implementation or pro
 
 8. Include the top-level work title.
 
-9. Remove the local contents range beginning at the first exact full line `Contents` after the work title and ending immediately before the first exact full line `Dramatis Personæ`. Require both markers to be unique, correctly ordered, and inside the work's outer range.
+9. Remove the local contents range beginning at the first exact full line `Contents` after the work title and ending immediately before the exact per-work `Dramatis Personæ` line constructed under the shared-marker rule below. Require both markers to occur exactly once, be correctly ordered, and lie inside the work's outer range.
 
 10. Include `Dramatis Personæ`, acts, scenes, speaker labels, stage directions, indentation, blank lines, spaces, tabs, trailing spaces, punctuation, capitalization, spelling, and every Unicode code point within the retained ranges.
 
@@ -277,7 +278,8 @@ This contract is approved as policy. It does not authorize implementation or pro
     - exact start and successor markers
     - observed marker occurrence counts
     - raw byte, Unicode code-point, and line offsets
-    - outer raw-range SHA-256 and byte count
+    - outer raw-range SHA-256 and byte count, measured before local-contents removal
+    - retained raw-range SHA-256 and byte count, measured after local-contents removal and before CRLF-to-LF conversion
     - every excluded range and reason
     - normalization operations
     - processed repository-relative path
@@ -298,6 +300,59 @@ This contract is approved as policy. It does not authorize implementation or pro
 ### Boundary-selection authority
 
 Exact title and successor strings come from `docs/data/shakespeare-eight-play-structure.md` and the authoritative manifest. Observed absolute lines, byte offsets, and Unicode code-point offsets are required verification assertions tied to the pinned raw hash but never selection inputs. Per-work successor-separator counts explicitly listed above and in the manifest are also required assertions. Other observed blank-line counts are informational provenance only. The implementation must select by exact full-line structural markers and fail if independently calculated required assertions differ; it must not select by hard-coded absolute offsets.
+
+### Shared `Dramatis Personæ` marker and per-work indentation
+
+The canonical marker text is exactly `Dramatis Personæ`. That shared value contains no leading or trailing whitespace and is stored once in the authoritative manifest.
+
+For each work, construct its expected exact logical line as:
+
+`U+0020 SPACE × dramatis_leading_u0020_count` + `Dramatis Personæ`
+
+The approved per-work values are:
+
+| Work | `dramatis_leading_u0020_count` |
+|---|---:|
+| *Hamlet* | 0 |
+| *Romeo and Juliet* | 1 |
+| *Macbeth* | 0 |
+| *A Midsummer Night's Dream* | 0 |
+| *Much Ado About Nothing* | 0 |
+| *Henry V* | 0 |
+| *The Tempest* | 0 |
+| *Twelfth Night* | 1 |
+
+Match using exact, case-sensitive full-logical-line Unicode equality under the approved CRLF line semantics. Do not strip, trim, normalize Unicode, collapse whitespace, or infer indentation. No trailing spaces are permitted. Exactly one constructed marker must occur within each selected outer work range, after the exact zero-indent local `Contents` marker and before the outer-range end. Required order is:
+
+`work title < local Contents < exact per-work Dramatis Personæ line < outer-range end`
+
+The shared marker avoids repeating identical Unicode text in every work record; only the source-varying leading-space count belongs to each work.
+
+### Provenance hash-range definitions
+
+The following are three distinct byte ranges at three deterministic pipeline stages. Each has its own SHA-256 and byte count; the hashes must never be substituted for or conflated with one another.
+
+**Outer raw range**
+
+- Contains original raw-source bytes.
+- Begins at the first raw byte of the selected work's exact body-title marker.
+- Ends immediately after the CRLF terminating the final nonempty source line selected by the approved successor-separator rule.
+- Is measured before local-contents removal and therefore includes the removable local `Contents` range.
+- Its SHA-256 is computed over those exact contiguous original bytes.
+
+**Retained raw range**
+
+- Is the exact byte concatenation of:
+  1. outer raw bytes from the outer start through immediately before the local `Contents` marker; and
+  2. outer raw bytes beginning at the exact constructed per-work `Dramatis Personæ` line through the outer end.
+- Is measured after local-contents removal and before CRLF-to-LF normalization.
+- Its SHA-256 is computed over those exact concatenated raw bytes.
+
+**Processed range**
+
+- Is the UTF-8 byte representation resulting solely from replacing every retained CRLF pair with LF.
+- Permits no other normalization or text transformation.
+- Its SHA-256 is computed over those final in-memory processed bytes.
 
 ### Split isolation
 
@@ -395,4 +450,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, and exact preflight clarification were approved on 2026-09-06. The raw-source acquisition, factual provenance capture, and structural inspection are complete and tracked together in the acquisition checkpoint. Extraction implementation and processed-output creation are not authorized; they require a separate explicit approval after this clarification checkpoint. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. The raw-source acquisition, factual provenance capture, structural inspection, and read-only preflight are complete and tracked in dedicated checkpoints. In-memory extraction implementation and processed-output creation are not authorized; they require separate explicit approval after this clarification checkpoint. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.

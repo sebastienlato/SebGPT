@@ -10,6 +10,7 @@
 - **Extraction contract:** Approved 2026-09-06
 - **Exact preflight clarification:** Approved 2026-09-06
 - **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
+- **In-memory extraction marker/hash clarification:** Approved 2026-09-06
 - **Extraction implementation authorized:** No
 - **Extraction performed:** No
 
@@ -52,7 +53,22 @@ Full-line matching removes only the terminating CRLF and otherwise compares exac
 
 Each selected work has one exact uppercase title line in the global contents and one unique exact uppercase body-title line after the global contents. Selected body titles have no leading or trailing spaces. Seven selected markers have four blank lines immediately after the title; *Henry V* has two. All selected markers have four blank lines immediately before the title. These title-surrounding counts are informational provenance, not required preflight assertions.
 
-Inspected non-test plays contain their own internal `Contents` section, repeated act/scene listings, a `Dramatis Personæ` heading, and then the play body. The approved contract includes the top-level title, removes the local contents range, and retains `Dramatis Personæ` and the play body.
+Selected plays contain their own internal `Contents` section, repeated act/scene listings, a source-indented form of the shared `Dramatis Personæ` marker, and then the play body. The approved contract includes the top-level title, removes the local contents range, and retains the exact per-work `Dramatis Personæ` line and the play body.
+
+### `Dramatis Personæ` structural observations
+
+The shared canonical marker text is exactly `Dramatis Personæ`, with code points ending in U+00E6 and with no whitespace stored in the shared value. The expected logical line is constructed by prefixing the per-work number of U+0020 SPACE code points. No selected work has another indentation variant or trailing spaces.
+
+| Work | Leading U+0020 count | Exact-marker occurrences in outer range |
+|---|---:|---:|
+| *Hamlet* | 0 | 1 |
+| *Romeo and Juliet* | 1 | 1 |
+| *Macbeth* | 0 | 1 |
+| *A Midsummer Night's Dream* | 0 | 1 |
+| *Much Ado About Nothing* | 0 | 1 |
+| *Henry V* | 0 | 1 |
+| *The Tempest* | 0 | 1 |
+| *Twelfth Night* | 1 | 1 |
 
 A whole-file exact-title scan found 46 post-global-contents matches for the 44 global contents titles. Two unselected titles occur twice: `KING HENRY THE EIGHTH` at lines 71,019 and 71,059, and `VENUS AND ADONIS` at lines 194,612 and 194,646. Therefore, extraction must not assume every contents title has exactly one later occurrence. All eight selected body-title markers were unique in the post-contents scan.
 
@@ -86,8 +102,8 @@ Manifest order is intentionally independent of source order. Deterministic extra
 
 - Include each selected work's exact top-level body-title line.
 - Select the outer end using the exact successor marker, excluding its immediately preceding empty CRLF separator lines.
-- Remove the local range from the first exact `Contents` line through immediately before the first exact `Dramatis Personæ` line.
-- Retain `Dramatis Personæ`, acts, scenes, speaker labels, stage directions, typography, indentation, and internal whitespace.
+- Remove the local range from the first exact zero-indent `Contents` line through immediately before the exact constructed per-work `Dramatis Personæ` line.
+- Retain the exact source-indented `Dramatis Personæ` line, acts, scenes, speaker labels, stage directions, typography, indentation, and internal whitespace.
 - Convert CRLF to LF only after range selection; perform no other normalization.
 - Produce one terminal LF by preserving the final retained source CRLF through extraction and converting it.
 - Write eight separate processed documents at the paths defined in `docs/DATASET_SPEC.md`.

@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Read-only Shakespeare preflight accepted and tracked in its implementation checkpoint; extraction remains unauthorized.
+Source-faithful Dramatis marker and provenance hash-stage clarification approved; extraction implementation not authorized.
 
 ## Completed work
 
@@ -52,10 +52,11 @@ Read-only Shakespeare preflight accepted and tracked in its implementation check
 - Standard-library preflight and focused tests implemented without extraction or output-writing behavior.
 - Production preflight passed against the pinned source; all 16 focused tests passed, and the full 19-test suite passed with the expected restricted-context MPS skip.
 - Independent review passed and the read-only preflight implementation was accepted for its dedicated checkpoint.
+- Source-faithful per-work Dramatis indentation and three distinct provenance hash stages approved under DEC-0011.
 
 ## Current work
 
-None. The accepted preflight checkpoint is complete; extraction remains unauthorized.
+None. The clarification checkpoint is complete; in-memory extraction implementation remains unauthorized.
 
 ## Current model status
 
@@ -63,11 +64,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted read-only preflight validates byte identity before strict decoding, raw newline invariants, exact wrapper/global-content structure, all selected-work markers and offsets, successor separators, and outer-range ordering. Focused, full-suite, and production verification pass against the pinned source without creating `data/processed/`. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
+The accepted preflight checkpoint remains unchanged. The approved contract represents `Dramatis Personæ` once with source-faithful per-work leading-space counts and distinguishes outer-raw, retained-raw, and processed provenance hashes. DEC-0011 is accepted. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes deterministic extraction and processed-output implementation under the approved contract before that next milestone begins.
+Sebastien explicitly authorizes the already-designed in-memory extraction implementation slice before any extraction code or processed output is created.
 
 ## Known issues
 
@@ -91,8 +92,8 @@ Sebastien explicitly authorizes deterministic extraction and processed-output im
 
 ## Open questions
 
-- Does Sebastien authorize deterministic extraction and processed-output implementation?
+- Does Sebastien authorize the already-designed in-memory extraction implementation slice?
 
 ## Session handoff
 
-The read-only preflight implementation is accepted, verified, and tracked in its dedicated checkpoint. The next milestone—deterministic extraction and processed-output implementation—remains unauthorized. Character inventory and tokenization remain separate later gates.
+The accepted preflight remains unchanged. DEC-0011 and the source-faithful Dramatis marker/three-stage provenance contract are approved and checkpointed. Resume only with explicit authorization for the already-designed in-memory extraction slice; processed outputs, character inventory, and tokenization remain unauthorized.

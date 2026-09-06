@@ -1,8 +1,8 @@
 {
-  "schema_version": 3,
+  "schema_version": 4,
   "dataset_id": "shakespeare-eight-play",
   "policy_document": "docs/DATASET_SPEC.md",
-  "decision_entries": ["DEC-0007", "DEC-0008", "DEC-0009", "DEC-0010"],
+  "decision_entries": ["DEC-0007", "DEC-0008", "DEC-0009", "DEC-0010", "DEC-0011"],
   "status": {
     "corpus_design": "approved",
     "specification_and_acquisition_contract": "approved",
@@ -17,6 +17,7 @@
     "preflight_verified_against_pinned_source": true,
     "preflight_review": "accepted",
     "preflight_tracked_in_implementation_checkpoint": true,
+    "in_memory_extraction_contract_clarification": "approved",
     "extraction_authorized": false,
     "extraction_implemented": false,
     "tokenization_authorized": false,
@@ -77,14 +78,14 @@
     "approximate_processed_unicode_code_points_max": 1100000
   },
   "works": [
-    {"order": 1, "split": "train", "work_id": "hamlet", "title": "Hamlet", "estimated_words": 30000, "body_title_marker": "THE TRAGEDY OF HAMLET, PRINCE OF DENMARK", "successor_title_marker": "THE FIRST PART OF KING HENRY THE FOURTH", "observed_start_line": 34438, "observed_start_byte": 976463, "observed_start_code_point": 964679, "observed_successor_line": 41136, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/train/hamlet.txt"},
-    {"order": 2, "split": "train", "work_id": "romeo-and-juliet", "title": "Romeo and Juliet", "estimated_words": 25000, "body_title_marker": "THE TRAGEDY OF ROMEO AND JULIET", "successor_title_marker": "THE TAMING OF THE SHREW", "observed_start_line": 143372, "observed_start_byte": 4109746, "observed_start_code_point": 4066035, "observed_successor_line": 148639, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/train/romeo-and-juliet.txt"},
-    {"order": 3, "split": "train", "work_id": "macbeth", "title": "Macbeth", "estimated_words": 17000, "body_title_marker": "THE TRAGEDY OF MACBETH", "successor_title_marker": "MEASURE FOR MEASURE", "observed_start_line": 96022, "observed_start_byte": 2774909, "observed_start_code_point": 2744552, "observed_successor_line": 100172, "expected_empty_crlf_lines_before_successor": 5, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/train/macbeth.txt"},
-    {"order": 4, "split": "train", "work_id": "a-midsummer-nights-dream", "title": "A Midsummer Night's Dream", "estimated_words": 17000, "body_title_marker": "A MIDSUMMER NIGHT’S DREAM", "successor_title_marker": "MUCH ADO ABOUT NOTHING", "observed_start_line": 114050, "observed_start_byte": 3281135, "observed_start_code_point": 3245088, "observed_successor_line": 117535, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/train/a-midsummer-nights-dream.txt"},
-    {"order": 5, "split": "train", "work_id": "much-ado-about-nothing", "title": "Much Ado About Nothing", "estimated_words": 21000, "body_title_marker": "MUCH ADO ABOUT NOTHING", "successor_title_marker": "THE TRAGEDY OF OTHELLO, THE MOOR OF VENICE", "observed_start_line": 117535, "observed_start_byte": 3382288, "observed_start_code_point": 3345304, "observed_successor_line": 122135, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/train/much-ado-about-nothing.txt"},
-    {"order": 6, "split": "train", "work_id": "henry-v", "title": "Henry V", "estimated_words": 26000, "body_title_marker": "THE LIFE OF KING HENRY THE FIFTH", "successor_title_marker": "THE FIRST PART OF HENRY THE SIXTH", "observed_start_line": 51139, "observed_start_byte": 1471705, "observed_start_code_point": 1454574, "observed_successor_line": 56085, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/train/henry-v.txt"},
-    {"order": 7, "split": "validation", "work_id": "the-tempest", "title": "The Tempest", "estimated_words": 17000, "body_title_marker": "THE TEMPEST", "successor_title_marker": "THE LIFE OF TIMON OF ATHENS", "observed_start_line": 153507, "observed_start_byte": 4389497, "observed_start_code_point": 4342367, "observed_successor_line": 157343, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/validation/the-tempest.txt"},
-    {"order": 8, "split": "test", "work_id": "twelfth-night", "title": "Twelfth Night", "estimated_words": 20000, "body_title_marker": "TWELFTH NIGHT; OR, WHAT YOU WILL", "successor_title_marker": "THE TWO GENTLEMEN OF VERONA", "observed_start_line": 172093, "observed_start_byte": 4902784, "observed_start_code_point": 4849279, "observed_successor_line": 176589, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "processed_path": "data/processed/shakespeare-eight-play/test/twelfth-night.txt"}
+    {"order": 1, "split": "train", "work_id": "hamlet", "title": "Hamlet", "estimated_words": 30000, "body_title_marker": "THE TRAGEDY OF HAMLET, PRINCE OF DENMARK", "successor_title_marker": "THE FIRST PART OF KING HENRY THE FOURTH", "observed_start_line": 34438, "observed_start_byte": 976463, "observed_start_code_point": 964679, "observed_successor_line": 41136, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 0, "processed_path": "data/processed/shakespeare-eight-play/train/hamlet.txt"},
+    {"order": 2, "split": "train", "work_id": "romeo-and-juliet", "title": "Romeo and Juliet", "estimated_words": 25000, "body_title_marker": "THE TRAGEDY OF ROMEO AND JULIET", "successor_title_marker": "THE TAMING OF THE SHREW", "observed_start_line": 143372, "observed_start_byte": 4109746, "observed_start_code_point": 4066035, "observed_successor_line": 148639, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 1, "processed_path": "data/processed/shakespeare-eight-play/train/romeo-and-juliet.txt"},
+    {"order": 3, "split": "train", "work_id": "macbeth", "title": "Macbeth", "estimated_words": 17000, "body_title_marker": "THE TRAGEDY OF MACBETH", "successor_title_marker": "MEASURE FOR MEASURE", "observed_start_line": 96022, "observed_start_byte": 2774909, "observed_start_code_point": 2744552, "observed_successor_line": 100172, "expected_empty_crlf_lines_before_successor": 5, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 0, "processed_path": "data/processed/shakespeare-eight-play/train/macbeth.txt"},
+    {"order": 4, "split": "train", "work_id": "a-midsummer-nights-dream", "title": "A Midsummer Night's Dream", "estimated_words": 17000, "body_title_marker": "A MIDSUMMER NIGHT’S DREAM", "successor_title_marker": "MUCH ADO ABOUT NOTHING", "observed_start_line": 114050, "observed_start_byte": 3281135, "observed_start_code_point": 3245088, "observed_successor_line": 117535, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 0, "processed_path": "data/processed/shakespeare-eight-play/train/a-midsummer-nights-dream.txt"},
+    {"order": 5, "split": "train", "work_id": "much-ado-about-nothing", "title": "Much Ado About Nothing", "estimated_words": 21000, "body_title_marker": "MUCH ADO ABOUT NOTHING", "successor_title_marker": "THE TRAGEDY OF OTHELLO, THE MOOR OF VENICE", "observed_start_line": 117535, "observed_start_byte": 3382288, "observed_start_code_point": 3345304, "observed_successor_line": 122135, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 0, "processed_path": "data/processed/shakespeare-eight-play/train/much-ado-about-nothing.txt"},
+    {"order": 6, "split": "train", "work_id": "henry-v", "title": "Henry V", "estimated_words": 26000, "body_title_marker": "THE LIFE OF KING HENRY THE FIFTH", "successor_title_marker": "THE FIRST PART OF HENRY THE SIXTH", "observed_start_line": 51139, "observed_start_byte": 1471705, "observed_start_code_point": 1454574, "observed_successor_line": 56085, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 0, "processed_path": "data/processed/shakespeare-eight-play/train/henry-v.txt"},
+    {"order": 7, "split": "validation", "work_id": "the-tempest", "title": "The Tempest", "estimated_words": 17000, "body_title_marker": "THE TEMPEST", "successor_title_marker": "THE LIFE OF TIMON OF ATHENS", "observed_start_line": 153507, "observed_start_byte": 4389497, "observed_start_code_point": 4342367, "observed_successor_line": 157343, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 0, "processed_path": "data/processed/shakespeare-eight-play/validation/the-tempest.txt"},
+    {"order": 8, "split": "test", "work_id": "twelfth-night", "title": "Twelfth Night", "estimated_words": 20000, "body_title_marker": "TWELFTH NIGHT; OR, WHAT YOU WILL", "successor_title_marker": "THE TWO GENTLEMEN OF VERONA", "observed_start_line": 172093, "observed_start_byte": 4902784, "observed_start_code_point": 4849279, "observed_successor_line": 176589, "expected_empty_crlf_lines_before_successor": 4, "expected_whitespace_only_lines_before_successor": 0, "dramatis_leading_u0020_count": 1, "processed_path": "data/processed/shakespeare-eight-play/test/twelfth-night.txt"}
   ],
   "counting_contract": {
     "raw_bytes": "exact filesystem byte length",
@@ -200,6 +201,19 @@
         "required_trailing_spaces": 0,
         "distinguished_from_global_by_leading_spaces": true
       },
+      "dramatis_personae_marker": {
+        "canonical_text": "Dramatis Personæ",
+        "canonical_text_leading_spaces": 0,
+        "canonical_text_trailing_spaces": 0,
+        "expected_logical_line_construction": "U+0020 repeated work.dramatis_leading_u0020_count times, followed by canonical_text",
+        "comparison": "exact case-sensitive full-logical-line Unicode equality",
+        "forbidden_match_transformations": ["trim", "strip", "whitespace collapse", "case fold", "Unicode normalization", "indentation inference"],
+        "required_trailing_spaces_per_work": 0,
+        "required_occurrences_per_outer_range": 1,
+        "search_start_exclusive": "the work's exact zero-indent play_local_contents_marker",
+        "search_end_exclusive": "the work's approved outer_range_end",
+        "required_order": ["body_title_marker", "play_local_contents_marker", "constructed_dramatis_personae_logical_line", "outer_range_end"]
+      },
       "decode": "strict UTF-8 in memory; preserve raw bytes; do not strip BOM or normalize Unicode",
       "selection_basis": "exact full-line structural markers after the verified 44-entry global contents; absolute positions are assertions only",
       "start_boundary": "first byte and code point of the unique post-contents body-title marker",
@@ -211,7 +225,7 @@
       "local_contents": {
         "included": false,
         "excluded_range_start": "first exact full line Contents after the body-title marker",
-        "excluded_range_end_exclusive": "first exact full line Dramatis Personæ after that Contents marker"
+        "excluded_range_end_exclusive": "first exact constructed per-work Dramatis Personæ logical line after that Contents marker"
       },
       "include_dramatis_personae": true,
       "preserve": [
@@ -231,6 +245,33 @@
       ],
       "minimal_normalization": "after range selection, replace every CRLF pair with LF; require zero lone CR before conversion and zero CR afterward; perform no other normalization",
       "terminal_newline": "preserve the final retained source CRLF so conversion produces exactly one terminal LF",
+      "provenance_hash_ranges": {
+        "outer_raw_range": {
+          "stage": "before local Contents removal",
+          "source": "original raw bytes",
+          "start_inclusive": "first raw byte of the selected work's exact body-title marker",
+          "end_exclusive": "first raw byte after the CRLF terminating the final nonempty source line before the approved successor separator",
+          "includes_local_contents_range": true,
+          "sha256_input": "the exact contiguous original raw bytes from start_inclusive to end_exclusive"
+        },
+        "retained_raw_range": {
+          "stage": "after local Contents removal and before CRLF-to-LF normalization",
+          "construction": [
+            "outer raw bytes from outer start through immediately before the local Contents marker",
+            "outer raw bytes beginning at the exact constructed per-work Dramatis Personæ line through outer end"
+          ],
+          "sha256_input": "the exact concatenation of the two retained original-raw byte segments in construction order"
+        },
+        "processed_range": {
+          "stage": "after minimal newline normalization",
+          "construction": "replace every CRLF pair in retained_raw_range with LF",
+          "encoding": "UTF-8",
+          "other_transformations_permitted": false,
+          "sha256_input": "the final in-memory processed UTF-8 bytes"
+        },
+        "hashes_are_distinct_stage_provenance": true,
+        "hashes_must_not_be_conflated": true
+      },
       "split_representation": "one physical UTF-8 document per work; no concatenated split file and no cross-document sequence",
       "sealed_test_policy": "same algorithm with no test-specific branch; expose only approved structural markers and machine-readable numeric diagnostics; never expose test prose or text diffs",
       "policy_document": "docs/DATASET_SPEC.md",
