@@ -89,7 +89,7 @@
     "words": "Python len(text.split()) using the recorded Python version"
   },
   "processing": {
-    "status": "contract_approved_preflight_clarification_under_review_implementation_not_authorized",
+    "status": "contract_and_preflight_approved_implementation_not_authorized",
     "script_path": null,
     "git_commit": null,
     "python_version": null,

@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Exact extraction-preflight assertions approved and documented; implementation not authorized.
+Preflight technical contract approved, committed, and consistency-verified; implementation pending explicit authorization.
 
 ## Completed work
 
@@ -46,10 +46,12 @@ Exact extraction-preflight assertions approved and documented; implementation no
 - Deterministic eight-play extraction policy approved and recorded as DEC-0009.
 - Exact marker-based boundaries, content inclusions/exclusions, minimal normalization, split paths, verification invariants, metadata, and sealed-test rules documented.
 - Exact Gutenberg wrapper anchors, global contents contract, ordered 44-entry list, and eight successor-separator assertions approved under DEC-0010.
+- Exact-preflight documentation checkpoint committed as `6efb00a5cd8e9831f83846fc30acf152bc27e1e9`.
+- Final authoritative-status consistency verification completed with no remaining technical blockers.
 
 ## Current work
 
-Creating the approved exact-preflight documentation checkpoint.
+None. Technical blockers are resolved; read-only preflight implementation awaits explicit authorization.
 
 ## Current model status
 
@@ -57,11 +59,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The raw master remains preserved at the approved SHA-256. The contract records exact wrapper markers, whitespace-sensitive global contents structure and membership, and complete successor-separator assertions in both human-readable and machine-readable form. DEC-0010 is accepted. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
+The raw master remains preserved at the approved SHA-256. DEC-0010 is accepted, the exact-preflight checkpoint is committed, and all authoritative status records agree that the technical contract is approved while implementation is unauthorized. No preflight code, extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Await Sebastien's explicit authorization to implement the approved read-only preflight before any extractor or processed-output work begins.
+Sebastien explicitly authorizes the read-only preflight implementation layer before any preflight code, extractor, or processed-output work begins.
 
 ## Known issues
 
@@ -89,4 +91,4 @@ Await Sebastien's explicit authorization to implement the approved read-only pre
 
 ## Session handoff
 
-The exact wrapper, global-contents, ordered-entry, and successor-separator preflight assertions are approved and checkpointed. Resume only with explicit preflight implementation authorization; extraction outputs, character inventories, and tokenization remain unauthorized.
+The exact wrapper, global-contents, ordered-entry, and successor-separator assertions are approved, committed, and consistency-verified. Resume only with explicit authorization for the read-only preflight implementation layer; extraction outputs, character inventories, and tokenization remain unauthorized.
