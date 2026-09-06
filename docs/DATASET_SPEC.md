@@ -2,12 +2,13 @@
 
 ## Status
 
-- **Specification version:** 1.2
+- **Specification version:** 1.3
 - **Corpus design:** Approved 2026-09-06
 - **Dataset specification and acquisition contract:** Approved 2026-09-06
 - **Acquisition authorized:** Yes, for the raw-source acquisition and structural-inspection milestone only
 - **Data acquired:** Yes; verified and tracked in the approved acquisition checkpoint
 - **Extraction contract:** Approved 2026-09-06
+- **Preflight contract clarification:** Approved 2026-09-06
 - **Extraction implementation authorized:** No
 - **Extraction implemented:** No
 - **Tokenization implemented:** No
@@ -130,6 +131,105 @@ The approved extraction contract below defines exact marker-based selection, exc
 
 Every approved transformation must later be deterministic, reviewable in code, and accompanied by before/after counts.
 
+## Exact preflight structural contract
+
+This section defines structural verification values only. It does not authorize implementation or change the approved extraction outputs.
+
+### Full-line matching semantics
+
+1. Verify the pinned raw SHA-256 and the raw line-ending contract before marker matching.
+2. Strictly decode the raw bytes as UTF-8 in memory without BOM stripping or Unicode normalization.
+3. Divide the decoded source only at the verified CRLF pairs. A “logical line” is the sequence of Unicode code points before one terminating CRLF; the CRLF is not part of the logical-line value.
+4. Compare logical lines by exact, case-sensitive Unicode code-point equality. Do not trim, collapse, case-fold, normalize, or otherwise transform either the source line or expected marker.
+5. Leading spaces, trailing spaces, punctuation, and Unicode characters are significant. Every structural marker below requires zero trailing spaces unless explicitly stated otherwise.
+
+Marker selection is therefore an exact full-logical-line comparison after strict decoding, not a raw byte-substring search. Raw bytes remain authoritative for the source hash and CRLF assertions.
+
+### Gutenberg wrapper markers
+
+The following exact logical-line values must each occur exactly once:
+
+- START: `*** START OF THE PROJECT GUTENBERG EBOOK THE COMPLETE WORKS OF WILLIAM SHAKESPEARE ***`
+- END: `*** END OF THE PROJECT GUTENBERG EBOOK THE COMPLETE WORKS OF WILLIAM SHAKESPEARE ***`
+
+Both begin at column zero and have no leading or trailing spaces. The START marker must precede the global contents marker; the END marker must follow every selected work and successor marker. Their observed absolute positions remain provenance assertions only and must not select ranges.
+
+### Global contents heading and region
+
+The global contents heading is the exact logical line formed by 20 consecutive U+0020 SPACE code points followed by `Contents`, with no trailing spaces. It is not the same marker as a play-local contents heading, which is exactly `Contents` at column zero with no leading or trailing spaces.
+
+The global region must match this complete sequence:
+
+1. Exactly one global heading matching `20 × U+0020 + "Contents"`.
+2. Exactly one empty logical line immediately after the heading; its raw representation is CRLF only.
+3. Exactly 44 consecutive nonempty entry lines. Each entry is exactly four U+0020 SPACE code points followed by the corresponding title below, with no trailing spaces.
+4. Exactly four empty logical lines immediately after entry 44; each raw line is CRLF only, with no spaces or tabs.
+5. The exact full-line body marker `THE SONNETS` at column zero immediately after those four empty lines.
+
+The authoritative 44 entry values, excluding their required four-space prefix, are:
+
+1. `THE SONNETS`
+2. `ALL’S WELL THAT ENDS WELL`
+3. `THE TRAGEDY OF ANTONY AND CLEOPATRA`
+4. `AS YOU LIKE IT`
+5. `THE COMEDY OF ERRORS`
+6. `THE TRAGEDY OF CORIOLANUS`
+7. `CYMBELINE`
+8. `THE TRAGEDY OF HAMLET, PRINCE OF DENMARK`
+9. `THE FIRST PART OF KING HENRY THE FOURTH`
+10. `THE SECOND PART OF KING HENRY THE FOURTH`
+11. `THE LIFE OF KING HENRY THE FIFTH`
+12. `THE FIRST PART OF HENRY THE SIXTH`
+13. `THE SECOND PART OF KING HENRY THE SIXTH`
+14. `THE THIRD PART OF KING HENRY THE SIXTH`
+15. `KING HENRY THE EIGHTH`
+16. `THE LIFE AND DEATH OF KING JOHN`
+17. `THE TRAGEDY OF JULIUS CAESAR`
+18. `THE TRAGEDY OF KING LEAR`
+19. `LOVE’S LABOUR’S LOST`
+20. `THE TRAGEDY OF MACBETH`
+21. `MEASURE FOR MEASURE`
+22. `THE MERCHANT OF VENICE`
+23. `THE MERRY WIVES OF WINDSOR`
+24. `A MIDSUMMER NIGHT’S DREAM`
+25. `MUCH ADO ABOUT NOTHING`
+26. `THE TRAGEDY OF OTHELLO, THE MOOR OF VENICE`
+27. `PERICLES, PRINCE OF TYRE`
+28. `KING RICHARD THE SECOND`
+29. `KING RICHARD THE THIRD`
+30. `THE TRAGEDY OF ROMEO AND JULIET`
+31. `THE TAMING OF THE SHREW`
+32. `THE TEMPEST`
+33. `THE LIFE OF TIMON OF ATHENS`
+34. `THE TRAGEDY OF TITUS ANDRONICUS`
+35. `TROILUS AND CRESSIDA`
+36. `TWELFTH NIGHT; OR, WHAT YOU WILL`
+37. `THE TWO GENTLEMEN OF VERONA`
+38. `THE TWO NOBLE KINSMEN`
+39. `THE WINTER’S TALE`
+40. `A LOVER’S COMPLAINT`
+41. `THE PASSIONATE PILGRIM`
+42. `THE PHOENIX AND THE TURTLE`
+43. `THE RAPE OF LUCRECE`
+44. `VENUS AND ADONIS`
+
+Preflight must compare this ordered list literally. It must not infer titles, authorship, genre, capitalization, or semantic Shakespeare structure.
+
+### Successor-separator assertions
+
+The generic end-boundary rule remains: scan backward from the exact successor marker across consecutive CRLF-only empty lines and exclude them. In addition, preflight must assert the complete pinned-source observations recorded per work in the authoritative manifest:
+
+- *Hamlet*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+- *Romeo and Juliet*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+- *Macbeth*: 5 empty CRLF-only lines; 0 whitespace-only lines.
+- *A Midsummer Night’s Dream*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+- *Much Ado About Nothing*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+- *Henry V*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+- *The Tempest*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+- *Twelfth Night*: 4 empty CRLF-only lines; 0 whitespace-only lines.
+
+These successor-separator counts are required verification assertions, not boundary-selection inputs. Other observed blank-line counts around selected title markers are informational provenance only. A line containing one or more spaces, tabs, or other whitespace code points is whitespace-only, not empty, and must cause the separator assertion to fail rather than being removed as part of the empty-line run.
+
 ## Deterministic eight-play extraction contract
 
 This contract is approved as policy. It does not authorize implementation or processed-output creation.
@@ -138,7 +238,7 @@ This contract is approved as policy. It does not authorize implementation or pro
 
 2. Read the raw file as bytes and verify its hash before decoding. Decode a copy in memory using strict UTF-8 without BOM stripping or Unicode normalization. Never rewrite the raw file.
 
-3. Verify the unique Gutenberg START and END markers, global `Contents` marker, 44-entry global contents region, and observed structural offsets. Recorded absolute lines and offsets are assertions only, never boundary-selection inputs.
+3. Verify the exact Gutenberg START and END full-line markers, global contents heading, complete ordered 44-entry contents region, and structural expectations defined in the preflight contract above. Recorded absolute lines and offsets are assertions only, never boundary-selection inputs.
 
 4. Identify each selected work by its exact full-line body-title marker after the global contents. Require one global-contents occurrence and exactly one post-contents body occurrence for every selected marker.
 
@@ -146,7 +246,7 @@ This contract is approved as policy. It does not authorize implementation or pro
 
 6. Set the work start at the first byte/code point of its body-title marker. Exclude every preceding separator line.
 
-7. Starting immediately before the successor marker, remove consecutive lines containing no bytes other than CRLF. End the raw work segment immediately after the CRLF terminating the preceding nonempty line. Whitespace-only lines are not considered empty; encountering one in the boundary separator requires review.
+7. Starting immediately before the successor marker, remove consecutive lines containing no bytes other than CRLF. End the raw work segment immediately after the CRLF terminating the preceding nonempty line. Require the per-work empty and whitespace-only separator counts in the preflight contract. Whitespace-only lines are not considered empty; encountering one in the boundary separator fails preflight.
 
 8. Include the top-level work title.
 
@@ -195,7 +295,7 @@ This contract is approved as policy. It does not authorize implementation or pro
 
 ### Boundary-selection authority
 
-Exact title and successor strings come from `docs/data/shakespeare-eight-play-structure.md`. The observed absolute lines, byte offsets, Unicode code-point offsets, and blank-line counts in that record are verification expectations tied to the pinned raw hash. The implementation must select by exact full-line structural markers and fail if the independently calculated values differ from the observations; it must not select by hard-coded absolute offsets.
+Exact title and successor strings come from `docs/data/shakespeare-eight-play-structure.md` and the authoritative manifest. Observed absolute lines, byte offsets, and Unicode code-point offsets are required verification assertions tied to the pinned raw hash but never selection inputs. Per-work successor-separator counts explicitly listed above and in the manifest are also required assertions. Other observed blank-line counts are informational provenance only. The implementation must select by exact full-line structural markers and fail if independently calculated required assertions differ; it must not select by hard-coded absolute offsets.
 
 ### Split isolation
 
@@ -293,4 +393,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, and deterministic extraction contract were approved on 2026-09-06. The raw-source acquisition, factual provenance capture, and structural inspection are complete and tracked together in the acquisition checkpoint. The raw measurements and markers are recorded in `docs/data/shakespeare-eight-play-structure.md`. Extraction implementation and processed-output creation are not authorized; they require a separate explicit approval after this documentation checkpoint. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, and exact preflight clarification were approved on 2026-09-06. The raw-source acquisition, factual provenance capture, and structural inspection are complete and tracked together in the acquisition checkpoint. Extraction implementation and processed-output creation are not authorized; they require a separate explicit approval after this clarification checkpoint. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.

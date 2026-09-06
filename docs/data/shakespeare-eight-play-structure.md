@@ -8,6 +8,7 @@
 - **Raw SHA-256:** `3cf4b3d44ee14cff4e14e78e2ad3318eff76f3f7f2afc3cee6bb925879110a37`
 - **Inspection type:** Read-only structural diagnostics
 - **Extraction contract:** Approved 2026-09-06
+- **Exact preflight clarification:** Approved 2026-09-06
 - **Extraction implementation authorized:** No
 - **Extraction performed:** No
 
@@ -33,20 +34,22 @@ Every observed line ending is CRLF. These measurements describe the immutable ra
 Offsets are zero-based. Line numbers are one-based raw physical lines.
 
 - Source metadata/preamble occupies lines 1–24.
-- The unique Gutenberg START marker is line 25, byte offset 815, Unicode code-point offset 815.
+- The unique Gutenberg START marker is line 25, byte offset 815, Unicode code-point offset 815. Its exact logical-line value is `*** START OF THE PROJECT GUTENBERG EBOOK THE COMPLETE WORKS OF WILLIAM SHAKESPEARE ***`, with zero leading or trailing spaces.
 - A complete-works title page appears after the START marker: the collection title is on line 30 and author line on line 32.
-- The global `Contents` marker is line 37.
-- The global contents entries occupy lines 39–82 and contain 44 uppercase work-title entries.
+- The global contents marker is line 37. Its exact logical-line value is 20 U+0020 SPACE code points followed by `Contents`, with zero trailing spaces.
+- Line 38 is one CRLF-only empty line.
+- The global contents entries occupy lines 39–82 and contain 44 consecutive nonempty work-title entries. Each exact logical line has four leading U+0020 SPACE code points, one title from the authoritative ordered list in `docs/DATASET_SPEC.md` and the machine manifest, and zero trailing spaces.
+- Lines 83–86 are four CRLF-only empty lines.
 - The first top-level body marker is `THE SONNETS` on line 87.
-- The unique Gutenberg END marker is line 196,048, byte offset 5,619,552, Unicode code-point offset 5,556,275.
+- The unique Gutenberg END marker is line 196,048, byte offset 5,619,552, Unicode code-point offset 5,556,275. Its exact logical-line value is `*** END OF THE PROJECT GUTENBERG EBOOK THE COMPLETE WORKS OF WILLIAM SHAKESPEARE ***`, with zero leading or trailing spaces.
 - The full Gutenberg license footer begins at byte offset 5,619,638, immediately after the END marker's terminating CRLF, and continues through EOF for 18,842 bytes.
 - The license-footer SHA-256 is `ae0d20778842abddfa129878dabff2a1c67a33d854c294ecfe7ac0d51e0d8dcb`.
 
-The approved extraction contract in `docs/DATASET_SPEC.md` uses these observations as verification expectations and selects boundaries by exact full-line markers rather than absolute offsets.
+Full-line matching removes only the terminating CRLF and otherwise compares exact, case-sensitive Unicode code points without trimming or normalization. The approved extraction contract uses absolute observations as verification expectations and selects boundaries only by exact full-line markers.
 
 ## General work-delimiter pattern
 
-Each selected work has one exact uppercase title line in the global contents and one unique exact uppercase body-title line after the global contents. Selected body titles have no leading or trailing spaces. Seven selected markers have four blank lines immediately after the title; *Henry V* has two. All selected markers have four blank lines immediately before the title.
+Each selected work has one exact uppercase title line in the global contents and one unique exact uppercase body-title line after the global contents. Selected body titles have no leading or trailing spaces. Seven selected markers have four blank lines immediately after the title; *Henry V* has two. All selected markers have four blank lines immediately before the title. These title-surrounding counts are informational provenance, not required preflight assertions.
 
 Inspected non-test plays contain their own internal `Contents` section, repeated act/scene listings, a `Dramatis Personæ` heading, and then the play body. The approved contract includes the top-level title, removes the local contents range, and retains `Dramatis Personæ` and the play body.
 
@@ -56,16 +59,16 @@ A whole-file exact-title scan found 46 post-global-contents matches for the 44 g
 
 The approved contract uses each exact “next marker” below as the outer end-exclusive structural anchor, then mechanically excludes the consecutive empty CRLF separator lines immediately before it.
 
-| Split | Work | Body-title marker | Start line | Start byte | Start code-point offset | Next top-level marker | Next line |
-|---|---|---|---:|---:|---:|---|---:|
-| train | *Hamlet* | `THE TRAGEDY OF HAMLET, PRINCE OF DENMARK` | 34,438 | 976,463 | 964,679 | `THE FIRST PART OF KING HENRY THE FOURTH` | 41,136 |
-| train | *Henry V* | `THE LIFE OF KING HENRY THE FIFTH` | 51,139 | 1,471,705 | 1,454,574 | `THE FIRST PART OF HENRY THE SIXTH` | 56,085 |
-| train | *Macbeth* | `THE TRAGEDY OF MACBETH` | 96,022 | 2,774,909 | 2,744,552 | `MEASURE FOR MEASURE` | 100,172 |
-| train | *A Midsummer Night's Dream* | `A MIDSUMMER NIGHT’S DREAM` | 114,050 | 3,281,135 | 3,245,088 | `MUCH ADO ABOUT NOTHING` | 117,535 |
-| train | *Much Ado About Nothing* | `MUCH ADO ABOUT NOTHING` | 117,535 | 3,382,288 | 3,345,304 | `THE TRAGEDY OF OTHELLO, THE MOOR OF VENICE` | 122,135 |
-| train | *Romeo and Juliet* | `THE TRAGEDY OF ROMEO AND JULIET` | 143,372 | 4,109,746 | 4,066,035 | `THE TAMING OF THE SHREW` | 148,639 |
-| validation | *The Tempest* | `THE TEMPEST` | 153,507 | 4,389,497 | 4,342,367 | `THE LIFE OF TIMON OF ATHENS` | 157,343 |
-| test | *Twelfth Night* | `TWELFTH NIGHT; OR, WHAT YOU WILL` | 172,093 | 4,902,784 | 4,849,279 | `THE TWO GENTLEMEN OF VERONA` | 176,589 |
+| Split | Work | Body-title marker | Start line | Start byte | Start code-point offset | Next top-level marker | Next line | Required empty CRLF lines before next | Required whitespace-only lines before next |
+|---|---|---|---:|---:|---:|---|---:|---:|---:|
+| train | *Hamlet* | `THE TRAGEDY OF HAMLET, PRINCE OF DENMARK` | 34,438 | 976,463 | 964,679 | `THE FIRST PART OF KING HENRY THE FOURTH` | 41,136 | 4 | 0 |
+| train | *Henry V* | `THE LIFE OF KING HENRY THE FIFTH` | 51,139 | 1,471,705 | 1,454,574 | `THE FIRST PART OF HENRY THE SIXTH` | 56,085 | 4 | 0 |
+| train | *Macbeth* | `THE TRAGEDY OF MACBETH` | 96,022 | 2,774,909 | 2,744,552 | `MEASURE FOR MEASURE` | 100,172 | 5 | 0 |
+| train | *A Midsummer Night's Dream* | `A MIDSUMMER NIGHT’S DREAM` | 114,050 | 3,281,135 | 3,245,088 | `MUCH ADO ABOUT NOTHING` | 117,535 | 4 | 0 |
+| train | *Much Ado About Nothing* | `MUCH ADO ABOUT NOTHING` | 117,535 | 3,382,288 | 3,345,304 | `THE TRAGEDY OF OTHELLO, THE MOOR OF VENICE` | 122,135 | 4 | 0 |
+| train | *Romeo and Juliet* | `THE TRAGEDY OF ROMEO AND JULIET` | 143,372 | 4,109,746 | 4,066,035 | `THE TAMING OF THE SHREW` | 148,639 | 4 | 0 |
+| validation | *The Tempest* | `THE TEMPEST` | 153,507 | 4,389,497 | 4,342,367 | `THE LIFE OF TIMON OF ATHENS` | 157,343 | 4 | 0 |
+| test | *Twelfth Night* | `TWELFTH NIGHT; OR, WHAT YOU WILL` | 172,093 | 4,902,784 | 4,849,279 | `THE TWO GENTLEMEN OF VERONA` | 176,589 | 4 | 0 |
 
 Manifest order is intentionally independent of source order. Deterministic extraction must use stable work identifiers and approved explicit boundaries rather than assuming the six training works are adjacent in the source.
 
@@ -74,7 +77,7 @@ Manifest order is intentionally independent of source order. Deterministic extra
 - The raw source uses CRLF exclusively; the approved processing contract later converts CRLF to LF.
 - Typography includes Unicode punctuation, including the curly apostrophe in `A MIDSUMMER NIGHT’S DREAM`, and the `æ` character in `Dramatis Personæ`.
 - The source includes a global contents list and play-local contents lists, so repeated structural headings are expected.
-- Blank-line counts around title markers are mostly, but not completely, uniform.
+- Title-surrounding blank-line counts are informational and not completely uniform. Successor-separator counts in the boundary table are required assertions; *Macbeth* has five CRLF-only lines and the other selected works have four, with zero whitespace-only separator lines for all eight.
 - Exact-title occurrence counts are not uniform across all 44 works, even though the eight selected body-title markers are unique.
 - The catalog reported `Last Update: 2025-08-24`, while the downloaded artifact response reported `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`. Both values are retained as separate provenance facts.
 

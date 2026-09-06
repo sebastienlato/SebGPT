@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Deterministic extraction contract approved and documented; implementation not authorized.
+Exact extraction-preflight assertions approved and documented; implementation not authorized.
 
 ## Completed work
 
@@ -45,10 +45,11 @@ Deterministic extraction contract approved and documented; implementation not au
 - Raw-source acquisition checkpoint committed as `8ffba6e005ac26e1b3f81c1d914df97e2acd7b25`.
 - Deterministic eight-play extraction policy approved and recorded as DEC-0009.
 - Exact marker-based boundaries, content inclusions/exclusions, minimal normalization, split paths, verification invariants, metadata, and sealed-test rules documented.
+- Exact Gutenberg wrapper anchors, global contents contract, ordered 44-entry list, and eight successor-separator assertions approved under DEC-0010.
 
 ## Current work
 
-Reviewing the extraction-design documentation checkpoint before implementation authorization.
+Creating the approved exact-preflight documentation checkpoint.
 
 ## Current model status
 
@@ -56,11 +57,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The raw master remains preserved at the approved SHA-256. The deterministic extraction contract is recorded consistently in `docs/DATASET_SPEC.md`, DEC-0009, the structural record, and the authoritative machine-readable manifest. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
+The raw master remains preserved at the approved SHA-256. The contract records exact wrapper markers, whitespace-sensitive global contents structure and membership, and complete successor-separator assertions in both human-readable and machine-readable form. DEC-0010 is accepted. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-After Sebastien explicitly authorizes implementation, implement the extractor's read-only preflight validation of the raw hash and required marker cardinality/order before enabling any processed-output writes.
+Await Sebastien's explicit authorization to implement the approved read-only preflight before any extractor or processed-output work begins.
 
 ## Known issues
 
@@ -84,8 +85,8 @@ After Sebastien explicitly authorizes implementation, implement the extractor's 
 
 ## Open questions
 
-- Does Sebastien authorize implementation of the approved deterministic extraction contract?
+- Does Sebastien authorize implementation of the approved read-only preflight contract?
 
 ## Session handoff
 
-The dataset-design, acquisition, and extraction-contract documentation checkpoints are complete. Resume with explicit implementation authorization; the first implementation action is read-only preflight validation before processed-output writing. Character inventory and tokenization remain separate later gates.
+The exact wrapper, global-contents, ordered-entry, and successor-separator preflight assertions are approved and checkpointed. Resume only with explicit preflight implementation authorization; extraction outputs, character inventories, and tokenization remain unauthorized.
