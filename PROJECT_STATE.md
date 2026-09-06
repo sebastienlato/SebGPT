@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Acquisition checkpoint approved; precise extraction-contract discussion in progress.
+Deterministic extraction contract approved and documented; implementation not authorized.
 
 ## Completed work
 
@@ -42,10 +42,13 @@ Acquisition checkpoint approved; precise extraction-contract discussion in progr
 - Source provenance and response metadata recorded in the authoritative tracked JSON manifest.
 - Read-only wrapper, global contents, selected-work marker, and formatting inspection recorded without exposing *Twelfth Night* prose.
 - Raw-source acquisition and provenance milestone reviewed and approved for its dedicated checkpoint.
+- Raw-source acquisition checkpoint committed as `8ffba6e005ac26e1b3f81c1d914df97e2acd7b25`.
+- Deterministic eight-play extraction policy approved and recorded as DEC-0009.
+- Exact marker-based boundaries, content inclusions/exclusions, minimal normalization, split paths, verification invariants, metadata, and sealed-test rules documented.
 
 ## Current work
 
-Discussing deterministic extraction rules without implementing them.
+Reviewing the extraction-design documentation checkpoint before implementation authorization.
 
 ## Current model status
 
@@ -53,23 +56,23 @@ None. No model code exists.
 
 ## Last verified working state
 
-The raw master at `data/raw/gutenberg-ebook-100/complete-works.txt` matches the recorded SHA-256, decodes strictly as UTF-8, and is preserved in the acquisition checkpoint with its provenance records. No extraction, preprocessing, character inventory, tokenization, dataset loader, or model implementation exists.
+The raw master remains preserved at the approved SHA-256. The deterministic extraction contract is recorded consistently in `docs/DATASET_SPEC.md`, DEC-0009, the structural record, and the authoritative machine-readable manifest. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien reviews and approves or amends the proposed deterministic extraction contract before any extractor or processed dataset is created.
+After Sebastien explicitly authorizes implementation, implement the extractor's read-only preflight validation of the raw hash and required marker cardinality/order before enabling any processed-output writes.
 
 ## Known issues
 
 - PyTorch emits a warning that optional NumPy interoperability is unavailable. NumPy is intentionally not installed because no current milestone requires it.
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
 - The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
-- Candidate selected-work markers are known, but exact extraction inclusions/exclusions and processed corpus sizes remain intentionally undecided.
+- Actual processed counts and hashes remain unknown until the approved extractor is implemented and run.
 - Validation/test-only Unicode code points are intentionally unresolved until the required audit is run and Phase 2 chooses a generic unseen-input policy.
 
 ## Important constraints
 
-- Do not implement extraction or create processed data until Sebastien approves the extraction contract.
+- Do not implement extraction or create processed data until Sebastien explicitly authorizes implementation of the approved contract.
 - Do not add dependencies without an approved, recorded reason and lock-file update.
 - Do not extract, normalize, split, or tokenize text during the acquisition milestone.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
@@ -81,8 +84,8 @@ Sebastien reviews and approves or amends the proposed deterministic extraction c
 
 ## Open questions
 
-- Which precise extraction contract does Sebastien approve after the design discussion?
+- Does Sebastien authorize implementation of the approved deterministic extraction contract?
 
 ## Session handoff
 
-The dataset-design and raw-source acquisition checkpoints are complete. Continue with extraction-contract discussion only. Do not implement extraction or create processed data until Sebastien explicitly approves the resulting contract.
+The dataset-design, acquisition, and extraction-contract documentation checkpoints are complete. Resume with explicit implementation authorization; the first implementation action is read-only preflight validation before processed-output writing. Character inventory and tokenization remain separate later gates.
