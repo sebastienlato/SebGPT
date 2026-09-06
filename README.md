@@ -6,7 +6,15 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The approved Gutenberg raw master is preserved, and the [deterministic extraction contract](docs/DATASET_SPEC.md), including exact preflight assertions, is approved and documented. Extraction implementation and processed-output creation remain unauthorized. Character inventory, tokenization, and model implementation have not begun.
+Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The approved Gutenberg raw master is preserved, and its read-only structural preflight is implemented, verified, accepted, and tracked in a dedicated checkpoint. Extraction implementation and processed-output creation remain unauthorized. Character inventory, tokenization, and model implementation have not begun.
+
+Run the read-only Phase 1 preflight from the repository root with:
+
+```sh
+PYTHONPATH=src .venv/bin/python -m sebgpt.data.shakespeare_preflight
+```
+
+The command reports only approved structural and numeric facts. It does not extract plays, transform text, or create processed output.
 
 ## Guiding principle
 

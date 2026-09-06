@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Preflight technical contract approved, committed, and consistency-verified; implementation pending explicit authorization.
+Read-only Shakespeare preflight accepted and tracked in its implementation checkpoint; extraction remains unauthorized.
 
 ## Completed work
 
@@ -48,10 +48,14 @@ Preflight technical contract approved, committed, and consistency-verified; impl
 - Exact Gutenberg wrapper anchors, global contents contract, ordered 44-entry list, and eight successor-separator assertions approved under DEC-0010.
 - Exact-preflight documentation checkpoint committed as `6efb00a5cd8e9831f83846fc30acf152bc27e1e9`.
 - Final authoritative-status consistency verification completed with no remaining technical blockers.
+- Read-only preflight implementation explicitly authorized.
+- Standard-library preflight and focused tests implemented without extraction or output-writing behavior.
+- Production preflight passed against the pinned source; all 16 focused tests passed, and the full 19-test suite passed with the expected restricted-context MPS skip.
+- Independent review passed and the read-only preflight implementation was accepted for its dedicated checkpoint.
 
 ## Current work
 
-None. Technical blockers are resolved; read-only preflight implementation awaits explicit authorization.
+None. The accepted preflight checkpoint is complete; extraction remains unauthorized.
 
 ## Current model status
 
@@ -59,11 +63,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The raw master remains preserved at the approved SHA-256. DEC-0010 is accepted, the exact-preflight checkpoint is committed, and all authoritative status records agree that the technical contract is approved while implementation is unauthorized. No preflight code, extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
+The accepted read-only preflight validates byte identity before strict decoding, raw newline invariants, exact wrapper/global-content structure, all selected-work markers and offsets, successor separators, and outer-range ordering. Focused, full-suite, and production verification pass against the pinned source without creating `data/processed/`. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes the read-only preflight implementation layer before any preflight code, extractor, or processed-output work begins.
+Sebastien explicitly authorizes deterministic extraction and processed-output implementation under the approved contract before that next milestone begins.
 
 ## Known issues
 
@@ -87,8 +91,8 @@ Sebastien explicitly authorizes the read-only preflight implementation layer bef
 
 ## Open questions
 
-- Does Sebastien authorize implementation of the approved read-only preflight contract?
+- Does Sebastien authorize deterministic extraction and processed-output implementation?
 
 ## Session handoff
 
-The exact wrapper, global-contents, ordered-entry, and successor-separator assertions are approved, committed, and consistency-verified. Resume only with explicit authorization for the read-only preflight implementation layer; extraction outputs, character inventories, and tokenization remain unauthorized.
+The read-only preflight implementation is accepted, verified, and tracked in its dedicated checkpoint. The next milestone—deterministic extraction and processed-output implementation—remains unauthorized. Character inventory and tokenization remain separate later gates.

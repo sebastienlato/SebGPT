@@ -9,6 +9,8 @@
 - **Data acquired:** Yes; verified and tracked in the approved acquisition checkpoint
 - **Extraction contract:** Approved 2026-09-06
 - **Preflight contract clarification:** Approved 2026-09-06
+- **Read-only preflight implementation authorized:** Yes
+- **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **Extraction implementation authorized:** No
 - **Extraction implemented:** No
 - **Tokenization implemented:** No

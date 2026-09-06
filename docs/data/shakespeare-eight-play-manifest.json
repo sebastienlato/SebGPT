@@ -12,6 +12,11 @@
     "raw_source_tracked_in_acquisition_checkpoint": true,
     "extraction_contract": "approved",
     "preflight_contract_clarification": "approved",
+    "preflight_implementation_authorized": true,
+    "preflight_implemented": true,
+    "preflight_verified_against_pinned_source": true,
+    "preflight_review": "accepted",
+    "preflight_tracked_in_implementation_checkpoint": true,
     "extraction_authorized": false,
     "extraction_implemented": false,
     "tokenization_authorized": false,
@@ -89,7 +94,9 @@
     "words": "Python len(text.split()) using the recorded Python version"
   },
   "processing": {
-    "status": "contract_and_preflight_approved_implementation_not_authorized",
+    "status": "read_only_preflight_accepted_and_tracked_extraction_not_authorized",
+    "preflight_script_path": "src/sebgpt/data/shakespeare_preflight.py",
+    "preflight_test_path": "tests/test_shakespeare_preflight.py",
     "script_path": null,
     "git_commit": null,
     "python_version": null,

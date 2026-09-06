@@ -9,6 +9,7 @@
 - **Inspection type:** Read-only structural diagnostics
 - **Extraction contract:** Approved 2026-09-06
 - **Exact preflight clarification:** Approved 2026-09-06
+- **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **Extraction implementation authorized:** No
 - **Extraction performed:** No
 
