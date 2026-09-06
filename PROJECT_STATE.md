@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Dataset specification approved; raw-source acquisition and structural inspection authorized.
+Acquisition checkpoint approved; precise extraction-contract discussion in progress.
 
 ## Completed work
 
@@ -35,10 +35,17 @@ Dataset specification approved; raw-source acquisition and structural inspection
 - Dataset specification and gated acquisition contract documented in `docs/DATASET_SPEC.md`.
 - Exact raw-source Git preservation exception and authoritative tracked manifest contract documented.
 - Corrected dataset specification and acquisition contract reviewed and approved.
+- Dataset-design specification committed as `a3821da6331c8e885f6935c442e896105c9a9340`.
+- The catalog-linked Project Gutenberg eBook #100 UTF-8 artifact acquired once to the approved raw path without transformation.
+- Raw source verified at 5,638,480 bytes with SHA-256 `3cf4b3d44ee14cff4e14e78e2ad3318eff76f3f7f2afc3cee6bb925879110a37`.
+- Strict UTF-8 decoding passed; no BOM or NUL bytes were found; all 196,398 observed line endings are CRLF.
+- Source provenance and response metadata recorded in the authoritative tracked JSON manifest.
+- Read-only wrapper, global contents, selected-work marker, and formatting inspection recorded without exposing *Twelfth Night* prose.
+- Raw-source acquisition and provenance milestone reviewed and approved for its dedicated checkpoint.
 
 ## Current work
 
-Creating the dedicated dataset-design checkpoint before acquiring the raw master.
+Discussing deterministic extraction rules without implementing them.
 
 ## Current model status
 
@@ -46,23 +53,23 @@ None. No model code exists.
 
 ## Last verified working state
 
-The Phase 0 environment remains verified. The approved Phase 1 corpus design and corrected acquisition contract document the source, eight-play manifest, whole-work splits, raw-source preservation, authoritative provenance record, raw/processed boundary, mechanical character semantics, leakage rules, training-only character inventory, and gated acquisition procedure. No dataset file has been accessed or downloaded, and no acquisition, extraction, preprocessing, tokenization, or model implementation exists.
+The raw master at `data/raw/gutenberg-ebook-100/complete-works.txt` matches the recorded SHA-256, decodes strictly as UTF-8, and is preserved in the acquisition checkpoint with its provenance records. No extraction, preprocessing, character inventory, tokenization, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Commit the approved dataset-design checkpoint, then acquire and verify only the unmodified Project Gutenberg eBook #100 raw master under the approved contract.
+Sebastien reviews and approves or amends the proposed deterministic extraction contract before any extractor or processed dataset is created.
 
 ## Known issues
 
 - PyTorch emits a warning that optional NumPy interoperability is unavailable. NumPy is intentionally not installed because no current milestone requires it.
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
-- The current artifact URL, source byte count, source hash, and source-side metadata cannot be recorded until acquisition is approved.
-- Exact play boundary markers and measured corpus sizes cannot be verified until the approved raw source is acquired and inspected.
+- The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
+- Candidate selected-work markers are known, but exact extraction inclusions/exclusions and processed corpus sizes remain intentionally undecided.
 - Validation/test-only Unicode code points are intentionally unresolved until the required audit is run and Phase 2 chooses a generic unseen-input policy.
 
 ## Important constraints
 
-- Acquire only the exact raw source authorized by `docs/DATASET_SPEC.md`.
+- Do not implement extraction or create processed data until Sebastien approves the extraction contract.
 - Do not add dependencies without an approved, recorded reason and lock-file update.
 - Do not extract, normalize, split, or tokenize text during the acquisition milestone.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
@@ -74,8 +81,8 @@ Commit the approved dataset-design checkpoint, then acquire and verify only the 
 
 ## Open questions
 
-- None for the approved acquisition-only milestone.
+- Which precise extraction contract does Sebastien approve after the design discussion?
 
 ## Session handoff
 
-The Phase 1 corpus design and acquisition contract are approved. First commit the dedicated design checkpoint; then acquire and fingerprint only the unmodified Project Gutenberg source, populate the tracked manifest, preserve the raw bytes, inspect only permitted structural markers, and stop again before extraction design or implementation.
+The dataset-design and raw-source acquisition checkpoints are complete. Continue with extraction-contract discussion only. Do not implement extraction or create processed data until Sebastien explicitly approves the resulting contract.

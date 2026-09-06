@@ -30,8 +30,8 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 
 1. Define learning objectives and dataset selection criteria. **Complete.**
 2. Approve the corpus design and document the source, manifest, split policy, and acquisition contract. **Complete.**
-3. Acquire the approved raw source and record immutable provenance. **Not started.**
-4. Inspect source structure and define exact extraction boundaries. **Not started.**
+3. Acquire the approved raw source and record immutable provenance. **Complete.**
+4. Inspect source structure and define exact extraction boundaries. **Structural inspection complete; boundary-design discussion authorized.**
 5. Implement and test deterministic extraction and splitting. **Not started.**
 6. Inspect corpus characteristics and audit validation/test Unicode code points against the training-only character inventory. **Not started.**
 

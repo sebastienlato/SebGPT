@@ -6,7 +6,7 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The eight-play Shakespeare corpus design and [dataset specification/acquisition contract](docs/DATASET_SPEC.md) are approved. Raw-source acquisition and structural inspection are authorized; no extraction, preprocessing, tokenization, or model implementation is authorized.
+Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The approved Gutenberg raw master has been acquired, structurally verified, and preserved in the acquisition checkpoint under the [dataset contract](docs/DATASET_SPEC.md). Extraction-design discussion is active; no extraction, preprocessing, tokenization, or model implementation is authorized.
 
 ## Guiding principle
 

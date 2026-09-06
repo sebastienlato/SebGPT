@@ -6,7 +6,7 @@
 - **Corpus design:** Approved 2026-09-06
 - **Dataset specification and acquisition contract:** Approved 2026-09-06
 - **Acquisition authorized:** Yes, for the raw-source acquisition and structural-inspection milestone only
-- **Data acquired:** No
+- **Data acquired:** Yes; verified and tracked in the approved acquisition checkpoint
 - **Extraction implemented:** No
 - **Tokenization implemented:** No
 
@@ -215,9 +215,10 @@ After explicit acquisition approval:
 5. Capture provenance metadata in `docs/data/shakespeare-eight-play-manifest.json` and calculate the raw byte count and SHA-256 hash immediately.
 6. Verify that the saved bytes decode strictly as UTF-8, while leaving the raw file unchanged.
 7. Inspect only source metadata and structural markers needed to propose exact excluded and work-boundary ranges. Apply the pre-evaluation test-access contract; do not emit test prose.
-8. Verify `.gitattributes` preserves the raw hash through Git, then commit the raw master and completed tracked manifest together so the exact source remains recoverable.
-9. Update `PROJECT_STATE.md`, then stop for review. Do not extract, normalize, inventory characters, tokenize, or create splits during the acquisition milestone.
+8. Verify `.gitattributes` will preserve the raw hash through Git without staging or committing the acquisition milestone.
+9. Update the tracked provenance and state records, then stop for review. Do not extract, normalize, inventory characters, tokenize, or create splits during the acquisition milestone.
+10. Only after explicit milestone approval, commit the raw master and completed provenance records together so the exact source becomes recoverable from repository history before extraction design begins.
 
 ## Acceptance gates
 
-The corpus design and dataset specification/acquisition contract were approved on 2026-09-06. Acquisition is authorized only for the raw-source acquisition, factual provenance capture, and structural-inspection procedure above. Extraction requires another review after acquisition and structural inspection. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design and dataset specification/acquisition contract were approved on 2026-09-06. The raw-source acquisition, factual provenance capture, and structural inspection are complete, approved, and tracked together in the acquisition checkpoint. The raw measurements and markers are recorded in `docs/data/shakespeare-eight-play-structure.md`. Extraction design discussion is authorized; extraction implementation requires another explicit review after its exact rules are proposed. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
