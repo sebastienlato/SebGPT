@@ -17,9 +17,17 @@ htmlcov/
 # macOS metadata
 .DS_Store
 
-# Local datasets and model checkpoints are never source-controlled
+# Local datasets are ignored by default. The sole exception is the exact small
+# Phase 1 Gutenberg master authorized by DEC-0008; processed data stays ignored.
 data/*
 !data/.gitkeep
+!data/raw/
+data/raw/*
+!data/raw/gutenberg-ebook-100/
+data/raw/gutenberg-ebook-100/*
+!data/raw/gutenberg-ebook-100/complete-works.txt
+
+# Model checkpoints and weights are never source-controlled
 checkpoints/*
 !checkpoints/.gitkeep
 *.pt

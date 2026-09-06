@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 0 — Project and Environment
+Phase 1 — Dataset
 
 ## Current milestone
 
-Phase 0 environment complete; awaiting explicit approval to begin Phase 1.
+Dataset specification approved; raw-source acquisition and structural inspection authorized.
 
 ## Completed work
 
@@ -27,10 +27,18 @@ Phase 0 environment complete; awaiting explicit approval to begin Phase 1.
 - CPU tensor operations, autograd, MPS availability, and an MPS tensor operation verified.
 - Environment test suite added and verified with all three tests passing on the host Mac.
 - Git repository initialized on `main` with a clean Phase 0 baseline commit.
+- Phase 1 explicitly authorized.
+- Dataset suitability, scope, provenance, and leakage tradeoffs discussed.
+- Project Gutenberg eBook #100 selected as the sole source for an approximately 170,000-word eight-play corpus.
+- Whole-work manifest approved: six training plays, *The Tempest* for validation, and *Twelfth Night* for test.
+- Training-only Unicode character inventory and non-mutating validation/test unseen-character audit approved without selecting a tokenizer.
+- Dataset specification and gated acquisition contract documented in `docs/DATASET_SPEC.md`.
+- Exact raw-source Git preservation exception and authoritative tracked manifest contract documented.
+- Corrected dataset specification and acquisition contract reviewed and approved.
 
 ## Current work
 
-None. Phase 0 is complete and Phase 1 has not been authorized.
+Creating the dedicated dataset-design checkpoint before acquiring the raw master.
 
 ## Current model status
 
@@ -38,22 +46,27 @@ None. No model code exists.
 
 ## Last verified working state
 
-The reproducible Python 3.14.4 environment installs from `requirements.lock`; PyTorch 2.14.0 imports successfully; package consistency checks pass; CPU tensor/autograd and Apple MPS tensor execution pass; the standard-library environment suite passes all three tests. No dataset or model implementation exists.
+The Phase 0 environment remains verified. The approved Phase 1 corpus design and corrected acquisition contract document the source, eight-play manifest, whole-work splits, raw-source preservation, authoritative provenance record, raw/processed boundary, mechanical character semantics, leakage rules, training-only character inventory, and gated acquisition procedure. No dataset file has been accessed or downloaded, and no acquisition, extraction, preprocessing, tokenization, or model implementation exists.
 
 ## Next exact step
 
-Await Sebastien's explicit approval to begin Phase 1. Once approved, the first Phase 1 action is to define dataset learning objectives and selection criteria before selecting or downloading data.
+Commit the approved dataset-design checkpoint, then acquire and verify only the unmodified Project Gutenberg eBook #100 raw master under the approved contract.
 
 ## Known issues
 
 - PyTorch emits a warning that optional NumPy interoperability is unavailable. NumPy is intentionally not installed because no current milestone requires it.
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
+- The current artifact URL, source byte count, source hash, and source-side metadata cannot be recorded until acquisition is approved.
+- Exact play boundary markers and measured corpus sizes cannot be verified until the approved raw source is acquired and inspected.
+- Validation/test-only Unicode code points are intentionally unresolved until the required audit is run and Phase 2 chooses a generic unseen-input policy.
 
 ## Important constraints
 
-- Do not proceed to Phase 1 without Sebastien's explicit approval.
+- Acquire only the exact raw source authorized by `docs/DATASET_SPEC.md`.
 - Do not add dependencies without an approved, recorded reason and lock-file update.
-- Do not download a dataset yet.
+- Do not extract, normalize, split, or tokenize text during the acquisition milestone.
+- Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
+- Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not implement tokenization, neural networks, Transformers, training, or inference yet.
 - Do not use a pretrained language model or external model API as the model implementation.
 - Do not skip educational phases or silently change the model architecture.
@@ -61,8 +74,8 @@ Await Sebastien's explicit approval to begin Phase 1. Once approved, the first P
 
 ## Open questions
 
-- None for Phase 0.
+- None for the approved acquisition-only milestone.
 
 ## Session handoff
 
-Phase 0 is complete and verified on the host Mac. Resume by reading this state and awaiting explicit Phase 1 approval. Do not select or download data before defining the Phase 1 learning objectives and dataset selection criteria with Sebastien.
+The Phase 1 corpus design and acquisition contract are approved. First commit the dedicated design checkpoint; then acquire and fingerprint only the unmodified Project Gutenberg source, populate the tracked manifest, preserve the raw bytes, inspect only permitted structural markers, and stop again before extraction design or implementation.

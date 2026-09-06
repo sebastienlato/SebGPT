@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "dataset_id": "shakespeare-eight-play",
+  "policy_document": "docs/DATASET_SPEC.md",
+  "decision_entries": ["DEC-0007", "DEC-0008"],
+  "status": {
+    "corpus_design": "approved",
+    "specification_and_acquisition_contract": "approved",
+    "acquisition_authorized": true,
+    "data_acquired": false,
+    "extraction_authorized": false,
+    "extraction_implemented": false,
+    "tokenization_authorized": false,
+    "tokenization_implemented": false
+  },
+  "source": {
+    "provider": "Project Gutenberg",
+    "catalog_title": "The Complete Works of William Shakespeare",
+    "author": "William Shakespeare",
+    "ebook_number": 100,
+    "catalog_url": "https://www.gutenberg.org/ebooks/100",
+    "required_artifact_label": "Plain Text (accessible)",
+    "required_declared_encoding": "UTF-8",
+    "license_terms_url": "https://www.gutenberg.org/policy/license",
+    "raw_repository_path": "data/raw/gutenberg-ebook-100/complete-works.txt",
+    "resolved_artifact_url": null,
+    "catalog_updated_date_at_acquisition": null,
+    "acquired_at_utc": null,
+    "http_etag": null,
+    "http_last_modified": null,
+    "http_content_type": null,
+    "raw_byte_count": null,
+    "raw_sha256": null,
+    "license_notice_sha256": null,
+    "acquisition_method": null,
+    "acquisition_tool_versions": null
+  },
+  "corpus_target": {
+    "approximate_words": 170000,
+    "approximate_processed_unicode_code_points_min": 900000,
+    "approximate_processed_unicode_code_points_max": 1100000
+  },
+  "works": [
+    {"order": 1, "split": "train", "work_id": "hamlet", "title": "Hamlet", "estimated_words": 30000},
+    {"order": 2, "split": "train", "work_id": "romeo-and-juliet", "title": "Romeo and Juliet", "estimated_words": 25000},
+    {"order": 3, "split": "train", "work_id": "macbeth", "title": "Macbeth", "estimated_words": 17000},
+    {"order": 4, "split": "train", "work_id": "a-midsummer-nights-dream", "title": "A Midsummer Night's Dream", "estimated_words": 17000},
+    {"order": 5, "split": "train", "work_id": "much-ado-about-nothing", "title": "Much Ado About Nothing", "estimated_words": 21000},
+    {"order": 6, "split": "train", "work_id": "henry-v", "title": "Henry V", "estimated_words": 26000},
+    {"order": 7, "split": "validation", "work_id": "the-tempest", "title": "The Tempest", "estimated_words": 17000},
+    {"order": 8, "split": "test", "work_id": "twelfth-night", "title": "Twelfth Night", "estimated_words": 20000}
+  ],
+  "counting_contract": {
+    "raw_bytes": "exact filesystem byte length",
+    "processed_bytes": "byte length after strict UTF-8 encoding",
+    "unicode_code_points": "Python len(text) after approved extraction and CRLF/CR-to-LF conversion",
+    "lines": "zero for empty text; otherwise LF count plus one when text does not end in LF",
+    "words": "Python len(text.split()) using the recorded Python version"
+  },
+  "processing": {
+    "status": "not_started",
+    "script_path": null,
+    "git_commit": null,
+    "python_version": null,
+    "operating_platform": null,
+    "extraction_rules": null,
+    "excluded_ranges": null,
+    "transformations": null,
+    "per_work_results": null,
+    "per_split_results": null,
+    "duplicate_and_boundary_audit": null,
+    "character_inventory_audit": null
+  }
+}

@@ -6,7 +6,7 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment is complete and verified. No model, tokenizer, dataset, or training implementation exists. Phase 1 remains gated until Sebastien explicitly approves it.
+Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The eight-play Shakespeare corpus design and [dataset specification/acquisition contract](docs/DATASET_SPEC.md) are approved. Raw-source acquisition and structural inspection are authorized; no extraction, preprocessing, tokenization, or model implementation is authorized.
 
 ## Guiding principle
 

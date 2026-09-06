@@ -2,7 +2,7 @@
 
 The phases are sequential learning gates. Do not begin a later phase until the current phase's exit criteria are met, verified, and reflected in `PROJECT_STATE.md`. Refinements within a completed phase are allowed when a later discovery exposes a gap, but the reason should be documented.
 
-## Phase 0 — Project and Environment (current)
+## Phase 0 — Project and Environment (complete)
 
 **Goal:** Establish durable project continuity and a minimal, reproducible development environment without implementing machine learning.
 
@@ -22,9 +22,18 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Python and PyTorch imports and a basic tensor operation are verified.
 - `PROJECT_STATE.md` identifies the exact first step of Phase 1.
 
-## Phase 1 — Dataset
+## Phase 1 — Dataset (current)
 
 **Goal:** Understand how raw text becomes a reproducible language-modeling dataset.
+
+**Milestones:**
+
+1. Define learning objectives and dataset selection criteria. **Complete.**
+2. Approve the corpus design and document the source, manifest, split policy, and acquisition contract. **Complete.**
+3. Acquire the approved raw source and record immutable provenance. **Not started.**
+4. Inspect source structure and define exact extraction boundaries. **Not started.**
+5. Implement and test deterministic extraction and splitting. **Not started.**
+6. Inspect corpus characteristics and audit validation/test Unicode code points against the training-only character inventory. **Not started.**
 
 **Exit criteria:**
 

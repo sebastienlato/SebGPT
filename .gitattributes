@@ -1,0 +1,2 @@
+# Preserve exact raw bytes and do not expose the source body in ordinary Git diffs.
+data/raw/gutenberg-ebook-100/complete-works.txt -text -diff
