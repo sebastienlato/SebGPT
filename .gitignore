@@ -1,0 +1,30 @@
+# Project-local Python environment
+.venv/
+
+# Python-generated files and tool caches
+__pycache__/
+*.py[cod]
+*.so
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Notebook-generated state
+.ipynb_checkpoints/
+
+# macOS metadata
+.DS_Store
+
+# Local datasets and model checkpoints are never source-controlled
+data/*
+!data/.gitkeep
+checkpoints/*
+!checkpoints/.gitkeep
+*.pt
+*.pth
+*.ckpt
+
+# Generated experiment artifacts
+experiments/**/artifacts/

@@ -1,0 +1,2 @@
+# Direct project dependency. Transitive versions are captured in requirements.lock.
+torch==2.14.0
