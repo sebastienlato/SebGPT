@@ -279,6 +279,28 @@ def _expected_published_paths() -> set[str]:
     }
 
 
+def _tree_identity(root: Path):
+    if not root.exists():
+        return None
+    directories = tuple(
+        sorted(path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_dir())
+    )
+    files = tuple(
+        sorted(
+            (
+                path.relative_to(root).as_posix(),
+                path.stat().st_ino,
+                path.stat().st_size,
+                path.stat().st_mtime_ns,
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+            )
+            for path in root.rglob("*")
+            if path.is_file()
+        )
+    )
+    return directories, files
+
+
 def _all_mapping_keys(value: object) -> set[str]:
     if isinstance(value, dict):
         return set(value) | {
@@ -1078,7 +1100,7 @@ class PublisherTests(unittest.TestCase):
 class ProductionPublisherCompatibilityTests(unittest.TestCase):
     def test_authoritative_production_ledger_matches_accepted_pipeline(self) -> None:
         production_processed_root = REPOSITORY_ROOT / "data/processed"
-        self.assertFalse(production_processed_root.exists())
+        processed_before = _tree_identity(production_processed_root)
         raw_path = (
             REPOSITORY_ROOT
             / "data/raw/gutenberg-ebook-100/complete-works.txt"
@@ -1101,7 +1123,10 @@ class ProductionPublisherCompatibilityTests(unittest.TestCase):
             hashlib.sha256(raw_bytes).hexdigest(),
             manifest["source"]["raw_sha256"],
         )
-        self.assertEqual(processing["status"], "expected_results_populated_publication_not_authorized")
+        self.assertEqual(
+            processing["status"],
+            "phase_1_complete_production_publication_verified",
+        )
         self.assertEqual(
             processing["git_commit"],
             "cd4cd8159b420920aa66755630fe26f9633a5373",
@@ -1183,11 +1208,11 @@ class ProductionPublisherCompatibilityTests(unittest.TestCase):
             publish_module._prepare_publication(works, REPOSITORY_ROOT),
             expected,
         )
-        self.assertFalse(production_processed_root.exists())
+        self.assertEqual(_tree_identity(production_processed_root), processed_before)
 
     def test_production_works_publish_only_inside_temporary_root(self) -> None:
         production_processed_root = REPOSITORY_ROOT / "data/processed"
-        self.assertFalse(production_processed_root.exists())
+        processed_before = _tree_identity(production_processed_root)
         raw_path = (
             REPOSITORY_ROOT
             / "data/raw/gutenberg-ebook-100/complete-works.txt"
@@ -1235,7 +1260,7 @@ class ProductionPublisherCompatibilityTests(unittest.TestCase):
             )
 
         self.assertEqual(raw_path.read_bytes(), raw_before)
-        self.assertFalse(production_processed_root.exists())
+        self.assertEqual(_tree_identity(production_processed_root), processed_before)
 
 
 if __name__ == "__main__":

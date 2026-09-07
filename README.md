@@ -6,7 +6,7 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active and not yet complete. The approved Gutenberg raw master, read-only preflight, deterministic in-memory extraction, in-memory Unicode character inventory, zero-candidate audit, transactional processed-dataset publisher, and final expected-result ledger are accepted and tracked in dedicated checkpoints. Production publication remains unauthorized and unperformed, `data/processed/` remains absent, and tokenization and model implementation have not begun.
+Phase 0 — Project and Environment and Phase 1 — Dataset are complete and verified. The approved Gutenberg raw master, read-only preflight, deterministic in-memory extraction, whole-work split, in-memory Unicode character inventory, zero-candidate audit, transactional processed-dataset publisher, final expected-result ledger, and ignored production processed tree are accepted and reproducible. The exact second publication returned `already_current`. Phase 2, tokenization, and model implementation have not started and are not authorized; the accepted Phase 1 history must be pushed and verified first.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

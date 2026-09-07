@@ -22,7 +22,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Python and PyTorch imports and a basic tensor operation are verified.
 - `PROJECT_STATE.md` identifies the exact first step of Phase 1.
 
-## Phase 1 — Dataset (current)
+## Phase 1 — Dataset (complete)
 
 **Goal:** Understand how raw text becomes a reproducible language-modeling dataset.
 
@@ -32,8 +32,8 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 2. Approve the corpus design and document the source, manifest, split policy, and acquisition contract. **Complete.**
 3. Acquire the approved raw source and record immutable provenance. **Complete.**
 4. Inspect source structure and define exact extraction boundaries. **Complete.**
-5. Implement and test deterministic extraction and splitting. **Read-only preflight, deterministic in-memory extraction, the Models A/B cooperative-lock publisher, and the final expected-result ledger accepted and tracked; production publication not authorized.**
-6. Inspect corpus characteristics and audit validation/test Unicode code points against the training-only character inventory. **In-memory character inventory accepted and tracked; unseen-character comparison complete with zero candidates, so occurrence-location reporting is not applicable for the pinned corpus.**
+5. Implement and test deterministic extraction and splitting. **Complete: read-only preflight, deterministic in-memory extraction, the Models A/B cooperative-lock publisher, final expected-result ledger, and production publication are accepted and verified.**
+6. Inspect corpus characteristics and audit validation/test Unicode code points against the training-only character inventory. **Complete: in-memory character inventory and zero-candidate unseen-character audit accepted and verified; occurrence-location reporting is not applicable for the pinned corpus.**
 
 **Exit criteria:**
 
@@ -42,7 +42,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Loading, inspection, splitting, and deterministic reproduction are implemented and tested.
 - Data characteristics and limitations are understood and documented.
 
-## Phase 2 — Tokenization
+## Phase 2 — Tokenization (not started; not authorized)
 
 **Goal:** Understand and implement the mapping between text and token IDs.
 

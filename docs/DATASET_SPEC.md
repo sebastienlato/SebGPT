@@ -3,6 +3,8 @@
 ## Status
 
 - **Specification version:** 1.4
+- **Phase 1 — Dataset:** Complete and verified
+- **Phase 1 closure review:** Passed after correction of stale publisher-permission wording
 - **Corpus design:** Approved 2026-09-06
 - **Dataset specification and acquisition contract:** Approved 2026-09-06
 - **Acquisition authorized:** Yes, for the raw-source acquisition and structural-inspection milestone only
@@ -18,14 +20,15 @@
 - **Publisher implementation authorized:** Yes, for implementation and temporary-directory tests only
 - **Publisher threat model:** Ordinary/static workspace and cooperating publishers that obey `data/.publish-lock`; unrelated same-user adversarial namespace mutation is outside the guarantee
 - **Publisher implemented and verified:** Yes, including the cooperating-publisher lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening; accepted and tracked in its implementation checkpoint
-- **Processed-dataset filesystem publication authorized:** No
-- **Processed-dataset filesystem publication implemented:** No
+- **Processed-dataset filesystem publication authorized:** Yes
+- **Processed-dataset filesystem publication implemented and verified:** Yes; first result `created`, exact second result `already_current`
 - **In-memory Unicode character inventory authorized:** Yes
 - **In-memory Unicode character inventory implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **Unseen-character comparison:** Complete; all three cross-split cardinalities are zero
 - **Occurrence-location reporting:** Not applicable for the pinned corpus because the candidate set is empty
 - **Final expected-result ledger:** Accepted and tracked in its dedicated checkpoint
 - **Tokenization implemented:** No
+- **Phase 2 authorized:** No
 
 ## Learning objective
 
@@ -469,4 +472,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. The transactional publisher's Models A/B cooperative-workspace threat model, exclusive lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening are accepted and tracked in its implementation checkpoint. The final expected-result ledger is accepted and tracked in its dedicated checkpoint. Production filesystem publication and processed-output creation remain unauthorized. Phase 1 is not complete. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. The transactional publisher's Models A/B cooperative-workspace threat model, exclusive lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening are accepted and tracked in its implementation checkpoint. The final expected-result ledger is accepted and tracked in its dedicated checkpoint. Production filesystem publication is completed and verified: the first result was `created`, the exact second result was `already_current`, and the lock/staging paths are absent. Processed outputs remain ignored derivatives. Every Phase 1 exit criterion is satisfied, and Phase 1 — Dataset is complete. Tokenization and Phase 2 remain not started and unauthorized until the accepted Phase 1 history is pushed and verified.

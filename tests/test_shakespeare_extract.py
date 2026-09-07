@@ -36,6 +36,28 @@ ENTRIES = ("THE SONNETS", "WORK A", "WORK B")
 SECRET_TEST_PROSE = "SEALED TEST PROSE MUST NEVER APPEAR"
 
 
+def _tree_identity(root: Path):
+    if not root.exists():
+        return None
+    directories = tuple(
+        sorted(path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_dir())
+    )
+    files = tuple(
+        sorted(
+            (
+                path.relative_to(root).as_posix(),
+                path.stat().st_ino,
+                path.stat().st_size,
+                path.stat().st_mtime_ns,
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+            )
+            for path in root.rglob("*")
+            if path.is_file()
+        )
+    )
+    return directories, files
+
+
 def _fixture_lines() -> list[str]:
     return [
         START,
@@ -389,9 +411,9 @@ class InMemoryExtractionTests(unittest.TestCase):
 
 
 class ProductionInMemoryExtractionTests(unittest.TestCase):
-    def test_production_extraction_returns_eight_independent_works_without_outputs(self) -> None:
+    def test_production_extraction_returns_works_without_mutating_outputs(self) -> None:
         processed_root = REPOSITORY_ROOT / "data/processed"
-        self.assertFalse(processed_root.exists())
+        processed_before = _tree_identity(processed_root)
 
         works = extract_shakespeare_in_memory(REPOSITORY_ROOT)
 
@@ -402,7 +424,7 @@ class ProductionInMemoryExtractionTests(unittest.TestCase):
         self.assertEqual(sum(work.split == "validation" for work in works), 1)
         self.assertEqual(sum(work.split == "test" for work in works), 1)
         self.assertEqual(len({work.processed.sha256 for work in works}), 8)
-        self.assertFalse(processed_root.exists())
+        self.assertEqual(_tree_identity(processed_root), processed_before)
 
 
 if __name__ == "__main__":

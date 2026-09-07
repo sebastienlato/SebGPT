@@ -33,6 +33,28 @@ ENTRIES = ("THE SONNETS", "WORK A", "WORK B")
 SECRET_TEST_PROSE = "SEALED TEST PROSE MUST NEVER APPEAR"
 
 
+def _tree_identity(root: Path):
+    if not root.exists():
+        return None
+    directories = tuple(
+        sorted(path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_dir())
+    )
+    files = tuple(
+        sorted(
+            (
+                path.relative_to(root).as_posix(),
+                path.stat().st_ino,
+                path.stat().st_size,
+                path.stat().st_mtime_ns,
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+            )
+            for path in root.rglob("*")
+            if path.is_file()
+        )
+    )
+    return directories, files
+
+
 def _fixture_lines(test_prose: str = "SAFE B") -> list[str]:
     return [
         START,
@@ -372,9 +394,9 @@ class SyntheticPreflightTests(unittest.TestCase):
 
 
 class ProductionPreflightTests(unittest.TestCase):
-    def test_pinned_source_passes_without_creating_processed_outputs(self) -> None:
+    def test_pinned_source_passes_without_mutating_processed_outputs(self) -> None:
         processed_root = REPOSITORY_ROOT / "data/processed"
-        self.assertFalse(processed_root.exists())
+        processed_before = _tree_identity(processed_root)
 
         report = run_preflight(REPOSITORY_ROOT)
 
@@ -384,7 +406,7 @@ class ProductionPreflightTests(unittest.TestCase):
         )
         self.assertEqual(report.global_entry_count, 44)
         self.assertEqual(len(report.works), 8)
-        self.assertFalse(processed_root.exists())
+        self.assertEqual(_tree_identity(processed_root), processed_before)
 
 
 if __name__ == "__main__":

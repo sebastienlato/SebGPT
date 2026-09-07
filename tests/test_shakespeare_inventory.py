@@ -31,6 +31,28 @@ from sebgpt.data.shakespeare_preflight import Position  # noqa: E402
 SECRET_TEST_PROSE = "SEALED TEST PROSE MUST NEVER APPEAR"
 
 
+def _tree_identity(root: Path):
+    if not root.exists():
+        return None
+    directories = tuple(
+        sorted(path.relative_to(root).as_posix() for path in root.rglob("*") if path.is_dir())
+    )
+    files = tuple(
+        sorted(
+            (
+                path.relative_to(root).as_posix(),
+                path.stat().st_ino,
+                path.stat().st_size,
+                path.stat().st_mtime_ns,
+                hashlib.sha256(path.read_bytes()).hexdigest(),
+            )
+            for path in root.rglob("*")
+            if path.is_file()
+        )
+    )
+    return directories, files
+
+
 def _work(
     work_id: str,
     split: str,
@@ -225,9 +247,9 @@ class CharacterInventoryTests(unittest.TestCase):
 
 
 class ProductionCharacterInventoryTests(unittest.TestCase):
-    def test_production_inventory_uses_eight_in_memory_works_without_outputs(self) -> None:
+    def test_production_inventory_uses_works_without_mutating_outputs(self) -> None:
         processed_root = REPOSITORY_ROOT / "data/processed"
-        self.assertFalse(processed_root.exists())
+        processed_before = _tree_identity(processed_root)
         works = extract_shakespeare_in_memory(REPOSITORY_ROOT)
 
         report = inventory_extracted_works(works)
@@ -279,7 +301,7 @@ class ProductionCharacterInventoryTests(unittest.TestCase):
         self.assertEqual(report.relationships.validation_not_in_train, ())
         self.assertEqual(report.relationships.test_not_in_train, ())
         self.assertEqual(report.relationships.test_not_in_train_or_validation, ())
-        self.assertFalse(processed_root.exists())
+        self.assertEqual(_tree_identity(processed_root), processed_before)
 
 
 if __name__ == "__main__":

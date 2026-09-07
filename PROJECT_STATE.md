@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 1 — Dataset
+Phase 1 — Dataset (complete)
 
 ## Current milestone
 
-Final expected-result ledger accepted and tracked in its dedicated checkpoint; production publication remains unauthorized.
+Phase 1 dataset pipeline complete and verified; Phase 2 remains not started and unauthorized.
 
 ## Completed work
 
@@ -74,10 +74,16 @@ Final expected-result ledger accepted and tracked in its dedicated checkpoint; p
 - The authoritative manifest now records publisher revision `cd4cd8159b420920aa66755630fe26f9633a5373`, the accepted environment, exact exclusions, per-work provenance and processed results, split/global aggregates, character-inventory results, duplicate/boundary conclusions, and expected generated-manifest identity.
 - A production ledger-verification test and temporary-root publication/rerun verification pass; the publisher suite has 27 tests and the full 75-test suite passes with the expected restricted-context MPS skip.
 - Independent review passed with no must-fix issues, and Sebastien accepted the final expected-result ledger checkpoint.
+- Production publication passed every precondition and returned `created`; all eight processed documents and the generated processing manifest match the authoritative ledger exactly.
+- The generated processing manifest has the expected SHA-256 `bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc`.
+- A second production publication returned `already_current` without changing any processed file hash, size, or modification time; the publication lock and staging tree are absent.
+- All processed artifacts remain ignored, reproducible derivatives. The read-only preflight, extraction, and inventory production tests were updated to prove the published tree remains unchanged; all 75 tests pass with the expected restricted-context MPS skip.
+- Final closure review confirmed every Phase 1 exit criterion is technically satisfied; the stale broad publication prohibition was corrected to preserve the accepted publisher-only permission boundary.
+- Phase 1 — Dataset is complete.
 
 ## Current work
 
-None. The final expected-result ledger is accepted; production publication remains unauthorized and unperformed.
+None. Phase 1 is complete; Phase 2 has not started and is not authorized.
 
 ## Current model status
 
@@ -85,25 +91,24 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted preflight, extraction, inventory, zero-candidate audit, and publisher remain intact. The authoritative ledger now matches all production in-memory provenance hashes/counts, split/global aggregates, character-inventory results, and audit conclusions. Its expected deterministic generated manifest has SHA-256 `bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc`. Temporary publication using the exact ledger succeeds and an exact rerun returns `already_current`. The real `data/processed/` tree remains absent, production publication is unauthorized, and no tokenizer, dataset loader, or model implementation exists.
+The accepted preflight, extraction, inventory, zero-candidate audit, publisher, and authoritative ledger remain intact. The real ignored `data/processed/shakespeare-eight-play/` tree contains exactly eight independent processed documents plus `processing-manifest.json`; every path, byte, hash, count, split aggregate, audit fact, and manifest value matches the ledger. Production publication returned `created`, and an exact second run returned `already_current` without rewriting files. The raw source remains unchanged, and no tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes production processed-dataset publication before `data/processed/` is created.
+Configure the intended Git remote, push the accepted Phase 1 history, and verify the remote `main` commit before Phase 2 is authorized.
 
 ## Known issues
 
 - PyTorch emits a warning that optional NumPy interoperability is unavailable. NumPy is intentionally not installed because no current milestone requires it.
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
 - The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
-- In-memory processed counts and hashes are reproducibly computed but are not published to dataset files or a processing manifest.
-- The final expected-result ledger is accepted and tracked; processed files have not been published.
+- Processed files are intentionally ignored derivatives; a fresh checkout regenerates them through the accepted publisher and authoritative ledger.
 
 ## Important constraints
 
-- Do not implement processed-dataset filesystem publication or create `data/processed/` until Sebastien explicitly authorizes that separate milestone.
+- Publication or regeneration is authorized only through the accepted deterministic Shakespeare publisher using the authoritative manifest/ledger under DEC-0012's Models A/B threat model, with validation, cooperative locking, idempotence, no-clobber promotion, and mismatch refusal intact.
 - Do not add dependencies without an approved, recorded reason and lock-file update.
-- Do not write extracted text, normalized text, split documents, or extraction metadata to disk.
+- Do not manually edit, copy, or write processed prose or metadata; use alternate or unledgered publication mechanisms; bypass publisher validation; introduce force, overwrite, or repair behavior; or apply tokenizer-derived or other Phase 2 transformations.
 - Do not implement occurrence-location lookup for the pinned corpus; the accepted audit has zero candidates and requires no location records.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
@@ -114,8 +119,8 @@ Sebastien explicitly authorizes production processed-dataset publication before 
 
 ## Open questions
 
-- Does Sebastien authorize production processed-dataset publication?
+- Which Git remote should receive the accepted Phase 1 history?
 
 ## Session handoff
 
-Read-only preflight, deterministic in-memory extraction, the in-memory Unicode character inventory, the zero-candidate audit, the cooperative-lock publisher, and the final expected-result ledger are accepted and tracked in dedicated checkpoints. Production publication remains unauthorized, the real `data/processed/` tree is absent, tokenization has not started, and Phase 2 has not begun.
+Phase 1 — Dataset is complete. Read-only preflight, deterministic in-memory extraction, the in-memory Unicode character inventory, the zero-candidate audit, the cooperative-lock publisher, the authoritative ledger, and production publication are verified. Processed artifacts are ignored and reproducible, and the exact second publication is idempotent. The Git remote is still unconfigured; Phase 2 and tokenization are not started or authorized.

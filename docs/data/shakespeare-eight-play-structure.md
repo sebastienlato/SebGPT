@@ -12,8 +12,10 @@
 - **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **In-memory extraction marker/hash clarification:** Approved 2026-09-06
 - **In-memory extraction implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
-- **Processed-dataset filesystem publication authorized:** No
-- **Processed-dataset filesystem publication performed:** No
+- **Processed-dataset filesystem publication authorized:** Yes
+- **Processed-dataset filesystem publication performed and verified:** Yes
+- **Phase 1 dataset status:** Complete and verified
+- **Phase 2 status:** Not started and not authorized
 
 The inspection located source-level markers and measured raw structure only. It did not decode and rewrite the stored file, normalize line endings, remove material, extract works, create splits, inventory characters, or tokenize text. For *Twelfth Night*, only its exact title marker, offsets, surrounding blank-line counts, and the next top-level work marker were exposed. No test prose or internal test structure was printed or analyzed.
 
@@ -111,4 +113,4 @@ Manifest order is intentionally independent of source order. Deterministic extra
 - Treat the observed absolute positions as assertions, never selection inputs.
 - Apply the sealed-test structural/diagnostic contract to *Twelfth Night*.
 
-This summary records policy only. The accepted in-memory extraction implementation exists, but no processed data has been published.
+This summary records extraction policy. The accepted production publisher has materialized and verified the ignored processed derivatives without changing these source-boundary observations.
