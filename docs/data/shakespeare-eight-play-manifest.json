@@ -18,8 +18,13 @@
     "preflight_review": "accepted",
     "preflight_tracked_in_implementation_checkpoint": true,
     "in_memory_extraction_contract_clarification": "approved",
-    "extraction_authorized": false,
-    "extraction_implemented": false,
+    "in_memory_extraction_implementation_authorized": true,
+    "in_memory_extraction_implemented": true,
+    "in_memory_extraction_verified_against_pinned_source": true,
+    "in_memory_extraction_review": "accepted",
+    "in_memory_extraction_tracked_in_implementation_checkpoint": true,
+    "processed_dataset_publication_authorized": false,
+    "processed_dataset_publication_implemented": false,
     "tokenization_authorized": false,
     "tokenization_implemented": false
   },
@@ -95,9 +100,11 @@
     "words": "Python len(text.split()) using the recorded Python version"
   },
   "processing": {
-    "status": "read_only_preflight_accepted_and_tracked_extraction_not_authorized",
+    "status": "in_memory_extraction_accepted_and_tracked_filesystem_output_not_authorized",
     "preflight_script_path": "src/sebgpt/data/shakespeare_preflight.py",
     "preflight_test_path": "tests/test_shakespeare_preflight.py",
+    "in_memory_extraction_script_path": "src/sebgpt/data/shakespeare_extract.py",
+    "in_memory_extraction_test_path": "tests/test_shakespeare_extract.py",
     "script_path": null,
     "git_commit": null,
     "python_version": null,

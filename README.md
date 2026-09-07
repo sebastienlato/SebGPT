@@ -6,7 +6,7 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The approved Gutenberg raw master is preserved, and its read-only structural preflight is implemented, verified, accepted, and tracked in a dedicated checkpoint. Extraction implementation and processed-output creation remain unauthorized. Character inventory, tokenization, and model implementation have not begun.
+Phase 0 — Project and Environment is complete and verified. Phase 1 — Dataset is active. The approved Gutenberg raw master is preserved, and its read-only structural preflight is implemented, verified, accepted, and tracked in a dedicated checkpoint. Deterministic in-memory extraction is also implemented, verified, accepted, and tracked in its checkpoint. Filesystem publication and processed-output creation remain unauthorized; character inventory, tokenization, and model implementation have not begun.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

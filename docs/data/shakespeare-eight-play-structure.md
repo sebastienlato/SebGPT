@@ -11,8 +11,9 @@
 - **Exact preflight clarification:** Approved 2026-09-06
 - **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **In-memory extraction marker/hash clarification:** Approved 2026-09-06
-- **Extraction implementation authorized:** No
-- **Extraction performed:** No
+- **In-memory extraction implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
+- **Processed-dataset filesystem publication authorized:** No
+- **Processed-dataset filesystem publication performed:** No
 
 The inspection located source-level markers and measured raw structure only. It did not decode and rewrite the stored file, normalize line endings, remove material, extract works, create splits, inventory characters, or tokenize text. For *Twelfth Night*, only its exact title marker, offsets, surrounding blank-line counts, and the next top-level work marker were exposed. No test prose or internal test structure was printed or analyzed.
 

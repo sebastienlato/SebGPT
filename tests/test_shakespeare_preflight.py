@@ -23,6 +23,7 @@ from sebgpt.data.shakespeare_preflight import (  # noqa: E402
     WrapperSpec,
     run_preflight,
     validate_preflight,
+    validate_source,
 )
 
 
@@ -360,6 +361,14 @@ class SyntheticPreflightTests(unittest.TestCase):
 
         self.assertNotIn(SECRET_TEST_PROSE, str(raised.exception))
         self.assertEqual(raised.exception.details["work_id"], "twelfth-night")
+
+    def test_validated_source_keeps_exact_bytes_and_hides_text_from_repr(self) -> None:
+        raw_bytes, spec = _spec_for_lines(_fixture_lines(SECRET_TEST_PROSE))
+
+        source = validate_source(raw_bytes, spec)
+
+        self.assertIs(source.raw_bytes, raw_bytes)
+        self.assertNotIn(SECRET_TEST_PROSE, repr(source))
 
 
 class ProductionPreflightTests(unittest.TestCase):

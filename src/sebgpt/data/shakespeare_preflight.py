@@ -10,7 +10,7 @@ from __future__ import annotations
 import hashlib
 import json
 import sys
-from dataclasses import asdict, dataclass
+from dataclasses import asdict, dataclass, field
 from pathlib import Path
 from typing import Any
 
@@ -96,6 +96,10 @@ class WorkSpec:
     successor_line: int
     expected_empty_lines_before_successor: int
     expected_whitespace_only_lines_before_successor: int
+    title: str = ""
+    split: str = ""
+    manifest_order: int = 0
+    dramatis_leading_u0020_count: int = 0
 
 
 @dataclass(frozen=True)
@@ -105,6 +109,9 @@ class PreflightSpec:
     wrapper: WrapperSpec
     global_contents: GlobalContentsSpec
     works: tuple[WorkSpec, ...]
+    local_contents_marker: str = "Contents"
+    dramatis_canonical_text: str = "Dramatis Personæ"
+    required_dramatis_occurrences: int = 1
 
 
 @dataclass(frozen=True)
@@ -137,9 +144,32 @@ class PreflightReport:
 
 
 @dataclass(frozen=True)
-class _LogicalLine:
-    value: str
+class LogicalLine:
+    value: str = field(repr=False)
     position: Position
+
+
+@dataclass(frozen=True)
+class ValidatedWorkMarkers:
+    """Safe numeric indexes discovered by generic preflight matching."""
+
+    work_id: str
+    body_line_index: int
+    successor_line_index: int
+    outer_end_line_index: int
+    outer_end_byte_offset: int
+    outer_end_code_point_offset: int
+
+
+@dataclass(frozen=True)
+class ValidatedSource:
+    """Immutable handoff binding extraction to the exact preflighted bytes."""
+
+    spec: PreflightSpec
+    raw_bytes: bytes = field(repr=False)
+    logical_lines: tuple[LogicalLine, ...] = field(repr=False)
+    work_markers: tuple[ValidatedWorkMarkers, ...]
+    report: PreflightReport
 
 
 def _require_equal(
@@ -175,6 +205,8 @@ def load_preflight_spec(repository_root: Path = REPOSITORY_ROOT) -> PreflightSpe
     contract = manifest["processing"]["extraction_contract"]
     wrapper = contract["gutenberg_wrapper"]
     global_contents = contract["global_contents"]
+    local_contents = contract["play_local_contents_marker"]
+    dramatis = contract["dramatis_personae_marker"]
 
     raw = RawExpectations(
         sha256=source["raw_sha256"],
@@ -235,6 +267,12 @@ def load_preflight_spec(repository_root: Path = REPOSITORY_ROOT) -> PreflightSpe
             expected_whitespace_only_lines_before_successor=work[
                 "expected_whitespace_only_lines_before_successor"
             ],
+            title=work["title"],
+            split=work["split"],
+            manifest_order=work["order"],
+            dramatis_leading_u0020_count=work[
+                "dramatis_leading_u0020_count"
+            ],
         )
         for work in manifest["works"]
     )
@@ -244,6 +282,11 @@ def load_preflight_spec(repository_root: Path = REPOSITORY_ROOT) -> PreflightSpe
         wrapper=wrapper_spec,
         global_contents=global_spec,
         works=works,
+        local_contents_marker=local_contents["logical_line"],
+        dramatis_canonical_text=dramatis["canonical_text"],
+        required_dramatis_occurrences=dramatis[
+            "required_occurrences_per_outer_range"
+        ],
     )
 
 
@@ -290,19 +333,19 @@ def _validate_raw_bytes(raw_bytes: bytes, expected: RawExpectations) -> str:
     return text
 
 
-def _logical_lines(text: str) -> tuple[_LogicalLine, ...]:
+def _logical_lines(text: str) -> tuple[LogicalLine, ...]:
     """Split only at CRLF while retaining explicit raw positions."""
 
     parts = text.split("\r\n")
     # The raw contract requires a terminal CRLF, so the final split item is a
     # sentinel after the last terminator rather than another logical line.
     values = parts[:-1]
-    lines: list[_LogicalLine] = []
+    lines: list[LogicalLine] = []
     byte_offset = 0
     code_point_offset = 0
     for line_number, value in enumerate(values, start=1):
         lines.append(
-            _LogicalLine(
+            LogicalLine(
                 value=value,
                 position=Position(line_number, byte_offset, code_point_offset),
             )
@@ -313,7 +356,7 @@ def _logical_lines(text: str) -> tuple[_LogicalLine, ...]:
 
 
 def _find_line_indices(
-    lines: tuple[_LogicalLine, ...],
+    lines: tuple[LogicalLine, ...],
     marker: str,
     *,
     start: int = 0,
@@ -343,7 +386,7 @@ def _assert_position(
 
 
 def _validate_wrapper(
-    lines: tuple[_LogicalLine, ...], spec: WrapperSpec
+    lines: tuple[LogicalLine, ...], spec: WrapperSpec
 ) -> tuple[int, int]:
     start_indices = _find_line_indices(lines, spec.start_marker)
     end_indices = _find_line_indices(lines, spec.end_marker)
@@ -366,7 +409,7 @@ def _validate_wrapper(
 
 
 def _validate_global_contents(
-    lines: tuple[_LogicalLine, ...], spec: GlobalContentsSpec
+    lines: tuple[LogicalLine, ...], spec: GlobalContentsSpec
 ) -> tuple[int, int]:
     _require_equal(
         "global_contents.contract_entry_count",
@@ -443,7 +486,7 @@ def _validate_global_contents(
 
 
 def _separator_counts(
-    lines: tuple[_LogicalLine, ...], successor_index: int
+    lines: tuple[LogicalLine, ...], successor_index: int
 ) -> tuple[int, int]:
     empty_count = 0
     whitespace_only_count = 0
@@ -461,14 +504,15 @@ def _separator_counts(
 
 
 def _validate_works(
-    lines: tuple[_LogicalLine, ...],
+    lines: tuple[LogicalLine, ...],
     specs: tuple[WorkSpec, ...],
     global_spec: GlobalContentsSpec,
     first_body_index: int,
     end_index: int,
-) -> tuple[WorkPreflightResult, ...]:
+) -> tuple[tuple[WorkPreflightResult, ...], tuple[ValidatedWorkMarkers, ...]]:
     indexed_ranges: list[tuple[int, int, str]] = []
     results: list[WorkPreflightResult] = []
+    markers: list[ValidatedWorkMarkers] = []
 
     for work in specs:
         _require_equal(
@@ -530,6 +574,19 @@ def _validate_works(
             work_id=work.work_id,
         )
         indexed_ranges.append((body_index, successor_index, work.work_id))
+        outer_end_line_index = successor_index - empty_count
+        markers.append(
+            ValidatedWorkMarkers(
+                work_id=work.work_id,
+                body_line_index=body_index,
+                successor_line_index=successor_index,
+                outer_end_line_index=outer_end_line_index,
+                outer_end_byte_offset=lines[outer_end_line_index].position.byte_offset,
+                outer_end_code_point_offset=lines[
+                    outer_end_line_index
+                ].position.code_point_offset,
+            )
+        )
         results.append(
             WorkPreflightResult(
                 work_id=work.work_id,
@@ -548,11 +605,17 @@ def _validate_works(
             current[1] <= following[0],
             work_id=current[2],
         )
-    return tuple(results)
+    return tuple(results), tuple(markers)
 
 
 def validate_preflight(raw_bytes: bytes, spec: PreflightSpec) -> PreflightReport:
     """Validate source identity and structure without producing derivatives."""
+
+    return validate_source(raw_bytes, spec).report
+
+
+def validate_source(raw_bytes: bytes, spec: PreflightSpec) -> ValidatedSource:
+    """Return an immutable source bound to the exact bytes that passed preflight."""
 
     text = _validate_raw_bytes(raw_bytes, spec.raw)
     lines = _logical_lines(text)
@@ -565,14 +628,14 @@ def validate_preflight(raw_bytes: bytes, spec: PreflightSpec) -> PreflightReport
         True,
         start_index < heading_index < first_body_index < end_index,
     )
-    works = _validate_works(
+    works, work_markers = _validate_works(
         lines,
         spec.works,
         spec.global_contents,
         first_body_index,
         end_index,
     )
-    return PreflightReport(
+    report = PreflightReport(
         raw_sha256=spec.raw.sha256,
         raw_byte_count=len(raw_bytes),
         raw_unicode_code_points=len(text),
@@ -585,10 +648,19 @@ def validate_preflight(raw_bytes: bytes, spec: PreflightSpec) -> PreflightReport
         first_body_position=lines[first_body_index].position,
         works=works,
     )
+    return ValidatedSource(
+        spec=spec,
+        raw_bytes=raw_bytes,
+        logical_lines=lines,
+        work_markers=work_markers,
+        report=report,
+    )
 
 
-def run_preflight(repository_root: Path = REPOSITORY_ROOT) -> PreflightReport:
-    """Run the production preflight using only tracked repository inputs."""
+def load_validated_source(
+    repository_root: Path = REPOSITORY_ROOT,
+) -> ValidatedSource:
+    """Read the production source once and return that exact validated object."""
 
     spec = load_preflight_spec(repository_root)
     raw_path = repository_root / spec.raw_path
@@ -600,7 +672,13 @@ def run_preflight(repository_root: Path = REPOSITORY_ROOT) -> PreflightReport:
             expected={"readable": True, "path": spec.raw_path.as_posix()},
             observed={"readable": False, "error_type": type(error).__name__},
         ) from None
-    return validate_preflight(raw_bytes, spec)
+    return validate_source(raw_bytes, spec)
+
+
+def run_preflight(repository_root: Path = REPOSITORY_ROOT) -> PreflightReport:
+    """Run the production preflight using only tracked repository inputs."""
+
+    return load_validated_source(repository_root).report
 
 
 def main() -> int:

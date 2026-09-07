@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Source-faithful Dramatis marker and provenance hash-stage clarification approved; extraction implementation not authorized.
+Deterministic in-memory extraction accepted and tracked in its implementation checkpoint; filesystem publication remains unauthorized.
 
 ## Completed work
 
@@ -53,10 +53,15 @@ Source-faithful Dramatis marker and provenance hash-stage clarification approved
 - Production preflight passed against the pinned source; all 16 focused tests passed, and the full 19-test suite passed with the expected restricted-context MPS skip.
 - Independent review passed and the read-only preflight implementation was accepted for its dedicated checkpoint.
 - Source-faithful per-work Dramatis indentation and three distinct provenance hash stages approved under DEC-0011.
+- Deterministic in-memory extraction explicitly authorized and implemented through a separate module.
+- Immutable validated-source handoff added so extraction consumes the exact byte object that passed preflight.
+- Eighteen focused extraction tests passed; the 17-test preflight suite passed; the full 38-test suite passed with the expected restricted-context MPS skip.
+- Production extraction returned eight separate works deterministically and computed three-stage provenance without creating processed output.
+- Independent review passed and the deterministic in-memory extraction implementation was accepted for its dedicated checkpoint.
 
 ## Current work
 
-None. The clarification checkpoint is complete; in-memory extraction implementation remains unauthorized.
+None. The accepted in-memory extraction checkpoint is complete; filesystem publication remains unauthorized.
 
 ## Current model status
 
@@ -64,25 +69,25 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted preflight checkpoint remains unchanged. The approved contract represents `Dramatis Personæ` once with source-faithful per-work leading-space counts and distinguishes outer-raw, retained-raw, and processed provenance hashes. DEC-0011 is accepted. No extractor, processed data, character inventory, tokenizer, dataset loader, or model implementation exists.
+The accepted preflight behavior remains intact. In-memory extraction consumes the same immutable validated bytes, removes each scoped local `Contents` range, retains the exact configured `Dramatis Personæ` line, converts only CRLF to LF, and returns eight immutable independent works with outer-raw, retained-raw, and processed hashes/counts. Repeated production runs were identical. The raw master remains unchanged, and `data/processed/` does not exist. No publication writer, character inventory, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes the already-designed in-memory extraction implementation slice before any extraction code or processed output is created.
+Sebastien explicitly authorizes processed-dataset filesystem publication/materialization before any extracted text or metadata is written to disk.
 
 ## Known issues
 
 - PyTorch emits a warning that optional NumPy interoperability is unavailable. NumPy is intentionally not installed because no current milestone requires it.
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
 - The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
-- Actual processed counts and hashes remain unknown until the approved extractor is implemented and run.
+- In-memory processed counts and hashes are reproducibly computed but are not published to dataset files or a processing manifest.
 - Validation/test-only Unicode code points are intentionally unresolved until the required audit is run and Phase 2 chooses a generic unseen-input policy.
 
 ## Important constraints
 
-- Do not implement extraction or create processed data until Sebastien explicitly authorizes implementation of the approved contract.
+- Do not implement processed-dataset filesystem publication or create `data/processed/` until Sebastien explicitly authorizes that separate milestone.
 - Do not add dependencies without an approved, recorded reason and lock-file update.
-- Do not extract, normalize, split, or tokenize text during the acquisition milestone.
+- Do not write extracted text, normalized text, split documents, or extraction metadata to disk.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not implement tokenization, neural networks, Transformers, training, or inference yet.
@@ -92,8 +97,8 @@ Sebastien explicitly authorizes the already-designed in-memory extraction implem
 
 ## Open questions
 
-- Does Sebastien authorize the already-designed in-memory extraction implementation slice?
+- Does Sebastien authorize processed-dataset filesystem publication/materialization?
 
 ## Session handoff
 
-The accepted preflight remains unchanged. DEC-0011 and the source-faithful Dramatis marker/three-stage provenance contract are approved and checkpointed. Resume only with explicit authorization for the already-designed in-memory extraction slice; processed outputs, character inventory, and tokenization remain unauthorized.
+The accepted preflight and deterministic in-memory extraction are verified and tracked in dedicated checkpoints. The next boundary—processed-dataset filesystem publication/materialization—remains unauthorized. Character inventory and tokenization remain separate later gates.

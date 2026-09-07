@@ -12,8 +12,10 @@
 - **Read-only preflight implementation authorized:** Yes
 - **Read-only preflight implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **In-memory extraction contract clarification:** Approved 2026-09-06
-- **Extraction implementation authorized:** No
-- **Extraction implemented:** No
+- **In-memory extraction implementation authorized:** Yes
+- **In-memory extraction implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
+- **Processed-dataset filesystem publication authorized:** No
+- **Processed-dataset filesystem publication implemented:** No
 - **Tokenization implemented:** No
 
 ## Learning objective
@@ -450,4 +452,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. The raw-source acquisition, factual provenance capture, structural inspection, and read-only preflight are complete and tracked in dedicated checkpoints. In-memory extraction implementation and processed-output creation are not authorized; they require separate explicit approval after this clarification checkpoint. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, and deterministic in-memory extraction are complete, accepted, and tracked in dedicated checkpoints. Filesystem publication and processed-output creation remain unauthorized. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
