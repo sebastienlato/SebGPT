@@ -32,7 +32,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 2. Approve the corpus design and document the source, manifest, split policy, and acquisition contract. **Complete.**
 3. Acquire the approved raw source and record immutable provenance. **Complete.**
 4. Inspect source structure and define exact extraction boundaries. **Complete.**
-5. Implement and test deterministic extraction and splitting. **Read-only preflight and deterministic in-memory extraction accepted; filesystem publication not authorized.**
+5. Implement and test deterministic extraction and splitting. **Read-only preflight, deterministic in-memory extraction, and the Models A/B cooperative-lock transactional publisher accepted and tracked; final ledger incomplete and production publication not authorized.**
 6. Inspect corpus characteristics and audit validation/test Unicode code points against the training-only character inventory. **In-memory character inventory accepted and tracked; unseen-character comparison complete with zero candidates, so occurrence-location reporting is not applicable for the pinned corpus.**
 
 **Exit criteria:**

@@ -14,6 +14,10 @@
 - **In-memory extraction contract clarification:** Approved 2026-09-06
 - **In-memory extraction implementation authorized:** Yes
 - **In-memory extraction implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
+- **Transactional publisher design:** Approved 2026-09-07
+- **Publisher implementation authorized:** Yes, for implementation and temporary-directory tests only
+- **Publisher threat model:** Ordinary/static workspace and cooperating publishers that obey `data/.publish-lock`; unrelated same-user adversarial namespace mutation is outside the guarantee
+- **Publisher implemented and verified:** Yes, including the cooperating-publisher lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening; accepted and tracked in its implementation checkpoint
 - **Processed-dataset filesystem publication authorized:** No
 - **Processed-dataset filesystem publication implemented:** No
 - **In-memory Unicode character inventory authorized:** Yes
@@ -365,13 +369,19 @@ The following are three distinct byte ranges at three deterministic pipeline sta
 
 The six training plays remain six physical documents. A later dataset loader must treat each file as an independent sequence domain and may never form a context window across documents. *The Tempest* and *Twelfth Night* remain separate physical and logical validation/test documents. This constrains later loading but does not choose tokens, context length, sampling strategy, or model inputs.
 
+### Publication concurrency and threat model
+
+Processed-dataset publication is transaction-safe for an ordinary/static SebGPT workspace and for multiple cooperating SebGPT publisher invocations that all obey the exclusive empty presence lock at `data/.publish-lock`. The lock is created atomically without following symlinks, held across output-state inspection, staging construction, promotion, and final verification, and released after ordinary success or a clean pre-publication refusal. A stale or uncertain lock and any staging residue are preserved for explicit human resolution; later publishers refuse them.
+
+Within that threat model, inputs and bytes are validated before writing, staged regular files are created exclusively without following symlinks, exact reruns are idempotent, mismatching or partial state is refused, failed transactions preserve uncertainty, final promotion atomically refuses an existing destination, and the published tree is verified afterward. Descriptor-relative and inode checks remain defense-in-depth. The lock coordinates SebGPT publishers only and is not a security boundary: the publisher does not guarantee safety against an unrelated process with the same filesystem authority that ignores the protocol and deliberately mutates the `data` namespace during the transaction. Darwin provides neither atomic directory creation with descriptor return nor inode-conditional source rename for this directory-tree architecture.
+
 ## Unicode character inventory and unseen-character audit
 
 Phase 1 defines Unicode character inventories only. It does not select a token unit, tokenizer algorithm, token vocabulary, encoding map, unknown-token mechanism, or unseen-input policy. All such choices belong to Phase 2.
 
 The training character inventory must be derived from processed **training data only**. Before tokenizer implementation, Phase 1 must audit the processed validation and test documents for Unicode code points absent from that training inventory.
 
-For Phase 1 counting, a “character” is one Unicode code point obtained by iterating the strictly decoded Python string after CRLF/CR-to-LF conversion and approved extraction. It is not a byte, glyph, grapheme cluster, or future token.
+For Phase 1 counting, a “character” is one Unicode code point obtained by iterating the strictly decoded Python string after approved extraction and CRLF-to-LF conversion, with lone CR rejected. It is not a byte, glyph, grapheme cluster, or future token.
 
 - Combining marks are separate code points and are not composed with neighboring code points.
 - U+0020 SPACE, U+0009 CHARACTER TABULATION, U+000A LINE FEED, every other whitespace code point, and every control code point are counted individually and remain distinct.
@@ -411,7 +421,7 @@ Use these deterministic count definitions:
 
 - **Raw bytes:** exact filesystem byte length of the unmodified acquired artifact.
 - **Processed bytes:** byte length after encoding the processed string with strict UTF-8.
-- **Unicode code points:** Python `len(text)` after approved extraction and CRLF/CR-to-LF conversion.
+- **Unicode code points:** Python `len(text)` after approved extraction and CRLF-to-LF conversion, with lone CR rejected.
 - **Lines:** zero for an empty string; otherwise the number of U+000A LINE FEED code points plus one when the string does not end in U+000A.
 - **Words:** Python `len(text.split())`, using the Python version recorded in the authoritative manifest. This is a whitespace-delimited diagnostic, not a token count.
 
@@ -459,4 +469,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. Filesystem publication and processed-output creation remain unauthorized, and the final processing-result ledger is incomplete. Phase 1 is not complete. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. The transactional publisher's Models A/B cooperative-workspace threat model, exclusive lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening are accepted and tracked in its implementation checkpoint. Production filesystem publication and processed-output creation remain unauthorized, and the final processing-result ledger is incomplete. Phase 1 is not complete. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.

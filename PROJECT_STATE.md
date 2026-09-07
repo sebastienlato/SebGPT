@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Zero-candidate unseen-character audit accepted and recorded; processed-dataset publication remains unauthorized.
+Cooperative-lock publisher and DEC-0012 threat-model amendment accepted and tracked in their dedicated checkpoint.
 
 ## Completed work
 
@@ -63,10 +63,18 @@ Zero-candidate unseen-character audit accepted and recorded; processed-dataset p
 - Production inventory counted eight independent works deterministically under Python 3.14.4 without creating `data/processed/`.
 - Independent review passed with no must-fix issues, and Sebastien accepted the in-memory Unicode character-inventory checkpoint.
 - The unseen-character comparison found zero validation/test code points absent from training; its candidate and occurrence-entry collections are empty, so occurrence-location reporting is not applicable for the pinned corpus.
+- The transactional publisher design was accepted and recorded as DEC-0012.
+- A standard-library publisher and 26 focused tests were implemented using temporary repositories only; the full 74-test suite passed with the expected restricted-context MPS skip.
+- Production `ExtractedWork` compatibility passed through a temporary repository without creating the real `data/processed/` tree.
+- Publisher reviews reproduced target-promotion and cleanup-ownership races; exclusive no-clobber promotion and preservation of failed staging state now pass deterministic regression tests for target, top-level staging, nested-entry, and final-root replacement.
+- Descriptor-relative exclusive/no-follow directory and file creation prevents staged-path symlinks or substituted intermediate directories from redirecting writes; both construction races now have deterministic regression coverage.
+- Darwin feasibility review established that the directory-tree publisher cannot guarantee safety against an unrelated same-user namespace adversary; Sebastien accepted an append-only DEC-0012 amendment limiting guarantees to ordinary workspaces and cooperating locked publishers.
+- An empty atomic `data/.publish-lock` presence-file protocol now serializes cooperating publishers, releases after success or clean pre-publication refusal, and is preserved with stale or uncertain state; four focused lock-lifecycle tests pass.
+- Final independent review passed with no must-fix issues, and Sebastien accepted the complete publisher implementation and DEC-0012 amendment.
 
 ## Current work
 
-None. The zero-candidate unseen-character audit is complete. Processed-dataset publication and the final processing-result ledger remain incomplete and unauthorized.
+None. The publisher implementation is accepted; production publication remains unauthorized and the final processing-result ledger remains incomplete.
 
 ## Current model status
 
@@ -74,11 +82,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted preflight and in-memory extraction remain intact. The inventory consumes the accepted `tuple[ExtractedWork, ...]`, counts exact Python Unicode code points, returns immutable per-work/split/global aggregates and cross-split relationships, and exposes only totals/cardinalities through its safe summary. Production reported 1,005,813 total and 81 distinct code points; validation-not-in-train, test-not-in-train, and test-not-in-train-or-validation cardinalities are all zero. The unseen-character audit is complete with an empty candidate set and empty occurrence entries, so occurrence-location reporting is not applicable for this pinned corpus. No filesystem publication, tokenizer, dataset loader, or model implementation exists.
+The accepted preflight, extraction, inventory, and zero-candidate audit remain intact. The publisher consumes only `tuple[ExtractedWork, ...]`, verifies a complete authoritative expected-result ledger, writes exact `processed_text.encode("utf-8")` bytes into a fixed staging tree, verifies the complete tree, and atomically publishes it with exclusive no-clobber promotion. An empty atomic presence lock serializes cooperating publishers. Exact reruns are no-ops; partial, mismatching, unexpected, locked, or stale state is refused without overwrite or repair. Handled uncertain failures preserve both lock and staging state. These guarantees apply to ordinary workspaces and cooperating publishers; adversarial same-user namespace mutation is outside the contract. All publisher writes so far occurred only under temporary test roots. The real `data/processed/` tree is absent, the production ledger remains incomplete, and no tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes processed-dataset filesystem publication/materialization before any derived files are written.
+Sebastien explicitly authorizes final production expected-result ledger population using the committed publisher revision, without publishing processed data.
 
 ## Known issues
 
@@ -103,8 +111,8 @@ Sebastien explicitly authorizes processed-dataset filesystem publication/materia
 
 ## Open questions
 
-- Does Sebastien authorize processed-dataset filesystem publication/materialization?
+- Does Sebastien authorize final production expected-result ledger population?
 
 ## Session handoff
 
-Read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are accepted and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. Processed-dataset publication remains unauthorized and unimplemented, the final processing-result ledger is incomplete, tokenization has not started, and Phase 2 has not begun.
+Read-only preflight, deterministic in-memory extraction, the in-memory Unicode character inventory, the zero-candidate audit, and the cooperative-lock publisher are accepted and tracked in dedicated checkpoints. The accepted publisher contract covers ordinary/static workspaces and cooperating locked publishers, not adversarial same-user namespace mutation. Production publication remains unauthorized, the real `data/processed/` tree is absent, the final ledger is incomplete, tokenization has not started, and Phase 2 has not begun.
