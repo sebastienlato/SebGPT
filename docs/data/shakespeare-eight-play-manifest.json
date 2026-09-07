@@ -28,7 +28,8 @@
     "in_memory_character_inventory_verified_against_extracted_works": true,
     "in_memory_character_inventory_review": "accepted",
     "in_memory_character_inventory_tracked_in_implementation_checkpoint": true,
-    "occurrence_location_audit_implemented": false,
+    "unseen_character_comparison_completed": true,
+    "occurrence_location_reporting": "not_applicable_zero_candidates",
     "processed_dataset_publication_authorized": false,
     "processed_dataset_publication_implemented": false,
     "tokenization_authorized": false,
@@ -295,7 +296,17 @@
     "per_work_results": null,
     "per_split_results": null,
     "duplicate_and_boundary_audit": null,
-    "character_inventory_audit": null
+    "character_inventory_audit": {
+      "status": "completed",
+      "validation_not_in_train_cardinality": 0,
+      "test_not_in_train_cardinality": 0,
+      "test_not_in_train_or_validation_cardinality": 0,
+      "occurrence_location_candidate_count": 0,
+      "occurrence_location_entries": [],
+      "occurrence_location_reporting": "not_applicable_for_pinned_corpus",
+      "test_only_code_point_identities_emitted": false,
+      "test_prose_emitted": false
+    }
   },
   "character_inventory": {
     "status": "in_memory_accepted_and_tracked",
@@ -303,7 +314,8 @@
     "test_path": "tests/test_shakespeare_inventory.py",
     "production_python_version": "3.14.4",
     "filesystem_artifact_published": false,
-    "occurrence_location_audit_implemented": false,
+    "unseen_character_comparison_completed": true,
+    "occurrence_location_reporting": "not_applicable_zero_candidates",
     "tokenization_behavior_defined": false
   }
 }

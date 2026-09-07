@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-In-memory Unicode character inventory accepted and tracked in its dedicated checkpoint; occurrence-location audit remains unimplemented.
+Zero-candidate unseen-character audit accepted and recorded; processed-dataset publication remains unauthorized.
 
 ## Completed work
 
@@ -62,10 +62,11 @@ In-memory Unicode character inventory accepted and tracked in its dedicated chec
 - Ten focused inventory tests passed; extraction and preflight regressions passed; the full 48-test suite passed with the expected restricted-context MPS skip.
 - Production inventory counted eight independent works deterministically under Python 3.14.4 without creating `data/processed/`.
 - Independent review passed with no must-fix issues, and Sebastien accepted the in-memory Unicode character-inventory checkpoint.
+- The unseen-character comparison found zero validation/test code points absent from training; its candidate and occurrence-entry collections are empty, so occurrence-location reporting is not applicable for the pinned corpus.
 
 ## Current work
 
-None. The in-memory Unicode character inventory is accepted; occurrence-location audit and filesystem publication remain separate, unauthorized work.
+None. The zero-candidate unseen-character audit is complete. Processed-dataset publication and the final processing-result ledger remain incomplete and unauthorized.
 
 ## Current model status
 
@@ -73,11 +74,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted preflight and in-memory extraction remain intact. The inventory consumes the accepted `tuple[ExtractedWork, ...]`, counts exact Python Unicode code points, returns immutable per-work/split/global aggregates and cross-split relationships, and exposes only totals/cardinalities through its safe summary. Production reported 1,005,813 total and 81 distinct code points; validation-not-in-train, test-not-in-train, and test-not-in-train-or-validation cardinalities are all zero. No occurrence-location audit, filesystem publication, tokenizer, dataset loader, or model implementation exists.
+The accepted preflight and in-memory extraction remain intact. The inventory consumes the accepted `tuple[ExtractedWork, ...]`, counts exact Python Unicode code points, returns immutable per-work/split/global aggregates and cross-split relationships, and exposes only totals/cardinalities through its safe summary. Production reported 1,005,813 total and 81 distinct code points; validation-not-in-train, test-not-in-train, and test-not-in-train-or-validation cardinalities are all zero. The unseen-character audit is complete with an empty candidate set and empty occurrence entries, so occurrence-location reporting is not applicable for this pinned corpus. No filesystem publication, tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes the occurrence-location audit before it is implemented.
+Sebastien explicitly authorizes processed-dataset filesystem publication/materialization before any derived files are written.
 
 ## Known issues
 
@@ -85,14 +86,14 @@ Sebastien explicitly authorizes the occurrence-location audit before it is imple
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
 - The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
 - In-memory processed counts and hashes are reproducibly computed but are not published to dataset files or a processing manifest.
-- The occurrence-location audit is not implemented. Current in-memory relationship cardinalities show no validation/test code points absent from training, but that does not authorize skipping its separate review gate.
+- The final processing-result ledger remains incomplete and processed files have not been published.
 
 ## Important constraints
 
 - Do not implement processed-dataset filesystem publication or create `data/processed/` until Sebastien explicitly authorizes that separate milestone.
 - Do not add dependencies without an approved, recorded reason and lock-file update.
 - Do not write extracted text, normalized text, split documents, or extraction metadata to disk.
-- Do not implement or publish the occurrence-location audit without explicit authorization.
+- Do not implement occurrence-location lookup for the pinned corpus; the accepted audit has zero candidates and requires no location records.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not implement tokenization, neural networks, Transformers, training, or inference yet.
@@ -102,8 +103,8 @@ Sebastien explicitly authorizes the occurrence-location audit before it is imple
 
 ## Open questions
 
-- Does Sebastien authorize the occurrence-location audit?
+- Does Sebastien authorize processed-dataset filesystem publication/materialization?
 
 ## Session handoff
 
-Read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are accepted and tracked in dedicated checkpoints. Occurrence-location audit and filesystem publication remain unauthorized and unimplemented. Tokenization has not started, and Phase 2 has not begun.
+Read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are accepted and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. Processed-dataset publication remains unauthorized and unimplemented, the final processing-result ledger is incomplete, tokenization has not started, and Phase 2 has not begun.

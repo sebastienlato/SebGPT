@@ -18,7 +18,9 @@
 - **Processed-dataset filesystem publication implemented:** No
 - **In-memory Unicode character inventory authorized:** Yes
 - **In-memory Unicode character inventory implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
-- **Occurrence-location audit implemented:** No
+- **Unseen-character comparison:** Complete; all three cross-split cardinalities are zero
+- **Occurrence-location reporting:** Not applicable for the pinned corpus because the candidate set is empty
+- **Final processing-result ledger complete:** No
 - **Tokenization implemented:** No
 
 ## Learning objective
@@ -387,6 +389,8 @@ Each character inventory must be sorted by ascending integer code-point value an
 
 The audit is observational only. It must not display surrounding source prose or source slices and must not silently discard, replace, normalize, or add any code point. Phase 2 must choose a generic unseen-input policy that applies uniformly to arbitrary unseen input; its rationale may not cite or tailor behavior to the identities, counts, or locations observed in the sealed test work.
 
+For the pinned corpus, the accepted production comparison found validation-not-in-train cardinality 0, test-not-in-train cardinality 0, and test-not-in-train-or-validation cardinality 0. The occurrence-location candidate set and occurrence-entry collection are therefore both empty. Occurrence-location reporting is not applicable, and no test-only code-point identities or prose were emitted. This is the mechanical zero-candidate result of the existing contract, not a change to it.
+
 This structural/diagnostic audit is the sole permitted pre-evaluation exception to test sealing. Automated tools may inspect the test work only to locate and verify approved structural boundary markers and to emit the fields listed above. Before final evaluation, humans and automated reports must not expose test dialogue, prose, surrounding context, samples, token sequences, or model behavior on the test work. Repository review must use hashes, file sizes, status, and diff statistics rather than commands that print the raw source body.
 
 ## Leakage rules
@@ -455,4 +459,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The occurrence-location audit is not implemented. Filesystem publication and processed-output creation remain unauthorized. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. Filesystem publication and processed-output creation remain unauthorized, and the final processing-result ledger is incomplete. Phase 1 is not complete. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.

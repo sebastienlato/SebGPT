@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import hashlib
+import json
 import sys
 import unittest
 from dataclasses import FrozenInstanceError, fields
@@ -247,6 +248,37 @@ class ProductionCharacterInventoryTests(unittest.TestCase):
             + summary.validation_total_code_points
             + summary.test_total_code_points,
         )
+        manifest = json.loads(
+            (
+                REPOSITORY_ROOT
+                / "docs/data/shakespeare-eight-play-manifest.json"
+            ).read_text(encoding="utf-8")
+        )
+        audit = manifest["processing"]["character_inventory_audit"]
+        self.assertEqual(audit["status"], "completed")
+        self.assertEqual(
+            audit["validation_not_in_train_cardinality"],
+            summary.validation_not_in_train_count,
+        )
+        self.assertEqual(
+            audit["test_not_in_train_cardinality"],
+            summary.test_not_in_train_count,
+        )
+        self.assertEqual(
+            audit["test_not_in_train_or_validation_cardinality"],
+            summary.test_not_in_train_or_validation_count,
+        )
+        self.assertEqual(audit["occurrence_location_candidate_count"], 0)
+        self.assertEqual(audit["occurrence_location_entries"], [])
+        self.assertEqual(
+            audit["occurrence_location_reporting"],
+            "not_applicable_for_pinned_corpus",
+        )
+        self.assertFalse(audit["test_only_code_point_identities_emitted"])
+        self.assertFalse(audit["test_prose_emitted"])
+        self.assertEqual(report.relationships.validation_not_in_train, ())
+        self.assertEqual(report.relationships.test_not_in_train, ())
+        self.assertEqual(report.relationships.test_not_in_train_or_validation, ())
         self.assertFalse(processed_root.exists())
 
 
