@@ -27,6 +27,7 @@ from sebgpt.data.shakespeare_extract import (  # noqa: E402
 )
 import sebgpt.data.shakespeare_publish as publish_module  # noqa: E402
 from sebgpt.data.shakespeare_preflight import Position  # noqa: E402
+from sebgpt.data.shakespeare_inventory import inventory_extracted_works  # noqa: E402
 from sebgpt.data.shakespeare_publish import (  # noqa: E402
     EXPECTED_RAW_SHA256,
     EXPECTED_OUTPUT_PATHS,
@@ -1075,6 +1076,115 @@ class PublisherTests(unittest.TestCase):
 
 
 class ProductionPublisherCompatibilityTests(unittest.TestCase):
+    def test_authoritative_production_ledger_matches_accepted_pipeline(self) -> None:
+        production_processed_root = REPOSITORY_ROOT / "data/processed"
+        self.assertFalse(production_processed_root.exists())
+        raw_path = (
+            REPOSITORY_ROOT
+            / "data/raw/gutenberg-ebook-100/complete-works.txt"
+        )
+        raw_bytes = raw_path.read_bytes()
+        works = extract_shakespeare_in_memory(REPOSITORY_ROOT)
+        inventory = inventory_extracted_works(works)
+        manifest = json.loads(
+            (
+                REPOSITORY_ROOT
+                / "docs/data/shakespeare-eight-play-manifest.json"
+            ).read_text(encoding="utf-8")
+        )
+        processing = manifest["processing"]
+        character_inventory = manifest["character_inventory"]
+
+        expected = publish_module._prepare_publication(works, REPOSITORY_ROOT)
+
+        self.assertEqual(
+            hashlib.sha256(raw_bytes).hexdigest(),
+            manifest["source"]["raw_sha256"],
+        )
+        self.assertEqual(processing["status"], "expected_results_populated_publication_not_authorized")
+        self.assertEqual(
+            processing["git_commit"],
+            "cd4cd8159b420920aa66755630fe26f9633a5373",
+        )
+        self.assertEqual(processing["python_version"], "3.14.4")
+        self.assertEqual(
+            processing["operating_platform"],
+            {"system": "Darwin", "machine": "arm64"},
+        )
+        self.assertEqual(processing["transformations"], ["crlf_to_lf_only"])
+        self.assertEqual(
+            processing["global_results"],
+            {
+                "work_count": len(works),
+                "processed_byte_count": sum(
+                    work.processed.byte_count for work in works
+                ),
+                "processed_code_point_count": sum(
+                    work.processed_code_point_count for work in works
+                ),
+                "processed_line_count": sum(
+                    work.processed_line_count for work in works
+                ),
+                "processed_word_count": sum(
+                    work.processed_word_count for work in works
+                ),
+            },
+        )
+        self.assertEqual(
+            character_inventory["per_work_results"],
+            [
+                {
+                    "work_id": item.work_id,
+                    "manifest_order": item.manifest_order,
+                    "split": item.split,
+                    "total_code_point_count": item.total_code_point_count,
+                    "distinct_code_point_count": item.distinct_code_point_count,
+                }
+                for item in inventory.work_inventories
+            ],
+        )
+        self.assertEqual(
+            character_inventory["per_split_results"],
+            [
+                {
+                    "split": item.split,
+                    "work_count": item.work_count,
+                    "total_code_point_count": item.total_code_point_count,
+                    "distinct_code_point_count": item.distinct_code_point_count,
+                }
+                for item in inventory.split_inventories
+            ],
+        )
+        self.assertEqual(
+            character_inventory["global_result"],
+            {
+                "work_count": inventory.global_inventory.work_count,
+                "total_code_point_count": (
+                    inventory.global_inventory.total_code_point_count
+                ),
+                "distinct_code_point_count": (
+                    inventory.global_inventory.distinct_code_point_count
+                ),
+            },
+        )
+        generated = processing["generated_processing_manifest"]
+        self.assertEqual(generated["schema_version"], 1)
+        self.assertEqual(
+            generated["relative_path"],
+            PROCESSING_MANIFEST_PATH.as_posix(),
+        )
+        self.assertEqual(
+            generated["sha256"],
+            expected.processing_manifest_sha256,
+        )
+        self.assertEqual(len(expected.report_works), 8)
+        self.assertEqual(len(expected.files), 9)
+        self.assertEqual(
+            publish_module._prepare_publication(works, REPOSITORY_ROOT),
+            expected,
+        )
+        self.assertFalse(production_processed_root.exists())
+
     def test_production_works_publish_only_inside_temporary_root(self) -> None:
         production_processed_root = REPOSITORY_ROOT / "data/processed"
         self.assertFalse(production_processed_root.exists())
@@ -1087,14 +1197,24 @@ class ProductionPublisherCompatibilityTests(unittest.TestCase):
 
         with tempfile.TemporaryDirectory() as directory:
             temporary_root = Path(directory)
-            _write_repository(
-                temporary_root,
-                works,
-                raw_bytes=raw_before,
+            temporary_manifest = (
+                temporary_root
+                / "docs/data/shakespeare-eight-play-manifest.json"
             )
+            temporary_manifest.parent.mkdir(parents=True)
+            temporary_manifest.write_bytes(
+                (
+                    REPOSITORY_ROOT
+                    / "docs/data/shakespeare-eight-play-manifest.json"
+                ).read_bytes()
+            )
+            (temporary_root / "data").mkdir()
+
             report = publish_extracted_works(works, temporary_root)
+            repeated = publish_extracted_works(works, temporary_root)
 
             self.assertEqual(report.status, "created")
+            self.assertEqual(repeated.status, "already_current")
             self.assertEqual(report.work_count, 8)
             self.assertEqual(
                 _published_file_paths(temporary_root),
@@ -1102,8 +1222,17 @@ class ProductionPublisherCompatibilityTests(unittest.TestCase):
             )
             generated_manifest = (
                 temporary_root / PROCESSING_MANIFEST_PATH
-            ).read_text(encoding="utf-8")
-            self.assertNotIn(SECRET_TEST_PROSE, generated_manifest)
+            ).read_bytes()
+            self.assertNotIn(SECRET_TEST_PROSE.encode("utf-8"), generated_manifest)
+            authoritative = json.loads(
+                temporary_manifest.read_text(encoding="utf-8")
+            )
+            self.assertEqual(
+                hashlib.sha256(generated_manifest).hexdigest(),
+                authoritative["processing"]["generated_processing_manifest"][
+                    "sha256"
+                ],
+            )
 
         self.assertEqual(raw_path.read_bytes(), raw_before)
         self.assertFalse(production_processed_root.exists())

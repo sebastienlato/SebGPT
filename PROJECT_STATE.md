@@ -8,7 +8,7 @@ Phase 1 — Dataset
 
 ## Current milestone
 
-Cooperative-lock publisher and DEC-0012 threat-model amendment accepted and tracked in their dedicated checkpoint.
+Final expected-result ledger accepted and tracked in its dedicated checkpoint; production publication remains unauthorized.
 
 ## Completed work
 
@@ -71,10 +71,13 @@ Cooperative-lock publisher and DEC-0012 threat-model amendment accepted and trac
 - Darwin feasibility review established that the directory-tree publisher cannot guarantee safety against an unrelated same-user namespace adversary; Sebastien accepted an append-only DEC-0012 amendment limiting guarantees to ordinary workspaces and cooperating locked publishers.
 - An empty atomic `data/.publish-lock` presence-file protocol now serializes cooperating publishers, releases after success or clean pre-publication refusal, and is preserved with stale or uncertain state; four focused lock-lifecycle tests pass.
 - Final independent review passed with no must-fix issues, and Sebastien accepted the complete publisher implementation and DEC-0012 amendment.
+- The authoritative manifest now records publisher revision `cd4cd8159b420920aa66755630fe26f9633a5373`, the accepted environment, exact exclusions, per-work provenance and processed results, split/global aggregates, character-inventory results, duplicate/boundary conclusions, and expected generated-manifest identity.
+- A production ledger-verification test and temporary-root publication/rerun verification pass; the publisher suite has 27 tests and the full 75-test suite passes with the expected restricted-context MPS skip.
+- Independent review passed with no must-fix issues, and Sebastien accepted the final expected-result ledger checkpoint.
 
 ## Current work
 
-None. The publisher implementation is accepted; production publication remains unauthorized and the final processing-result ledger remains incomplete.
+None. The final expected-result ledger is accepted; production publication remains unauthorized and unperformed.
 
 ## Current model status
 
@@ -82,11 +85,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted preflight, extraction, inventory, and zero-candidate audit remain intact. The publisher consumes only `tuple[ExtractedWork, ...]`, verifies a complete authoritative expected-result ledger, writes exact `processed_text.encode("utf-8")` bytes into a fixed staging tree, verifies the complete tree, and atomically publishes it with exclusive no-clobber promotion. An empty atomic presence lock serializes cooperating publishers. Exact reruns are no-ops; partial, mismatching, unexpected, locked, or stale state is refused without overwrite or repair. Handled uncertain failures preserve both lock and staging state. These guarantees apply to ordinary workspaces and cooperating publishers; adversarial same-user namespace mutation is outside the contract. All publisher writes so far occurred only under temporary test roots. The real `data/processed/` tree is absent, the production ledger remains incomplete, and no tokenizer, dataset loader, or model implementation exists.
+The accepted preflight, extraction, inventory, zero-candidate audit, and publisher remain intact. The authoritative ledger now matches all production in-memory provenance hashes/counts, split/global aggregates, character-inventory results, and audit conclusions. Its expected deterministic generated manifest has SHA-256 `bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc`. Temporary publication using the exact ledger succeeds and an exact rerun returns `already_current`. The real `data/processed/` tree remains absent, production publication is unauthorized, and no tokenizer, dataset loader, or model implementation exists.
 
 ## Next exact step
 
-Sebastien explicitly authorizes final production expected-result ledger population using the committed publisher revision, without publishing processed data.
+Sebastien explicitly authorizes production processed-dataset publication before `data/processed/` is created.
 
 ## Known issues
 
@@ -94,7 +97,7 @@ Sebastien explicitly authorizes final production expected-result ledger populati
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
 - The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
 - In-memory processed counts and hashes are reproducibly computed but are not published to dataset files or a processing manifest.
-- The final processing-result ledger remains incomplete and processed files have not been published.
+- The final expected-result ledger is accepted and tracked; processed files have not been published.
 
 ## Important constraints
 
@@ -111,8 +114,8 @@ Sebastien explicitly authorizes final production expected-result ledger populati
 
 ## Open questions
 
-- Does Sebastien authorize final production expected-result ledger population?
+- Does Sebastien authorize production processed-dataset publication?
 
 ## Session handoff
 
-Read-only preflight, deterministic in-memory extraction, the in-memory Unicode character inventory, the zero-candidate audit, and the cooperative-lock publisher are accepted and tracked in dedicated checkpoints. The accepted publisher contract covers ordinary/static workspaces and cooperating locked publishers, not adversarial same-user namespace mutation. Production publication remains unauthorized, the real `data/processed/` tree is absent, the final ledger is incomplete, tokenization has not started, and Phase 2 has not begun.
+Read-only preflight, deterministic in-memory extraction, the in-memory Unicode character inventory, the zero-candidate audit, the cooperative-lock publisher, and the final expected-result ledger are accepted and tracked in dedicated checkpoints. Production publication remains unauthorized, the real `data/processed/` tree is absent, tokenization has not started, and Phase 2 has not begun.

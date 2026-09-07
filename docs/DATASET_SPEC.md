@@ -24,7 +24,7 @@
 - **In-memory Unicode character inventory implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **Unseen-character comparison:** Complete; all three cross-split cardinalities are zero
 - **Occurrence-location reporting:** Not applicable for the pinned corpus because the candidate set is empty
-- **Final processing-result ledger complete:** No
+- **Final expected-result ledger:** Accepted and tracked in its dedicated checkpoint
 - **Tokenization implemented:** No
 
 ## Learning objective
@@ -469,4 +469,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. The transactional publisher's Models A/B cooperative-workspace threat model, exclusive lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening are accepted and tracked in its implementation checkpoint. Production filesystem publication and processed-output creation remain unauthorized, and the final processing-result ledger is incomplete. Phase 1 is not complete. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The unseen-character audit is complete with zero candidates, making occurrence-location reporting not applicable for the pinned corpus. The transactional publisher's Models A/B cooperative-workspace threat model, exclusive lock, no-clobber promotion, failure-state preservation, and descriptor-relative hardening are accepted and tracked in its implementation checkpoint. The final expected-result ledger is accepted and tracked in its dedicated checkpoint. Production filesystem publication and processed-output creation remain unauthorized. Phase 1 is not complete. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.

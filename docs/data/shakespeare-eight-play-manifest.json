@@ -39,6 +39,10 @@
     "publisher_adversarial_same_user_namespace_safety": false,
     "publisher_review": "accepted",
     "publisher_tracked_in_implementation_checkpoint": true,
+    "final_expected_result_ledger_populated": true,
+    "final_expected_result_ledger_verified": true,
+    "final_expected_result_ledger_review": "accepted",
+    "final_expected_result_ledger_tracked_in_checkpoint": true,
     "processed_dataset_publication_authorized": false,
     "processed_dataset_publication_implemented": false,
     "tokenization_authorized": false,
@@ -116,17 +120,20 @@
     "words": "Python len(text.split()) using the recorded Python version"
   },
   "processing": {
-    "status": "in_memory_extraction_accepted_and_tracked_filesystem_output_not_authorized",
+    "status": "expected_results_populated_publication_not_authorized",
     "preflight_script_path": "src/sebgpt/data/shakespeare_preflight.py",
     "preflight_test_path": "tests/test_shakespeare_preflight.py",
     "in_memory_extraction_script_path": "src/sebgpt/data/shakespeare_extract.py",
     "in_memory_extraction_test_path": "tests/test_shakespeare_extract.py",
     "publication_script_path": "src/sebgpt/data/shakespeare_publish.py",
     "publication_test_path": "tests/test_shakespeare_publish.py",
-    "script_path": null,
-    "git_commit": null,
-    "python_version": null,
-    "operating_platform": null,
+    "script_path": "src/sebgpt/data/shakespeare_publish.py",
+    "git_commit": "cd4cd8159b420920aa66755630fe26f9633a5373",
+    "python_version": "3.14.4",
+    "operating_platform": {
+      "system": "Darwin",
+      "machine": "arm64"
+    },
     "extraction_contract": {
       "input_raw_sha256": "3cf4b3d44ee14cff4e14e78e2ad3318eff76f3f7f2afc3cee6bb925879110a37",
       "full_line_matching": {
@@ -302,11 +309,35 @@
       "policy_document": "docs/DATASET_SPEC.md",
       "structural_authority": "docs/data/shakespeare-eight-play-structure.md"
     },
-    "excluded_ranges": null,
-    "transformations": null,
-    "per_work_results": null,
-    "per_split_results": null,
-    "duplicate_and_boundary_audit": null,
+    "excluded_ranges": [
+      {"work_id": "hamlet", "reason": "remove_play_local_contents", "start": {"line_number": 34443, "byte_offset": 976513, "code_point_offset": 964729}, "end_exclusive": {"line_number": 34478, "byte_offset": 977329, "code_point_offset": 965541}, "byte_count": 816},
+      {"work_id": "romeo-and-juliet", "reason": "remove_play_local_contents", "start": {"line_number": 143377, "byte_offset": 4109787, "code_point_offset": 4066076}, "end_exclusive": {"line_number": 143419, "byte_offset": 4110777, "code_point_offset": 4067032}, "byte_count": 990},
+      {"work_id": "macbeth", "reason": "remove_play_local_contents", "start": {"line_number": 96027, "byte_offset": 2774941, "code_point_offset": 2744584}, "end_exclusive": {"line_number": 96070, "byte_offset": 2776187, "code_point_offset": 2745824}, "byte_count": 1246},
+      {"work_id": "a-midsummer-nights-dream", "reason": "remove_play_local_contents", "start": {"line_number": 114055, "byte_offset": 3281172, "code_point_offset": 3245123}, "end_exclusive": {"line_number": 114088, "byte_offset": 3281581, "code_point_offset": 3245530}, "byte_count": 409},
+      {"work_id": "much-ado-about-nothing", "reason": "remove_play_local_contents", "start": {"line_number": 117540, "byte_offset": 3382320, "code_point_offset": 3345336}, "end_exclusive": {"line_number": 117606, "byte_offset": 3383053, "code_point_offset": 3346043}, "byte_count": 733},
+      {"work_id": "henry-v", "reason": "remove_play_local_contents", "start": {"line_number": 51142, "byte_offset": 1471743, "code_point_offset": 1454612}, "end_exclusive": {"line_number": 51184, "byte_offset": 1472704, "code_point_offset": 1455565}, "byte_count": 961},
+      {"work_id": "the-tempest", "reason": "remove_play_local_contents", "start": {"line_number": 153512, "byte_offset": 4389518, "code_point_offset": 4342388}, "end_exclusive": {"line_number": 153538, "byte_offset": 4389996, "code_point_offset": 4342862}, "byte_count": 478},
+      {"work_id": "twelfth-night", "reason": "remove_play_local_contents", "start": {"line_number": 172098, "byte_offset": 4902826, "code_point_offset": 4849321}, "end_exclusive": {"line_number": 172135, "byte_offset": 4903533, "code_point_offset": 4850000}, "byte_count": 707}
+    ],
+    "transformations": ["crlf_to_lf_only"],
+    "per_work_results": [
+      {"work_id": "hamlet", "title": "Hamlet", "manifest_order": 1, "split": "train", "output_path": "data/processed/shakespeare-eight-play/train/hamlet.txt", "outer_raw": {"sha256": "2c4e07fd22d7986ea4d42f65d9e2b444d0883a212c7828e2198e47de1c09c343", "byte_count": 187132}, "retained_raw": {"sha256": "4ec6c2e780ff35c4e00d3c8c7278f9528566415bb7a5dc8c71d241907024aa12", "byte_count": 186316}, "processed": {"sha256": "281070a10b0fe06b877a6e9342cedecad1e5f65657d58fc51b14ce378c70a243", "byte_count": 179657, "code_point_count": 177157, "line_count": 6659, "word_count": 31806}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "romeo-and-juliet", "title": "Romeo and Juliet", "manifest_order": 2, "split": "train", "output_path": "data/processed/shakespeare-eight-play/train/romeo-and-juliet.txt", "outer_raw": {"sha256": "7a7ea36f85d767029489b52c34e321d908b180361bae936b5257327a42d82cb3", "byte_count": 149636}, "retained_raw": {"sha256": "432929ab4f03ad90ddd2a473f2affdac6bd9600425f64da527c23240033da06d", "byte_count": 148646}, "processed": {"sha256": "59bfe35a3f7ccb63353aa4b8823f1a33fca4bd27c47943515ecc5fb8d6775775", "byte_count": 143425, "code_point_count": 141528, "line_count": 5221, "word_count": 25799}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "macbeth", "title": "Macbeth", "manifest_order": 3, "split": "train", "output_path": "data/processed/shakespeare-eight-play/train/macbeth.txt", "outer_raw": {"sha256": "4f88626a2fbc33db535d59ca0bd6ef7ade97ca1636fc4860ab261b6e03936f1d", "byte_count": 110482}, "retained_raw": {"sha256": "121fe2496578d138944f1b2b44a2189369837b135d434455358260518eed8f19", "byte_count": 109236}, "processed": {"sha256": "fb24ddc7c0c35f7e7d6e0989858e3d9cdb30d00208f2122938d7cd900a3699c6", "byte_count": 105134, "code_point_count": 103253, "line_count": 4102, "word_count": 18168}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "a-midsummer-nights-dream", "title": "A Midsummer Night's Dream", "manifest_order": 4, "split": "train", "output_path": "data/processed/shakespeare-eight-play/train/a-midsummer-nights-dream.txt", "outer_raw": {"sha256": "d4cc24831983b0d8933c58bc904ae862859e2213d16a01c0c880fcba9827befc", "byte_count": 101145}, "retained_raw": {"sha256": "c08ec0c16be9656ff5eb4d7cae58eb172153ce0a8506980b098b3b42ca0061bc", "byte_count": 100736}, "processed": {"sha256": "a9314798205c72c7cb7988813eb9df3d36e9731e45d882f761c907f31e178bd1", "byte_count": 97288, "code_point_count": 96353, "line_count": 3448, "word_count": 17205}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "much-ado-about-nothing", "title": "Much Ado About Nothing", "manifest_order": 5, "split": "train", "output_path": "data/processed/shakespeare-eight-play/train/much-ado-about-nothing.txt", "outer_raw": {"sha256": "072ad7d41950337f628dea9593fb7847551858367c6dd5ed2542bad7b27417c2", "byte_count": 128457}, "retained_raw": {"sha256": "a89f824f55724c04245f157e1868afafebbd3d27ff187ef992d760661efbc3fa", "byte_count": 127724}, "processed": {"sha256": "fbb46df4f5297329599a4e58b160d7182b30262b1c497c0de4002e27f536ce7b", "byte_count": 123194, "code_point_count": 122103, "line_count": 4530, "word_count": 22545}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "henry-v", "title": "Henry V", "manifest_order": 6, "split": "train", "output_path": "data/processed/shakespeare-eight-play/train/henry-v.txt", "outer_raw": {"sha256": "c59a9380f2b18182487343e56ced05dc1a57eded32d7406d30e875fa94883816", "byte_count": 159783}, "retained_raw": {"sha256": "5b011caea372ddabc96c675a3a27dd06ab0ba28d636de6d0835589fab7374d54", "byte_count": 158822}, "processed": {"sha256": "eb8c7e711ac4182800d5b6280d1cf5c0c1df98f43c727d48cd04ca8288321560", "byte_count": 153922, "code_point_count": 152311, "line_count": 4900, "word_count": 27363}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "the-tempest", "title": "The Tempest", "manifest_order": 7, "split": "validation", "output_path": "data/processed/shakespeare-eight-play/validation/the-tempest.txt", "outer_raw": {"sha256": "5ffef5b7ff576bfe4e49e9e88ddf9b12aead07b500d7453ba28b7d882ca0e14c", "byte_count": 104229}, "retained_raw": {"sha256": "4c3bfbd849ea4eff0635dfd1b7f79af5b9b7f00096eb1c2ddf22a64fb3fbf7df", "byte_count": 103751}, "processed": {"sha256": "68a090b9d905967817948397410045f00592e4ea80b4115a13c860f67e1ca617", "byte_count": 99945, "code_point_count": 98296, "line_count": 3806, "word_count": 17456}, "normalization": "crlf_to_lf_only"},
+      {"work_id": "twelfth-night", "title": "Twelfth Night", "manifest_order": 8, "split": "test", "output_path": "data/processed/shakespeare-eight-play/test/twelfth-night.txt", "outer_raw": {"sha256": "99d5234c40cfb32f99433fe2a9c36aca23c7045e1808041e8680863fbd7d36b4", "byte_count": 121447}, "retained_raw": {"sha256": "35f9b80c9a8772f74be694913bee2ee480b8f597f42b0acc55786c192e2a771c", "byte_count": 120740}, "processed": {"sha256": "ce0cdd5c9c096365c5beed105971a9f2187b30a1be3acd721b0fb6003b260ff6", "byte_count": 116285, "code_point_count": 114812, "line_count": 4455, "word_count": 21240}, "normalization": "crlf_to_lf_only"}
+    ],
+    "per_split_results": [
+      {"split": "train", "work_count": 6, "processed_byte_count": 802620, "processed_code_point_count": 792705, "processed_line_count": 28860, "processed_word_count": 142886},
+      {"split": "validation", "work_count": 1, "processed_byte_count": 99945, "processed_code_point_count": 98296, "processed_line_count": 3806, "processed_word_count": 17456},
+      {"split": "test", "work_count": 1, "processed_byte_count": 116285, "processed_code_point_count": 114812, "processed_line_count": 4455, "processed_word_count": 21240}
+    ],
+    "global_results": {"work_count": 8, "processed_byte_count": 1018850, "processed_code_point_count": 1005813, "processed_line_count": 37121, "processed_word_count": 181582},
+    "generated_processing_manifest": {"relative_path": "data/processed/shakespeare-eight-play/processing-manifest.json", "schema_version": 1, "sha256": "bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc"},
+    "duplicate_and_boundary_audit": {"status": "passed", "work_count": 8, "outer_ranges_non_overlapping": true, "processed_hashes_distinct": true},
     "character_inventory_audit": {
       "status": "completed",
       "validation_not_in_train_cardinality": 0,
@@ -325,6 +356,22 @@
     "test_path": "tests/test_shakespeare_inventory.py",
     "production_python_version": "3.14.4",
     "filesystem_artifact_published": false,
+    "per_work_results": [
+      {"work_id": "hamlet", "manifest_order": 1, "split": "train", "total_code_point_count": 177157, "distinct_code_point_count": 69},
+      {"work_id": "romeo-and-juliet", "manifest_order": 2, "split": "train", "total_code_point_count": 141528, "distinct_code_point_count": 70},
+      {"work_id": "macbeth", "manifest_order": 3, "split": "train", "total_code_point_count": 103253, "distinct_code_point_count": 72},
+      {"work_id": "a-midsummer-nights-dream", "manifest_order": 4, "split": "train", "total_code_point_count": 96353, "distinct_code_point_count": 70},
+      {"work_id": "much-ado-about-nothing", "manifest_order": 5, "split": "train", "total_code_point_count": 122103, "distinct_code_point_count": 69},
+      {"work_id": "henry-v", "manifest_order": 6, "split": "train", "total_code_point_count": 152311, "distinct_code_point_count": 76},
+      {"work_id": "the-tempest", "manifest_order": 7, "split": "validation", "total_code_point_count": 98296, "distinct_code_point_count": 69},
+      {"work_id": "twelfth-night", "manifest_order": 8, "split": "test", "total_code_point_count": 114812, "distinct_code_point_count": 70}
+    ],
+    "per_split_results": [
+      {"split": "train", "work_count": 6, "total_code_point_count": 792705, "distinct_code_point_count": 81},
+      {"split": "validation", "work_count": 1, "total_code_point_count": 98296, "distinct_code_point_count": 69},
+      {"split": "test", "work_count": 1, "total_code_point_count": 114812, "distinct_code_point_count": 70}
+    ],
+    "global_result": {"work_count": 8, "total_code_point_count": 1005813, "distinct_code_point_count": 81},
     "unseen_character_comparison_completed": true,
     "occurrence_location_reporting": "not_applicable_zero_candidates",
     "tokenization_behavior_defined": false
