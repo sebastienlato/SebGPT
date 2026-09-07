@@ -16,6 +16,9 @@
 - **In-memory extraction implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
 - **Processed-dataset filesystem publication authorized:** No
 - **Processed-dataset filesystem publication implemented:** No
+- **In-memory Unicode character inventory authorized:** Yes
+- **In-memory Unicode character inventory implemented and verified:** Yes; accepted and tracked in its implementation checkpoint
+- **Occurrence-location audit implemented:** No
 - **Tokenization implemented:** No
 
 ## Learning objective
@@ -452,4 +455,4 @@ After explicit acquisition approval:
 
 ## Acceptance gates
 
-The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, and deterministic in-memory extraction are complete, accepted, and tracked in dedicated checkpoints. Filesystem publication and processed-output creation remain unauthorized. Character-inventory work remains a later Phase 1 milestone. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.
+The corpus design, dataset specification/acquisition contract, deterministic extraction contract, exact preflight clarification, and source-faithful `Dramatis Personæ`/provenance hash-range clarification were approved on 2026-09-06. Raw-source acquisition, structural inspection, read-only preflight, deterministic in-memory extraction, and the in-memory Unicode character inventory are complete, accepted, and tracked in dedicated checkpoints. The occurrence-location audit is not implemented. Filesystem publication and processed-output creation remain unauthorized. Tokenization remains Phase 2 and is not authorized by approval of any Phase 1 step.

@@ -111,4 +111,4 @@ Manifest order is intentionally independent of source order. Deterministic extra
 - Treat the observed absolute positions as assertions, never selection inputs.
 - Apply the sealed-test structural/diagnostic contract to *Twelfth Night*.
 
-This summary records policy only. No extraction implementation or processed data exists.
+This summary records policy only. The accepted in-memory extraction implementation exists, but no processed data has been published.
