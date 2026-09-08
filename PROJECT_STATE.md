@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 2 — Tokenization (contract design only)
+Phase 2 — Tokenization (implementation accepted; production checkpoint not authorized)
 
 ## Current milestone
 
-Gate 6 — await separate explicit tokenizer implementation authorization after the accepted contract checkpoint is committed, pushed, and remotely verified in this task. Tokenizer implementation and production vocabulary construction are not authorized.
+Gate 11 — await separate explicit production vocabulary and statistics authorization after the accepted implementation checkpoint is committed, pushed, and remotely verified in this task. Production vocabulary construction and statistics remain unauthorized.
 
 ## Completed work
 
@@ -86,11 +86,19 @@ Gate 6 — await separate explicit tokenizer implementation authorization after 
 - The first independent DEC-0014 review returned FAIL with six required contract corrections, and Sebastien accepted every finding.
 - Corrected DEC-0014 and `docs/TOKENIZER_SPEC.md` define the accepted full Python integer domain including surrogates, first-failure encode/decode rules, `Sequence[int]` decoding, immutable canonical state, two-layer vocabulary construction, orchestration-level sealed-test enforcement, an exact JSON artifact schema and provenance chain, ephemeral statistics, proposed later-phase allocation, and nineteen separate Phase 2 gates.
 - Focused independent re-review passed with no must-fix issues after two non-semantic wording refinements, and Sebastien explicitly accepted corrected DEC-0014.
-- Gate 3 is complete. The Gate 4 contract checkpoint commit and Gate 5 push/remote verification are explicitly authorized in this task.
+- Gate 3 completed with focused independent contract review and explicit acceptance.
+- The accepted contract checkpoint was committed and remotely verified as `fd68bce66214ecf911dd643d2cc8ae35c3cdbb67`, completing Gates 4 and 5.
+- Gate 6 explicitly authorized tokenizer implementation and deterministic synthetic tests only.
+- The immutable `CodePointTokenizer`, content-safe errors, binary-search encoding, `Sequence[int]` decoding, corpus-neutral membership union, and Shakespeare training-vocabulary orchestration were implemented without new dependencies.
+- Thirty-eight focused synthetic tests pass, including canonical-state, exact round-trip, first-failure, surrogate-domain, safe-error, metadata-before-text, provenance-recomputation, and access-guard coverage.
+- The first Gate 8 review found one test-independence issue; orchestration fixtures now derive from independent test-local identity and normalization literals rather than production constants.
+- Focused Gate 8 re-review passed with no must-fix issues, and Sebastien explicitly accepted the tokenizer implementation.
+- Gate 8 is complete. The Gate 9 implementation checkpoint commit and Gate 10 push/remote verification are explicitly authorized in this task.
+- The full 113-test suite passes with the expected restricted-context MPS skip.
 
 ## Current work
 
-The accepted Phase 2 contract/documentation checkpoint is being committed and remotely verified under explicit authorization. No tokenizer implementation, production vocabulary, real token IDs, corpus encoding, or tokenizer statistics exist.
+The accepted Gate 9 implementation checkpoint is being committed and remotely verified under explicit authorization. No production vocabulary, canonical artifact, production token-ID stream, or tokenizer statistic exists.
 
 ## Current model status
 
@@ -98,11 +106,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted Phase 1 pipeline and authoritative ledger remain intact at the pushed completion commit. The raw source and ignored processed dataset retain their accepted hashes. The full 75-test suite passes with the expected restricted-context MPS skip after final contract acceptance. Only Phase 2 Markdown contract documentation is included in the contract checkpoint; no tokenizer, vocabulary artifact, token IDs, dataset loader, context windows, or model implementation exists.
+The accepted Phase 1 pipeline and authoritative ledger remain intact. The raw source and all nine processed files retain their accepted hashes. All 38 focused tokenizer tests and the complete 113-test suite pass, with one expected restricted-context MPS skip. The implementation was exercised only with synthetic/manipulated fixtures; the production Shakespeare vocabulary was not constructed, no production work was tokenized, and the sealed test was not accessed through tokenizer orchestration.
 
 ## Next exact step
 
-Obtain separate explicit Gate 6 authorization before implementing any part of the accepted tokenizer contract.
+Obtain separate explicit Gate 11 authorization before constructing the production vocabulary, creating its canonical artifact, tokenizing production works, or running tokenizer statistics.
 
 ## Known issues
 
@@ -120,7 +128,8 @@ Obtain separate explicit Gate 6 authorization before implementing any part of th
 - Do not implement occurrence-location lookup for the pinned corpus; the accepted audit has zero candidates and requires no location records.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
-- Do not implement the tokenizer or construct the production vocabulary until their separate gates are explicitly authorized.
+- Do not extend or alter the accepted tokenizer implementation without a separately reviewed reason.
+- Do not construct the production vocabulary, create its artifact, tokenize production works, or run tokenizer statistics before separate Gate 11 authorization.
 - Do not tokenize or inspect the sealed test work during Phase 2.
 - Do not create context windows, neural networks, Transformers, training, or inference yet.
 - Do not use a pretrained language model or external model API as the model implementation.
@@ -129,9 +138,9 @@ Obtain separate explicit Gate 6 authorization before implementing any part of th
 
 ## Open questions
 
-- No known contract ambiguity or review blocker remains.
-- Tokenizer implementation still requires separate explicit Gate 6 authorization.
+- No known contract deviation, review issue, or implementation blocker remains.
+- Production vocabulary construction and statistics require separate explicit Gate 11 authorization.
 
 ## Session handoff
 
-Phase 1 is complete at pushed and remotely verified commit `16fd4a6e27e44c3b705b0050090e2c1d9e515032`. Corrected DEC-0013 contains the accepted conceptual boundary. Corrected DEC-0014 passed focused independent re-review with no must-fix issues and is accepted. The documentation-only contract checkpoint is committed and remotely verified by the Gate 4/5 operation associated with this state. The next exact gate is separate explicit Gate 6 implementation authorization. No tokenizer, production vocabulary, real token IDs, corpus encoding, test tokenization, context windows, or later-phase implementation exists.
+Phase 1 is complete and the accepted Phase 2 contract is committed and remotely verified at `fd68bce66214ecf911dd643d2cc8ae35c3cdbb67`. The tokenizer implementation passed focused Gate 8 re-review with no must-fix issues and is accepted. The implementation checkpoint is committed and remotely verified by the Gate 9/10 operation associated with this state. Gate 11 explicit production vocabulary and statistics authorization is next. No production vocabulary, canonical vocabulary artifact, production token-ID stream, tokenizer statistic, sealed-test tokenizer access, context window, or later-phase implementation exists.

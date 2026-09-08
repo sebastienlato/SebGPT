@@ -42,7 +42,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Loading, inspection, splitting, and deterministic reproduction are implemented and tested.
 - Data characteristics and limitations are understood and documented.
 
-## Phase 2 — Tokenization (contract accepted; implementation not authorized)
+## Phase 2 — Tokenization (implementation accepted; production vocabulary not authorized)
 
 **Goal:** Understand and implement the mapping between text and token IDs.
 
@@ -51,13 +51,13 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 1. Approve the conceptual tokenizer strategy. **Complete: corrected DEC-0013 defines the accepted boundary.**
 2. Document the detailed tokenizer and vocabulary contract. **Complete: corrected DEC-0014 and `docs/TOKENIZER_SPEC.md` define the accepted contract.**
 3. Independently review, correct, and accept the contract. **Complete: focused re-review passed with no must-fix issues and Sebastien accepted DEC-0014.**
-4. Commit the accepted contract checkpoint. **Explicitly authorized for this checkpoint.**
-5. Push the contract checkpoint and verify the remote commit. **Authorized immediately after Gate 4 succeeds.**
-6. Explicitly authorize implementation. **Not authorized.**
-7. Implement the tokenizer and deterministic tests. **Not started.**
-8. Independently review, correct, and accept the implementation. **Not started.**
-9. Commit the accepted implementation checkpoint. **Not started.**
-10. Push the implementation checkpoint and verify the remote commit. **Not started.**
+4. Commit the accepted contract checkpoint. **Complete at `fd68bce66214ecf911dd643d2cc8ae35c3cdbb67`.**
+5. Push the contract checkpoint and verify the remote commit. **Complete: local and remote `main` were verified at the Gate 4 commit.**
+6. Explicitly authorize implementation. **Complete: implementation and synthetic deterministic tests were authorized.**
+7. Implement the tokenizer and deterministic tests. **Complete locally: implementation follows DEC-0014 and focused tests pass; acceptance remains Gate 8.**
+8. Independently review, correct, and accept the implementation. **Complete: the first review found one test-independence issue; focused re-review passed with no must-fix issues and Sebastien accepted the implementation.**
+9. Commit the accepted implementation checkpoint. **Explicitly authorized for this checkpoint.**
+10. Push the implementation checkpoint and verify the remote commit. **Authorized immediately after Gate 9 succeeds.**
 11. Explicitly authorize production vocabulary construction and permitted statistics. **Not authorized.**
 12. Construct and hash the vocabulary artifact and inspect permitted statistics. **Not started.**
 13. Independently review, correct, and accept the production checkpoint. **Not started.**
