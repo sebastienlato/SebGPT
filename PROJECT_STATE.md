@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 2 — Tokenization (production checkpoint accepted; exit review not started)
+Phase 2 — Tokenization (complete)
 
 ## Current milestone
 
-Gate 16 — await separate authorization for the Phase 2 exit-criteria review after the accepted vocabulary checkpoint is committed, pushed, and remotely verified in this task. Phase 2 remains incomplete and Phase 3 is unauthorized.
+Gate 19 — Phase 2 is complete, and its closure commit is remotely verified by the authorized Gates 17–18 operation associated with this state. Phase 3 is not started or authorized.
 
 ## Completed work
 
@@ -107,11 +107,14 @@ Gate 16 — await separate authorization for the Phase 2 exit-criteria review af
 - `TokenFrequency` now records token ID, code point, and count. Production tests independently derive all 81 expected code points and frequencies directly from the six training strings and use test-local literals for every fixed producer value and artifact path.
 - The artifact remains byte-identical at 9,182 bytes and SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`.
 - Focused Gate 13 re-review passed with no must-fix issues, and Sebastien explicitly accepted the canonical vocabulary artifact, its SHA-256, and the permitted training/validation statistics.
-- Gate 13 is complete. The Gate 14 vocabulary-checkpoint commit and Gate 15 push/remote verification are explicitly authorized in this task.
+- The accepted vocabulary checkpoint was committed and remotely verified as `0723474e9e7b3df8e853a148cce71f34bc004ca1`, completing Gates 14 and 15.
+- Gate 16 independent Phase 2 exit review returned PASS, and Sebastien explicitly accepted the result.
+- Every repository-defined Phase 2 exit criterion is verified: the transparent tokenizer exists, vocabulary/encoding/decoding/unknown cases/round trips are explained, representative and edge cases are tested, and permitted Phase 1 dataset tokenization statistics were inspected.
+- Phase 2 — Tokenization is complete; no technical Phase 2 work remains.
 
 ## Current work
 
-The accepted Gate 14 vocabulary checkpoint is being committed and remotely verified under explicit authorization. Phase 2 exit review has not started.
+None. Phase 2 is complete. Phase 3 has not started and is not authorized.
 
 ## Current model status
 
@@ -119,11 +122,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted Phase 1 pipeline and authoritative ledger remain intact. The raw source and all nine processed files retain their accepted hashes. Production construction computes the expected 81-entry training vocabulary deterministically; permitted train/validation encoding remains in memory. All 38 focused implementation tests, nine production-checkpoint tests, and 122 full-suite tests pass with one expected restricted-context MPS skip. The sealed test remains outside tokenizer orchestration and statistics, and no persistent token-ID stream or later-phase implementation exists.
+The accepted Phase 1 pipeline and authoritative ledger remain intact. The raw source and all nine processed files retain their accepted hashes. The accepted `shakespeare-code-point-v1` vocabulary contains 81 entries with IDs `0` through `80`; its sole artifact is 9,182 bytes with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`. Training has 792,705 tokens, 100% coverage, zero unknowns, and six successful round trips. Validation has 98,296 tokens, 100% coverage, zero unknowns, and a successful round trip without changing the vocabulary. All 38 focused implementation tests, nine production-checkpoint tests, and 122 full-suite tests pass with one expected restricted-context MPS skip. The sealed test remained untouched by Phase 2 tokenizer use, and no persistent token stream, context window, or model implementation exists.
 
 ## Next exact step
 
-Obtain separate authorization before beginning Gate 16, the Phase 2 exit-criteria review.
+Obtain explicit Gate 19 authorization before beginning Phase 3 — Embeddings.
 
 ## Known issues
 
@@ -142,7 +145,7 @@ Obtain separate authorization before beginning Gate 16, the Phase 2 exit-criteri
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not extend or alter the accepted tokenizer implementation without a separately reviewed reason.
-- Do not begin the Phase 2 exit-criteria review without separate Gate 16 authorization.
+- Do not begin Phase 3 without explicit Gate 19 authorization.
 - Do not persist train or validation token-ID streams or access the sealed test through tokenizer orchestration/statistics.
 - Do not tokenize or inspect the sealed test work during Phase 2.
 - Do not create context windows, neural networks, Transformers, training, or inference yet.
@@ -152,9 +155,9 @@ Obtain separate authorization before beginning Gate 16, the Phase 2 exit-criteri
 
 ## Open questions
 
-- No known contract deviation, production-checkpoint issue, or review blocker remains.
-- Phase 2 exit review and Phase 3 remain unauthorized.
+- No known Phase 2 technical issue or incomplete exit criterion remains.
+- Phase 3 is not started and not authorized.
 
 ## Session handoff
 
-Phase 1 is complete and the accepted tokenizer implementation is committed and remotely verified at `de7a7f096fbbd8607c944412eaef30be9b686b56`. Gate 13 focused re-review passed with no must-fix issues; the 81-entry canonical vocabulary artifact, SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`, and permitted train/validation statistics are accepted. The vocabulary checkpoint is committed and remotely verified by the Gate 14/15 operation associated with this state. Gate 16 exit review requires separate authorization and has not started. Phase 2 remains incomplete and Phase 3 unauthorized. No persistent production token-ID stream, sealed-test tokenizer/statistics access, context window, or later-phase implementation exists.
+Phase 1 is complete. Phase 2 — Tokenization is complete after Gate 16 independent exit review passed and Sebastien accepted that every technical exit criterion is satisfied. The accepted 81-entry vocabulary artifact has SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`; the sealed test remained untouched by Phase 2 tokenizer use, and no token streams were persisted. The closure commit and remote verification are the authorized Gates 17–18 operation associated with this state. Phase 3 is not started or authorized. The next exact step is to obtain explicit Gate 19 authorization before beginning Phase 3 — Embeddings.

@@ -42,7 +42,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Loading, inspection, splitting, and deterministic reproduction are implemented and tested.
 - Data characteristics and limitations are understood and documented.
 
-## Phase 2 — Tokenization (production checkpoint accepted; exit review not started)
+## Phase 2 — Tokenization (complete)
 
 **Goal:** Understand and implement the mapping between text and token IDs.
 
@@ -61,21 +61,21 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 11. Explicitly authorize production vocabulary construction and permitted statistics. **Complete: production construction and in-memory training/validation statistics were authorized.**
 12. Construct and hash the vocabulary artifact and inspect permitted statistics. **Complete locally: the 81-entry artifact and permitted statistics are verified; acceptance remains Gate 13.**
 13. Independently review, correct, and accept the production checkpoint. **Complete: focused re-review passed with no must-fix issues and Sebastien accepted the artifact and statistics checkpoint.**
-14. Commit the accepted vocabulary checkpoint. **Explicitly authorized for this checkpoint.**
-15. Push the vocabulary checkpoint and verify the remote commit. **Authorized immediately after Gate 14 succeeds.**
-16. Review every Phase 2 exit criterion. **Not started.**
-17. Create a final Phase 2 closure commit if required. **Not started.**
-18. Push the final closure and verify the remote commit. **Not started.**
+14. Commit the accepted vocabulary checkpoint. **Complete at `0723474e9e7b3df8e853a148cce71f34bc004ca1`.**
+15. Push the vocabulary checkpoint and verify the remote commit. **Complete: local and remote `main` were verified at the Gate 14 commit.**
+16. Review every Phase 2 exit criterion. **Complete: independent review passed and Sebastien accepted that all technical exit criteria are satisfied.**
+17. Create a final Phase 2 closure commit if required. **This authorized closure commit completes Gate 17.**
+18. Push the final closure and verify the remote commit. **Authorized immediately after Gate 17 succeeds.**
 19. Only then authorize Phase 3. **Not authorized.**
 
 **Exit criteria:**
 
-- An intentionally simple tokenizer is implemented without an opaque tokenizer framework.
-- Vocabulary construction, encoding, decoding, unknown cases, and round trips are explained.
-- Tests cover representative and edge cases.
-- Tokenization statistics are inspected on the Phase 1 dataset.
+- An intentionally simple tokenizer is implemented without an opaque tokenizer framework. **Verified.**
+- Vocabulary construction, encoding, decoding, unknown cases, and round trips are explained. **Verified.**
+- Tests cover representative and edge cases. **Verified.**
+- Tokenization statistics are inspected on the Phase 1 dataset. **Verified under the approved train/validation governance; the sealed test remained untouched.**
 
-## Phase 3 — Embeddings
+## Phase 3 — Embeddings (not started; not authorized)
 
 **Goal:** Understand learned token and positional representations.
 

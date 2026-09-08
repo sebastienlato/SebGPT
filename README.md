@@ -6,7 +6,7 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment and Phase 1 — Dataset are complete and verified. The accepted Phase 2 tokenizer implementation is committed and remotely verified at `de7a7f096fbbd8607c944412eaef30be9b686b56`. The training-derived 81-entry vocabulary, canonical JSON artifact with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`, and permitted training/validation statistics passed focused independent review and are accepted for the Gate 14 checkpoint. No persistent token-ID streams, test tokenization, context windows, or model implementation exist; Phase 2 is not complete and its exit review has not started.
+Phase 0 — Project and Environment, Phase 1 — Dataset, and Phase 2 — Tokenization are complete and verified. SebGPT's first tokenizer uses one Python Unicode code point per token, a frozen training-derived 81-entry vocabulary, numeric code-point ID order, no special tokens or normalization, strict unknown rejection, and exact supported-text round trips. The sole Phase 2 production artifact is `artifacts/tokenizers/shakespeare-code-point-v1/vocabulary.json`, with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`. Training and validation statistics are accepted; the sealed test remained untouched by tokenizer use, and no persistent token streams exist. Phase 3 is not started or authorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
