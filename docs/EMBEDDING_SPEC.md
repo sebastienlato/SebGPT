@@ -571,16 +571,22 @@ generation. A scalar synthetic reduction exists only to expose autograd.
    Sebastien explicitly accepted the corrected detailed contract.
 6. **Accepted contract commit.** This explicitly authorized dedicated commit
    completes Gate 6.
-7. **Contract push and remote verification.** Not authorized.
-8. **Explicit implementation authorization.** Not authorized.
-9. **Implementation and deterministic synthetic tests.** Not started.
-10. **Independent implementation review.** Not started.
+7. **Contract push and remote verification.** Complete: local and remote `main`
+   were verified at the Gate 6 commit.
+8. **Explicit implementation authorization.** Complete: Sebastien authorized
+   implementation strictly under this accepted contract.
+9. **Implementation and deterministic synthetic tests.** Complete locally:
+   the minimal runtime vocabulary binding, representation module, and contract
+   checks are implemented and pass.
+10. **Independent implementation review.** Complete: the independent review
+    returned PASS with no must-fix issues, contract contradictions, or
+    later-phase leakage.
 11. **Implementation correction, focused independent re-review, and explicit
-    acceptance.** If review findings require corrections, those corrections
-    must receive focused independent re-review; implementation acceptance is
-    allowed only after the applicable independent review returns PASS and
-    Sebastien explicitly accepts the implementation.
-12. **Accepted implementation commit.** Not authorized.
+    acceptance.** Complete: no corrections or focused re-review were required;
+    master-chat adjudication returned PASS, and Sebastien explicitly accepted
+    the implementation.
+12. **Accepted implementation commit.** This explicitly authorized dedicated
+    implementation commit completes Gate 12.
 13. **Implementation push and remote verification.** Not authorized.
 14. **Separately justified educational demonstration or inspection, if
     required.** Not authorized and not currently required for an exit criterion

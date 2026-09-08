@@ -82,8 +82,12 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 The conceptual architecture and corrected detailed contract are accepted in
 DEC-0015 and `docs/EMBEDDING_SPEC.md` after independent review, correction,
 passing focused re-review, master-chat adjudication, and explicit Sebastien
-acceptance. This explicitly authorized dedicated contract commit completes
-Gate 6. Push/remote verification and Phase 3 implementation are not authorized.
+acceptance. The contract commit is remotely verified, implementation was
+explicitly authorized, and the accepted representation implementation and
+tests are complete locally. Independent implementation review returned PASS,
+no corrections were required, and Sebastien accepted the implementation. The
+dedicated accepted-implementation commit is explicitly authorized and completes
+Gate 12. Push/remote verification and later-phase work are not authorized.
 
 **Exit criteria:**
 

@@ -187,3 +187,22 @@ This is an append-only record. Add new entries to supersede earlier decisions; d
 
 - **Authorization:** Sebastien explicitly authorized staging exactly `docs/EMBEDDING_SPEC.md`, `DECISIONS.md`, `PROJECT_STATE.md`, `ROADMAP.md`, `README.md`, and `LEARNING_NOTES.md` and creating the dedicated accepted-contract commit with message `Define Phase 3 embedding contract`.
 - **Gate status:** This dedicated commit completes Gate 6. Gate 7 push/remote verification and Phase 3 implementation remain separately gated and unauthorized.
+
+### Gate 7–9 implementation status update (2026-09-08)
+
+- **Gate 7:** The accepted contract commit `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5` was pushed, and local `HEAD`, refreshed `origin/main`, and the independently queried remote `main` were verified at that exact commit with a clean synchronized worktree.
+- **Gate 8:** Sebastien explicitly authorized Phase 3 implementation strictly under the accepted contract. This did not authorize Phase 4 work, implementation acceptance, commit, or push.
+- **Gate 9:** The tokenizer-owned corpus-free vocabulary verifier and immutable binding, the explicit token-plus-position module, and the accepted synthetic checks are implemented locally. Thirty-five automated tests cover contract checks 1–35; contract check 36 is a completed manual phase-boundary review. Implementation remains unaccepted, unstaged, and uncommitted pending master-chat sanity checking and independent Gate 10 review.
+
+### Gate 10–11 implementation acceptance update (2026-09-08)
+
+- **Independent review result:** PASS with zero must-fix issues, zero required corrections, no accepted-contract contradiction, and no Phase 4 or later leakage. The review passed the vocabulary verifier and binding, artifact ordering and safety, module and constructor structure, initialization and RNG isolation, input/length/ID validation, empty shapes, position generation, output semantics, gradients, error ownership, test independence, all thirty-six contract checks, documentation classification, and phase boundary.
+- **Regression:** The independent review reproduced 7/7 vocabulary-runtime tests, 28/28 embedding tests, 35/35 automated Phase 3 tests, and the complete 157-test suite with 156 passes, one expected restricted-context MPS skip, zero failures, and a passing `git diff --check`.
+- **Acceptance:** Master-chat implementation adjudication returned PASS, and Sebastien explicitly accepted the reviewed Phase 3 implementation. No correction or focused re-review was required.
+- **Gate status:** Gates 10 and 11 are complete. Gate 12, the dedicated accepted-implementation commit, requires separate explicit authorization. Commit, push, Phase 3 exit/closure operations, and Phase 4 remain unauthorized.
+
+### Gate 12 authorization update (2026-09-08)
+
+- **Authorization:** Sebastien explicitly authorized staging exactly the six accepted Phase 3 status documents, the three accepted implementation files, and the two accepted test files, then creating the dedicated commit with message `Implement Phase 3 embeddings`.
+- **Integrity boundary:** The five source/test files must remain byte-identical to the independently reviewed and accepted checkpoint. No behavior, tests, optional improvements, contract semantics, Phase 4 work, amend, or push is authorized.
+- **Gate status:** This dedicated commit completes Gate 12. Gate 13 implementation push/remote verification and every remaining Phase 3 exit/closure operation remain separately gated; Phase 4 remains unauthorized.

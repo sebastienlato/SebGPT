@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 3 — Embeddings (contract accepted; implementation not authorized)
+Phase 3 — Embeddings (accepted implementation commit authorized)
 
 ## Current milestone
 
-Phase 3 Gate 6 — This explicitly authorized dedicated accepted-contract commit completes Gate 6. Gate 7 push/remote verification and Phase 3 implementation remain unauthorized.
+Phase 3 Gate 12 — This explicitly authorized dedicated accepted-implementation commit completes Gate 12. Gate 13 push/remote verification and Phase 4 remain unauthorized.
 
 ## Completed work
 
@@ -120,22 +120,29 @@ Phase 3 Gate 6 — This explicitly authorized dedicated accepted-contract commit
 - Gate 5 documentation corrections assign complete artifact verification and safe loader errors to the tokenizer authority layer, accept valid tensor subclasses, make generated position IDs authoritative, narrow bitwise determinism to the same supported runtime/platform/build, require independent test expectations and missing boundary cases, and mandate focused re-review before contract or implementation acceptance after corrections.
 - Focused independent contract re-review returned PASS with all six findings resolved; master-chat adjudication also returned PASS, and Sebastien explicitly accepted the corrected detailed Phase 3 contract.
 - The accepted error boundary has exactly three public exceptions: tokenizer-owned `VocabularyArtifactError`, embedding-owned `EmbeddingTypeError`, and embedding-owned `EmbeddingContractError`.
+- Gate 7 pushed the accepted contract commit `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5`; local, remote-tracking, and independently queried remote `main` were verified synchronized at that commit.
+- Gate 8 explicitly authorized implementation under the accepted Phase 3 contract only.
+- The tokenizer-owned runtime loader verifies the canonical vocabulary artifact without corpus access and factory-produces an immutable `VocabularyBinding` for later layers.
+- `TokenPositionEmbedding` implements the accepted two-parameter `(81, 32)` token and `(256, 32)` position tables, explicit local-generator initialization, validated rank-1/rank-2 lookup, internal positions, and direct addition without later-phase behavior.
+- Thirty-five new automated tests pass for contract checks 1–35; manual contract check 36 confirms the change set introduces no Phase 4+ implementation. The focused total is 35 tests, and the complete suite has 157 tests with one expected restricted-context MPS skip.
+- Gate 10 independent implementation review returned PASS across the vocabulary boundary, module, initialization, validation, positions, outputs, gradients, errors, test independence, documentation, all thirty-six checks, and the Phase 3 boundary, with no corrections required.
+- Master-chat implementation adjudication returned PASS, and Sebastien explicitly accepted the Phase 3 implementation, completing Gate 11 without a correction or focused re-review cycle.
 
 ## Current work
 
-The dedicated accepted-contract commit is authorized and completes Gate 6. Push and implementation are not authorized.
+The dedicated accepted-implementation commit is authorized and completes Gate 12. Push and later-phase work are not authorized.
 
 ## Current model status
 
-No model or embedding code exists, and no Phase 3 parameters have been created or persisted. The accepted representation design would contain a `(81, 32)` token table and a `(256, 32)` position table, totaling 10,784 learnable parameters, only after later implementation authorization.
+The Phase 3 representation code exists locally. Each authorized construction creates exactly two learnable CPU float32 parameters: `(81, 32)` token embeddings and `(256, 32)` position embeddings, totaling 10,784 parameters. No parameters are persisted, and no language model, context windows, training, or inference code exists.
 
 ## Last verified working state
 
-The accepted Phase 1 pipeline and authoritative ledger remain intact. Fresh verification found raw SHA-256 `3cf4b3d44ee14cff4e14e78e2ad3318eff76f3f7f2afc3cee6bb925879110a37` and generated processing-manifest SHA-256 `bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc`. The accepted `shakespeare-code-point-v1` vocabulary contains 81 entries with IDs `0` through `80`; its sole artifact remains 9,182 bytes with freshly verified SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`. The complete existing 122-test suite passed on 2026-09-08 with one expected restricted-context MPS skip. The new Markdown has no detected trailing whitespace and balanced code fences; all three authoritative JSON files parse. The sealed test remained untouched by tokenizer use, and no persistent token stream, context window, embedding source, parameter artifact, or model implementation exists.
+The accepted Phase 1 pipeline and authoritative ledger remain intact. The accepted `shakespeare-code-point-v1` artifact remains 9,182 bytes with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`. Independent review reproduced 7/7 vocabulary-runtime tests, 28/28 embedding tests, all 35 automated Phase 3 checks, and the complete 157-test suite with 156 passes, one expected restricted-context MPS skip, and zero failures. Manual check 36 confirms no context window, persistent token stream, target, loss, attention, Transformer, optimizer, training, checkpoint, or generation implementation was introduced.
 
 ## Next exact step
 
-Obtain explicit authorization for Phase 3 Gate 7 push and remote verification of the accepted-contract commit.
+Obtain explicit authorization for Phase 3 Gate 13 implementation push and remote verification.
 
 ## Known issues
 
@@ -154,7 +161,7 @@ Obtain explicit authorization for Phase 3 Gate 7 push and remote verification of
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not extend or alter the accepted tokenizer implementation without a separately reviewed reason.
-- Do not implement Phase 3 or construct embedding parameters before detailed-contract review, explicit acceptance, contract commit and remote verification, and separate implementation authorization.
+- Do not expand the Phase 3 implementation beyond the accepted representation contract or commit it before independent review, any required correction and focused re-review, and explicit implementation acceptance.
 - Do not persist train or validation token-ID streams or access the sealed test through tokenizer orchestration/statistics.
 - Do not tokenize or inspect the sealed test work during Phase 2.
 - Do not create context windows, production batches, next-token targets, attention, Transformer blocks, a model head, loss, an optimizer, training, or generation. The future authorized Phase 3 implementation is limited to representations and synthetic lookup/batching/gradient demonstrations.
@@ -166,8 +173,9 @@ Obtain explicit authorization for Phase 3 Gate 7 push and remote verification of
 
 - No known Phase 2 technical issue or incomplete exit criterion remains.
 - No known detailed Phase 3 contract ambiguity remains after passing focused independent re-review and explicit acceptance.
+- No known Phase 3 implementation issue remains after passing independent review and explicit acceptance.
 - Training context length remains undecided; positional capacity 256 does not decide it.
 
 ## Session handoff
 
-Phase 1 and Phase 2 are complete, with Phase 2 closed and remotely verified at `fcefd5848c0175ec765994d110b371bc3c4677c8`. Phase 3 learning/design and the corrected detailed contract are accepted. DEC-0015 preserves dimension 32, an explicit token table, learned absolute positions with capacity 256, token-plus-position addition, local seed 1337, scaled-normal CPU float32 initialization, and exact vocabulary-artifact binding. All six Gate 4 findings are resolved, focused independent re-review and master-chat adjudication passed, and Sebastien explicitly accepted `docs/EMBEDDING_SPEC.md`. This authorized dedicated contract commit completes Gate 6; no Phase 3 implementation exists. The next exact step is separate Gate 7 push/remote-verification authorization, and implementation remains unauthorized.
+Phase 1 and Phase 2 are complete. The accepted Phase 3 contract is remotely verified at `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5`. The tokenizer-owned corpus-free vocabulary binding and explicit two-parameter token-plus-position representation are implemented, independently reviewed with PASS, and explicitly accepted. No corrections were required; 35 automated checks and manual check 36 pass, and the full 157-test suite has 156 passes with one expected MPS skip. This authorized dedicated implementation commit completes Gate 12; no Phase 4+ work exists. The next exact step is separate Gate 13 push/remote-verification authorization.
