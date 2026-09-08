@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 3 — Embeddings (accepted implementation commit authorized)
+Phase 3 — Embeddings (complete)
 
 ## Current milestone
 
-Phase 3 Gate 12 — This explicitly authorized dedicated accepted-implementation commit completes Gate 12. Gate 13 push/remote verification and Phase 4 remain unauthorized.
+Phase 3 Gate 16 — Gate 15 independently verified all three exit criteria, master-chat adjudication passed, and Sebastien accepted the result. This authorized documentation-only closure commit completes Gate 16. Gate 17 push/remote verification and Phase 4 remain unauthorized.
 
 ## Completed work
 
@@ -127,10 +127,14 @@ Phase 3 Gate 12 — This explicitly authorized dedicated accepted-implementation
 - Thirty-five new automated tests pass for contract checks 1–35; manual contract check 36 confirms the change set introduces no Phase 4+ implementation. The focused total is 35 tests, and the complete suite has 157 tests with one expected restricted-context MPS skip.
 - Gate 10 independent implementation review returned PASS across the vocabulary boundary, module, initialization, validation, positions, outputs, gradients, errors, test independence, documentation, all thirty-six checks, and the Phase 3 boundary, with no corrections required.
 - Master-chat implementation adjudication returned PASS, and Sebastien explicitly accepted the Phase 3 implementation, completing Gate 11 without a correction or focused re-review cycle.
+- Gate 13 pushed implementation commit `68b47bb404d55357cadce35b97036c72c5876d62`; local, remote-tracking, and independently queried remote `main` were verified at that exact commit with a clean synchronized worktree.
+- Gate 14 was explicitly adjudicated SKIP/not required because existing implementation, tests, documentation, learning notes, lookup examples, gradient demonstrations, one-hot equivalence, and independent review already provide all required educational evidence.
+- Gate 15 independent Phase 3 exit review returned PASS for each of the three exact roadmap criteria; master-chat adjudication passed, and Sebastien explicitly accepted the result.
+- Phase 3's goal, `Understand learned token and positional representations`, is achieved. Every exit criterion is satisfied and no technical Phase 3 work remains.
 
 ## Current work
 
-The dedicated accepted-implementation commit is authorized and completes Gate 12. Push and later-phase work are not authorized.
+Phase 3 is technically complete. This documentation-only closure commit completes Gate 16; its Gate 17 push and Phase 4 remain unauthorized.
 
 ## Current model status
 
@@ -142,7 +146,7 @@ The accepted Phase 1 pipeline and authoritative ledger remain intact. The accept
 
 ## Next exact step
 
-Obtain explicit authorization for Phase 3 Gate 13 implementation push and remote verification.
+Obtain explicit authorization for Phase 3 Gate 17 closure push and remote verification.
 
 ## Known issues
 
@@ -161,7 +165,7 @@ Obtain explicit authorization for Phase 3 Gate 13 implementation push and remote
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not extend or alter the accepted tokenizer implementation without a separately reviewed reason.
-- Do not expand the Phase 3 implementation beyond the accepted representation contract or commit it before independent review, any required correction and focused re-review, and explicit implementation acceptance.
+- Do not alter the accepted Phase 3 contract or implementation during closure, and do not begin Phase 4 before Gate 17 remote verification and later explicit Gate 18 authorization.
 - Do not persist train or validation token-ID streams or access the sealed test through tokenizer orchestration/statistics.
 - Do not tokenize or inspect the sealed test work during Phase 2.
 - Do not create context windows, production batches, next-token targets, attention, Transformer blocks, a model head, loss, an optimizer, training, or generation. The future authorized Phase 3 implementation is limited to representations and synthetic lookup/batching/gradient demonstrations.
@@ -173,9 +177,9 @@ Obtain explicit authorization for Phase 3 Gate 13 implementation push and remote
 
 - No known Phase 2 technical issue or incomplete exit criterion remains.
 - No known detailed Phase 3 contract ambiguity remains after passing focused independent re-review and explicit acceptance.
-- No known Phase 3 implementation issue remains after passing independent review and explicit acceptance.
+- No known Phase 3 implementation issue or incomplete exit criterion remains.
 - Training context length remains undecided; positional capacity 256 does not decide it.
 
 ## Session handoff
 
-Phase 1 and Phase 2 are complete. The accepted Phase 3 contract is remotely verified at `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5`. The tokenizer-owned corpus-free vocabulary binding and explicit two-parameter token-plus-position representation are implemented, independently reviewed with PASS, and explicitly accepted. No corrections were required; 35 automated checks and manual check 36 pass, and the full 157-test suite has 156 passes with one expected MPS skip. This authorized dedicated implementation commit completes Gate 12; no Phase 4+ work exists. The next exact step is separate Gate 13 push/remote-verification authorization.
+Phases 1, 2, and 3 are complete. Phase 3's accepted contract is remotely verified at `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5`, and its accepted implementation is remotely verified at `68b47bb404d55357cadce35b97036c72c5876d62`. Gate 14 was explicitly skipped as unnecessary. Gate 15 independently passed all three exit criteria, master-chat adjudication passed, and Sebastien accepted the result. This documentation-only commit completes Gate 16 without changing source, tests, contract semantics, or implementation. The next exact step is separate Gate 17 closure push/remote-verification authorization; Phase 4 remains unauthorized.

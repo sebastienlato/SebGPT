@@ -587,13 +587,21 @@ generation. A scalar synthetic reduction exists only to expose autograd.
     the implementation.
 12. **Accepted implementation commit.** This explicitly authorized dedicated
     implementation commit completes Gate 12.
-13. **Implementation push and remote verification.** Not authorized.
+13. **Implementation push and remote verification.** Complete: local `HEAD`,
+    refreshed `origin/main`, and independently queried remote `main` were
+    verified at implementation commit
+    `68b47bb404d55357cadce35b97036c72c5876d62`.
 14. **Separately justified educational demonstration or inspection, if
-    required.** Not authorized and not currently required for an exit criterion
-    beyond the synthetic demonstrations in Gate 9.
+    required.** Complete by explicit SKIP adjudication: no additional work was
+    required because the implementation, tests, documentation, learning notes,
+    synthetic lookup examples, gradients, one-hot equivalence, and independent
+    review already provide the required educational evidence.
 15. **Independent Phase 3 exit review against exactly the three roadmap
-    criteria.** Not started.
-16. **Phase 3 closure commit, if required.** Not authorized.
+    criteria.** Complete: independent review returned PASS for all three exact
+    criteria, master-chat adjudication returned PASS, and Sebastien explicitly
+    accepted the result. Phase 3 is technically complete.
+16. **Phase 3 closure commit, if required.** This explicitly authorized
+    documentation-only closure commit completes Gate 16.
 17. **Closure push and remote verification.** Not authorized.
 18. **Explicit Phase 4 authorization.** Not authorized.
 

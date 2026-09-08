@@ -75,7 +75,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Tests cover representative and edge cases. **Verified.**
 - Tokenization statistics are inspected on the Phase 1 dataset. **Verified under the approved train/validation governance; the sealed test remained untouched.**
 
-## Phase 3 — Embeddings (contract accepted; implementation not authorized)
+## Phase 3 — Embeddings (complete; closure commit authorized)
 
 **Goal:** Understand learned token and positional representations.
 
@@ -87,13 +87,16 @@ explicitly authorized, and the accepted representation implementation and
 tests are complete locally. Independent implementation review returned PASS,
 no corrections were required, and Sebastien accepted the implementation. The
 dedicated accepted-implementation commit is explicitly authorized and completes
-Gate 12. Push/remote verification and later-phase work are not authorized.
+Gate 12. Gate 13 remote verification completed, Gate 14 was explicitly skipped
+as unnecessary, and Gate 15 independently verified all three exit criteria.
+This authorized documentation-only closure commit completes Gate 16. Gate 17
+push/remote verification and Phase 4 are not authorized.
 
 **Exit criteria:**
 
-- Token embeddings and an explicit positional representation are implemented.
-- Tensor shapes and parameter roles are explainable and tested.
-- Small examples demonstrate lookup, batching, and gradient flow.
+- Token embeddings and an explicit positional representation are implemented. **Verified.**
+- Tensor shapes and parameter roles are explainable and tested. **Verified.**
+- Small examples demonstrate lookup, batching, and gradient flow. **Verified.**
 
 ## Phase 4 — Simple Neural Language Model
 

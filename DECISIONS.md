@@ -206,3 +206,11 @@ This is an append-only record. Add new entries to supersede earlier decisions; d
 - **Authorization:** Sebastien explicitly authorized staging exactly the six accepted Phase 3 status documents, the three accepted implementation files, and the two accepted test files, then creating the dedicated commit with message `Implement Phase 3 embeddings`.
 - **Integrity boundary:** The five source/test files must remain byte-identical to the independently reviewed and accepted checkpoint. No behavior, tests, optional improvements, contract semantics, Phase 4 work, amend, or push is authorized.
 - **Gate status:** This dedicated commit completes Gate 12. Gate 13 implementation push/remote verification and every remaining Phase 3 exit/closure operation remain separately gated; Phase 4 remains unauthorized.
+
+### Gate 13–16 Phase 3 closure update (2026-09-08)
+
+- **Gate 13:** Implementation commit `68b47bb404d55357cadce35b97036c72c5876d62` was pushed successfully. Local `HEAD`, refreshed `origin/main`, and independently queried remote `main` matched that exact commit with a clean synchronized worktree.
+- **Gate 14:** Explicitly adjudicated SKIP/not required. Existing implementation, tests, documentation, learning notes, one-hot equivalence, rank-1/rank-2 examples, gradient demonstrations, and independent review already supply the required educational evidence; no additional demonstration or inspection was needed.
+- **Gate 15:** Independent Phase 3 exit review returned PASS, master-chat adjudication returned PASS, and Sebastien explicitly accepted the result. Each exact roadmap criterion passed: token embeddings and an explicit positional representation are implemented; tensor shapes and parameter roles are explainable and tested; and small examples demonstrate lookup, batching, and gradient flow.
+- **Closure status:** The Phase 3 goal, `Understand learned token and positional representations`, is achieved. Phase 3 is technically complete with no remaining technical work. The accepted contract and implementation are unchanged. Sebastien explicitly authorized the documentation-only Gate 16 closure commit with message `Complete Phase 3 embeddings`.
+- **Boundary:** Gate 17 push/remote verification is not authorized. Phase 4 remains unauthorized until Gate 17 completes and Sebastien later gives explicit Gate 18 authorization.
