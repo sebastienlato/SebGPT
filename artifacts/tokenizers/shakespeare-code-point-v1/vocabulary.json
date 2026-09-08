@@ -1,0 +1,452 @@
+{
+  "contract_decision": "DEC-0014",
+  "id_order": "ascending_unicode_code_point",
+  "implementation_git_commit": "de7a7f096fbbd8607c944412eaef30be9b686b56",
+  "normalization": "none",
+  "phase_1_manifest_sha256": "157e324c41c6aee756b9c554ae465388a892ea9a0f8fb8296ef0d986a0c9f6fb",
+  "schema_version": 1,
+  "special_token_policy": "none",
+  "token_unit": "python_str_code_point",
+  "tokenizer_id": "shakespeare-code-point-v1",
+  "training_works": [
+    {
+      "manifest_order": 1,
+      "processed_sha256": "281070a10b0fe06b877a6e9342cedecad1e5f65657d58fc51b14ce378c70a243",
+      "work_id": "hamlet"
+    },
+    {
+      "manifest_order": 2,
+      "processed_sha256": "59bfe35a3f7ccb63353aa4b8823f1a33fca4bd27c47943515ecc5fb8d6775775",
+      "work_id": "romeo-and-juliet"
+    },
+    {
+      "manifest_order": 3,
+      "processed_sha256": "fb24ddc7c0c35f7e7d6e0989858e3d9cdb30d00208f2122938d7cd900a3699c6",
+      "work_id": "macbeth"
+    },
+    {
+      "manifest_order": 4,
+      "processed_sha256": "a9314798205c72c7cb7988813eb9df3d36e9731e45d882f761c907f31e178bd1",
+      "work_id": "a-midsummer-nights-dream"
+    },
+    {
+      "manifest_order": 5,
+      "processed_sha256": "fbb46df4f5297329599a4e58b160d7182b30262b1c497c0de4002e27f536ce7b",
+      "work_id": "much-ado-about-nothing"
+    },
+    {
+      "manifest_order": 6,
+      "processed_sha256": "eb8c7e711ac4182800d5b6280d1cf5c0c1df98f43c727d48cd04ca8288321560",
+      "work_id": "henry-v"
+    }
+  ],
+  "unknown_policy": "error",
+  "vocabulary": [
+    {
+      "code_point": 10,
+      "code_point_uplus": "U+000A",
+      "token_id": 0
+    },
+    {
+      "code_point": 32,
+      "code_point_uplus": "U+0020",
+      "token_id": 1
+    },
+    {
+      "code_point": 33,
+      "code_point_uplus": "U+0021",
+      "token_id": 2
+    },
+    {
+      "code_point": 38,
+      "code_point_uplus": "U+0026",
+      "token_id": 3
+    },
+    {
+      "code_point": 40,
+      "code_point_uplus": "U+0028",
+      "token_id": 4
+    },
+    {
+      "code_point": 41,
+      "code_point_uplus": "U+0029",
+      "token_id": 5
+    },
+    {
+      "code_point": 44,
+      "code_point_uplus": "U+002C",
+      "token_id": 6
+    },
+    {
+      "code_point": 45,
+      "code_point_uplus": "U+002D",
+      "token_id": 7
+    },
+    {
+      "code_point": 46,
+      "code_point_uplus": "U+002E",
+      "token_id": 8
+    },
+    {
+      "code_point": 58,
+      "code_point_uplus": "U+003A",
+      "token_id": 9
+    },
+    {
+      "code_point": 59,
+      "code_point_uplus": "U+003B",
+      "token_id": 10
+    },
+    {
+      "code_point": 63,
+      "code_point_uplus": "U+003F",
+      "token_id": 11
+    },
+    {
+      "code_point": 65,
+      "code_point_uplus": "U+0041",
+      "token_id": 12
+    },
+    {
+      "code_point": 66,
+      "code_point_uplus": "U+0042",
+      "token_id": 13
+    },
+    {
+      "code_point": 67,
+      "code_point_uplus": "U+0043",
+      "token_id": 14
+    },
+    {
+      "code_point": 68,
+      "code_point_uplus": "U+0044",
+      "token_id": 15
+    },
+    {
+      "code_point": 69,
+      "code_point_uplus": "U+0045",
+      "token_id": 16
+    },
+    {
+      "code_point": 70,
+      "code_point_uplus": "U+0046",
+      "token_id": 17
+    },
+    {
+      "code_point": 71,
+      "code_point_uplus": "U+0047",
+      "token_id": 18
+    },
+    {
+      "code_point": 72,
+      "code_point_uplus": "U+0048",
+      "token_id": 19
+    },
+    {
+      "code_point": 73,
+      "code_point_uplus": "U+0049",
+      "token_id": 20
+    },
+    {
+      "code_point": 74,
+      "code_point_uplus": "U+004A",
+      "token_id": 21
+    },
+    {
+      "code_point": 75,
+      "code_point_uplus": "U+004B",
+      "token_id": 22
+    },
+    {
+      "code_point": 76,
+      "code_point_uplus": "U+004C",
+      "token_id": 23
+    },
+    {
+      "code_point": 77,
+      "code_point_uplus": "U+004D",
+      "token_id": 24
+    },
+    {
+      "code_point": 78,
+      "code_point_uplus": "U+004E",
+      "token_id": 25
+    },
+    {
+      "code_point": 79,
+      "code_point_uplus": "U+004F",
+      "token_id": 26
+    },
+    {
+      "code_point": 80,
+      "code_point_uplus": "U+0050",
+      "token_id": 27
+    },
+    {
+      "code_point": 81,
+      "code_point_uplus": "U+0051",
+      "token_id": 28
+    },
+    {
+      "code_point": 82,
+      "code_point_uplus": "U+0052",
+      "token_id": 29
+    },
+    {
+      "code_point": 83,
+      "code_point_uplus": "U+0053",
+      "token_id": 30
+    },
+    {
+      "code_point": 84,
+      "code_point_uplus": "U+0054",
+      "token_id": 31
+    },
+    {
+      "code_point": 85,
+      "code_point_uplus": "U+0055",
+      "token_id": 32
+    },
+    {
+      "code_point": 86,
+      "code_point_uplus": "U+0056",
+      "token_id": 33
+    },
+    {
+      "code_point": 87,
+      "code_point_uplus": "U+0057",
+      "token_id": 34
+    },
+    {
+      "code_point": 88,
+      "code_point_uplus": "U+0058",
+      "token_id": 35
+    },
+    {
+      "code_point": 89,
+      "code_point_uplus": "U+0059",
+      "token_id": 36
+    },
+    {
+      "code_point": 90,
+      "code_point_uplus": "U+005A",
+      "token_id": 37
+    },
+    {
+      "code_point": 91,
+      "code_point_uplus": "U+005B",
+      "token_id": 38
+    },
+    {
+      "code_point": 93,
+      "code_point_uplus": "U+005D",
+      "token_id": 39
+    },
+    {
+      "code_point": 95,
+      "code_point_uplus": "U+005F",
+      "token_id": 40
+    },
+    {
+      "code_point": 97,
+      "code_point_uplus": "U+0061",
+      "token_id": 41
+    },
+    {
+      "code_point": 98,
+      "code_point_uplus": "U+0062",
+      "token_id": 42
+    },
+    {
+      "code_point": 99,
+      "code_point_uplus": "U+0063",
+      "token_id": 43
+    },
+    {
+      "code_point": 100,
+      "code_point_uplus": "U+0064",
+      "token_id": 44
+    },
+    {
+      "code_point": 101,
+      "code_point_uplus": "U+0065",
+      "token_id": 45
+    },
+    {
+      "code_point": 102,
+      "code_point_uplus": "U+0066",
+      "token_id": 46
+    },
+    {
+      "code_point": 103,
+      "code_point_uplus": "U+0067",
+      "token_id": 47
+    },
+    {
+      "code_point": 104,
+      "code_point_uplus": "U+0068",
+      "token_id": 48
+    },
+    {
+      "code_point": 105,
+      "code_point_uplus": "U+0069",
+      "token_id": 49
+    },
+    {
+      "code_point": 106,
+      "code_point_uplus": "U+006A",
+      "token_id": 50
+    },
+    {
+      "code_point": 107,
+      "code_point_uplus": "U+006B",
+      "token_id": 51
+    },
+    {
+      "code_point": 108,
+      "code_point_uplus": "U+006C",
+      "token_id": 52
+    },
+    {
+      "code_point": 109,
+      "code_point_uplus": "U+006D",
+      "token_id": 53
+    },
+    {
+      "code_point": 110,
+      "code_point_uplus": "U+006E",
+      "token_id": 54
+    },
+    {
+      "code_point": 111,
+      "code_point_uplus": "U+006F",
+      "token_id": 55
+    },
+    {
+      "code_point": 112,
+      "code_point_uplus": "U+0070",
+      "token_id": 56
+    },
+    {
+      "code_point": 113,
+      "code_point_uplus": "U+0071",
+      "token_id": 57
+    },
+    {
+      "code_point": 114,
+      "code_point_uplus": "U+0072",
+      "token_id": 58
+    },
+    {
+      "code_point": 115,
+      "code_point_uplus": "U+0073",
+      "token_id": 59
+    },
+    {
+      "code_point": 116,
+      "code_point_uplus": "U+0074",
+      "token_id": 60
+    },
+    {
+      "code_point": 117,
+      "code_point_uplus": "U+0075",
+      "token_id": 61
+    },
+    {
+      "code_point": 118,
+      "code_point_uplus": "U+0076",
+      "token_id": 62
+    },
+    {
+      "code_point": 119,
+      "code_point_uplus": "U+0077",
+      "token_id": 63
+    },
+    {
+      "code_point": 120,
+      "code_point_uplus": "U+0078",
+      "token_id": 64
+    },
+    {
+      "code_point": 121,
+      "code_point_uplus": "U+0079",
+      "token_id": 65
+    },
+    {
+      "code_point": 122,
+      "code_point_uplus": "U+007A",
+      "token_id": 66
+    },
+    {
+      "code_point": 201,
+      "code_point_uplus": "U+00C9",
+      "token_id": 67
+    },
+    {
+      "code_point": 224,
+      "code_point_uplus": "U+00E0",
+      "token_id": 68
+    },
+    {
+      "code_point": 226,
+      "code_point_uplus": "U+00E2",
+      "token_id": 69
+    },
+    {
+      "code_point": 230,
+      "code_point_uplus": "U+00E6",
+      "token_id": 70
+    },
+    {
+      "code_point": 231,
+      "code_point_uplus": "U+00E7",
+      "token_id": 71
+    },
+    {
+      "code_point": 232,
+      "code_point_uplus": "U+00E8",
+      "token_id": 72
+    },
+    {
+      "code_point": 233,
+      "code_point_uplus": "U+00E9",
+      "token_id": 73
+    },
+    {
+      "code_point": 234,
+      "code_point_uplus": "U+00EA",
+      "token_id": 74
+    },
+    {
+      "code_point": 238,
+      "code_point_uplus": "U+00EE",
+      "token_id": 75
+    },
+    {
+      "code_point": 8212,
+      "code_point_uplus": "U+2014",
+      "token_id": 76
+    },
+    {
+      "code_point": 8216,
+      "code_point_uplus": "U+2018",
+      "token_id": 77
+    },
+    {
+      "code_point": 8217,
+      "code_point_uplus": "U+2019",
+      "token_id": 78
+    },
+    {
+      "code_point": 8220,
+      "code_point_uplus": "U+201C",
+      "token_id": 79
+    },
+    {
+      "code_point": 8221,
+      "code_point_uplus": "U+201D",
+      "token_id": 80
+    }
+  ],
+  "vocabulary_size": 81
+}

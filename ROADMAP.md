@@ -42,7 +42,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Loading, inspection, splitting, and deterministic reproduction are implemented and tested.
 - Data characteristics and limitations are understood and documented.
 
-## Phase 2 — Tokenization (implementation accepted; production vocabulary not authorized)
+## Phase 2 — Tokenization (production checkpoint accepted; exit review not started)
 
 **Goal:** Understand and implement the mapping between text and token IDs.
 
@@ -56,13 +56,13 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 6. Explicitly authorize implementation. **Complete: implementation and synthetic deterministic tests were authorized.**
 7. Implement the tokenizer and deterministic tests. **Complete locally: implementation follows DEC-0014 and focused tests pass; acceptance remains Gate 8.**
 8. Independently review, correct, and accept the implementation. **Complete: the first review found one test-independence issue; focused re-review passed with no must-fix issues and Sebastien accepted the implementation.**
-9. Commit the accepted implementation checkpoint. **Explicitly authorized for this checkpoint.**
-10. Push the implementation checkpoint and verify the remote commit. **Authorized immediately after Gate 9 succeeds.**
-11. Explicitly authorize production vocabulary construction and permitted statistics. **Not authorized.**
-12. Construct and hash the vocabulary artifact and inspect permitted statistics. **Not started.**
-13. Independently review, correct, and accept the production checkpoint. **Not started.**
-14. Commit the accepted vocabulary checkpoint. **Not started.**
-15. Push the vocabulary checkpoint and verify the remote commit. **Not started.**
+9. Commit the accepted implementation checkpoint. **Complete at `de7a7f096fbbd8607c944412eaef30be9b686b56`.**
+10. Push the implementation checkpoint and verify the remote commit. **Complete: local and remote `main` were verified at the Gate 9 commit.**
+11. Explicitly authorize production vocabulary construction and permitted statistics. **Complete: production construction and in-memory training/validation statistics were authorized.**
+12. Construct and hash the vocabulary artifact and inspect permitted statistics. **Complete locally: the 81-entry artifact and permitted statistics are verified; acceptance remains Gate 13.**
+13. Independently review, correct, and accept the production checkpoint. **Complete: focused re-review passed with no must-fix issues and Sebastien accepted the artifact and statistics checkpoint.**
+14. Commit the accepted vocabulary checkpoint. **Explicitly authorized for this checkpoint.**
+15. Push the vocabulary checkpoint and verify the remote commit. **Authorized immediately after Gate 14 succeeds.**
 16. Review every Phase 2 exit criterion. **Not started.**
 17. Create a final Phase 2 closure commit if required. **Not started.**
 18. Push the final closure and verify the remote commit. **Not started.**

@@ -6,7 +6,7 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment and Phase 1 — Dataset are complete and verified. The accepted Phase 2 code-point tokenizer contract is committed and remotely verified at `fd68bce66214ecf911dd643d2cc8ae35c3cdbb67`. The transparent tokenizer, corpus-neutral membership layer, Shakespeare production-governance structure, and synthetic deterministic tests passed focused independent review and are accepted for the Gate 9 implementation checkpoint. The production vocabulary, canonical artifact, production encoding, statistics, context windows, and model implementation remain unauthorized and absent.
+Phase 0 — Project and Environment and Phase 1 — Dataset are complete and verified. The accepted Phase 2 tokenizer implementation is committed and remotely verified at `de7a7f096fbbd8607c944412eaef30be9b686b56`. The training-derived 81-entry vocabulary, canonical JSON artifact with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`, and permitted training/validation statistics passed focused independent review and are accepted for the Gate 14 checkpoint. No persistent token-ID streams, test tokenization, context windows, or model implementation exist; Phase 2 is not complete and its exit review has not started.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

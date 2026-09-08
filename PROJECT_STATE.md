@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 2 — Tokenization (implementation accepted; production checkpoint not authorized)
+Phase 2 — Tokenization (production checkpoint accepted; exit review not started)
 
 ## Current milestone
 
-Gate 11 — await separate explicit production vocabulary and statistics authorization after the accepted implementation checkpoint is committed, pushed, and remotely verified in this task. Production vocabulary construction and statistics remain unauthorized.
+Gate 16 — await separate authorization for the Phase 2 exit-criteria review after the accepted vocabulary checkpoint is committed, pushed, and remotely verified in this task. Phase 2 remains incomplete and Phase 3 is unauthorized.
 
 ## Completed work
 
@@ -95,10 +95,23 @@ Gate 11 — await separate explicit production vocabulary and statistics authori
 - Focused Gate 8 re-review passed with no must-fix issues, and Sebastien explicitly accepted the tokenizer implementation.
 - Gate 8 is complete. The Gate 9 implementation checkpoint commit and Gate 10 push/remote verification are explicitly authorized in this task.
 - The full 113-test suite passes with the expected restricted-context MPS skip.
+- The accepted implementation checkpoint was committed and remotely verified as `de7a7f096fbbd8607c944412eaef30be9b686b56`, completing Gates 9 and 10.
+- Gate 11 explicitly authorized production vocabulary construction, canonical artifact creation, and permitted in-memory training/validation statistics.
+- The accepted production orchestrator independently computed 81 unique training code points with contiguous IDs `0` through `80` and created `artifacts/tokenizers/shakespeare-code-point-v1/vocabulary.json`.
+- The canonical vocabulary artifact is 9,182 bytes with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`; it records Phase 1 manifest SHA-256 `157e324c41c6aee756b9c554ae465388a892ea9a0f8fb8296ef0d986a0c9f6fb` and implementation commit `de7a7f096fbbd8607c944412eaef30be9b686b56`.
+- Training inspection produced 792,705 in-memory tokens, 100% coverage, zero unknowns, six exact round trips, and 81 positive frequency entries summing to the token total.
+- Validation aggregate inspection produced 98,296 in-memory tokens, 100% coverage, zero unknowns, and an exact round trip without changing the training vocabulary.
+- The actual sealed test was not passed to tokenizer orchestration or statistics. No persistent train or validation token-ID stream was created.
+- Nine production-checkpoint tests pass; the 38 focused implementation tests still pass; and the complete 122-test suite passes with one expected restricted-context MPS skip.
+- The first Gate 13 review confirmed the production vocabulary and canonical artifact bytes, but required `code_point` in ephemeral frequency records plus independent test-side vocabulary, frequency, fixed-identifier, and artifact-path expectations.
+- `TokenFrequency` now records token ID, code point, and count. Production tests independently derive all 81 expected code points and frequencies directly from the six training strings and use test-local literals for every fixed producer value and artifact path.
+- The artifact remains byte-identical at 9,182 bytes and SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`.
+- Focused Gate 13 re-review passed with no must-fix issues, and Sebastien explicitly accepted the canonical vocabulary artifact, its SHA-256, and the permitted training/validation statistics.
+- Gate 13 is complete. The Gate 14 vocabulary-checkpoint commit and Gate 15 push/remote verification are explicitly authorized in this task.
 
 ## Current work
 
-The accepted Gate 9 implementation checkpoint is being committed and remotely verified under explicit authorization. No production vocabulary, canonical artifact, production token-ID stream, or tokenizer statistic exists.
+The accepted Gate 14 vocabulary checkpoint is being committed and remotely verified under explicit authorization. Phase 2 exit review has not started.
 
 ## Current model status
 
@@ -106,11 +119,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted Phase 1 pipeline and authoritative ledger remain intact. The raw source and all nine processed files retain their accepted hashes. All 38 focused tokenizer tests and the complete 113-test suite pass, with one expected restricted-context MPS skip. The implementation was exercised only with synthetic/manipulated fixtures; the production Shakespeare vocabulary was not constructed, no production work was tokenized, and the sealed test was not accessed through tokenizer orchestration.
+The accepted Phase 1 pipeline and authoritative ledger remain intact. The raw source and all nine processed files retain their accepted hashes. Production construction computes the expected 81-entry training vocabulary deterministically; permitted train/validation encoding remains in memory. All 38 focused implementation tests, nine production-checkpoint tests, and 122 full-suite tests pass with one expected restricted-context MPS skip. The sealed test remains outside tokenizer orchestration and statistics, and no persistent token-ID stream or later-phase implementation exists.
 
 ## Next exact step
 
-Obtain separate explicit Gate 11 authorization before constructing the production vocabulary, creating its canonical artifact, tokenizing production works, or running tokenizer statistics.
+Obtain separate authorization before beginning Gate 16, the Phase 2 exit-criteria review.
 
 ## Known issues
 
@@ -129,7 +142,8 @@ Obtain separate explicit Gate 11 authorization before constructing the productio
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
 - Do not extend or alter the accepted tokenizer implementation without a separately reviewed reason.
-- Do not construct the production vocabulary, create its artifact, tokenize production works, or run tokenizer statistics before separate Gate 11 authorization.
+- Do not begin the Phase 2 exit-criteria review without separate Gate 16 authorization.
+- Do not persist train or validation token-ID streams or access the sealed test through tokenizer orchestration/statistics.
 - Do not tokenize or inspect the sealed test work during Phase 2.
 - Do not create context windows, neural networks, Transformers, training, or inference yet.
 - Do not use a pretrained language model or external model API as the model implementation.
@@ -138,9 +152,9 @@ Obtain separate explicit Gate 11 authorization before constructing the productio
 
 ## Open questions
 
-- No known contract deviation, review issue, or implementation blocker remains.
-- Production vocabulary construction and statistics require separate explicit Gate 11 authorization.
+- No known contract deviation, production-checkpoint issue, or review blocker remains.
+- Phase 2 exit review and Phase 3 remain unauthorized.
 
 ## Session handoff
 
-Phase 1 is complete and the accepted Phase 2 contract is committed and remotely verified at `fd68bce66214ecf911dd643d2cc8ae35c3cdbb67`. The tokenizer implementation passed focused Gate 8 re-review with no must-fix issues and is accepted. The implementation checkpoint is committed and remotely verified by the Gate 9/10 operation associated with this state. Gate 11 explicit production vocabulary and statistics authorization is next. No production vocabulary, canonical vocabulary artifact, production token-ID stream, tokenizer statistic, sealed-test tokenizer access, context window, or later-phase implementation exists.
+Phase 1 is complete and the accepted tokenizer implementation is committed and remotely verified at `de7a7f096fbbd8607c944412eaef30be9b686b56`. Gate 13 focused re-review passed with no must-fix issues; the 81-entry canonical vocabulary artifact, SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`, and permitted train/validation statistics are accepted. The vocabulary checkpoint is committed and remotely verified by the Gate 14/15 operation associated with this state. Gate 16 exit review requires separate authorization and has not started. Phase 2 remains incomplete and Phase 3 unauthorized. No persistent production token-ID stream, sealed-test tokenizer/statistics access, context window, or later-phase implementation exists.
