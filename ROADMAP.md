@@ -66,7 +66,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 16. Review every Phase 2 exit criterion. **Complete: independent review passed and Sebastien accepted that all technical exit criteria are satisfied.**
 17. Create a final Phase 2 closure commit if required. **This authorized closure commit completes Gate 17.**
 18. Push the final closure and verify the remote commit. **Authorized immediately after Gate 17 succeeds.**
-19. Only then authorize Phase 3. **Not authorized.**
+19. Only then authorize Phase 3. **Complete for learning and contract design only through DEC-0015; implementation is not authorized.**
 
 **Exit criteria:**
 
@@ -75,9 +75,15 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Tests cover representative and edge cases. **Verified.**
 - Tokenization statistics are inspected on the Phase 1 dataset. **Verified under the approved train/validation governance; the sealed test remained untouched.**
 
-## Phase 3 — Embeddings (not started; not authorized)
+## Phase 3 — Embeddings (contract accepted; implementation not authorized)
 
 **Goal:** Understand learned token and positional representations.
+
+The conceptual architecture and corrected detailed contract are accepted in
+DEC-0015 and `docs/EMBEDDING_SPEC.md` after independent review, correction,
+passing focused re-review, master-chat adjudication, and explicit Sebastien
+acceptance. This explicitly authorized dedicated contract commit completes
+Gate 6. Push/remote verification and Phase 3 implementation are not authorized.
 
 **Exit criteria:**
 

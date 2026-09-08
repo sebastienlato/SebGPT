@@ -15,6 +15,13 @@ For each concept covered, record:
 
 ## Concepts covered
 
+### 2026-09-08 — Token IDs, learned embeddings, and position
+
+- **Explanation in our own words:** A token ID is only an index into the accepted vocabulary; its integer magnitude contains no amount of meaning and adjacent IDs need not be semantically related. A token embedding table gives each vocabulary row a learnable vector. Direct row lookup is mathematically the same as multiplying a one-hot vector by the table, but avoids constructing the sparse one-hot representation. Position requires a separate representation because token identity says what is present, not where it occurs. SebGPT will add a learned token vector and a learned absolute-position vector of the same width.
+- **Small example or observation:** For IDs `[3, 1, 3]`, the same token row is selected twice. Backpropagation therefore adds both position-specific gradient contributions into row 3, while an unrelated row receives zero for that example. In a batch, a position row shared by every member likewise accumulates one contribution per use.
+- **What remains unclear:** The conceptual architecture and corrected detailed loader/API, input validation, empty-shape behavior, safe errors, bitwise determinism boundary, tests, and gates are accepted after independent review and passing focused re-review. Implementation has not begun or been authorized. Training context length remains undecided.
+- **Related code, test, decision, or experiment:** DEC-0015 and accepted `docs/EMBEDDING_SPEC.md`. No embeddings, parameters, tests, context windows, model code, or experiment exist.
+
 ### 2026-09-06 — Dataset suitability and leakage-resistant splits
 
 - **Explanation in our own words:** A language model learns next-token patterns from the distribution it is shown, so a dataset defines the language, structure, subject matter, and limitations the model can learn. A useful first dataset is legally and technically traceable, coherent, small enough to inspect, large enough to contain repeated patterns, and reproducible from immutable raw material. Training data teaches parameters; validation data supports development choices; test data is reserved for a final unbiased check.
