@@ -4,11 +4,11 @@
 
 ## Current phase
 
-Phase 1 — Dataset (complete)
+Phase 2 — Tokenization (contract design only)
 
 ## Current milestone
 
-Phase 1 dataset pipeline complete and verified; Phase 2 remains not started and unauthorized.
+Gate 6 — await separate explicit tokenizer implementation authorization after the accepted contract checkpoint is committed, pushed, and remotely verified in this task. Tokenizer implementation and production vocabulary construction are not authorized.
 
 ## Completed work
 
@@ -80,10 +80,17 @@ Phase 1 dataset pipeline complete and verified; Phase 2 remains not started and 
 - All processed artifacts remain ignored, reproducible derivatives. The read-only preflight, extraction, and inventory production tests were updated to prove the published tree remains unchanged; all 75 tests pass with the expected restricted-context MPS skip.
 - Final closure review confirmed every Phase 1 exit criterion is technically satisfied; the stale broad publication prohibition was corrected to preserve the accepted publisher-only permission boundary.
 - Phase 1 — Dataset is complete.
+- The accepted Phase 1 completion commit `16fd4a6e27e44c3b705b0050090e2c1d9e515032` is pushed to and independently verified on `origin/main`.
+- Phase 2 documentation and contract design are explicitly authorized.
+- DEC-0013's scope correction limits the accepted conceptual strategy to one Python Unicode code point per token, training-only vocabulary membership, numeric code-point ordering determining IDs, no Unicode normalization, no special tokens initially, strict unsupported-code-point rejection, exact supported-input round trips, independent documents, and no Phase 2 context-window construction.
+- The first independent DEC-0014 review returned FAIL with six required contract corrections, and Sebastien accepted every finding.
+- Corrected DEC-0014 and `docs/TOKENIZER_SPEC.md` define the accepted full Python integer domain including surrogates, first-failure encode/decode rules, `Sequence[int]` decoding, immutable canonical state, two-layer vocabulary construction, orchestration-level sealed-test enforcement, an exact JSON artifact schema and provenance chain, ephemeral statistics, proposed later-phase allocation, and nineteen separate Phase 2 gates.
+- Focused independent re-review passed with no must-fix issues after two non-semantic wording refinements, and Sebastien explicitly accepted corrected DEC-0014.
+- Gate 3 is complete. The Gate 4 contract checkpoint commit and Gate 5 push/remote verification are explicitly authorized in this task.
 
 ## Current work
 
-None. Phase 1 is complete; Phase 2 has not started and is not authorized.
+The accepted Phase 2 contract/documentation checkpoint is being committed and remotely verified under explicit authorization. No tokenizer implementation, production vocabulary, real token IDs, corpus encoding, or tokenizer statistics exist.
 
 ## Current model status
 
@@ -91,11 +98,11 @@ None. No model code exists.
 
 ## Last verified working state
 
-The accepted preflight, extraction, inventory, zero-candidate audit, publisher, and authoritative ledger remain intact. The real ignored `data/processed/shakespeare-eight-play/` tree contains exactly eight independent processed documents plus `processing-manifest.json`; every path, byte, hash, count, split aggregate, audit fact, and manifest value matches the ledger. Production publication returned `created`, and an exact second run returned `already_current` without rewriting files. The raw source remains unchanged, and no tokenizer, dataset loader, or model implementation exists.
+The accepted Phase 1 pipeline and authoritative ledger remain intact at the pushed completion commit. The raw source and ignored processed dataset retain their accepted hashes. The full 75-test suite passes with the expected restricted-context MPS skip after final contract acceptance. Only Phase 2 Markdown contract documentation is included in the contract checkpoint; no tokenizer, vocabulary artifact, token IDs, dataset loader, context windows, or model implementation exists.
 
 ## Next exact step
 
-Configure the intended Git remote, push the accepted Phase 1 history, and verify the remote `main` commit before Phase 2 is authorized.
+Obtain separate explicit Gate 6 authorization before implementing any part of the accepted tokenizer contract.
 
 ## Known issues
 
@@ -103,6 +110,7 @@ Configure the intended Git remote, push the accepted Phase 1 history, and verify
 - MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
 - The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
 - Processed files are intentionally ignored derivatives; a fresh checkout regenerates them through the accepted publisher and authoritative ledger.
+- The Phase 1 dataset specification and manifest retain their Phase 1-closure statements that tokenization was unauthorized; DEC-0013 and this current-state file supersede only that historical authorization status without modifying either Phase 1 artifact.
 
 ## Important constraints
 
@@ -112,15 +120,18 @@ Configure the intended Git remote, push the accepted Phase 1 history, and verify
 - Do not implement occurrence-location lookup for the pinned corpus; the accepted audit has zero candidates and requires no location records.
 - Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
 - Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
-- Do not implement tokenization, neural networks, Transformers, training, or inference yet.
+- Do not implement the tokenizer or construct the production vocabulary until their separate gates are explicitly authorized.
+- Do not tokenize or inspect the sealed test work during Phase 2.
+- Do not create context windows, neural networks, Transformers, training, or inference yet.
 - Do not use a pretrained language model or external model API as the model implementation.
 - Do not skip educational phases or silently change the model architecture.
 - Preserve reproducibility and keep core machine-learning code understandable.
 
 ## Open questions
 
-- Which Git remote should receive the accepted Phase 1 history?
+- No known contract ambiguity or review blocker remains.
+- Tokenizer implementation still requires separate explicit Gate 6 authorization.
 
 ## Session handoff
 
-Phase 1 — Dataset is complete. Read-only preflight, deterministic in-memory extraction, the in-memory Unicode character inventory, the zero-candidate audit, the cooperative-lock publisher, the authoritative ledger, and production publication are verified. Processed artifacts are ignored and reproducible, and the exact second publication is idempotent. The Git remote is still unconfigured; Phase 2 and tokenization are not started or authorized.
+Phase 1 is complete at pushed and remotely verified commit `16fd4a6e27e44c3b705b0050090e2c1d9e515032`. Corrected DEC-0013 contains the accepted conceptual boundary. Corrected DEC-0014 passed focused independent re-review with no must-fix issues and is accepted. The documentation-only contract checkpoint is committed and remotely verified by the Gate 4/5 operation associated with this state. The next exact gate is separate explicit Gate 6 implementation authorization. No tokenizer, production vocabulary, real token IDs, corpus encoding, test tokenization, context windows, or later-phase implementation exists.
