@@ -124,10 +124,22 @@ model/loss/update slice. Gate 19 independent review failed only on
 proof. Both are corrected locally at Gate 20 with 48 focused tests passing and
 focused independent re-review returned PASS. Master-chat adjudication also
 returned PASS, and Sebastien explicitly accepted the model/loss/update slice.
-Gates 17–20 are complete. Gate 21, the dedicated accepted-implementation
-commit, requires separate explicit authorization; Gate 22 push and Gate 23
-experiment authorization remain later separate gates. The bounded experiment
-remains unauthorized.
+Gates 17–20 are complete. Gate 21 committed the accepted model/loss/update slice
+as `497ecde3577677903f14669722d61dcdf8caa1d6`, and Gate 22 pushed and remotely
+verified it. An attempted Gate 23 authorization stopped before model
+construction or corpus traversal because accepted experiment-orchestration
+machinery was missing; no Gate 24 run or experiment result exists. Sebastien
+authorized only that prerequisite implementation. Independent review returned
+FAIL on four focused issues: inherited model authority, governance before
+tensorization, durable result completeness, and test coverage. All four are
+corrected locally with 41 synthetic tests and await focused re-review. The
+focused re-review passed all production corrections but found one final
+lifecycle-role test-only blocker. The test now derives measurement roles from
+distinct split sentinel identities; final focused re-review and master-chat
+adjudication passed, and Sebastien explicitly accepted the runner and its 41
+tests. Its dedicated commit and push/remote verification remain separately
+gated. The bounded experiment remains unauthorized pending those checkpoints
+and a fresh authorization.
 
 **Exit criteria:**
 

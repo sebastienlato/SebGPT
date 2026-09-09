@@ -4,16 +4,15 @@
 
 ## Current phase
 
-Phase 4 — Simple Neural Language Model (model/loss/update implementation)
+Phase 4 — Simple Neural Language Model (experiment-orchestration prerequisite)
 
 ## Current milestone
 
-Phase 4 Gate 20 — The focused independent re-review returned PASS,
-master-chat adjudication returned PASS, and Sebastien explicitly accepted the
-model/loss/update implementation slice and its 48 focused tests. Gates 17–20
-are complete. Gate 21, the dedicated implementation commit, is next and
-requires separate explicit authorization. The bounded experiment remains
-unauthorized.
+Phase 4 experiment-orchestration prerequisite — Final focused independent
+re-review returned PASS, master-chat adjudication returned PASS, and Sebastien
+explicitly accepted the fixed-experiment runner and its 41-test suite. The
+runner remains unstaged, uncommitted, and unpushed. A dedicated runner commit
+requires separate authorization. No Gate 24 run or experiment result exists.
 
 ## Completed work
 
@@ -47,6 +46,8 @@ unauthorized.
   `3fcf007ce819ca1a45aa75b48fa19f10311f2819`.
 - The accepted shifted-example/governance slice was committed, pushed, and
   independently verified at `266797f891e9980b57bb35a633c91bef838d4111`.
+- The accepted model/loss/update slice was committed, pushed, and independently
+  verified at `497ecde3577677903f14669722d61dcdf8caa1d6`.
 
 ## Current work
 
@@ -62,8 +63,21 @@ Phase 4 exception classes. `tests/test_simple_language_model.py` contains 48
 focused independent checks across structure, initialization, forward isolation,
 loss numerics, gradient routing, update atomicity, tail scaling, and measurement
 invariants, including the corrected `clear_gradients()` simultaneous-defect
-priority. The implementation is accepted, unstaged, uncommitted, and unpushed
-pending separate Gate 21 commit authorization.
+priority. The implementation is accepted, committed, pushed, and remotely
+verified at `497ecde3577677903f14669722d61dcdf8caa1d6`.
+
+`src/sebgpt/model/phase4_experiment.py` implements the missing accepted runner
+prerequisite: a factory-created frozen configuration, fifteen-stage preflight,
+target-token-weighted aggregate measurement, deterministic one-pass update
+operation, fixed one-model/two-pass lifecycle, and immutable result records.
+It separately preserves the accepted `497ecde3577677903f14669722d61dcdf8caa1d6`
+model authority from the future dynamic runner commit, validates training
+governance before tensorization, and produces a complete evidence-limited
+durable result. `tests/test_phase4_experiment.py` contains 41 synthetic checks
+and now derives externally observed measurement roles from the actual split
+sentinel received rather than call position. It never invokes the runner on the
+real Phase 4 corpus. This slice is accepted, unstaged, uncommitted, and
+unpushed.
 
 ## Current model status
 
@@ -72,20 +86,23 @@ accepted 10,784 representation parameters plus a 2,592-element output weight
 and 81-element bias for exactly 13,457 trainable CPU float32 parameters. Tests
 instantiate only synthetic models. No corpus training/evaluation loop,
 aggregate experiment measurement, checkpoint, generation, or attention path
-exists.
+exists in the remotely verified checkpoint. The local orchestration prerequisite
+can compose those accepted operations after its future commit, push, remote
+verification, and fresh experiment authorization, but it has not been invoked
+on the real corpus and persists no checkpoint.
 
 ## Last verified working state
 
-The model/loss/update suite passes 48/48, and the accepted example/governance
-suite remains 44/44. The complete suite ran 249 tests: 248 passed, one
-restricted-context MPS test was skipped as expected, and zero failed. The
-accepted vocabulary artifact remains 9,182 bytes with the pinned SHA-256 above.
-Diff, phase-boundary, and unstaged-state checks pass.
+The corrected orchestration suite passes 41/41. The accepted model/loss/update
+suite remains 48/48, and accepted shifted-example/governance remains 44/44. The
+complete 290-test suite passes with 289 passes, one expected restricted-context
+MPS skip, and zero failures. Diff, phase-boundary, and unstaged-state checks
+pass.
 
 ## Next exact step
 
-Obtain explicit authorization for the dedicated Gate 21 accepted
-model/loss/update implementation commit.
+Obtain explicit authorization for the dedicated accepted fixed-experiment
+runner commit.
 
 ## Known issues
 
@@ -100,8 +117,9 @@ model/loss/update implementation commit.
 
 ## Important constraints
 
-- Do not expand the Gate 18 model/loss/update implementation into corpus
-  training, aggregate experiment measurement, checkpointing, or generation.
+- Do not invoke the local fixed experiment entry point on the real corpus before
+  the accepted orchestration prerequisite is committed, pushed, remotely
+  verified, and granted a fresh experiment authorization.
 - Do not persist model parameters, gradients, logits, probabilities, losses,
   token/window/target artifacts, or run the experiment.
 - Never access, tokenize, window, score, inspect, or derive Phase 4 statistics
@@ -115,8 +133,8 @@ model/loss/update implementation commit.
   generation, MPS/mixed precision, or pretrained/hosted models in Phase 4.
 - Do not add dependencies without an accepted recorded decision and lock-file
   update.
-- Do not commit or push the accepted model/loss/update checkpoint without
-  separate explicit authorization for each gate.
+- Do not stage, commit, or push the orchestration prerequisite without separate
+  explicit authorization after acceptance.
 
 ## Open questions
 
@@ -126,6 +144,8 @@ model/loss/update implementation commit.
   remains after Gate 14 PASS and explicit acceptance.
 - No model/loss/update implementation-review correction remains after Gate 20
   focused re-review, adjudication, and explicit acceptance.
+- No runner implementation or test correction remains after final focused
+  re-review, master-chat adjudication, and explicit acceptance.
 - The accepted output-head seed 4004, learning rate 0.05, two passes, gradient
   scaling, and primary success predicate have not been empirically tried and
   must not be tuned before separate experiment authorization.
@@ -136,9 +156,12 @@ model/loss/update implementation commit.
 
 Phases 0–3 are complete. The accepted Phase 4 contract is remotely verified at
 `3fcf007ce819ca1a45aa75b48fa19f10311f2819`; accepted examples/governance are
-remotely verified at `266797f891e9980b57bb35a633c91bef838d4111`. Gate 19 found
-only a `clear_gradients()` parameter-validation ordering defect and its missing
-regression proof. Gate 20 corrected both while leaving manual SGD unchanged;
-focused re-review and master-chat adjudication passed, and Sebastien explicitly
-accepted the slice. Obtain Gate 21 commit authorization only; do not stage,
-commit, push, run the experiment, or begin Phase 5 without their later gates.
+remotely verified at `266797f891e9980b57bb35a633c91bef838d4111`; and accepted
+model/loss/update mechanics are remotely verified at `497ecde3577677903f14669722d61dcdf8caa1d6`.
+The attempted Gate 23 run authorization stopped before experiment work because
+the runner was absent. Independent review of the local prerequisite found four
+focused issues; their production corrections passed focused re-review, which
+found one remaining lifecycle-role test blocker. That test now uses distinct
+split sentinel identities, passed final focused re-review, and the runner is
+explicitly accepted. Obtain dedicated runner commit authorization only; do not
+stage, commit, push, run the experiment, or begin Phase 5 without later gates.

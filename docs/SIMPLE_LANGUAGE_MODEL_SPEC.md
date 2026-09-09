@@ -776,6 +776,7 @@ new reviewed config identity rather than an invocation-time override.
 | Setting | Accepted fixed value |
 |---|---|
 | Code | future accepted, clean, committed Phase 4 implementation checkpoint |
+| Inherited model/loss/update implementation | `497ecde3577677903f14669722d61dcdf8caa1d6` |
 | Tokenizer implementation | `de7a7f096fbbd8607c944412eaef30be9b686b56` |
 | Vocabulary | accepted `shakespeare-code-point-v1` binding, schema 1, canonical path, and pinned SHA-256 |
 | Dataset | accepted Phase 1 manifest SHA-256 `157e324c41c6aee756b9c554ae465388a892ea9a0f8fb8296ef0d986a0c9f6fb` and six train/one validation provenance |
@@ -804,8 +805,9 @@ validated before model construction in this exact first-failure order:
 1. experiment-configuration exact object type, else `Phase4TypeError`;
 2. vocabulary-binding object type and permitted-corpus container/work object
    types, in that order, else `Phase4TypeError`;
-3. future Phase 4 implementation commit grammar, clean-checkpoint status, and
-   exact checked-out identity, else `Phase4ContractError`;
+3. accepted model/loss/update implementation identity, then future Phase 4
+   runner commit grammar, clean-checkpoint status, and exact checked-out
+   identity, else `Phase4ContractError`;
 4. accepted tokenizer implementation commit identity, else
    `Phase4ContractError`;
 5. DEC-0015 and accepted embedding contract/implementation commit identities,
@@ -1129,6 +1131,8 @@ The entry records at least:
 
 - experiment ID, UTC date, status, question, and pre-registered success rule;
 - exact clean implementation Git commit;
+- accepted model/loss/update implementation checkpoint
+  `497ecde3577677903f14669722d61dcdf8caa1d6`;
 - Python, PyTorch, operating system, architecture, device, and dtype;
 - accepted tokenizer implementation commit
   `de7a7f096fbbd8607c944412eaef30be9b686b56`;
@@ -1247,12 +1251,17 @@ review require focused re-review before acceptance.
     returned PASS, master-chat adjudication returned PASS, and Sebastien
     explicitly accepted the model/loss/update implementation slice. No
     experiment is authorized by acceptance.
-21. **Accepted model/loss/update implementation commit.** Separately
-    authorized.
+21. **Accepted model/loss/update implementation commit.** Complete at
+    `497ecde3577677903f14669722d61dcdf8caa1d6`.
 22. **Implementation checkpoint push and independent remote verification.**
-    Separately authorized.
-23. **Explicit fixed-experiment authorization.** Only after Gate 22 and a
-    fresh precondition check.
+    Complete: local `HEAD`, refreshed `origin/main`, and actual remote `main`
+    matched the Gate 21 commit with ahead/behind `0/0` and a clean worktree.
+23. **Explicit fixed-experiment authorization.** An attempted authorization
+    correctly stopped before model construction and corpus traversal because
+    the accepted orchestration prerequisite was absent. It did not begin Gate
+    24 and is not reusable. A fresh authorization remains required after the
+    prerequisite is reviewed, accepted, committed, pushed, and remotely
+    verified.
 24. **Run exactly the pre-registered bounded experiment and append its record.**
     A failed criterion is recorded, not tuned around.
 25. **Independent experiment and Phase 4 exit review.** Evaluate the record,
@@ -1273,3 +1282,24 @@ review require focused re-review before acceptance.
 29. **Closure push and independent remote verification.** Separately authorized
     after Gate 28.
 30. **Explicit Phase 5 authorization.** Phase 5 cannot begin implicitly.
+
+### Experiment-orchestration prerequisite cycle status
+
+The attempted Gate 23 precondition check exposed that the remotely verified
+model/loss/update checkpoint lacked the already contracted frozen configuration,
+fifteen-stage preflight, aggregate measurement, fixed training pass, one-model
+lifecycle, result representation, and experiment entry point. This was a
+missing implementation prerequisite, not an experimental result or change to
+the frozen contract.
+
+Sebastien authorized implementation and synthetic testing of only that missing
+machinery. Independent review returned FAIL on four focused issues: inherited
+model authority, governance before tensorization, durable result completeness,
+and test coverage. Focused re-review passed every production correction and
+found one final lifecycle-role test-only blocker. That external-order test now
+derives train/validation roles from distinct split sentinel identities and
+passes within the unchanged 41-test suite. Final focused re-review and
+master-chat adjudication returned PASS, and Sebastien explicitly accepted the
+runner. Its dedicated commit and push/remote verification remain separately
+gated. The actual fixed experiment, Gate 24, sealed-test access, and Phase 5
+remain unauthorized.

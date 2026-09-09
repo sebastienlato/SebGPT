@@ -9,7 +9,8 @@ The repository is the authoritative source of truth across working sessions. Beg
 Phase 0 — Project and Environment, Phase 1 — Dataset, Phase 2 — Tokenization,
 and Phase 3 — Embeddings are complete and remotely verified through Phase 3
 closure commit `a66d169e76f06bee18d4f32b6340206f9f45ee63`. Phase 4 — Simple
-Neural Language Model is in contract design. Its twelve conceptual decisions
+Neural Language Model is in experiment-orchestration prerequisite work. Its
+twelve conceptual decisions
 and corrected detailed contract are accepted after a seven-finding correction
 cycle and passing focused re-review. The contract is remotely verified at
 `3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Its deterministic shifted-example
@@ -19,12 +20,20 @@ production source unchanged. Focused re-review and adjudication passed, and the
 slice is accepted and remotely verified at
 `266797f891e9980b57bb35a633c91bef838d4111`. The positionwise model,
 probability/loss mechanics, manual update, and no-update measurement slice is
-implemented locally. Gate 19 found only a gradient-clearing validation-order
+implemented and accepted. Gate 19 found only a gradient-clearing validation-order
 defect and its missing simultaneous-defect test; both are corrected with 48
 focused tests passing. Focused Gate 20 re-review and master-chat adjudication
-passed, and Sebastien explicitly accepted the model/loss/update slice. Its
-dedicated Gate 21 commit requires separate authorization. The bounded
-experiment remains unauthorized.
+passed, and Sebastien explicitly accepted the model/loss/update slice. Gates
+21–22 committed, pushed, and remotely verified it at `497ecde3577677903f14669722d61dcdf8caa1d6`.
+An attempted experiment authorization stopped before model construction because
+the accepted runner prerequisite was absent. That orchestration layer and 27
+synthetic tests were reviewed; four focused corrections were required. The
+corrections are complete with 41 synthetic tests passing and await focused
+re-review. That review passed production and found one final test-only lifecycle
+role blocker; the strengthened sentinel-identity test passed final focused
+re-review and master-chat adjudication, and Sebastien explicitly accepted the
+runner. Its dedicated commit remains separately gated. No experiment has run,
+and the bounded experiment remains unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
