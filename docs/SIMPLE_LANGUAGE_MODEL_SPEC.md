@@ -1222,17 +1222,31 @@ review require focused re-review before acceptance.
     44 focused tests and the complete 201-test suite passed, focused independent
     re-review returned PASS, master-chat adjudication returned PASS, and
     Sebastien explicitly accepted the example/governance implementation slice.
-15. **Accepted example-implementation commit.** Separately authorized.
-16. **Example checkpoint push and independent remote verification.**
-    Separately authorized.
-17. **Explicit model/loss/update implementation authorization.** Separate from
-    example construction and experiment authorization.
+15. **Accepted example-implementation commit.** Complete at
+    `266797f891e9980b57bb35a633c91bef838d4111`.
+16. **Example checkpoint push and independent remote verification.** Complete:
+    local `HEAD`, refreshed `origin/main`, and independently queried remote
+    `main` matched the Gate 15 commit with ahead/behind `0/0` and a clean
+    worktree/index.
+17. **Explicit model/loss/update implementation authorization.** Complete for
+    the model/loss/update slice and focused tests only; the bounded experiment
+    remains unauthorized.
 18. **Model, explicit loss, gradient inspection, manual update, aggregation,
-    and deterministic tests.** No corpus training experiment.
-19. **Independent model/loss/update implementation review.** PASS/FAIL against
-    the accepted contract.
+    and deterministic tests.** Complete locally with the positionwise model,
+    untied head, probability inspection, explicit cross-entropy,
+    representability checks, synthetic gradients, atomic manual SGD, gradient
+    clearing, tail scaling, one-example measurement invariants, and 47 focused
+    tests passing. No corpus training experiment occurred.
+19. **Independent model/loss/update implementation review.** Complete with
+    FAIL: `clear_gradients()` parameter validation was parameter-major rather
+    than category-major, and the required simultaneous-defect proof was absent;
+    all other reviewed areas passed.
 20. **Implementation corrections, focused re-review when corrections occur,
-    and explicit acceptance.** No experiment is authorized by acceptance.
+    and explicit acceptance.** Complete: the two Gate 19 findings were
+    corrected with 48 focused tests passing, focused independent re-review
+    returned PASS, master-chat adjudication returned PASS, and Sebastien
+    explicitly accepted the model/loss/update implementation slice. No
+    experiment is authorized by acceptance.
 21. **Accepted model/loss/update implementation commit.** Separately
     authorized.
 22. **Implementation checkpoint push and independent remote verification.**

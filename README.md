@@ -16,8 +16,15 @@ cycle and passing focused re-review. The contract is remotely verified at
 and Shakespeare-governance production slice passed independent review; two
 test-only coverage blockers were corrected, and 44 focused tests now pass with
 production source unchanged. Focused re-review and adjudication passed, and the
-slice is accepted. Its dedicated commit remains separately gated.
-Model/loss/update work and the experiment remain unauthorized.
+slice is accepted and remotely verified at
+`266797f891e9980b57bb35a633c91bef838d4111`. The positionwise model,
+probability/loss mechanics, manual update, and no-update measurement slice is
+implemented locally. Gate 19 found only a gradient-clearing validation-order
+defect and its missing simultaneous-defect test; both are corrected with 48
+focused tests passing. Focused Gate 20 re-review and master-chat adjudication
+passed, and Sebastien explicitly accepted the model/loss/update slice. Its
+dedicated Gate 21 commit requires separate authorization. The bounded
+experiment remains unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

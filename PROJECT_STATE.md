@@ -4,16 +4,16 @@
 
 ## Current phase
 
-Phase 4 — Simple Neural Language Model (contract design)
+Phase 4 — Simple Neural Language Model (model/loss/update implementation)
 
 ## Current milestone
 
-Phase 4 Gate 14 — Both Gate 13 test-only findings are resolved, production
-remains byte-identical, focused independent re-review returned PASS,
+Phase 4 Gate 20 — The focused independent re-review returned PASS,
 master-chat adjudication returned PASS, and Sebastien explicitly accepted the
-shifted-example/governance slice. Gate 15, its dedicated implementation commit,
-requires separate authorization. Model, loss, update, and experiment work
-remain unauthorized.
+model/loss/update implementation slice and its 48 focused tests. Gates 17–20
+are complete. Gate 21, the dedicated implementation commit, is next and
+requires separate explicit authorization. The bounded experiment remains
+unauthorized.
 
 ## Completed work
 
@@ -45,52 +45,47 @@ remain unauthorized.
 - The corrected Phase 4 detailed contract passed focused review, was explicitly
   accepted, committed, pushed, and independently verified at
   `3fcf007ce819ca1a45aa75b48fa19f10311f2819`.
+- The accepted shifted-example/governance slice was committed, pushed, and
+  independently verified at `266797f891e9980b57bb35a633c91bef838d4111`.
 
 ## Current work
 
-`src/sebgpt/data/shifted_examples.py` implements the corpus-neutral frozen
-`ShiftedTokenExample`, three Phase 4 content-safe exceptions, and an eager
-ordinary `iter_shifted_examples` function returning a private on-demand
-iterator. It covers every within-document adjacent transition exactly once at
-context/stride 64, preserves variable tails, and creates no padding or output.
+`src/sebgpt/model/simple_language_model.py` implements the accepted positionwise
+`SimpleNeuralLanguageModel`, exact four-parameter structure and initialization,
+rank-one logits-only forward, separate stable probability inspection,
+cancellation-safer representability-aware cross-entropy, atomic manual SGD,
+category-major parameter validation for gradient clearing, tail-loss scaling,
+canonical parameter-byte hashing, and one-example no-update measurement.
 
-`src/sebgpt/data/shakespeare_examples.py` separately enforces accepted
-vocabulary binding, manifest identity, exact ordered train/validation work
-membership, complete metadata-before-text validation, strict recomputed
-provenance, per-document encoding, and test refusal before content access. It
-contains no corpus loader and cannot implement an all-eight-then-filter path.
-
-All original 27 focused tests remain. One incremental-construction test and 16
-governance-matrix tests bring the focused suite to 44: 15 neutral and 29
-governance tests. Production source is unchanged from Gate 13 review. The
-implementation is accepted, unstaged, uncommitted, and unpushed pending
-separate Gate 15 commit authorization.
+`src/sebgpt/model/__init__.py` exports this public slice and the three accepted
+Phase 4 exception classes. `tests/test_simple_language_model.py` contains 48
+focused independent checks across structure, initialization, forward isolation,
+loss numerics, gradient routing, update atomicity, tail scaling, and measurement
+invariants, including the corrected `clear_gradients()` simultaneous-defect
+priority. The implementation is accepted, unstaged, uncommitted, and unpushed
+pending separate Gate 21 commit authorization.
 
 ## Current model status
 
-The accepted Phase 3 representation remains the only model code. Each
-construction has exactly 10,784 learnable CPU float32 parameters. Phase 4 now
-has tuple-based document-local example construction and governance code, but no
-language-model output head, logits, probability helper, loss, backward demo,
-manual update utility, training/evaluation loop, checkpoint, or generation path.
-
-The accepted Phase 4 contract would add 2,592 output-weight and 81 bias
-parameters for 13,457 total, but no such parameters have been instantiated or
-implemented.
+The Phase 4 positionwise model now exists locally. Each construction owns the
+accepted 10,784 representation parameters plus a 2,592-element output weight
+and 81-element bias for exactly 13,457 trainable CPU float32 parameters. Tests
+instantiate only synthetic models. No corpus training/evaluation loop,
+aggregate experiment measurement, checkpoint, generation, or attention path
+exists.
 
 ## Last verified working state
 
-The corrected focused suite passes 44/44: 15 corpus-neutral shifted-example
-tests and 29 Shakespeare-governance tests. The complete suite ran 201 tests:
-200 passed, one restricted-context MPS test was skipped as expected, and zero
-failed. The accepted vocabulary artifact remains 9,182 bytes with the pinned
-SHA-256 above. Production-source identity, diff, whitespace, index, and
-unstaged-state checks pass.
+The model/loss/update suite passes 48/48, and the accepted example/governance
+suite remains 44/44. The complete suite ran 249 tests: 248 passed, one
+restricted-context MPS test was skipped as expected, and zero failed. The
+accepted vocabulary artifact remains 9,182 bytes with the pinned SHA-256 above.
+Diff, phase-boundary, and unstaged-state checks pass.
 
 ## Next exact step
 
-Obtain explicit authorization for the dedicated Phase 4 Gate 15 accepted
-example/governance implementation commit.
+Obtain explicit authorization for the dedicated Gate 21 accepted
+model/loss/update implementation commit.
 
 ## Known issues
 
@@ -105,9 +100,9 @@ example/governance implementation commit.
 
 ## Important constraints
 
-- Do not expand the Gate 12 example/governance implementation into model,
-  loss, update, training, or experiment work before their separate gates.
-- Do not instantiate the accepted output head, construct persistent
+- Do not expand the Gate 18 model/loss/update implementation into corpus
+  training, aggregate experiment measurement, checkpointing, or generation.
+- Do not persist model parameters, gradients, logits, probabilities, losses,
   token/window/target artifacts, or run the experiment.
 - Never access, tokenize, window, score, inspect, or derive Phase 4 statistics
   from the sealed test work.
@@ -120,8 +115,8 @@ example/governance implementation commit.
   generation, MPS/mixed precision, or pretrained/hosted models in Phase 4.
 - Do not add dependencies without an accepted recorded decision and lock-file
   update.
-- Do not commit or push the current contract checkpoint without separate
-  explicit authorization.
+- Do not commit or push the accepted model/loss/update checkpoint without
+  separate explicit authorization for each gate.
 
 ## Open questions
 
@@ -129,6 +124,8 @@ example/governance implementation commit.
   acceptance.
 - No known shifted-example/governance implementation or focused-test issue
   remains after Gate 14 PASS and explicit acceptance.
+- No model/loss/update implementation-review correction remains after Gate 20
+  focused re-review, adjudication, and explicit acceptance.
 - The accepted output-head seed 4004, learning rate 0.05, two passes, gradient
   scaling, and primary success predicate have not been empirically tried and
   must not be tuned before separate experiment authorization.
@@ -138,9 +135,10 @@ example/governance implementation commit.
 ## Session handoff
 
 Phases 0–3 are complete. The accepted Phase 4 contract is remotely verified at
-`3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Gate 13 passed production and
-found two test-only blockers. Gate 14 retained production bytes, expanded
-focused coverage to 44 tests, passed focused re-review and adjudication, and
-was explicitly accepted. Obtain separate Gate 15 commit authorization only; do
-not stage, commit, push, expand implementation, run the experiment, or access
-the sealed test.
+`3fcf007ce819ca1a45aa75b48fa19f10311f2819`; accepted examples/governance are
+remotely verified at `266797f891e9980b57bb35a633c91bef838d4111`. Gate 19 found
+only a `clear_gradients()` parameter-validation ordering defect and its missing
+regression proof. Gate 20 corrected both while leaving manual SGD unchanged;
+focused re-review and master-chat adjudication passed, and Sebastien explicitly
+accepted the slice. Obtain Gate 21 commit authorization only; do not stage,
+commit, push, run the experiment, or begin Phase 5 without their later gates.

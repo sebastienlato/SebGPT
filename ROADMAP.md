@@ -117,8 +117,17 @@ test-only coverage blockers. Gate 14 corrections retain all original tests and
 expand the focused suite to 44 passing tests with production source unchanged.
 Focused re-review and master-chat adjudication returned PASS, and Sebastien
 explicitly accepted the slice. Gate 15, the dedicated implementation commit,
-requires separate authorization. Model/loss/update implementation and the
-experiment remain unauthorized.
+and Gate 16 push/remote verification are complete at
+`266797f891e9980b57bb35a633c91bef838d4111`. Gate 17 explicitly authorized the
+model/loss/update slice. Gate 19 independent review failed only on
+`clear_gradients()` parameter-validation ordering and its missing regression
+proof. Both are corrected locally at Gate 20 with 48 focused tests passing and
+focused independent re-review returned PASS. Master-chat adjudication also
+returned PASS, and Sebastien explicitly accepted the model/loss/update slice.
+Gates 17–20 are complete. Gate 21, the dedicated accepted-implementation
+commit, requires separate explicit authorization; Gate 22 push and Gate 23
+experiment authorization remain later separate gates. The bounded experiment
+remains unauthorized.
 
 **Exit criteria:**
 
