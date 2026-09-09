@@ -11,9 +11,13 @@ and Phase 3 — Embeddings are complete and remotely verified through Phase 3
 closure commit `a66d169e76f06bee18d4f32b6340206f9f45ee63`. Phase 4 — Simple
 Neural Language Model is in contract design. Its twelve conceptual decisions
 and corrected detailed contract are accepted after a seven-finding correction
-cycle and passing focused re-review. The dedicated contract checkpoint commit
-and all Phase 4 implementation remain separately gated; no implementation or
-experiment is authorized.
+cycle and passing focused re-review. The contract is remotely verified at
+`3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Its deterministic shifted-example
+and Shakespeare-governance production slice passed independent review; two
+test-only coverage blockers were corrected, and 44 focused tests now pass with
+production source unchanged. Focused re-review and adjudication passed, and the
+slice is accepted. Its dedicated commit remains separately gated.
+Model/loss/update work and the experiment remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

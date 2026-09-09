@@ -1202,17 +1202,26 @@ review require focused re-review before acceptance.
    master-chat adjudication returned PASS, and Sebastien explicitly accepted
    the corrected detailed contract. Implementation and experiment remain
    unauthorized.
-9. **Accepted-contract checkpoint commit.** Separately authorized after Gate 8.
-10. **Contract push and independent remote verification.** Separately
-    authorized after Gate 9.
-11. **Explicit shifted-example implementation authorization.** Separate from
-    the model implementation.
+9. **Accepted-contract checkpoint commit.** Complete at
+   `3fcf007ce819ca1a45aa75b48fa19f10311f2819`.
+10. **Contract push and independent remote verification.** Complete: local
+    `HEAD`, refreshed `origin/main`, and independently queried remote `main`
+    matched the Gate 9 commit with ahead/behind `0/0` and a clean worktree.
+11. **Explicit shifted-example implementation authorization.** Complete for
+    the example/governance slice and focused tests only; model, loss, update,
+    and experiment work remain unauthorized.
 12. **Shifted-example and Shakespeare-governance implementation with focused
-    tests.** No model, loss, or training work.
-13. **Independent example-implementation review.** PASS/FAIL against the
-    accepted contract.
+    tests.** Complete locally with corpus-neutral and governance modules plus
+    27 focused passing tests. No model, loss, or training work was introduced.
+13. **Independent example-implementation review.** Complete with FAIL: all
+    production implementation areas passed, but two test-only coverage blockers
+    required a complete guarded governance rejection matrix and mechanical
+    proof of incremental example construction.
 14. **Example corrections, focused re-review when corrections occur, and
-    explicit acceptance.** No checkpoint acceptance before required re-review.
+    explicit acceptance.** Complete: production source remained byte-identical,
+    44 focused tests and the complete 201-test suite passed, focused independent
+    re-review returned PASS, master-chat adjudication returned PASS, and
+    Sebastien explicitly accepted the example/governance implementation slice.
 15. **Accepted example-implementation commit.** Separately authorized.
 16. **Example checkpoint push and independent remote verification.**
     Separately authorized.

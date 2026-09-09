@@ -109,8 +109,16 @@ are accepted in DEC-0016 and `docs/SIMPLE_LANGUAGE_MODEL_SPEC.md`. Independent
 Gate 6 review returned FAIL with seven must-fix findings; Gate 7 corrected all
 seven, focused Gate 8 re-review returned PASS, master-chat adjudication returned
 PASS, and Sebastien explicitly accepted the contract. Gate 9, the dedicated
-accepted-contract commit, requires separate authorization. No Phase 4
-implementation or experiment is authorized.
+accepted-contract commit, and Gate 10 push/remote verification are complete at
+`3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Gate 11 explicitly authorized
+only shifted-example and Shakespeare-governance implementation with focused
+tests. Gate 13 independent review passed production but returned FAIL for two
+test-only coverage blockers. Gate 14 corrections retain all original tests and
+expand the focused suite to 44 passing tests with production source unchanged.
+Focused re-review and master-chat adjudication returned PASS, and Sebastien
+explicitly accepted the slice. Gate 15, the dedicated implementation commit,
+requires separate authorization. Model/loss/update implementation and the
+experiment remain unauthorized.
 
 **Exit criteria:**
 

@@ -8,11 +8,12 @@ Phase 4 — Simple Neural Language Model (contract design)
 
 ## Current milestone
 
-Phase 4 Gate 8 — Focused independent re-review returned PASS with all seven
-Gate 6 findings resolved, master-chat adjudication returned PASS, and Sebastien
-explicitly accepted the corrected detailed contract. Gate 9, the dedicated
-accepted-contract commit, requires separate authorization. No Phase 4
-implementation or experiment is authorized.
+Phase 4 Gate 14 — Both Gate 13 test-only findings are resolved, production
+remains byte-identical, focused independent re-review returned PASS,
+master-chat adjudication returned PASS, and Sebastien explicitly accepted the
+shifted-example/governance slice. Gate 15, its dedicated implementation commit,
+requires separate authorization. Model, loss, update, and experiment work
+remain unauthorized.
 
 ## Completed work
 
@@ -41,33 +42,37 @@ implementation or experiment is authorized.
   an untied `(32, 81)` output weight plus `(81,)` bias, transparent stable
   cross-entropy, manual SGD, train/validation/test governance, and `ln(81)` as
   the primary conceptual baseline.
+- The corrected Phase 4 detailed contract passed focused review, was explicitly
+  accepted, committed, pushed, and independently verified at
+  `3fcf007ce819ca1a45aa75b48fa19f10311f2819`.
 
 ## Current work
 
-The accepted corrected Phase 4 contract is documented at
-`docs/SIMPLE_LANGUAGE_MODEL_SPEC.md`. Gate 7 added an independent probability
-contract, cancellation-safe representability-aware cross-entropy, exact
-exception ownership and first-failure order, one uninterrupted model lifecycle,
-controlled failed-run analysis/re-registration, complete inherited experiment
-identities, and enforceable tests for all corrections.
+`src/sebgpt/data/shifted_examples.py` implements the corpus-neutral frozen
+`ShiftedTokenExample`, three Phase 4 content-safe exceptions, and an eager
+ordinary `iter_shifted_examples` function returning a private on-demand
+iterator. It covers every within-document adjacent transition exactly once at
+context/stride 64, preserves variable tails, and creates no padding or output.
 
-The passing Gate 6 mechanics remain unchanged: corpus-neutral transition
-coverage, Shakespeare governance, rank-one model input, 13,457 trainable
-parameters, head seed 4004, deterministic manual SGD, tail scaling `L / 64`,
-token-weighted reporting, learning rate 0.05, two passes, 12,389 examples per
-pass, 24,778 updates, the primary success predicate, and the technical phase
-boundary.
+`src/sebgpt/data/shakespeare_examples.py` separately enforces accepted
+vocabulary binding, manifest identity, exact ordered train/validation work
+membership, complete metadata-before-text validation, strict recomputed
+provenance, per-document encoding, and test refusal before content access. It
+contains no corpus loader and cannot implement an all-eight-then-filter path.
 
-Gate 8 accepted all corrected detailed mechanics. The repository contains no
-Phase 4 source, tests, parameters, examples, or experiment record.
+All original 27 focused tests remain. One incremental-construction test and 16
+governance-matrix tests bring the focused suite to 44: 15 neutral and 29
+governance tests. Production source is unchanged from Gate 13 review. The
+implementation is accepted, unstaged, uncommitted, and unpushed pending
+separate Gate 15 commit authorization.
 
 ## Current model status
 
-Only the accepted Phase 3 representation exists. Each construction has exactly
-10,784 learnable CPU float32 parameters. No language-model output head, logits,
-probability helper, language-model loss, manual update utility, production
-context-window implementation, training loop, checkpoint, or generation path
-exists.
+The accepted Phase 3 representation remains the only model code. Each
+construction has exactly 10,784 learnable CPU float32 parameters. Phase 4 now
+has tuple-based document-local example construction and governance code, but no
+language-model output head, logits, probability helper, loss, backward demo,
+manual update utility, training/evaluation loop, checkpoint, or generation path.
 
 The accepted Phase 4 contract would add 2,592 output-weight and 81 bias
 parameters for 13,457 total, but no such parameters have been instantiated or
@@ -75,18 +80,17 @@ implemented.
 
 ## Last verified working state
 
-After the current documentation-only edits, the complete existing suite ran
-157 tests in the project environment: 156 passed, one restricted-context MPS
-test was skipped as expected, and zero failed. This includes 7/7 accepted
-vocabulary-runtime tests, 28/28 embedding tests, and all 35 automated Phase 3
-checks. The accepted vocabulary artifact remains 9,182 bytes with the pinned
-SHA-256 above. Documentation structure, arithmetic, tracked-file boundaries,
-unstaged status, and whitespace checks pass.
+The corrected focused suite passes 44/44: 15 corpus-neutral shifted-example
+tests and 29 Shakespeare-governance tests. The complete suite ran 201 tests:
+200 passed, one restricted-context MPS test was skipped as expected, and zero
+failed. The accepted vocabulary artifact remains 9,182 bytes with the pinned
+SHA-256 above. Production-source identity, diff, whitespace, index, and
+unstaged-state checks pass.
 
 ## Next exact step
 
-Obtain explicit authorization for the dedicated Phase 4 Gate 9
-accepted-contract checkpoint commit without implementing or running Phase 4.
+Obtain explicit authorization for the dedicated Phase 4 Gate 15 accepted
+example/governance implementation commit.
 
 ## Known issues
 
@@ -101,11 +105,10 @@ accepted-contract checkpoint commit without implementing or running Phase 4.
 
 ## Important constraints
 
-- The accepted detailed contract does not itself authorize implementation or
-  an experiment.
-- Do not create Phase 4 source or tests, instantiate the accepted output head,
-  construct persistent token/window/target artifacts, or run the experiment
-  before their separate gates.
+- Do not expand the Gate 12 example/governance implementation into model,
+  loss, update, training, or experiment work before their separate gates.
+- Do not instantiate the accepted output head, construct persistent
+  token/window/target artifacts, or run the experiment.
 - Never access, tokenize, window, score, inspect, or derive Phase 4 statistics
   from the sealed test work.
 - Preserve independent documents and the accepted complete-work split. No
@@ -124,6 +127,8 @@ accepted-contract checkpoint commit without implementing or running Phase 4.
 
 - No known detailed-contract ambiguity remains after Gate 8 PASS and explicit
   acceptance.
+- No known shifted-example/governance implementation or focused-test issue
+  remains after Gate 14 PASS and explicit acceptance.
 - The accepted output-head seed 4004, learning rate 0.05, two passes, gradient
   scaling, and primary success predicate have not been empirically tried and
   must not be tuned before separate experiment authorization.
@@ -132,11 +137,10 @@ accepted-contract checkpoint commit without implementing or running Phase 4.
 
 ## Session handoff
 
-Phases 0–3 are complete and remotely verified through closure commit
-`a66d169e76f06bee18d4f32b6340206f9f45ee63`. Phase 4 learning/design and its
-twelve conceptual decisions are accepted in DEC-0016. Gate 6 returned FAIL with
-seven accepted findings; Gate 7 corrected them in documentation while
-preserving all accepted and passing architecture. Gate 8 focused re-review and
-master-chat adjudication returned PASS, and Sebastien accepted the corrected
-contract. The next step is separate Gate 9 commit authorization; do not
-implement, experiment, stage, commit, push, or access the sealed test.
+Phases 0–3 are complete. The accepted Phase 4 contract is remotely verified at
+`3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Gate 13 passed production and
+found two test-only blockers. Gate 14 retained production bytes, expanded
+focused coverage to 44 tests, passed focused re-review and adjudication, and
+was explicitly accepted. Obtain separate Gate 15 commit authorization only; do
+not stage, commit, push, expand implementation, run the experiment, or access
+the sealed test.
