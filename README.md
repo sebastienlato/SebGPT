@@ -6,7 +6,14 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment, Phase 1 — Dataset, Phase 2 — Tokenization, and Phase 3 — Embeddings are complete and verified. SebGPT's first tokenizer uses one Python Unicode code point per token and a frozen training-derived 81-entry vocabulary. Phase 3 implements explicit 32-dimensional token embeddings and learned absolute positional embeddings with deterministic CPU initialization and exact vocabulary-artifact binding. Its 35 automated checks, manual phase-boundary review, full regression, and independent exit review pass. The documentation-only Phase 3 closure commit completes Gate 16; its push and Phase 4 remain unauthorized.
+Phase 0 — Project and Environment, Phase 1 — Dataset, Phase 2 — Tokenization,
+and Phase 3 — Embeddings are complete and remotely verified through Phase 3
+closure commit `a66d169e76f06bee18d4f32b6340206f9f45ee63`. Phase 4 — Simple
+Neural Language Model is in contract design. Its twelve conceptual decisions
+and corrected detailed contract are accepted after a seven-finding correction
+cycle and passing focused re-review. The dedicated contract checkpoint commit
+and all Phase 4 implementation remain separately gated; no implementation or
+experiment is authorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

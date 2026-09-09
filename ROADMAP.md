@@ -75,7 +75,7 @@ The phases are sequential learning gates. Do not begin a later phase until the c
 - Tests cover representative and edge cases. **Verified.**
 - Tokenization statistics are inspected on the Phase 1 dataset. **Verified under the approved train/validation governance; the sealed test remained untouched.**
 
-## Phase 3 — Embeddings (complete; closure commit authorized)
+## Phase 3 — Embeddings (complete)
 
 **Goal:** Understand learned token and positional representations.
 
@@ -89,8 +89,10 @@ no corrections were required, and Sebastien accepted the implementation. The
 dedicated accepted-implementation commit is explicitly authorized and completes
 Gate 12. Gate 13 remote verification completed, Gate 14 was explicitly skipped
 as unnecessary, and Gate 15 independently verified all three exit criteria.
-This authorized documentation-only closure commit completes Gate 16. Gate 17
-push/remote verification and Phase 4 are not authorized.
+The documentation-only closure commit completed Gate 16. Gate 17 push and
+independent remote verification are complete at
+`a66d169e76f06bee18d4f32b6340206f9f45ee63`. Gate 18 explicitly authorized
+Phase 4 learning and design, which is now complete.
 
 **Exit criteria:**
 
@@ -101,6 +103,14 @@ push/remote verification and Phase 4 are not authorized.
 ## Phase 4 — Simple Neural Language Model
 
 **Goal:** Build and train a small non-attention baseline to understand next-token prediction.
+
+The twelve conceptual architecture decisions and corrected detailed contract
+are accepted in DEC-0016 and `docs/SIMPLE_LANGUAGE_MODEL_SPEC.md`. Independent
+Gate 6 review returned FAIL with seven must-fix findings; Gate 7 corrected all
+seven, focused Gate 8 re-review returned PASS, master-chat adjudication returned
+PASS, and Sebastien explicitly accepted the contract. Gate 9, the dedicated
+accepted-contract commit, requires separate authorization. No Phase 4
+implementation or experiment is authorized.
 
 **Exit criteria:**
 

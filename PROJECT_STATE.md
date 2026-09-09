@@ -4,182 +4,139 @@
 
 ## Current phase
 
-Phase 3 — Embeddings (complete)
+Phase 4 — Simple Neural Language Model (contract design)
 
 ## Current milestone
 
-Phase 3 Gate 16 — Gate 15 independently verified all three exit criteria, master-chat adjudication passed, and Sebastien accepted the result. This authorized documentation-only closure commit completes Gate 16. Gate 17 push/remote verification and Phase 4 remain unauthorized.
+Phase 4 Gate 8 — Focused independent re-review returned PASS with all seven
+Gate 6 findings resolved, master-chat adjudication returned PASS, and Sebastien
+explicitly accepted the corrected detailed contract. Gate 9, the dedicated
+accepted-contract commit, requires separate authorization. No Phase 4
+implementation or experiment is authorized.
 
 ## Completed work
 
-- SebGPT project concept agreed.
-- Learning-first approach agreed.
-- Python and PyTorch direction agreed.
-- Work will be used for primary project collaboration.
-- Codex will be used as an engineering assistant.
-- Repository files will be the authoritative source of truth.
-- Initial continuity documents and project directories created.
-- Phase 0.1 continuity infrastructure reviewed and approved.
-- Mac environment audited: macOS 26.6.2, Apple M4 Max (`arm64`), Python.org CPython 3.14.4, pip 26.0.1, and Git 2.54.0.
-- Project-local `.venv` created and excluded from Git.
-- Stable PyTorch 2.14.0 installed from its native macOS ARM64 wheel.
-- Direct and fully resolved dependency manifests created.
-- CPU tensor operations, autograd, MPS availability, and an MPS tensor operation verified.
-- Environment test suite added and verified with all three tests passing on the host Mac.
-- Git repository initialized on `main` with a clean Phase 0 baseline commit.
-- Phase 1 explicitly authorized.
-- Dataset suitability, scope, provenance, and leakage tradeoffs discussed.
-- Project Gutenberg eBook #100 selected as the sole source for an approximately 170,000-word eight-play corpus.
-- Whole-work manifest approved: six training plays, *The Tempest* for validation, and *Twelfth Night* for test.
-- Training-only Unicode character inventory and non-mutating validation/test unseen-character audit approved without selecting a tokenizer.
-- Dataset specification and gated acquisition contract documented in `docs/DATASET_SPEC.md`.
-- Exact raw-source Git preservation exception and authoritative tracked manifest contract documented.
-- Corrected dataset specification and acquisition contract reviewed and approved.
-- Dataset-design specification committed as `a3821da6331c8e885f6935c442e896105c9a9340`.
-- The catalog-linked Project Gutenberg eBook #100 UTF-8 artifact acquired once to the approved raw path without transformation.
-- Raw source verified at 5,638,480 bytes with SHA-256 `3cf4b3d44ee14cff4e14e78e2ad3318eff76f3f7f2afc3cee6bb925879110a37`.
-- Strict UTF-8 decoding passed; no BOM or NUL bytes were found; all 196,398 observed line endings are CRLF.
-- Source provenance and response metadata recorded in the authoritative tracked JSON manifest.
-- Read-only wrapper, global contents, selected-work marker, and formatting inspection recorded without exposing *Twelfth Night* prose.
-- Raw-source acquisition and provenance milestone reviewed and approved for its dedicated checkpoint.
-- Raw-source acquisition checkpoint committed as `8ffba6e005ac26e1b3f81c1d914df97e2acd7b25`.
-- Deterministic eight-play extraction policy approved and recorded as DEC-0009.
-- Exact marker-based boundaries, content inclusions/exclusions, minimal normalization, split paths, verification invariants, metadata, and sealed-test rules documented.
-- Exact Gutenberg wrapper anchors, global contents contract, ordered 44-entry list, and eight successor-separator assertions approved under DEC-0010.
-- Exact-preflight documentation checkpoint committed as `6efb00a5cd8e9831f83846fc30acf152bc27e1e9`.
-- Final authoritative-status consistency verification completed with no remaining technical blockers.
-- Read-only preflight implementation explicitly authorized.
-- Standard-library preflight and focused tests implemented without extraction or output-writing behavior.
-- Production preflight passed against the pinned source; all 16 focused tests passed, and the full 19-test suite passed with the expected restricted-context MPS skip.
-- Independent review passed and the read-only preflight implementation was accepted for its dedicated checkpoint.
-- Source-faithful per-work Dramatis indentation and three distinct provenance hash stages approved under DEC-0011.
-- Deterministic in-memory extraction explicitly authorized and implemented through a separate module.
-- Immutable validated-source handoff added so extraction consumes the exact byte object that passed preflight.
-- Eighteen focused extraction tests passed; the 17-test preflight suite passed; the full 38-test suite passed with the expected restricted-context MPS skip.
-- Production extraction returned eight separate works deterministically and computed three-stage provenance without creating processed output.
-- Independent review passed and the deterministic in-memory extraction implementation was accepted for its dedicated checkpoint.
-- In-memory Unicode character inventory explicitly authorized and implemented without rereading, re-extracting, or publishing text.
-- Ten focused inventory tests passed; extraction and preflight regressions passed; the full 48-test suite passed with the expected restricted-context MPS skip.
-- Production inventory counted eight independent works deterministically under Python 3.14.4 without creating `data/processed/`.
-- Independent review passed with no must-fix issues, and Sebastien accepted the in-memory Unicode character-inventory checkpoint.
-- The unseen-character comparison found zero validation/test code points absent from training; its candidate and occurrence-entry collections are empty, so occurrence-location reporting is not applicable for the pinned corpus.
-- The transactional publisher design was accepted and recorded as DEC-0012.
-- A standard-library publisher and 26 focused tests were implemented using temporary repositories only; the full 74-test suite passed with the expected restricted-context MPS skip.
-- Production `ExtractedWork` compatibility passed through a temporary repository without creating the real `data/processed/` tree.
-- Publisher reviews reproduced target-promotion and cleanup-ownership races; exclusive no-clobber promotion and preservation of failed staging state now pass deterministic regression tests for target, top-level staging, nested-entry, and final-root replacement.
-- Descriptor-relative exclusive/no-follow directory and file creation prevents staged-path symlinks or substituted intermediate directories from redirecting writes; both construction races now have deterministic regression coverage.
-- Darwin feasibility review established that the directory-tree publisher cannot guarantee safety against an unrelated same-user namespace adversary; Sebastien accepted an append-only DEC-0012 amendment limiting guarantees to ordinary workspaces and cooperating locked publishers.
-- An empty atomic `data/.publish-lock` presence-file protocol now serializes cooperating publishers, releases after success or clean pre-publication refusal, and is preserved with stale or uncertain state; four focused lock-lifecycle tests pass.
-- Final independent review passed with no must-fix issues, and Sebastien accepted the complete publisher implementation and DEC-0012 amendment.
-- The authoritative manifest now records publisher revision `cd4cd8159b420920aa66755630fe26f9633a5373`, the accepted environment, exact exclusions, per-work provenance and processed results, split/global aggregates, character-inventory results, duplicate/boundary conclusions, and expected generated-manifest identity.
-- A production ledger-verification test and temporary-root publication/rerun verification pass; the publisher suite has 27 tests and the full 75-test suite passes with the expected restricted-context MPS skip.
-- Independent review passed with no must-fix issues, and Sebastien accepted the final expected-result ledger checkpoint.
-- Production publication passed every precondition and returned `created`; all eight processed documents and the generated processing manifest match the authoritative ledger exactly.
-- The generated processing manifest has the expected SHA-256 `bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc`.
-- A second production publication returned `already_current` without changing any processed file hash, size, or modification time; the publication lock and staging tree are absent.
-- All processed artifacts remain ignored, reproducible derivatives. The read-only preflight, extraction, and inventory production tests were updated to prove the published tree remains unchanged; all 75 tests pass with the expected restricted-context MPS skip.
-- Final closure review confirmed every Phase 1 exit criterion is technically satisfied; the stale broad publication prohibition was corrected to preserve the accepted publisher-only permission boundary.
-- Phase 1 — Dataset is complete.
-- The accepted Phase 1 completion commit `16fd4a6e27e44c3b705b0050090e2c1d9e515032` is pushed to and independently verified on `origin/main`.
-- Phase 2 documentation and contract design are explicitly authorized.
-- DEC-0013's scope correction limits the accepted conceptual strategy to one Python Unicode code point per token, training-only vocabulary membership, numeric code-point ordering determining IDs, no Unicode normalization, no special tokens initially, strict unsupported-code-point rejection, exact supported-input round trips, independent documents, and no Phase 2 context-window construction.
-- The first independent DEC-0014 review returned FAIL with six required contract corrections, and Sebastien accepted every finding.
-- Corrected DEC-0014 and `docs/TOKENIZER_SPEC.md` define the accepted full Python integer domain including surrogates, first-failure encode/decode rules, `Sequence[int]` decoding, immutable canonical state, two-layer vocabulary construction, orchestration-level sealed-test enforcement, an exact JSON artifact schema and provenance chain, ephemeral statistics, proposed later-phase allocation, and nineteen separate Phase 2 gates.
-- Focused independent re-review passed with no must-fix issues after two non-semantic wording refinements, and Sebastien explicitly accepted corrected DEC-0014.
-- Gate 3 completed with focused independent contract review and explicit acceptance.
-- The accepted contract checkpoint was committed and remotely verified as `fd68bce66214ecf911dd643d2cc8ae35c3cdbb67`, completing Gates 4 and 5.
-- Gate 6 explicitly authorized tokenizer implementation and deterministic synthetic tests only.
-- The immutable `CodePointTokenizer`, content-safe errors, binary-search encoding, `Sequence[int]` decoding, corpus-neutral membership union, and Shakespeare training-vocabulary orchestration were implemented without new dependencies.
-- Thirty-eight focused synthetic tests pass, including canonical-state, exact round-trip, first-failure, surrogate-domain, safe-error, metadata-before-text, provenance-recomputation, and access-guard coverage.
-- The first Gate 8 review found one test-independence issue; orchestration fixtures now derive from independent test-local identity and normalization literals rather than production constants.
-- Focused Gate 8 re-review passed with no must-fix issues, and Sebastien explicitly accepted the tokenizer implementation.
-- Gate 8 is complete. The Gate 9 implementation checkpoint commit and Gate 10 push/remote verification are explicitly authorized in this task.
-- The full 113-test suite passes with the expected restricted-context MPS skip.
-- The accepted implementation checkpoint was committed and remotely verified as `de7a7f096fbbd8607c944412eaef30be9b686b56`, completing Gates 9 and 10.
-- Gate 11 explicitly authorized production vocabulary construction, canonical artifact creation, and permitted in-memory training/validation statistics.
-- The accepted production orchestrator independently computed 81 unique training code points with contiguous IDs `0` through `80` and created `artifacts/tokenizers/shakespeare-code-point-v1/vocabulary.json`.
-- The canonical vocabulary artifact is 9,182 bytes with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`; it records Phase 1 manifest SHA-256 `157e324c41c6aee756b9c554ae465388a892ea9a0f8fb8296ef0d986a0c9f6fb` and implementation commit `de7a7f096fbbd8607c944412eaef30be9b686b56`.
-- Training inspection produced 792,705 in-memory tokens, 100% coverage, zero unknowns, six exact round trips, and 81 positive frequency entries summing to the token total.
-- Validation aggregate inspection produced 98,296 in-memory tokens, 100% coverage, zero unknowns, and an exact round trip without changing the training vocabulary.
-- The actual sealed test was not passed to tokenizer orchestration or statistics. No persistent train or validation token-ID stream was created.
-- Nine production-checkpoint tests pass; the 38 focused implementation tests still pass; and the complete 122-test suite passes with one expected restricted-context MPS skip.
-- The first Gate 13 review confirmed the production vocabulary and canonical artifact bytes, but required `code_point` in ephemeral frequency records plus independent test-side vocabulary, frequency, fixed-identifier, and artifact-path expectations.
-- `TokenFrequency` now records token ID, code point, and count. Production tests independently derive all 81 expected code points and frequencies directly from the six training strings and use test-local literals for every fixed producer value and artifact path.
-- The artifact remains byte-identical at 9,182 bytes and SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`.
-- Focused Gate 13 re-review passed with no must-fix issues, and Sebastien explicitly accepted the canonical vocabulary artifact, its SHA-256, and the permitted training/validation statistics.
-- The accepted vocabulary checkpoint was committed and remotely verified as `0723474e9e7b3df8e853a148cce71f34bc004ca1`, completing Gates 14 and 15.
-- Gate 16 independent Phase 2 exit review returned PASS, and Sebastien explicitly accepted the result.
-- Every repository-defined Phase 2 exit criterion is verified: the transparent tokenizer exists, vocabulary/encoding/decoding/unknown cases/round trips are explained, representative and edge cases are tested, and permitted Phase 1 dataset tokenization statistics were inspected.
-- Phase 2 — Tokenization is complete; no technical Phase 2 work remains.
-- Phase 3 learning and design discussion was explicitly authorized after the remotely verified Phase 2 closure.
-- Sebastien accepted embedding dimension 32, an explicit manually indexed token parameter table, learned absolute positional embeddings with capacity 256, token-plus-position addition, scaled-normal initialization, local seed 1337, CPU float32 parameters, `torch.long` IDs, and exact binding to the accepted Phase 2 vocabulary artifact.
-- DEC-0015 preserves the accepted conceptual architecture, the historical proposed mechanics and review findings, and the final accepted corrected detailed contract through append-only updates.
-- `docs/EMBEDDING_SPEC.md` defines the accepted authority-loading boundary, one-module API, input and position contracts, output behavior, initialization sequence, determinism scope, safe error model, thirty-six contract checks, later-phase boundary, and eighteen Phase 3 gates.
-- The documentation-only Gate 3 checkpoint passed structural checks, all three accepted artifact hashes were freshly verified, and the complete existing 122-test suite passed with one expected restricted-context MPS skip.
-- Gate 4 independent contract review returned FAIL with six must-fix findings; it did not reopen or change DEC-0015's accepted conceptual architecture.
-- Gate 5 documentation corrections assign complete artifact verification and safe loader errors to the tokenizer authority layer, accept valid tensor subclasses, make generated position IDs authoritative, narrow bitwise determinism to the same supported runtime/platform/build, require independent test expectations and missing boundary cases, and mandate focused re-review before contract or implementation acceptance after corrections.
-- Focused independent contract re-review returned PASS with all six findings resolved; master-chat adjudication also returned PASS, and Sebastien explicitly accepted the corrected detailed Phase 3 contract.
-- The accepted error boundary has exactly three public exceptions: tokenizer-owned `VocabularyArtifactError`, embedding-owned `EmbeddingTypeError`, and embedding-owned `EmbeddingContractError`.
-- Gate 7 pushed the accepted contract commit `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5`; local, remote-tracking, and independently queried remote `main` were verified synchronized at that commit.
-- Gate 8 explicitly authorized implementation under the accepted Phase 3 contract only.
-- The tokenizer-owned runtime loader verifies the canonical vocabulary artifact without corpus access and factory-produces an immutable `VocabularyBinding` for later layers.
-- `TokenPositionEmbedding` implements the accepted two-parameter `(81, 32)` token and `(256, 32)` position tables, explicit local-generator initialization, validated rank-1/rank-2 lookup, internal positions, and direct addition without later-phase behavior.
-- Thirty-five new automated tests pass for contract checks 1–35; manual contract check 36 confirms the change set introduces no Phase 4+ implementation. The focused total is 35 tests, and the complete suite has 157 tests with one expected restricted-context MPS skip.
-- Gate 10 independent implementation review returned PASS across the vocabulary boundary, module, initialization, validation, positions, outputs, gradients, errors, test independence, documentation, all thirty-six checks, and the Phase 3 boundary, with no corrections required.
-- Master-chat implementation adjudication returned PASS, and Sebastien explicitly accepted the Phase 3 implementation, completing Gate 11 without a correction or focused re-review cycle.
-- Gate 13 pushed implementation commit `68b47bb404d55357cadce35b97036c72c5876d62`; local, remote-tracking, and independently queried remote `main` were verified at that exact commit with a clean synchronized worktree.
-- Gate 14 was explicitly adjudicated SKIP/not required because existing implementation, tests, documentation, learning notes, lookup examples, gradient demonstrations, one-hot equivalence, and independent review already provide all required educational evidence.
-- Gate 15 independent Phase 3 exit review returned PASS for each of the three exact roadmap criteria; master-chat adjudication passed, and Sebastien explicitly accepted the result.
-- Phase 3's goal, `Understand learned token and positional representations`, is achieved. Every exit criterion is satisfied and no technical Phase 3 work remains.
+- Phase 0 — Project and Environment is complete with a reproducible Python
+  3.14.4/PyTorch 2.14.0 environment and verified CPU/MPS fundamentals.
+- Phase 1 — Dataset is complete. The pinned Gutenberg source, deterministic
+  eight-play extraction, whole-work train/validation/test split, provenance,
+  publication, and sealed-test governance are accepted and verified.
+- Phase 2 — Tokenization is complete. The accepted code-point tokenizer has a
+  frozen training-derived 81-entry vocabulary bound to artifact SHA-256
+  `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`.
+  Training and validation tokenization statistics were verified; the sealed
+  test remained untokenized.
+- Phase 3 — Embeddings is complete. The accepted implementation has explicit
+  `(81, 32)` token and `(256, 32)` learned absolute-position tables, direct
+  addition, deterministic local initialization, CPU float32 parameters,
+  `torch.long` IDs, and exact vocabulary binding. All three exit criteria
+  passed independent review.
+- Phase 3 closure commit `a66d169e76f06bee18d4f32b6340206f9f45ee63`
+  is pushed and independently verified on remote `main`; local `HEAD` and
+  `origin/main` matched with ahead/behind `0/0` before the current edits.
+- Phase 4 learning, repository orientation, and conceptual design are complete.
+  Sebastien accepted the twelve decisions recorded in DEC-0016: a positionwise
+  linear/log-bilinear baseline, shifted examples, context/stride 64, variable
+  tails without padding, on-demand immutable examples, one-example runtime,
+  an untied `(32, 81)` output weight plus `(81,)` bias, transparent stable
+  cross-entropy, manual SGD, train/validation/test governance, and `ln(81)` as
+  the primary conceptual baseline.
 
 ## Current work
 
-Phase 3 is technically complete. This documentation-only closure commit completes Gate 16; its Gate 17 push and Phase 4 remain unauthorized.
+The accepted corrected Phase 4 contract is documented at
+`docs/SIMPLE_LANGUAGE_MODEL_SPEC.md`. Gate 7 added an independent probability
+contract, cancellation-safe representability-aware cross-entropy, exact
+exception ownership and first-failure order, one uninterrupted model lifecycle,
+controlled failed-run analysis/re-registration, complete inherited experiment
+identities, and enforceable tests for all corrections.
+
+The passing Gate 6 mechanics remain unchanged: corpus-neutral transition
+coverage, Shakespeare governance, rank-one model input, 13,457 trainable
+parameters, head seed 4004, deterministic manual SGD, tail scaling `L / 64`,
+token-weighted reporting, learning rate 0.05, two passes, 12,389 examples per
+pass, 24,778 updates, the primary success predicate, and the technical phase
+boundary.
+
+Gate 8 accepted all corrected detailed mechanics. The repository contains no
+Phase 4 source, tests, parameters, examples, or experiment record.
 
 ## Current model status
 
-The Phase 3 representation code exists locally. Each authorized construction creates exactly two learnable CPU float32 parameters: `(81, 32)` token embeddings and `(256, 32)` position embeddings, totaling 10,784 parameters. No parameters are persisted, and no language model, context windows, training, or inference code exists.
+Only the accepted Phase 3 representation exists. Each construction has exactly
+10,784 learnable CPU float32 parameters. No language-model output head, logits,
+probability helper, language-model loss, manual update utility, production
+context-window implementation, training loop, checkpoint, or generation path
+exists.
+
+The accepted Phase 4 contract would add 2,592 output-weight and 81 bias
+parameters for 13,457 total, but no such parameters have been instantiated or
+implemented.
 
 ## Last verified working state
 
-The accepted Phase 1 pipeline and authoritative ledger remain intact. The accepted `shakespeare-code-point-v1` artifact remains 9,182 bytes with SHA-256 `9f4235f9dab3e0361221a90c5ae7ca7fee540760fcc1708964368e6f17d6d70e`. Independent review reproduced 7/7 vocabulary-runtime tests, 28/28 embedding tests, all 35 automated Phase 3 checks, and the complete 157-test suite with 156 passes, one expected restricted-context MPS skip, and zero failures. Manual check 36 confirms no context window, persistent token stream, target, loss, attention, Transformer, optimizer, training, checkpoint, or generation implementation was introduced.
+After the current documentation-only edits, the complete existing suite ran
+157 tests in the project environment: 156 passed, one restricted-context MPS
+test was skipped as expected, and zero failed. This includes 7/7 accepted
+vocabulary-runtime tests, 28/28 embedding tests, and all 35 automated Phase 3
+checks. The accepted vocabulary artifact remains 9,182 bytes with the pinned
+SHA-256 above. Documentation structure, arithmetic, tracked-file boundaries,
+unstaged status, and whitespace checks pass.
 
 ## Next exact step
 
-Obtain explicit authorization for Phase 3 Gate 17 closure push and remote verification.
+Obtain explicit authorization for the dedicated Phase 4 Gate 9
+accepted-contract checkpoint commit without implementing or running Phase 4.
 
 ## Known issues
 
-- PyTorch emits a warning that optional NumPy interoperability is unavailable. NumPy is intentionally not installed because no current milestone requires it.
-- MPS is unavailable inside some restricted execution contexts, but direct host verification and the unrestricted test suite both pass.
-- The catalog reports a 2025-08-24 update date, while the artifact response reports `Last-Modified: Tue, 01 Sep 2026 07:55:49 GMT`; both are recorded without assuming they describe the same revision mechanism.
-- Processed files are intentionally ignored derivatives; a fresh checkout regenerates them through the accepted publisher and authoritative ledger.
-- The Phase 1 dataset specification and manifest retain their Phase 1-closure statements that tokenization was unauthorized; DEC-0013 and this current-state file supersede only that historical authorization status without modifying either Phase 1 artifact.
+- PyTorch warns that optional NumPy interoperability is unavailable. NumPy is
+  intentionally absent because no accepted milestone requires it.
+- MPS may be unavailable in restricted execution contexts; CPU float32 remains
+  the accepted semantic baseline.
+- Processed corpus files are ignored reproducible derivatives and must be
+  regenerated only through the accepted publisher.
+- The catalog and artifact report different update/Last-Modified dates; both
+  remain recorded without assuming they describe the same revision mechanism.
 
 ## Important constraints
 
-- Publication or regeneration is authorized only through the accepted deterministic Shakespeare publisher using the authoritative manifest/ledger under DEC-0012's Models A/B threat model, with validation, cooperative locking, idempotence, no-clobber promotion, and mismatch refusal intact.
-- Do not add dependencies without an approved, recorded reason and lock-file update.
-- Do not manually edit, copy, or write processed prose or metadata; use alternate or unledgered publication mechanisms; bypass publisher validation; introduce force, overwrite, or repair behavior; or apply tokenizer-derived or other Phase 2 transformations.
-- Do not implement occurrence-location lookup for the pinned corpus; the accepted audit has zero candidates and requires no location records.
-- Derive the Phase 1 Unicode character inventory from training data only; do not define a token vocabulary in Phase 1.
-- Audit and report validation/test-only Unicode code points under the sealed-test diagnostic contract without discarding, replacing, normalizing, or adding them.
-- Do not extend or alter the accepted tokenizer implementation without a separately reviewed reason.
-- Do not alter the accepted Phase 3 contract or implementation during closure, and do not begin Phase 4 before Gate 17 remote verification and later explicit Gate 18 authorization.
-- Do not persist train or validation token-ID streams or access the sealed test through tokenizer orchestration/statistics.
-- Do not tokenize or inspect the sealed test work during Phase 2.
-- Do not create context windows, production batches, next-token targets, attention, Transformer blocks, a model head, loss, an optimizer, training, or generation. The future authorized Phase 3 implementation is limited to representations and synthetic lookup/batching/gradient demonstrations.
-- Do not use a pretrained language model or external model API as the model implementation.
-- Do not skip educational phases or silently change the model architecture.
-- Preserve reproducibility and keep core machine-learning code understandable.
+- The accepted detailed contract does not itself authorize implementation or
+  an experiment.
+- Do not create Phase 4 source or tests, instantiate the accepted output head,
+  construct persistent token/window/target artifacts, or run the experiment
+  before their separate gates.
+- Never access, tokenize, window, score, inspect, or derive Phase 4 statistics
+  from the sealed test work.
+- Preserve independent documents and the accepted complete-work split. No
+  example may cross a document or split boundary.
+- Preserve the accepted tokenizer, exact vocabulary identity, Phase 3
+  representation, CPU float32 baseline, and `torch.long` IDs.
+- Do not introduce attention, recurrence, convolution, Transformer components,
+  padding/special tokens, runtime batching/sampling, `torch.optim`, checkpoints,
+  generation, MPS/mixed precision, or pretrained/hosted models in Phase 4.
+- Do not add dependencies without an accepted recorded decision and lock-file
+  update.
+- Do not commit or push the current contract checkpoint without separate
+  explicit authorization.
 
 ## Open questions
 
-- No known Phase 2 technical issue or incomplete exit criterion remains.
-- No known detailed Phase 3 contract ambiguity remains after passing focused independent re-review and explicit acceptance.
-- No known Phase 3 implementation issue or incomplete exit criterion remains.
-- Training context length remains undecided; positional capacity 256 does not decide it.
+- No known detailed-contract ambiguity remains after Gate 8 PASS and explicit
+  acceptance.
+- The accepted output-head seed 4004, learning rate 0.05, two passes, gradient
+  scaling, and primary success predicate have not been empirically tried and
+  must not be tuned before separate experiment authorization.
+- Validation direction is deliberately observational rather than part of the
+  accepted Phase 4 PASS condition.
 
 ## Session handoff
 
-Phases 1, 2, and 3 are complete. Phase 3's accepted contract is remotely verified at `0e458cc8b8bce9d8e89b23abbb8ce6385669b7d5`, and its accepted implementation is remotely verified at `68b47bb404d55357cadce35b97036c72c5876d62`. Gate 14 was explicitly skipped as unnecessary. Gate 15 independently passed all three exit criteria, master-chat adjudication passed, and Sebastien accepted the result. This documentation-only commit completes Gate 16 without changing source, tests, contract semantics, or implementation. The next exact step is separate Gate 17 closure push/remote-verification authorization; Phase 4 remains unauthorized.
+Phases 0–3 are complete and remotely verified through closure commit
+`a66d169e76f06bee18d4f32b6340206f9f45ee63`. Phase 4 learning/design and its
+twelve conceptual decisions are accepted in DEC-0016. Gate 6 returned FAIL with
+seven accepted findings; Gate 7 corrected them in documentation while
+preserving all accepted and passing architecture. Gate 8 focused re-review and
+master-chat adjudication returned PASS, and Sebastien accepted the corrected
+contract. The next step is separate Gate 9 commit authorization; do not
+implement, experiment, stage, commit, push, or access the sealed test.

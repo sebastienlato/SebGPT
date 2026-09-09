@@ -602,8 +602,13 @@ generation. A scalar synthetic reduction exists only to expose autograd.
     accepted the result. Phase 3 is technically complete.
 16. **Phase 3 closure commit, if required.** This explicitly authorized
     documentation-only closure commit completes Gate 16.
-17. **Closure push and remote verification.** Not authorized.
-18. **Explicit Phase 4 authorization.** Not authorized.
+17. **Closure push and remote verification.** Complete: local `HEAD`, refreshed
+    `origin/main`, and independently queried remote `main` were verified at
+    closure commit `a66d169e76f06bee18d4f32b6340206f9f45ee63`.
+18. **Explicit Phase 4 authorization.** Complete for Phase 4 learning and
+    design. Its separately authorized detailed contract passed correction and
+    focused re-review and is accepted. Phase 4 implementation remains
+    unauthorized.
 
 No major checkpoint may be collapsed into another, and later gate status does
 not advance implicitly.
