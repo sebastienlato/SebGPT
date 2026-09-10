@@ -1303,3 +1303,33 @@ master-chat adjudication returned PASS, and Sebastien explicitly accepted the
 runner. Its dedicated commit and push/remote verification remain separately
 gated. The actual fixed experiment, Gate 24, sealed-test access, and Phase 5
 remain unauthorized.
+
+### Safe permitted-corpus factory prerequisite status
+
+The accepted runner was committed, pushed, and remotely verified at
+`a4da629a59584a0185a2ec286b0e770b7940940e`. A fresh experiment authorization
+then stopped before preflight, model construction, or corpus access because no
+accepted safe constructor existed for its seven-work `Phase4PermittedCorpus`.
+This was not Gate 24 and produced no experiment result.
+
+Sebastien authorized only the missing factory prerequisite. The local
+`load_phase4_permitted_corpus` validates both accepted manifest identities and
+the complete expected work metadata before reading content, excludes the sealed
+identity before construction, reads only the six training works and *The
+Tempest*, preserves accepted Phase 1 text/provenance semantics, and exposes no
+test/all selection. Twelve focused tests pass. Independent factory review,
+acceptance, commit, push, remote verification, and a fresh experiment
+authorization remain required; frozen settings and the thirty-gate workflow
+are unchanged.
+
+Independent factory review returned FAIL on one ancestor-symlink containment
+defect, three test-strength gaps, and stale README wording. The read boundary
+now rejects symlinked roots/components and physical escape before bytes are
+read; tests independently pin both manifest hashes, cover ancestor redirection,
+and verify every reconstructed `ExtractedWork` field. README now records the
+runner as remotely verified. Fourteen focused tests pass, and focused factory
+re-review returned PASS. Master-chat adjudication also returned PASS, and
+Sebastien explicitly accepted the safe corpus factory and its 14-test suite.
+Its dedicated commit and push/remote verification remain separately gated. No
+experiment or contract-setting change occurred, and a fresh experiment
+authorization remains required afterward.

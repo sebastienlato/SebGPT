@@ -138,8 +138,19 @@ lifecycle-role test-only blocker. The test now derives measurement roles from
 distinct split sentinel identities; final focused re-review and master-chat
 adjudication passed, and Sebastien explicitly accepted the runner and its 41
 tests. Its dedicated commit and push/remote verification remain separately
-gated. The bounded experiment remains unauthorized pending those checkpoints
-and a fresh authorization.
+gated in that historical status; both are now complete at
+`a4da629a59584a0185a2ec286b0e770b7940940e`. A fresh experiment authorization
+then stopped before Gate 24 because the runner had no accepted safe constructor
+for its seven-work `Phase4PermittedCorpus`. Sebastien authorized only that
+factory prerequisite, which is complete locally with 12 focused tests and
+awaited independent review. That review returned FAIL on one path-containment
+defect, three test-strength gaps, and stale README wording. All five were
+corrected locally with 14 focused tests. Those corrections passed final focused
+re-review and master-chat
+adjudication, and Sebastien explicitly accepted the factory and its 14 tests.
+Its dedicated commit and push/remote verification remain separately gated. The
+bounded experiment remains unauthorized pending those checkpoints and a fresh
+authorization.
 
 **Exit criteria:**
 

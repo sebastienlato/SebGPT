@@ -32,8 +32,15 @@ corrections are complete with 41 synthetic tests passing and await focused
 re-review. That review passed production and found one final test-only lifecycle
 role blocker; the strengthened sentinel-identity test passed final focused
 re-review and master-chat adjudication, and Sebastien explicitly accepted the
-runner. Its dedicated commit remains separately gated. No experiment has run,
-and the bounded experiment remains unauthorized.
+runner. Its accepted checkpoint is committed, pushed, and remotely verified at
+`a4da629a59584a0185a2ec286b0e770b7940940e`. A fresh experiment authorization
+stopped before Gate 24 because a safe seven-work corpus-handoff factory was
+missing. Its initial review found five focused issues; all are corrected locally
+with 14 factory tests passing. Final focused re-review and master-chat
+adjudication passed, and Sebastien explicitly accepted the factory. Its
+dedicated commit remains separately gated. The bounded experiment remains
+unauthorized pending commit, push, remote verification, and fresh authorization.
+No Phase 4 experiment has run. Phase 5 remains unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

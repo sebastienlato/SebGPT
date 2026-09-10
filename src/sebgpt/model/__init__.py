@@ -5,6 +5,7 @@ from sebgpt.model.embeddings import (
     EmbeddingTypeError,
     TokenPositionEmbedding,
 )
+from sebgpt.model.phase4_corpus import load_phase4_permitted_corpus
 from sebgpt.model.phase4_experiment import (
     AggregateMeasurement,
     Phase4ExperimentConfig,
@@ -48,6 +49,7 @@ __all__ = [
     "clear_gradients",
     "explicit_cross_entropy",
     "load_phase4_experiment_config",
+    "load_phase4_permitted_corpus",
     "manual_sgd_step",
     "measure_example_loss",
     "measure_aggregate_loss",

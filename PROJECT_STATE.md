@@ -4,14 +4,14 @@
 
 ## Current phase
 
-Phase 4 — Simple Neural Language Model (experiment-orchestration prerequisite)
+Phase 4 — Simple Neural Language Model (safe corpus-factory prerequisite)
 
 ## Current milestone
 
-Phase 4 experiment-orchestration prerequisite — Final focused independent
+Phase 4 safe permitted-corpus factory prerequisite — Final focused independent
 re-review returned PASS, master-chat adjudication returned PASS, and Sebastien
-explicitly accepted the fixed-experiment runner and its 41-test suite. The
-runner remains unstaged, uncommitted, and unpushed. A dedicated runner commit
+explicitly accepted the safe seven-work factory and its 14-test suite. The
+factory remains unstaged, uncommitted, and unpushed. Its dedicated commit
 requires separate authorization. No Gate 24 run or experiment result exists.
 
 ## Completed work
@@ -48,6 +48,8 @@ requires separate authorization. No Gate 24 run or experiment result exists.
   independently verified at `266797f891e9980b57bb35a633c91bef838d4111`.
 - The accepted model/loss/update slice was committed, pushed, and independently
   verified at `497ecde3577677903f14669722d61dcdf8caa1d6`.
+- The accepted fixed-experiment runner was committed, pushed, and independently
+  verified at `a4da629a59584a0185a2ec286b0e770b7940940e`.
 
 ## Current work
 
@@ -76,8 +78,17 @@ governance before tensorization, and produces a complete evidence-limited
 durable result. `tests/test_phase4_experiment.py` contains 41 synthetic checks
 and now derives externally observed measurement roles from the actual split
 sentinel received rather than call position. It never invokes the runner on the
-real Phase 4 corpus. This slice is accepted, unstaged, uncommitted, and
-unpushed.
+real Phase 4 corpus. This slice is accepted, committed, pushed, and remotely
+verified at `a4da629a59584a0185a2ec286b0e770b7940940e`.
+
+`src/sebgpt/model/phase4_corpus.py` implements the safe public seven-work
+factory. It validates both accepted manifests and the exact eight-work metadata
+shape before any text access, rejects symlinked roots/components and physical
+escape before reads, discards the sealed metadata record before work
+construction, reads only six train files plus *The Tempest*, preserves every
+Phase 1 `ExtractedWork` field, and returns `Phase4PermittedCorpus` with accepted
+counts. `tests/test_phase4_corpus.py` contains 14 focused checks. This factory
+slice is accepted, unstaged, uncommitted, and unpushed.
 
 ## Current model status
 
@@ -86,23 +97,23 @@ accepted 10,784 representation parameters plus a 2,592-element output weight
 and 81-element bias for exactly 13,457 trainable CPU float32 parameters. Tests
 instantiate only synthetic models. No corpus training/evaluation loop,
 aggregate experiment measurement, checkpoint, generation, or attention path
-exists in the remotely verified checkpoint. The local orchestration prerequisite
-can compose those accepted operations after its future commit, push, remote
-verification, and fresh experiment authorization, but it has not been invoked
-on the real corpus and persists no checkpoint.
+exists in the model-only checkpoint. The accepted runner can compose those
+operations after the accepted safe factory is committed, pushed, remotely
+verified, and granted a fresh experiment authorization, but it has not been
+invoked on the real corpus and persists no checkpoint.
 
 ## Last verified working state
 
-The corrected orchestration suite passes 41/41. The accepted model/loss/update
-suite remains 48/48, and accepted shifted-example/governance remains 44/44. The
-complete 290-test suite passes with 289 passes, one expected restricted-context
-MPS skip, and zero failures. Diff, phase-boundary, and unstaged-state checks
-pass.
+The corrected safe-corpus factory suite passes 14/14. Orchestration remains
+41/41, model/loss/update 48/48, and shifted-example/governance 44/44. The
+complete 304-test suite passes with 303 passes, one expected restricted-context
+MPS skip, and zero failures. Phase 1 source/artifact identity, diff,
+phase-boundary, and unstaged-state checks pass.
 
 ## Next exact step
 
-Obtain explicit authorization for the dedicated accepted fixed-experiment
-runner commit.
+Obtain explicit authorization for the dedicated accepted safe-corpus factory
+commit.
 
 ## Known issues
 
@@ -117,9 +128,9 @@ runner commit.
 
 ## Important constraints
 
-- Do not invoke the local fixed experiment entry point on the real corpus before
-  the accepted orchestration prerequisite is committed, pushed, remotely
-  verified, and granted a fresh experiment authorization.
+- Do not invoke the fixed experiment entry point before the accepted safe corpus
+  factory is committed, pushed, remotely verified, and followed by a fresh
+  experiment authorization.
 - Do not persist model parameters, gradients, logits, probabilities, losses,
   token/window/target artifacts, or run the experiment.
 - Never access, tokenize, window, score, inspect, or derive Phase 4 statistics
@@ -133,7 +144,7 @@ runner commit.
   generation, MPS/mixed precision, or pretrained/hosted models in Phase 4.
 - Do not add dependencies without an accepted recorded decision and lock-file
   update.
-- Do not stage, commit, or push the orchestration prerequisite without separate
+- Do not stage, commit, or push the safe corpus factory without separate
   explicit authorization after acceptance.
 
 ## Open questions
@@ -146,6 +157,8 @@ runner commit.
   focused re-review, adjudication, and explicit acceptance.
 - No runner implementation or test correction remains after final focused
   re-review, master-chat adjudication, and explicit acceptance.
+- No safe corpus-factory implementation or test correction remains after final
+  focused re-review, master-chat adjudication, and explicit acceptance.
 - The accepted output-head seed 4004, learning rate 0.05, two passes, gradient
   scaling, and primary success predicate have not been empirically tried and
   must not be tuned before separate experiment authorization.
@@ -159,9 +172,10 @@ Phases 0–3 are complete. The accepted Phase 4 contract is remotely verified at
 remotely verified at `266797f891e9980b57bb35a633c91bef838d4111`; and accepted
 model/loss/update mechanics are remotely verified at `497ecde3577677903f14669722d61dcdf8caa1d6`.
 The attempted Gate 23 run authorization stopped before experiment work because
-the runner was absent. Independent review of the local prerequisite found four
-focused issues; their production corrections passed focused re-review, which
-found one remaining lifecycle-role test blocker. That test now uses distinct
-split sentinel identities, passed final focused re-review, and the runner is
-explicitly accepted. Obtain dedicated runner commit authorization only; do not
-stage, commit, push, run the experiment, or begin Phase 5 without later gates.
+the runner was absent; the accepted runner is now remotely verified at
+`a4da629a59584a0185a2ec286b0e770b7940940e`. A fresh authorization then stopped
+before Gate 24 because a safe seven-work handoff factory was missing. That
+factory's independent review found five focused issues, all now corrected with
+14/14 tests passing; final focused re-review and adjudication passed, and the
+factory is explicitly accepted. Obtain dedicated factory commit authorization
+only; do not stage, commit, push, run the experiment, or begin Phase 5.
