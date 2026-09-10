@@ -104,60 +104,34 @@ Phase 4 learning and design, which is now complete.
 
 **Goal:** Build and train a small non-attention baseline to understand next-token prediction.
 
-The twelve conceptual architecture decisions and corrected detailed contract
-are accepted in DEC-0016 and `docs/SIMPLE_LANGUAGE_MODEL_SPEC.md`. Independent
-Gate 6 review returned FAIL with seven must-fix findings; Gate 7 corrected all
-seven, focused Gate 8 re-review returned PASS, master-chat adjudication returned
-PASS, and Sebastien explicitly accepted the contract. Gate 9, the dedicated
-accepted-contract commit, and Gate 10 push/remote verification are complete at
-`3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Gate 11 explicitly authorized
-only shifted-example and Shakespeare-governance implementation with focused
-tests. Gate 13 independent review passed production but returned FAIL for two
-test-only coverage blockers. Gate 14 corrections retain all original tests and
-expand the focused suite to 44 passing tests with production source unchanged.
-Focused re-review and master-chat adjudication returned PASS, and Sebastien
-explicitly accepted the slice. Gate 15, the dedicated implementation commit,
-and Gate 16 push/remote verification are complete at
-`266797f891e9980b57bb35a633c91bef838d4111`. Gate 17 explicitly authorized the
-model/loss/update slice. Gate 19 independent review failed only on
-`clear_gradients()` parameter-validation ordering and its missing regression
-proof. Both are corrected locally at Gate 20 with 48 focused tests passing and
-focused independent re-review returned PASS. Master-chat adjudication also
-returned PASS, and Sebastien explicitly accepted the model/loss/update slice.
-Gates 17–20 are complete. Gate 21 committed the accepted model/loss/update slice
-as `497ecde3577677903f14669722d61dcdf8caa1d6`, and Gate 22 pushed and remotely
-verified it. An attempted Gate 23 authorization stopped before model
-construction or corpus traversal because accepted experiment-orchestration
-machinery was missing; no Gate 24 run or experiment result exists. Sebastien
-authorized only that prerequisite implementation. Independent review returned
-FAIL on four focused issues: inherited model authority, governance before
-tensorization, durable result completeness, and test coverage. All four are
-corrected locally with 41 synthetic tests and await focused re-review. The
-focused re-review passed all production corrections but found one final
-lifecycle-role test-only blocker. The test now derives measurement roles from
-distinct split sentinel identities; final focused re-review and master-chat
-adjudication passed, and Sebastien explicitly accepted the runner and its 41
-tests. Its dedicated commit and push/remote verification remain separately
-gated in that historical status; both are now complete at
-`a4da629a59584a0185a2ec286b0e770b7940940e`. A fresh experiment authorization
-then stopped before Gate 24 because the runner had no accepted safe constructor
-for its seven-work `Phase4PermittedCorpus`. Sebastien authorized only that
-factory prerequisite, which is complete locally with 12 focused tests and
-awaited independent review. That review returned FAIL on one path-containment
-defect, three test-strength gaps, and stale README wording. All five were
-corrected locally with 14 focused tests. Those corrections passed final focused
-re-review and master-chat
-adjudication, and Sebastien explicitly accepted the factory and its 14 tests.
-Its dedicated commit and push/remote verification remain separately gated. The
-bounded experiment remains unauthorized pending those checkpoints and a fresh
-authorization.
+The accepted contract, shifted-example/governance slice, model/loss/update
+slice, fixed runner, and safe seven-work corpus factory are committed and
+remotely verified through `ba09d017e97a6d25317e160fc1a40a6304bcdd96`.
+Master chat explicitly authorized one fixed execution. The first launcher
+attempt stopped before imports and before Gate 24 because the documented
+`PYTHONPATH=src` convention was absent; it performed no experiment work.
+Master-chat adjudication classified that as a pre-experiment launcher abort and
+authorized one corrected launch with no semantic change. The corrected launch
+entered Gate 24, passed the accepted fifteen-stage preflight, constructed one
+model, completed two passes and exactly 24,778 updates, and produced the valid
+immutable result `EXP-20260909-01`. Training loss fell from
+`4.426503102003006` to `2.5551429421586387`, below the exact `ln(81)` baseline
+`4.394449154672439`; both frozen predicate clauses are true, so the recorded
+result is PASS. Validation loss improved from `4.427434147633409` to
+`2.565088013405899` as an observation only. Gate 25 independently returned PASS
+with no MUST-FIX issues and verified the experiment evidence and every Phase 4
+exit criterion. Gate 26 is not applicable because the valid experiment passed.
+Gate 27 master-chat adjudication returned PASS, and Sebastien explicitly
+accepted the result, all four exit criteria, and Phase 4 as technically
+complete. Gate 28 closure commit and Gate 29 push remain separately gated and
+unauthorized. Phase 5 remains unauthorized until Gate 30.
 
 **Exit criteria:**
 
-- Inputs, targets, logits, probabilities, and cross-entropy loss are understood.
-- A simple neural language model is implemented and tested.
-- Backpropagation and parameter updates are inspected on a small example.
-- A reproducible run shows loss improving over a baseline.
+- Inputs, targets, logits, probabilities, and cross-entropy loss are understood. **Verified and satisfied at Gates 25–27.**
+- A simple neural language model is implemented and tested. **Verified and satisfied at Gates 25–27.**
+- Backpropagation and parameter updates are inspected on a small example. **Verified and satisfied at Gates 25–27.**
+- A reproducible run shows loss improving over a baseline. **Verified and satisfied by Gate 24 result `EXP-20260909-01` and Gates 25–27 review and acceptance.**
 
 ## Phase 5 — Self-Attention
 

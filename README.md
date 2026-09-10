@@ -6,41 +6,18 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phase 0 — Project and Environment, Phase 1 — Dataset, Phase 2 — Tokenization,
-and Phase 3 — Embeddings are complete and remotely verified through Phase 3
-closure commit `a66d169e76f06bee18d4f32b6340206f9f45ee63`. Phase 4 — Simple
-Neural Language Model is in experiment-orchestration prerequisite work. Its
-twelve conceptual decisions
-and corrected detailed contract are accepted after a seven-finding correction
-cycle and passing focused re-review. The contract is remotely verified at
-`3fcf007ce819ca1a45aa75b48fa19f10311f2819`. Its deterministic shifted-example
-and Shakespeare-governance production slice passed independent review; two
-test-only coverage blockers were corrected, and 44 focused tests now pass with
-production source unchanged. Focused re-review and adjudication passed, and the
-slice is accepted and remotely verified at
-`266797f891e9980b57bb35a633c91bef838d4111`. The positionwise model,
-probability/loss mechanics, manual update, and no-update measurement slice is
-implemented and accepted. Gate 19 found only a gradient-clearing validation-order
-defect and its missing simultaneous-defect test; both are corrected with 48
-focused tests passing. Focused Gate 20 re-review and master-chat adjudication
-passed, and Sebastien explicitly accepted the model/loss/update slice. Gates
-21–22 committed, pushed, and remotely verified it at `497ecde3577677903f14669722d61dcdf8caa1d6`.
-An attempted experiment authorization stopped before model construction because
-the accepted runner prerequisite was absent. That orchestration layer and 27
-synthetic tests were reviewed; four focused corrections were required. The
-corrections are complete with 41 synthetic tests passing and await focused
-re-review. That review passed production and found one final test-only lifecycle
-role blocker; the strengthened sentinel-identity test passed final focused
-re-review and master-chat adjudication, and Sebastien explicitly accepted the
-runner. Its accepted checkpoint is committed, pushed, and remotely verified at
-`a4da629a59584a0185a2ec286b0e770b7940940e`. A fresh experiment authorization
-stopped before Gate 24 because a safe seven-work corpus-handoff factory was
-missing. Its initial review found five focused issues; all are corrected locally
-with 14 factory tests passing. Final focused re-review and master-chat
-adjudication passed, and Sebastien explicitly accepted the factory. Its
-dedicated commit remains separately gated. The bounded experiment remains
-unauthorized pending commit, push, remote verification, and fresh authorization.
-No Phase 4 experiment has run. Phase 5 remains unauthorized.
+Phases 0–3 are complete and remotely verified. Phase 4 — Simple Neural Language
+Model is technically complete after Gate 27 acceptance. Its accepted contract,
+shifted-example/governance slice, model/loss/update implementation, fixed runner,
+and safe seven-work corpus factory are remotely verified through
+`ba09d017e97a6d25317e160fc1a40a6304bcdd96`. The one-shot fixed experiment
+`EXP-20260909-01` completed with PASS: final training loss
+`2.5551429421586387` was below both initial training loss
+`4.426503102003006` and exact `math.log(81) = 4.394449154672439`. Gate 25
+independently returned PASS with no MUST-FIX issues, Gate 26 was not applicable,
+and Gate 27 accepted all four Phase 4 exit criteria. The closure documentation
+commit and push remain separately gated at Gates 28 and 29. Phase 5 remains
+unauthorized until Gate 30.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
