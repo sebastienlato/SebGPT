@@ -168,15 +168,21 @@ independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
 explicitly accepted the implementation and corrected evidence suite. Production
 remained byte-identical, the accepted contract remained unchanged, and DEC-0017
 remained unchanged. The dedicated accepted-implementation checkpoint commit is
-authorized. Push, Phase 5 exit review/closure, training, experiments,
-sealed-test access, and Phase 6 remain unauthorized.
+`f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e`, pushed, and independently
+remote-verified. Educational inspection supplied the accepted small synthetic
+evidence. Independent Phase 5 exit review returned PASS with no MUST-FIX
+findings, Master Chat adjudicated PASS, and Sebastien explicitly accepted all
+four exact exit criteria and Phase 5 as technically complete. No training
+experiment was required. Formal remote closure remains incomplete pending a
+separately authorized closure commit, push, and independent remote verification.
+Phase 6 remains unauthorized until remote closure and separate authorization.
 
 **Exit criteria:**
 
-- Queries, keys, values, scaling, masking, and attention weights are explainable.
-- Single-head causal self-attention is implemented transparently and tested.
-- Multi-head attention is built from understood components and tested.
-- Attention shapes and selected weights can be inspected.
+- Queries, keys, values, scaling, masking, and attention weights are explainable. **Verified and satisfied.**
+- Single-head causal self-attention is implemented transparently and tested. **Verified and satisfied.**
+- Multi-head attention is built from understood components and tested. **Verified and satisfied.**
+- Attention shapes and selected weights can be inspected. **Verified and satisfied.**
 
 ## Phase 6 — Transformer Block
 

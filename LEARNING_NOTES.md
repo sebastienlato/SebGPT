@@ -15,6 +15,13 @@ For each concept covered, record:
 
 ## Concepts covered
 
+### 2026-09-10 — Inspecting causal attention without overinterpreting it
+
+- **Explanation in our own words:** A causal attention matrix makes the model's permitted information routing visible. Row `i` describes how output position `i` combines value rows from positions `j <= i`; future entries are exactly zero, visible entries normalize to one, and different heads can distribute weight differently. This is useful internal evidence, but a weight is not a complete explanation: the result also depends on learned Q/K/V projections, value contents, head concatenation, the output projection, and later computations.
+- **Small example or observation:** With one token, the only weight was exactly `1` and output equaled its value projection. With three positions and controlled zero Q/K scores, the rows were `[1,0,0]`, `[0.5,0.5,0]`, and approximately equal thirds. Changing only position 2 left earlier single-head and multi-head outputs exactly unchanged; changing position 0 changed the later output by about `16.6667`. Four independently inspected head matrices had shape `(4,3,3)` and different permitted weights while preserving the same causal zero pattern.
+- **What remains unclear:** No Phase 5 learning or technical exit criterion remains open after independent review and Sebastien's acceptance. Formal remote closure and any later Phase 6 learning/design are separate future gates.
+- **Related code, test, decision, or experiment:** DEC-0017; accepted `docs/SELF_ATTENTION_SPEC.md`; accepted implementation checkpoint `f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e`; `src/sebgpt/model/self_attention.py`; `tests/test_self_attention.py`. This was a synthetic inspection only—no training experiment, checkpoint, generation, or sealed-test access occurred.
+
 ### 2026-09-10 — Causal self-attention as controlled information flow
 
 - **Explanation in our own words:** The Phase 4 baseline transforms each position independently, so a prediction cannot use earlier positions even when several positions share one example. Self-attention changes that information boundary. Each position creates a query describing what it seeks, while every position creates a key for matching and a value containing information that may be combined. Query-key dot products become scores, scaling keeps their magnitude suitable for normalization, a causal mask removes future positions, and row-wise softmax turns the remaining scores into weights. The output at one position is the weighted sum of visible value rows. Causality means position `i` may use `j <= i`, including itself, but never `j > i`.

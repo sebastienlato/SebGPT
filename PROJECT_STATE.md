@@ -4,29 +4,19 @@
 
 ## Current phase
 
-Phase 5 — Self-Attention (implementation accepted; checkpoint commit authorized)
+Phase 5 — Self-Attention (technically COMPLETE; closure bookkeeping local)
 
 ## Current milestone
 
-Phase 4 closure commit `e8b5c55fb2f2f03b155c1a8b4308dd9df20d9e1c`
-is pushed and independently remote-verified. Gate 30 authorized Phase 5
-learning/design. Sebastien completed the learning discussion, accepted the
-DEC-0017 conceptual architecture, and authorized a documentation-only detailed
-contract. Gate 5 drafting completed, Gate 6 Master Chat sanity review passed,
-and Gate 7 fresh independent review failed with five MUST-FIX and three
-SHOULD-FIX findings. Gate 8 corrected all eight findings, Gate 9 focused
-independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
-explicitly accepted the corrected detailed contract. The dedicated Gate 10
-accepted-contract checkpoint was committed at `9443dec`, pushed, and
-independently remote-verified. Gate 12 implementation authorization is complete,
-and Gate 13 implementation plus focused tests are complete locally pending
-review. Gate 14 independent implementation review returned FAIL on two
-test-evidence gaps and found no production or contract defect. Master Chat
-accepted both findings. The authorized Gate 15 test-only corrections are
-complete. Focused independent re-review returned PASS, Master Chat adjudicated
-PASS, and Sebastien explicitly accepted the Phase 5 implementation and corrected
-evidence suite. The dedicated accepted-implementation checkpoint commit is
-authorized; push remains separate.
+The accepted contract checkpoint `9443dec240ccdb5fdc1ebfcbe0f7b334893dbfff`
+and accepted implementation checkpoint
+`f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e` are pushed and independently
+remote-verified. Educational inspection and independent Phase 5 exit review
+returned PASS with no MUST-FIX findings. Master Chat adjudicated PASS, and
+Sebastien explicitly accepted all four exit criteria and Phase 5 as technically
+complete. Documentation-only closure bookkeeping is complete locally; formal
+remote closure still requires a separately authorized closure commit, push,
+and independent remote verification.
 
 ## Completed work
 
@@ -60,21 +50,29 @@ authorized; push remains separate.
   production implementation remained byte-identical, the accepted contract
   remained unchanged, and DEC-0017's conceptual substance remained unchanged.
 - Sebastien explicitly accepted the implementation and corrected evidence suite.
+- Implementation checkpoint `f4b5a1d` is pushed and independently
+  remote-verified with the accepted production and contract hashes unchanged.
+- Small synthetic inspection demonstrated the exact one-token weight, causal
+  three-position weights, future invariance, permitted historical influence,
+  full shape trace, and four separately inspectable heads.
+- Independent Phase 5 exit review returned PASS with no MUST-FIX findings;
+  Master Chat adjudicated PASS and Sebastien accepted technical completion.
 
 ## Phase 5 exit criteria
 
-These exact roadmap criteria are not yet satisfied:
+Independent review passed and Sebastien accepted all four criteria as satisfied:
 
-1. Queries, keys, values, scaling, masking, and attention weights are explainable.
-2. Single-head causal self-attention is implemented transparently and tested.
-3. Multi-head attention is built from understood components and tested.
-4. Attention shapes and selected weights can be inspected.
+1. Queries, keys, values, scaling, masking, and attention weights are explainable. **PASS.**
+2. Single-head causal self-attention is implemented transparently and tested. **PASS.**
+3. Multi-head attention is built from understood components and tested. **PASS.**
+4. Attention shapes and selected weights can be inspected. **PASS.**
 
 ## Current work
 
-The accepted implementation, corrected 41-test evidence suite, exports, and
-status documents are authorized for one dedicated checkpoint commit. Push and
-Phase 5 exit review/closure remain unauthorized.
+Phase 5 technical work is complete. This documentation-only closure bookkeeping
+records the accepted exit result. It is unstaged and uncommitted pending
+dedicated Phase 5 closure commit authorization. Phase 5 is not yet remotely
+closed.
 
 ## Current model status
 
@@ -87,15 +85,15 @@ retained.
 
 ## Last verified working state
 
-Before implementation, local `HEAD`, refreshed `origin/main`, and actual remote
-`main` matched accepted contract checkpoint `9443dec` with ahead/behind `0/0`
-and a clean worktree/index. Focused Phase 5 tests pass 41/41; relevant Phase 3/4
-regressions pass 182/182; and the complete 345-test suite passes with 344
-passes, one expected restricted-context MPS skip, and zero failures.
+Local `HEAD`, refreshed `origin/main`, and actual remote `main` match accepted
+implementation checkpoint `f4b5a1d` with ahead/behind `0/0`. Focused Phase 5
+tests pass 41/41; relevant Phase 3/4 regressions pass 182/182; and the complete
+345-test suite has 344 passes, one expected restricted-context MPS skip, and
+zero failures. Independent exit review returned PASS with no MUST-FIX findings.
 
 ## Next exact step
 
-Obtain separate authorization to push and independently remote-verify the accepted implementation checkpoint.
+Obtain dedicated Phase 5 closure commit authorization.
 
 ## Known issues
 
@@ -109,6 +107,7 @@ Obtain separate authorization to push and independently remote-verify the accept
   remain recorded without assuming they describe the same revision mechanism.
 - No production, contract, conceptual, or evidence issue remains after the
   focused PASS.
+- No technical Phase 5 issue remains after the accepted exit review.
 
 ## Important constraints
 
@@ -119,19 +118,20 @@ Obtain separate authorization to push and independently remote-verify the accept
   probabilities, losses, token/window/target data, or a checkpoint.
 - Preserve the accepted tokenizer, vocabulary identity, Phase 3 representation,
   model architecture, frozen experiment settings, and evidence-limited claim.
-- The implementation and evidence suite are accepted; the dedicated checkpoint
-  commit is authorized.
-- Do not push, train, or run an experiment.
+- Do not modify the accepted implementation, tests, or technical contract.
+- Do not stage, commit, or push the closure bookkeeping without separate
+  authorization.
 - Do not add batching, caller masks, padding, residual paths, normalization,
   feed-forward layers, dropout, Transformer blocks, stacking, checkpoints,
   generation, final evaluation, or Phase 6 work.
-- Do not begin Phase 5 closure or Phase 6.
+- Do not begin Phase 6; it requires Phase 5 remote closure and separate explicit
+  authorization.
 
 ## Open questions
 
 - No accepted conceptual or detailed-contract question remains open.
-- Push/remote verification and Phase 5 exit-review authorization remain separate
-  future gates.
+- The closure commit, closure push/remote verification, and Phase 6
+  authorization remain separate future gates.
 
 ## Session handoff
 
@@ -143,9 +143,9 @@ Chat adjudication returned PASS, and Sebastien explicitly accepted the
 corrected detailed contract without changing DEC-0017. Contract checkpoint
 `9443dec` is remotely verified. Gate 14 review found two test-only evidence
 gaps and no production or contract defect. Both corrections passed focused
-independent re-review; Master Chat adjudicated PASS; and Sebastien accepted the
-implementation and corrected evidence suite. Reviewed production and the
-accepted contract remain byte-identical, and DEC-0017 remains unchanged. The
-dedicated implementation checkpoint commit is authorized. Push, Phase 5 exit
-review/closure, training, experiment, sealed-test access, and Phase 6 remain
-unauthorized.
+independent re-review, and accepted implementation checkpoint `f4b5a1d` is
+remotely verified. Educational inspection and independent exit review passed
+all four criteria with no MUST-FIX findings; Master Chat adjudicated PASS and
+Sebastien accepted Phase 5 as technically complete. No training experiment was
+required. The closure bookkeeping is local and uncommitted; Phase 5 is not yet
+remotely closed. Proceed only to dedicated closure commit authorization.

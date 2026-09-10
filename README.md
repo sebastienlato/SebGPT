@@ -30,8 +30,13 @@ expected MPS skip. Focused independent re-review and Master Chat adjudication
 returned PASS, and Sebastien explicitly accepted the implementation and
 corrected evidence suite. Production remained byte-identical, the accepted
 contract and DEC-0017 remain unchanged, and the dedicated implementation
-checkpoint commit is authorized. Push, Phase 5 exit review/closure, training,
-experiments, sealed-test access, and Phase 6 remain unauthorized.
+checkpoint `f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e` is pushed and independently
+remote-verified. Educational inspection and independent exit review passed all
+four exact Phase 5 criteria with no MUST-FIX findings. Master Chat adjudicated
+PASS, and Sebastien accepted Phase 5 as technically complete. No training
+experiment was required. Formal remote closure still requires a closure commit,
+push, and independent verification; Phase 6 remains unauthorized until then and
+until separately authorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
