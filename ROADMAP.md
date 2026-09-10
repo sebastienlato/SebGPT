@@ -123,8 +123,10 @@ with no MUST-FIX issues and verified the experiment evidence and every Phase 4
 exit criterion. Gate 26 is not applicable because the valid experiment passed.
 Gate 27 master-chat adjudication returned PASS, and Sebastien explicitly
 accepted the result, all four exit criteria, and Phase 4 as technically
-complete. Gate 28 closure commit and Gate 29 push remain separately gated and
-unauthorized. Phase 5 remains unauthorized until Gate 30.
+complete. Gate 28 closure commit and Gate 29 push/independent remote
+verification are complete at
+`e8b5c55fb2f2f03b155c1a8b4308dd9df20d9e1c`. Phase 4 is remotely closed and
+must not be reopened. Gate 30 subsequently authorized Phase 5 learning/design.
 
 **Exit criteria:**
 
@@ -136,6 +138,26 @@ unauthorized. Phase 5 remains unauthorized until Gate 30.
 ## Phase 5 — Self-Attention
 
 **Goal:** Derive and implement causal self-attention before using it inside a Transformer.
+
+Gate 30 learning/design authorization is complete. Sebastien completed the
+first-principles discussion and accepted the conceptual architecture recorded
+in DEC-0017: standalone, single-sequence causal self-attention over the
+width-32 token-plus-position representation; one bias-free full-width head;
+four separately visible bias-free width-8 heads plus a bias-free width-32
+output projection; exact `j <= i` visibility; and explicit inspection of the
+post-softmax weights used for the output. A documentation-only detailed
+contract is proposed in `docs/SELF_ATTENTION_SPEC.md`. Gate 5 drafting is
+complete, Gate 6 Master Chat sanity review returned PASS, and Gate 7 fresh
+independent review returned FAIL with five MUST-FIX and three SHOULD-FIX
+findings. Master Chat accepted all eight without changing DEC-0017. Gate 8
+documentation-only corrections resolved every finding. Gate 9 focused
+independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
+explicitly accepted the corrected detailed contract without changing DEC-0017.
+The detailed mechanics are authoritative for later implementation, and the
+dedicated accepted-contract checkpoint commit is authorized. Push/remote
+verification and Phase 5 implementation remain separately gated and
+unauthorized, as do source, tests, parameters, training, experiments,
+sealed-test access, and Phase 6.
 
 **Exit criteria:**
 

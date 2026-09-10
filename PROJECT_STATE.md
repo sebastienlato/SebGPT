@@ -4,85 +4,83 @@
 
 ## Current phase
 
-Phase 4 — Simple Neural Language Model (technically COMPLETE; Gate 27 accepted)
+Phase 5 — Self-Attention (corrected detailed contract accepted)
 
 ## Current milestone
 
-Gate 25 independently returned PASS with no MUST-FIX issues, master-chat
-adjudication returned PASS, and Sebastien accepted the Gate 24 result, all four
-Phase 4 exit criteria, and Phase 4 as technically complete. Gate 26 is not
-applicable. Gate 27 closure bookkeeping is complete locally. Gate 28 closure
-commit authorization is the next required action.
+Phase 4 closure commit `e8b5c55fb2f2f03b155c1a8b4308dd9df20d9e1c`
+is pushed and independently remote-verified. Gate 30 authorized Phase 5
+learning/design. Sebastien completed the learning discussion, accepted the
+DEC-0017 conceptual architecture, and authorized a documentation-only detailed
+contract. Gate 5 drafting completed, Gate 6 Master Chat sanity review passed,
+and Gate 7 fresh independent review failed with five MUST-FIX and three
+SHOULD-FIX findings. Gate 8 corrected all eight findings, Gate 9 focused
+independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
+explicitly accepted the corrected detailed contract. The dedicated Gate 10
+accepted-contract checkpoint commit is authorized.
 
 ## Completed work
 
 - Phases 0–3 are complete and remotely verified.
-- The Phase 4 contract, shifted-example/governance slice, model/loss/update
-  implementation, fixed runner, and safe seven-work corpus factory are accepted,
-  committed, pushed, and remotely verified through
-  `ba09d017e97a6d25317e160fc1a40a6304bcdd96`.
-- The first authorized launcher stopped before imports and before Gate 24 because
-  it omitted the documented `PYTHONPATH=src` convention. Master chat classified
-  it as a pre-experiment launcher abort and authorized one corrected launch.
-- The corrected one-shot launch used only accepted production APIs, passed the
-  fifteen-stage preflight, constructed one model, completed two passes and
-  exactly 24,778 manual-SGD updates, and returned one valid result.
-- Training loss fell from `4.426503102003006` to `2.5551429421586387`, below
-  exact `math.log(81) = 4.394449154672439`; both frozen predicate clauses are
-  true. Validation loss improved observationally from `4.427434147633409` to
-  `2.565088013405899`.
-- Gate 25 independently verified the experiment evidence, source/test
-  immutability, reproduced regressions, and all four Phase 4 exit criteria with
-  no MUST-FIX issues. Gate 26 is not applicable because the experiment passed.
-- Gate 27 master-chat adjudication and explicit Sebastien acceptance make Phase
-  4 technically complete. No technical Phase 4 work remains.
+- Phase 4 is accepted and remotely closed at `e8b5c55`; do not reopen it.
+- `EXP-20260909-01` is the sole completed Phase 4 experiment and passed both
+  frozen training-loss predicates. Validation improvement remains observation
+  only and is not evidence of generalization or test performance.
+- Gate 30 explicitly authorized Phase 5 learning/design only.
+- Sebastien accepted standalone width-32, single-sequence causal attention with
+  one bias-free full-width head and four separately visible bias-free width-8
+  heads followed by a bias-free width-32 output projection.
+- Causal visibility is exactly `j <= i`; normal forward use returns contextual
+  representations, and separate inspection exposes the exact post-softmax
+  weights used for the output.
+- DEC-0017 records the accepted architecture and
+  `docs/SELF_ATTENTION_SPEC.md` proposes detailed mechanics and gates.
+- Gate 6 Master Chat sanity review returned PASS; Gate 7 independent contract
+  review returned FAIL, with all eight findings accepted for correction.
+- Gate 8 resolved all five MUST-FIX and all three SHOULD-FIX findings; Gate 9
+  focused re-review and Master Chat adjudication returned PASS.
+- Sebastien explicitly accepted the corrected contract without changing
+  DEC-0017. Its detailed mechanics are authoritative for later separately
+  authorized implementation.
 
-## Phase 4 exit criteria
+## Phase 5 exit criteria
 
-Gate 25 independently verified and Gate 27 accepted all four criteria as
-satisfied:
+These exact roadmap criteria are not yet satisfied:
 
-1. Inputs, targets, logits, probabilities, and cross-entropy loss are understood.
-2. A simple neural language model is implemented and tested.
-3. Backpropagation and parameter updates are inspected on a small example.
-4. A reproducible run shows loss improving over a baseline.
+1. Queries, keys, values, scaling, masking, and attention weights are explainable.
+2. Single-head causal self-attention is implemented transparently and tested.
+3. Multi-head attention is built from understood components and tested.
+4. Attention shapes and selected weights can be inspected.
 
 ## Current work
 
-The complete Gate 24 result remains recorded append-only in `EXPERIMENT_LOG.md`
-as the sole completed Phase 4 experiment, `EXP-20260909-01`. The Gate 27 closure
-documentation is unstaged and uncommitted pending separate Gate 28 authority.
-*Twelfth Night* remains sealed. No checkpoint or model/data artifact persisted.
-
-The result demonstrates only that this fixed positionwise baseline met its
-pre-registered training-loss predicate. It does not establish generalization or
-test performance. Phase 5 remains unauthorized.
+The accepted six-file documentation checkpoint is authorized for a dedicated
+commit. No source or tests have been created. Push and Phase 5 implementation
+remain unauthorized until this contract checkpoint is pushed, independently
+remote-verified, and implementation is separately authorized.
 
 ## Current model status
 
-The accepted model has exactly four trainable CPU float32 tensors and 13,457
-parameters. The one Gate 24 model instance remained identity-stable throughout
-initial measurement, two training passes, and final measurement. Initial and
-final canonical parameter digests were
-`969c9f4606ff823a027324cb5ba6bdb76e72da8f4f903c42958703e0a233db20` and
-`c8ce1ae08c4c3466d74b30068fb6b77eaf2142c28a5b914d64bf0277d63bac72`.
-All measurements preserved their boundary digest and left gradients `None`.
-The model was not retained.
+The accepted Phase 4 model architecture remains unchanged; its trained Gate 24
+instance was not retained. Phase 5 attention parameters are approved
+conceptually but do not yet exist. The proposal would add exactly three tensors
+and 3,072 parameters for standalone single-head attention, or thirteen tensors
+and 4,096 parameters for standalone four-head attention. Construction remains
+unauthorized until the contract is accepted, committed, pushed, remotely
+verified, and separately authorized for implementation.
 
 ## Last verified working state
 
-Gate 24 completed normally with PASS and no tuning or retry. After Gate 27
-bookkeeping, safe corpus passes 14/14, orchestration 41/41, model/loss/update
-48/48, and shifted-example/governance 44/44. The complete 304-test suite passes
-with 303 passes, one expected restricted-context MPS skip, and zero failures.
-Production source and tests remain byte-identical to the execution checkpoint.
-Gate 25 independently reproduced the required evidence and returned PASS with
-no MUST-FIX issues. Gate 27 is accepted.
+Before this documentation task, local `HEAD`, cached `origin/main`, and
+independently queried actual remote `main` all matched `e8b5c55` with
+ahead/behind `0/0` and a clean worktree/index. The prior accepted regression
+record remains 304 tests total: 303 passes, one expected restricted-context MPS
+skip, and zero failures. This task changes documentation only; no production
+source, tests, parameters, training, experiment, or sealed-test state changed.
 
 ## Next exact step
 
-Obtain explicit Gate 28 authorization for the Phase 4 closure documentation
-commit only.
+Obtain separate authorization to push and independently remote-verify the accepted-contract checkpoint.
 
 ## Known issues
 
@@ -94,6 +92,7 @@ commit only.
   regenerated only through the accepted publisher.
 - The catalog and artifact report different update/Last-Modified dates; both
   remain recorded without assuming they describe the same revision mechanism.
+- No accepted Phase 5 contract issue remains open after Gate 9 PASS.
 
 ## Important constraints
 
@@ -104,26 +103,29 @@ commit only.
   probabilities, losses, token/window/target data, or a checkpoint.
 - Preserve the accepted tokenizer, vocabulary identity, Phase 3 representation,
   model architecture, frozen experiment settings, and evidence-limited claim.
-- Do not begin attention, generation, Phase 5, or any later-phase work.
-- Leave the accepted Gate 24 result and Gate 27 closure documentation unstaged
-  and uncommitted until explicit Gate 28 authorization.
-- Gate 29 push requires separate authorization after a Gate 28 commit.
-- Phase 5 may begin only after an explicit Gate 30 authorization.
+- Phase 5 work is limited to the current documentation-only proposal.
+- Do not create Phase 5 source, tests, parameters, training, or experiments.
+- Do not add batching, caller masks, padding, residual paths, normalization,
+  feed-forward layers, dropout, Transformer blocks, stacking, checkpoints,
+  generation, final evaluation, or Phase 6 work.
+- Do not commit or push without separate authorization after contract
+  acceptance.
 
 ## Open questions
 
-- No technical Phase 4 questions or work remain after Gate 27 acceptance.
-- Gate 28 commit, Gate 29 push, and Gate 30 Phase 5 authorization remain
-  separate future gates.
-- Validation improved, but remains observation only and is not evidence of
-  generalization or test performance.
+- No accepted conceptual or detailed-contract question remains open.
+- Push/remote verification and implementation authorization remain separate
+  gates.
 
 ## Session handoff
 
-The accepted Phase 4 implementation is remotely verified through
-`ba09d017e97a6d25317e160fc1a40a6304bcdd96`. The corrected one-shot Gate 24 run
-produced valid PASS result `EXP-20260909-01`; Gate 25 independently returned
-PASS with no MUST-FIX issues; Gate 26 is N/A; and Gate 27 accepted all four exit
-criteria and Phase 4 as technically complete. No technical Phase 4 work remains.
-No sealed-test access, rerun, tuning, checkpoint, retained model, commit, or push
-occurred. Proceed only with explicit Gate 28 closure commit authorization.
+Phase 4 is remotely closed at `e8b5c55`. Gate 30 Phase 5 learning/design,
+conceptual approval, and documentation-only contract authorization are
+complete. DEC-0017, the proposed self-attention specification, and minimum
+continuity corrections completed Gate 8. Gate 9 focused re-review and Master
+Chat adjudication returned PASS, and Sebastien explicitly accepted the
+corrected detailed contract without changing DEC-0017. The dedicated Gate 10
+checkpoint commit is authorized. No implementation, tests, Phase 5 parameter
+construction, training, experiment, sealed-test access, push, or Phase 6 work
+is authorized. Proceed only to the separately gated push/remote-verification
+workflow after the checkpoint commit.

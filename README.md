@@ -7,17 +7,21 @@ The repository is the authoritative source of truth across working sessions. Beg
 ## Current status
 
 Phases 0–3 are complete and remotely verified. Phase 4 — Simple Neural Language
-Model is technically complete after Gate 27 acceptance. Its accepted contract,
-shifted-example/governance slice, model/loss/update implementation, fixed runner,
-and safe seven-work corpus factory are remotely verified through
-`ba09d017e97a6d25317e160fc1a40a6304bcdd96`. The one-shot fixed experiment
-`EXP-20260909-01` completed with PASS: final training loss
-`2.5551429421586387` was below both initial training loss
-`4.426503102003006` and exact `math.log(81) = 4.394449154672439`. Gate 25
-independently returned PASS with no MUST-FIX issues, Gate 26 was not applicable,
-and Gate 27 accepted all four Phase 4 exit criteria. The closure documentation
-commit and push remain separately gated at Gates 28 and 29. Phase 5 remains
-unauthorized until Gate 30.
+Model is accepted, closed, pushed, and independently remote-verified at
+`e8b5c55fb2f2f03b155c1a8b4308dd9df20d9e1c`. Its sole fixed experiment,
+`EXP-20260909-01`, passed its pre-registered training-loss predicate; this does
+not establish generalization or test performance. Gate 30 authorized Phase 5 —
+Self-Attention learning/design. Sebastien approved the conceptual architecture,
+and [docs/SELF_ATTENTION_SPEC.md](docs/SELF_ATTENTION_SPEC.md) now contains a
+documentation-only detailed contract proposal. Gate 6 Master Chat sanity
+review passed; Gate 7 fresh independent review failed with five MUST-FIX and
+three SHOULD-FIX findings; and all eight accepted Gate 8 documentation
+corrections are resolved. Gate 9 focused re-review and Master Chat adjudication
+returned PASS, and Sebastien explicitly accepted the corrected contract without
+changing DEC-0017. Its detailed mechanics are authoritative for later
+implementation, and the dedicated accepted-contract checkpoint commit is
+authorized. Push, Phase 5 implementation, source, tests, parameters, training,
+experiments, sealed-test access, and Phase 6 remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
