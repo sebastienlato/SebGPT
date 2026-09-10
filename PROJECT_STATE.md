@@ -4,19 +4,27 @@
 
 ## Current phase
 
-Phase 5 — Self-Attention (technically COMPLETE; closure bookkeeping local)
+Phase 6 — Transformer Block (contract accepted; checkpoint commit authorized)
 
 ## Current milestone
 
-The accepted contract checkpoint `9443dec240ccdb5fdc1ebfcbe0f7b334893dbfff`
-and accepted implementation checkpoint
-`f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e` are pushed and independently
-remote-verified. Educational inspection and independent Phase 5 exit review
-returned PASS with no MUST-FIX findings. Master Chat adjudicated PASS, and
-Sebastien explicitly accepted all four exit criteria and Phase 5 as technically
-complete. Documentation-only closure bookkeeping is complete locally; formal
-remote closure still requires a separately authorized closure commit, push,
-and independent remote verification.
+Phase 5 closure commit `6519d8c813b7e5bc899b73d6b1fa8c38a6819750`,
+`Complete Phase 5 self-attention`, is pushed and independently remote-verified.
+Local `HEAD`, `origin/main`, and actual remote `main` were verified at that exact
+commit with ahead/behind `0/0` and a clean worktree/index. All four Phase 5 exit
+criteria remain satisfied, and Phase 5 is formally remotely closed. Sebastien
+subsequently authorized Phase 6 learning/design only. The read-only continuity
+inspection is complete and accepted. Sebastien completed the learning/design
+discussion, accepted the consolidated conceptual architecture in DEC-0018, and
+authorized a documentation-only detailed contract. The proposed contract is now
+drafted in `docs/TRANSFORMER_BLOCK_SPEC.md`. Master Chat sanity review returned
+PASS; fresh Codex independent review returned FAIL with four MUST-FIX and one
+SHOULD-FIX finding; and Master Chat accepted all five without changing DEC-0018.
+The authorized documentation-only corrections completed Gate 9. Gate 10
+focused re-review returned PASS with all
+four MUST-FIX and the SHOULD-FIX finding resolved. Master Chat adjudicated PASS,
+Sebastien explicitly accepted the corrected detailed contract without changing
+DEC-0018, and the dedicated accepted-contract checkpoint commit is authorized.
 
 ## Completed work
 
@@ -57,6 +65,34 @@ and independent remote verification.
   full shape trace, and four separately inspectable heads.
 - Independent Phase 5 exit review returned PASS with no MUST-FIX findings;
   Master Chat adjudicated PASS and Sebastien accepted technical completion.
+- Phase 5 closure commit `6519d8c` was pushed and independently remote-verified;
+  Phase 5 is formally remotely closed.
+- Sebastien explicitly authorized learning/design only for `Phase 6 —
+  Transformer Block`, with exact goal `Combine attention and feed-forward
+  computation into a stable reusable block.`
+- The read-only Phase 6 continuity inspection is complete and accepted. At that
+  inspection stage it appropriately selected no architecture and created no
+  detailed contract.
+- Sebastien subsequently completed the Phase 6 learning/design discussion and
+  accepted the DEC-0018 conceptual architecture: one width-32, single-sequence,
+  pre-norm block with accepted four-head attention, two independent explicit
+  normalizations, a positionwise `32 -> 128 -> 32` GELU FFN, exactly two
+  branch-output dropout sites at `p = 0.1`, and two residual paths.
+- Documentation-only detailed-contract drafting is authorized and complete in
+  proposed `docs/TRANSFORMER_BLOCK_SPEC.md`; no implementation is authorized.
+- Master Chat Phase 6 contract sanity review returned PASS. Fresh Codex
+  independent review returned FAIL with four MUST-FIX and one SHOULD-FIX
+  finding, all accepted by Master Chat without changing DEC-0018.
+- Authorized documentation-only corrections now define the complete two-stream
+  dropout transaction, correct Phase 7/8 seed ownership, separate irreversible
+  workflow gates, synchronize review history, add mode-isolation evidence, and
+  incorporate the two optional clarifications.
+- Gate 10 focused independent detailed-contract re-review returned PASS with all
+  five prior findings resolved. Master Chat adjudicated PASS, and Sebastien
+  explicitly accepted the corrected contract without changing DEC-0018.
+- The accepted Phase 6 detailed mechanics are authoritative for later separately
+  authorized implementation. One dedicated six-file accepted-contract
+  checkpoint commit is authorized; push remains separate.
 
 ## Phase 5 exit criteria
 
@@ -67,12 +103,21 @@ Independent review passed and Sebastien accepted all four criteria as satisfied:
 3. Multi-head attention is built from understood components and tested. **PASS.**
 4. Attention shapes and selected weights can be inspected. **PASS.**
 
+## Phase 6 exit criteria
+
+These exact roadmap criteria are not yet satisfied:
+
+1. Normalization, residual connections, feed-forward layers, and dropout are understood.
+2. A Transformer block is implemented from explicit components.
+3. Shape, causality, gradient, and residual-path behavior are tested.
+
 ## Current work
 
-Phase 5 technical work is complete. This documentation-only closure bookkeeping
-records the accepted exit result. It is unstaged and uncommitted pending
-dedicated Phase 5 closure commit authorization. Phase 5 is not yet remotely
-closed.
+The accepted Phase 6 conceptual architecture remains recorded in DEC-0018, and
+the corrected `docs/TRANSFORMER_BLOCK_SPEC.md` detailed contract is explicitly
+accepted. Exactly its six authorized documentation files are approved for the
+dedicated accepted-contract checkpoint commit. Push and Phase 6 implementation
+remain unauthorized.
 
 ## Current model status
 
@@ -81,19 +126,25 @@ instance was not retained. The Phase 5 implementation defines exactly three
 tensors and 3,072 parameters for standalone single-head attention, or thirteen
 tensors and 4,096 parameters for standalone four-head attention. Synthetic
 tests construct only ephemeral modules; no model or parameter artifact is
-retained.
+retained. The accepted Phase 6 contract defines a future block containing the
+accepted 4,096-parameter multi-head attention plus 8,480 new parameters for two
+normalizations and one positionwise FFN, totaling 21 tensors and 12,576
+parameters. These are contract
+counts only; no Phase 6 parameter has been constructed.
 
 ## Last verified working state
 
-Local `HEAD`, refreshed `origin/main`, and actual remote `main` match accepted
-implementation checkpoint `f4b5a1d` with ahead/behind `0/0`. Focused Phase 5
-tests pass 41/41; relevant Phase 3/4 regressions pass 182/182; and the complete
-345-test suite has 344 passes, one expected restricted-context MPS skip, and
-zero failures. Independent exit review returned PASS with no MUST-FIX findings.
+Local `HEAD`, `origin/main`, and actual remote `main` were verified at Phase 5
+closure commit `6519d8c` with ahead/behind `0/0` and a clean worktree/index. The
+accepted implementation remains checkpoint `f4b5a1d`. Its accepted verification
+evidence remains: focused Phase 5 tests 41/41; relevant Phase 3/4 regressions
+182/182; and the complete 345-test suite with 344 passes, one expected
+restricted-context MPS skip, and zero failures.
 
 ## Next exact step
 
-Obtain dedicated Phase 5 closure commit authorization.
+Obtain separate authorization to push and independently remote-verify the
+accepted Phase 6 contract checkpoint.
 
 ## Known issues
 
@@ -108,6 +159,8 @@ Obtain dedicated Phase 5 closure commit authorization.
 - No production, contract, conceptual, or evidence issue remains after the
   focused PASS.
 - No technical Phase 5 issue remains after the accepted exit review.
+- No detailed-contract issue remains after focused independent re-review passed
+  all five prior findings.
 
 ## Important constraints
 
@@ -119,33 +172,48 @@ Obtain dedicated Phase 5 closure commit authorization.
 - Preserve the accepted tokenizer, vocabulary identity, Phase 3 representation,
   model architecture, frozen experiment settings, and evidence-limited claim.
 - Do not modify the accepted implementation, tests, or technical contract.
-- Do not stage, commit, or push the closure bookkeeping without separate
+- DEC-0018 is the accepted Phase 6 conceptual architecture; do not change it
+  through detailed mechanics without explicit Master Chat adjudication and
+  Sebastien approval.
+- The corrected detailed contract is accepted; do not modify its mechanics or
+  treat acceptance as implementation authorization.
+- Do not create or modify Phase 6 source, tests, parameters, or experiments.
+- Do not amend or push the accepted-contract checkpoint without separate
   authorization.
-- Do not add batching, caller masks, padding, residual paths, normalization,
-  feed-forward layers, dropout, Transformer blocks, stacking, checkpoints,
-  generation, final evaluation, or Phase 6 work.
-- Do not begin Phase 6; it requires Phase 5 remote closure and separate explicit
-  authorization.
+- Do not begin Phase 7 stacking or integration, Phase 8 training/checkpointing,
+  or Phase 9 generation/evaluation.
 
 ## Open questions
 
-- No accepted conceptual or detailed-contract question remains open.
-- The closure commit, closure push/remote verification, and Phase 6
-  authorization remain separate future gates.
+- Phase 5 has no open technical or closure question.
+- No accepted Phase 6 conceptual or detailed-contract question remains open.
+- Contract push/remote verification and later implementation authorization are
+  separate future gates.
+- Complete-model seed allocation for multiple distinct stacked blocks is
+  explicitly deferred to Phase 7; it does not reopen Phase 5 or Phase 6.
 
 ## Session handoff
 
-Phase 4 is remotely closed at `e8b5c55`. Gate 30 Phase 5 learning/design,
-conceptual approval, and documentation-only contract authorization are
-complete. DEC-0017, the proposed self-attention specification, and minimum
-continuity corrections completed Gate 8. Gate 9 focused re-review and Master
-Chat adjudication returned PASS, and Sebastien explicitly accepted the
-corrected detailed contract without changing DEC-0017. Contract checkpoint
-`9443dec` is remotely verified. Gate 14 review found two test-only evidence
-gaps and no production or contract defect. Both corrections passed focused
-independent re-review, and accepted implementation checkpoint `f4b5a1d` is
-remotely verified. Educational inspection and independent exit review passed
-all four criteria with no MUST-FIX findings; Master Chat adjudicated PASS and
-Sebastien accepted Phase 5 as technically complete. No training experiment was
-required. The closure bookkeeping is local and uncommitted; Phase 5 is not yet
-remotely closed. Proceed only to dedicated closure commit authorization.
+Phases 0–4 are remotely closed. Phase 5's accepted contract is `9443dec`, its
+accepted implementation is `f4b5a1d`, and all four exit criteria remain
+satisfied. Closure commit `6519d8c`, `Complete Phase 5 self-attention`, was
+pushed and independently remote-verified with local `HEAD`, `origin/main`, and
+actual remote `main` at that exact commit, ahead/behind `0/0`, and a clean
+worktree/index. Phase 5 is formally remotely closed. Sebastien then authorized
+Phase 6 learning/design only. The accepted continuity inspection verified the
+exact phase name, goal, exit criteria, inherited interfaces, boundaries,
+learning prerequisites, open architecture questions, and deferred mechanics.
+Sebastien then completed the learning/design discussion, accepted the
+consolidated architecture recorded in DEC-0018, and authorized documentation-
+only detailed-contract drafting. Corrected `docs/TRANSFORMER_BLOCK_SPEC.md` is
+accepted with exact component arithmetic, counts, initialization,
+dropout, inspection, evidence, boundaries, and gates. Master Chat sanity review
+returned PASS; fresh Codex review returned FAIL with four MUST-FIX and one
+SHOULD-FIX finding; and Master Chat accepted all five without changing DEC-0018.
+Authorized documentation-only corrections are complete locally. No source,
+tests, parameters, experiment, or sealed-test access occurred. Gate 10 focused
+re-review returned PASS, Master Chat adjudicated PASS, and Sebastien accepted
+the corrected detailed contract without changing DEC-0018. The dedicated
+six-file accepted-contract checkpoint commit is authorized and completes Gate
+13. Push and implementation remain unauthorized. Proceed only to separate
+contract push and independent remote-verification authorization.

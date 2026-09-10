@@ -173,9 +173,13 @@ remote-verified. Educational inspection supplied the accepted small synthetic
 evidence. Independent Phase 5 exit review returned PASS with no MUST-FIX
 findings, Master Chat adjudicated PASS, and Sebastien explicitly accepted all
 four exact exit criteria and Phase 5 as technically complete. No training
-experiment was required. Formal remote closure remains incomplete pending a
-separately authorized closure commit, push, and independent remote verification.
-Phase 6 remains unauthorized until remote closure and separate authorization.
+experiment was required. The documentation-only closure commit
+`6519d8c813b7e5bc899b73d6b1fa8c38a6819750`, `Complete Phase 5
+self-attention`, was subsequently pushed and independently remote-verified.
+Local `HEAD`, `origin/main`, and actual remote `main` matched that exact commit
+with ahead/behind `0/0` and a clean worktree/index. All four exit criteria
+remain satisfied, and Phase 5 is formally remotely closed. Sebastien then
+explicitly authorized Phase 6 learning/design only.
 
 **Exit criteria:**
 
@@ -187,6 +191,26 @@ Phase 6 remains unauthorized until remote closure and separate authorization.
 ## Phase 6 — Transformer Block
 
 **Goal:** Combine attention and feed-forward computation into a stable reusable block.
+
+Phase 6 learning/design only is explicitly authorized, and the read-only
+continuity inspection is complete and accepted. Sebastien completed the
+learning/design discussion and accepted the consolidated conceptual architecture
+recorded in DEC-0018: one width-32 single-sequence pre-norm block, accepted
+four-head Phase 5 attention, two independent explicit LayerNorm-style
+components, a positionwise `32 -> 128 -> 32` GELU feed-forward network,
+dropout `p = 0.1` at exactly the two branch outputs, two residual paths, and
+same-call educational inspection. Documentation-only detailed-contract drafting
+is authorized and complete in proposed `docs/TRANSFORMER_BLOCK_SPEC.md`. Master
+Chat sanity review returned PASS. Fresh Codex independent contract review
+returned FAIL with four MUST-FIX and one SHOULD-FIX finding; Master Chat
+accepted all five without changing DEC-0018. Authorized documentation-only
+corrections completed Gate 9. Gate 10 focused independent re-review returned
+PASS with all five findings resolved; Master Chat adjudicated PASS; and
+Sebastien explicitly accepted the corrected detailed contract without changing
+DEC-0018. Its mechanics are authoritative for later separately authorized
+implementation. The dedicated six-file accepted-contract checkpoint commit is
+authorized and completes Gate 13. Push, implementation, source, tests, parameter
+construction, and experiments remain unauthorized.
 
 **Exit criteria:**
 

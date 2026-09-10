@@ -6,37 +6,30 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phases 0–3 are complete and remotely verified. Phase 4 — Simple Neural Language
-Model is accepted, closed, pushed, and independently remote-verified at
-`e8b5c55fb2f2f03b155c1a8b4308dd9df20d9e1c`. Its sole fixed experiment,
-`EXP-20260909-01`, passed its pre-registered training-loss predicate; this does
-not establish generalization or test performance. Gate 30 authorized Phase 5 —
-Self-Attention learning/design. Sebastien approved the conceptual architecture,
-and [docs/SELF_ATTENTION_SPEC.md](docs/SELF_ATTENTION_SPEC.md) now contains a
-documentation-only detailed contract proposal. Gate 6 Master Chat sanity
-review passed; Gate 7 fresh independent review failed with five MUST-FIX and
-three SHOULD-FIX findings; and all eight accepted Gate 8 documentation
-corrections are resolved. Gate 9 focused re-review and Master Chat adjudication
-returned PASS, and Sebastien explicitly accepted the corrected contract without
-changing DEC-0017. Its detailed mechanics are authoritative for later
-implementation. The contract checkpoint is pushed and remotely verified at
-`9443dec240ccdb5fdc1ebfcbe0f7b334893dbfff`; Gate 12 authorized implementation;
-and Gate 13 implementation is complete locally with 40 focused tests passing.
-The full 344-test suite passes with 343 passes and one expected MPS skip. The
-Gate 14 independent review found two test-only evidence gaps and no production
-or contract defect. Both Gate 15 corrections are complete locally; focused
-tests pass 41/41 and the full 345-test suite passes with 344 passes and one
-expected MPS skip. Focused independent re-review and Master Chat adjudication
-returned PASS, and Sebastien explicitly accepted the implementation and
-corrected evidence suite. Production remained byte-identical, the accepted
-contract and DEC-0017 remain unchanged, and the dedicated implementation
-checkpoint `f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e` is pushed and independently
-remote-verified. Educational inspection and independent exit review passed all
-four exact Phase 5 criteria with no MUST-FIX findings. Master Chat adjudicated
-PASS, and Sebastien accepted Phase 5 as technically complete. No training
-experiment was required. Formal remote closure still requires a closure commit,
-push, and independent verification; Phase 6 remains unauthorized until then and
-until separately authorized.
+Phases 0–4 are complete and remotely closed. Phase 5 — Self-Attention is also
+formally remotely closed at `6519d8c813b7e5bc899b73d6b1fa8c38a6819750`,
+`Complete Phase 5 self-attention`. Local `HEAD`, `origin/main`, and actual remote
+`main` were independently verified at that exact commit with ahead/behind `0/0`
+and a clean worktree/index. All four Phase 5 exit criteria remain satisfied, and
+the accepted implementation checkpoint remains
+`f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e`.
+
+Sebastien subsequently explicitly authorized learning/design only for Phase 6
+— Transformer Block, whose exact goal is to combine attention and feed-forward
+computation into a stable reusable block. The read-only continuity inspection
+is complete and accepted. Sebastien then accepted the consolidated DEC-0018
+conceptual architecture and authorized documentation-only detailed-contract
+drafting. Proposed [docs/TRANSFORMER_BLOCK_SPEC.md](docs/TRANSFORMER_BLOCK_SPEC.md)
+is complete locally. Master Chat sanity review returned PASS; fresh Codex
+independent review returned FAIL with four MUST-FIX and one SHOULD-FIX finding;
+and Master Chat accepted all five without changing DEC-0018. The authorized
+documentation-only corrections completed Gate 9. Gate 10 focused independent
+re-review returned PASS with all findings resolved; Master Chat adjudicated
+PASS; and Sebastien explicitly accepted the corrected detailed contract. Its
+mechanics are authoritative for later separately authorized implementation.
+The dedicated six-file accepted-contract checkpoint commit is authorized. Push,
+Phase 6 implementation, source, tests, parameter construction, and experiments
+remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
