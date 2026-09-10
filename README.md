@@ -47,7 +47,14 @@ resolved. Master Chat adjudicated PASS, and Sebastien explicitly accepted the
 corrected implementation and evidence suite. The accepted contract and
 DEC-0018 remain unchanged. The dedicated eight-file accepted-implementation
 checkpoint commit is authorized; push and Phase 6 exit review/closure remain
-separately unauthorized.
+separately unauthorized. The implementation checkpoint was subsequently
+committed as `c2624078eae5947e505d7f8093869e32c58e521b`, pushed, and
+independently remote-verified. Educational inspection and independent exit
+review passed all three exact Phase 6 criteria with no MUST-FIX findings. Master
+Chat adjudicated PASS, and Sebastien accepted Phase 6 as technically complete.
+No training experiment was required or performed. Formal remote closure still
+requires a separately authorized closure commit, push, and independent remote
+verification. Phase 7 remains unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

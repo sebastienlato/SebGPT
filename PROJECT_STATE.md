@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 6 — Transformer Block (implementation accepted; checkpoint commit authorized)
+Phase 6 — Transformer Block (technically COMPLETE; closure bookkeeping local)
 
 ## Current milestone
 
@@ -36,6 +36,13 @@ DEC-0018 changes. Gate 20 focused independent re-review returned PASS with all
 three findings resolved, Master Chat adjudicated PASS, and Sebastien explicitly
 accepted the corrected implementation and evidence suite. The dedicated
 accepted-implementation checkpoint commit is authorized; push remains separate.
+Accepted implementation checkpoint `c2624078eae5947e505d7f8093869e32c58e521b`
+was then pushed and independently remote-verified with local `HEAD`, refreshed
+`origin/main`, and actual remote `main` equal at ahead/behind `0/0`. The
+educational inspection completed, independent Phase 6 exit review returned PASS
+with no MUST-FIX findings, Master Chat adjudicated PASS, and Sebastien accepted
+all three exit criteria and Phase 6 as technically complete. Documentation-only
+closure bookkeeping is complete locally.
 
 ## Completed work
 
@@ -127,6 +134,14 @@ accepted-implementation checkpoint commit is authorized; push remains separate.
 - The accepted contract and DEC-0018 remain unchanged. The dedicated eight-file
   accepted-implementation checkpoint commit is authorized; push and exit review
   remain separate.
+- Accepted implementation checkpoint `c262407` was pushed and independently
+  remote-verified with local and remote `main` synchronized at `0/0`.
+- Small synthetic educational inspection demonstrated normalization, FFN,
+  dropout, both residual value/gradient paths, complete shape preservation,
+  causality, permitted history, same-call inspection, and gradient flow to all
+  21 tensors and 12,576 parameters.
+- Independent Phase 6 exit review returned PASS with no MUST-FIX findings;
+  Master Chat adjudicated PASS and Sebastien accepted technical completion.
 
 ## Phase 5 exit criteria
 
@@ -139,17 +154,18 @@ Independent review passed and Sebastien accepted all four criteria as satisfied:
 
 ## Phase 6 exit criteria
 
-These exact roadmap criteria are not yet satisfied:
+Independent review passed and Sebastien accepted all three criteria as satisfied:
 
-1. Normalization, residual connections, feed-forward layers, and dropout are understood.
-2. A Transformer block is implemented from explicit components.
-3. Shape, causality, gradient, and residual-path behavior are tested.
+1. Normalization, residual connections, feed-forward layers, and dropout are understood. **PASS.**
+2. A Transformer block is implemented from explicit components. **PASS.**
+3. Shape, causality, gradient, and residual-path behavior are tested. **PASS.**
 
 ## Current work
 
-The accepted Phase 6 implementation, corrected 51-test evidence suite, exports,
-and status documents are authorized for one dedicated checkpoint commit. Push,
-remote verification, and Phase 6 exit review/closure remain unauthorized.
+Phase 6 technical work is complete. This documentation-only closure bookkeeping
+records the accepted exit result. It remains unstaged and uncommitted pending
+separate Phase 6 closure commit authorization. Phase 6 is not yet formally
+remotely closed.
 
 ## Current model status
 
@@ -166,17 +182,16 @@ parameter artifact is retained.
 
 ## Last verified working state
 
-Before implementation, local `HEAD`, refreshed `origin/main`, and actual remote
-`main` matched accepted Phase 6 contract checkpoint `2177c7e` with ahead/behind
-`0/0` and a clean worktree/index. Corrected focused Phase 6 tests pass 51/51;
-relevant accepted Phase 3–5 regressions pass 223/223; and the complete 396-test
-suite has 395 passes, one expected restricted-context MPS skip, and zero
-failures.
+Local `HEAD`, refreshed `origin/main`, and actual remote `main` match accepted
+Phase 6 implementation checkpoint `c262407` with ahead/behind `0/0` and a clean
+worktree/index before this closure bookkeeping. Focused Phase 6 tests pass
+51/51; relevant accepted Phase 3–5 regressions pass 223/223; and the complete
+396-test suite has 395 passes, one expected restricted-context MPS skip, and
+zero failures. Independent exit review returned PASS with no MUST-FIX findings.
 
 ## Next exact step
 
-Obtain separate authorization to push and independently remote-verify the
-accepted Phase 6 implementation checkpoint.
+Obtain separate Phase 6 closure commit authorization.
 
 ## Known issues
 
@@ -195,6 +210,7 @@ accepted Phase 6 implementation checkpoint.
   all five prior findings.
 - No implementation or evidence issue remains after focused re-review passed
   all three prior findings.
+- No technical Phase 6 issue remains after the accepted exit review.
 
 ## Important constraints
 
@@ -211,10 +227,10 @@ accepted Phase 6 implementation checkpoint.
   Sebastien approval.
 - The corrected detailed contract is accepted; do not modify its mechanics or
   implement outside its boundary.
-- Phase 6 implementation and corrected evidence are accepted. Only the dedicated
-  eight-file checkpoint commit is authorized; push remains unauthorized.
-- Do not change the accepted contract or DEC-0018; limit correction to the three
-  accepted implementation-review findings.
+- Do not modify the accepted Phase 6 contract, implementation, tests, or
+  evidence suite.
+- Do not stage, commit, or push the closure bookkeeping without separate
+  authorization.
 - Do not begin Phase 7 stacking or integration, Phase 8 training/checkpointing,
   or Phase 9 generation/evaluation.
 
@@ -222,8 +238,9 @@ accepted Phase 6 implementation checkpoint.
 
 - Phase 5 has no open technical or closure question.
 - No accepted Phase 6 conceptual or detailed-contract question remains open.
-- Implementation push/remote verification and later exit-review authorization
-  remain open.
+- Phase 6 has no open technical question.
+- Closure commit authorization, closure push/remote verification, and Phase 7
+  authorization remain separate future gates.
 - Complete-model seed allocation for multiple distinct stacked blocks is
   explicitly deferred to Phase 7; it does not reopen Phase 5 or Phase 6.
 
@@ -258,6 +275,10 @@ regressions, and a 396-test full suite with 395 passes, one expected MPS skip,
 and zero failures. Gate 20 focused re-review returned PASS, Master Chat
 adjudicated PASS, and Sebastien accepted the corrected implementation and
 evidence suite. The accepted contract and DEC-0018 remain unchanged. The
-dedicated eight-file accepted-implementation checkpoint commit is authorized;
-push, exit review, closure, training, experiment, sealed-test access, and Phase
-7 remain unauthorized.
+accepted implementation checkpoint `c262407` is pushed and independently
+remote-verified. Educational inspection and independent exit review passed all
+three exact criteria with no MUST-FIX findings; Master Chat adjudicated PASS,
+and Sebastien accepted Phase 6 as technically complete. No training experiment
+was required. Closure bookkeeping is complete locally and uncommitted; Phase 6
+is not yet formally remotely closed. Proceed only to separate Phase 6 closure
+commit authorization. Phase 7 remains unauthorized.

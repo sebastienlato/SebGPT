@@ -230,13 +230,23 @@ corrected implementation and evidence suite. The accepted contract and
 DEC-0018 remain unchanged. The dedicated eight-file accepted-implementation
 checkpoint commit is authorized and completes Gate 23. Push and independent
 remote verification remain separate; Phase 6 exit review/closure remains
-unauthorized until they complete.
+unauthorized until they complete. The accepted implementation checkpoint was
+subsequently committed as `c2624078eae5947e505d7f8093869e32c58e521b`, pushed,
+and independently remote-verified. Educational inspection demonstrated the
+accepted normalization, FFN, dropout, residual, shape, causality, historical
+influence, same-call inspection, gradient, and parameter-count evidence.
+Independent Phase 6 exit review returned PASS with no MUST-FIX findings, Master
+Chat adjudicated PASS, and Sebastien explicitly accepted all three exact exit
+criteria and Phase 6 as technically complete. No training experiment was
+required or performed. Formal remote closure remains incomplete pending a
+separately authorized closure commit, push, and independent remote verification.
+Phase 7 remains unauthorized pending that closure and separate authorization.
 
 **Exit criteria:**
 
-- Normalization, residual connections, feed-forward layers, and dropout are understood.
-- A Transformer block is implemented from explicit components.
-- Shape, causality, gradient, and residual-path behavior are tested.
+- Normalization, residual connections, feed-forward layers, and dropout are understood. **Verified and satisfied.**
+- A Transformer block is implemented from explicit components. **Verified and satisfied.**
+- Shape, causality, gradient, and residual-path behavior are tested. **Verified and satisfied.**
 
 ## Phase 7 — Complete Mini-GPT
 
