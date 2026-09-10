@@ -154,10 +154,22 @@ documentation-only corrections resolved every finding. Gate 9 focused
 independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
 explicitly accepted the corrected detailed contract without changing DEC-0017.
 The detailed mechanics are authoritative for later implementation, and the
-dedicated accepted-contract checkpoint commit is authorized. Push/remote
-verification and Phase 5 implementation remain separately gated and
-unauthorized, as do source, tests, parameters, training, experiments,
-sealed-test access, and Phase 6.
+dedicated accepted-contract checkpoint was committed, pushed, and independently
+remote-verified at `9443dec240ccdb5fdc1ebfcbe0f7b334893dbfff`. Gate 12
+explicitly authorized implementation. Gate 13 is complete locally with the
+standalone single-head and four-head modules, exact inspection API, public
+exports, and 40 focused synthetic tests. The complete 344-test suite passes
+with 343 passes, one expected restricted-context MPS skip, and zero failures.
+Gate 14 independent review found two test-only evidence gaps and no production,
+contract, DEC-0017, or phase-boundary defect. Both authorized Gate 15 test-only
+corrections are complete locally: focused tests pass 41/41 and the complete
+345-test suite passes with 344 passes and one expected MPS skip. Focused
+independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
+explicitly accepted the implementation and corrected evidence suite. Production
+remained byte-identical, the accepted contract remained unchanged, and DEC-0017
+remained unchanged. The dedicated accepted-implementation checkpoint commit is
+authorized. Push, Phase 5 exit review/closure, training, experiments,
+sealed-test access, and Phase 6 remain unauthorized.
 
 **Exit criteria:**
 

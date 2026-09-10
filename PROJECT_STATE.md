@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 5 — Self-Attention (corrected detailed contract accepted)
+Phase 5 — Self-Attention (implementation accepted; checkpoint commit authorized)
 
 ## Current milestone
 
@@ -17,7 +17,16 @@ and Gate 7 fresh independent review failed with five MUST-FIX and three
 SHOULD-FIX findings. Gate 8 corrected all eight findings, Gate 9 focused
 independent re-review returned PASS, Master Chat adjudicated PASS, and Sebastien
 explicitly accepted the corrected detailed contract. The dedicated Gate 10
-accepted-contract checkpoint commit is authorized.
+accepted-contract checkpoint was committed at `9443dec`, pushed, and
+independently remote-verified. Gate 12 implementation authorization is complete,
+and Gate 13 implementation plus focused tests are complete locally pending
+review. Gate 14 independent implementation review returned FAIL on two
+test-evidence gaps and found no production or contract defect. Master Chat
+accepted both findings. The authorized Gate 15 test-only corrections are
+complete. Focused independent re-review returned PASS, Master Chat adjudicated
+PASS, and Sebastien explicitly accepted the Phase 5 implementation and corrected
+evidence suite. The dedicated accepted-implementation checkpoint commit is
+authorized; push remains separate.
 
 ## Completed work
 
@@ -42,6 +51,15 @@ accepted-contract checkpoint commit is authorized.
 - Sebastien explicitly accepted the corrected contract without changing
   DEC-0017. Its detailed mechanics are authoritative for later separately
   authorized implementation.
+- The accepted contract checkpoint `9443dec` is pushed and independently
+  remote-verified; Gate 12 explicitly authorized implementation.
+- Gate 14 review found only two test-evidence gaps: incomplete all-head
+  defensive-sentinel coverage and a missing explicit multi-input gradient
+  finiteness assertion. Production and accepted architecture/contract passed.
+- Both test-only corrections passed focused independent re-review. The
+  production implementation remained byte-identical, the accepted contract
+  remained unchanged, and DEC-0017's conceptual substance remained unchanged.
+- Sebastien explicitly accepted the implementation and corrected evidence suite.
 
 ## Phase 5 exit criteria
 
@@ -54,33 +72,30 @@ These exact roadmap criteria are not yet satisfied:
 
 ## Current work
 
-The accepted six-file documentation checkpoint is authorized for a dedicated
-commit. No source or tests have been created. Push and Phase 5 implementation
-remain unauthorized until this contract checkpoint is pushed, independently
-remote-verified, and implementation is separately authorized.
+The accepted implementation, corrected 41-test evidence suite, exports, and
+status documents are authorized for one dedicated checkpoint commit. Push and
+Phase 5 exit review/closure remain unauthorized.
 
 ## Current model status
 
 The accepted Phase 4 model architecture remains unchanged; its trained Gate 24
-instance was not retained. Phase 5 attention parameters are approved
-conceptually but do not yet exist. The proposal would add exactly three tensors
-and 3,072 parameters for standalone single-head attention, or thirteen tensors
-and 4,096 parameters for standalone four-head attention. Construction remains
-unauthorized until the contract is accepted, committed, pushed, remotely
-verified, and separately authorized for implementation.
+instance was not retained. The Phase 5 implementation defines exactly three
+tensors and 3,072 parameters for standalone single-head attention, or thirteen
+tensors and 4,096 parameters for standalone four-head attention. Synthetic
+tests construct only ephemeral modules; no model or parameter artifact is
+retained.
 
 ## Last verified working state
 
-Before this documentation task, local `HEAD`, cached `origin/main`, and
-independently queried actual remote `main` all matched `e8b5c55` with
-ahead/behind `0/0` and a clean worktree/index. The prior accepted regression
-record remains 304 tests total: 303 passes, one expected restricted-context MPS
-skip, and zero failures. This task changes documentation only; no production
-source, tests, parameters, training, experiment, or sealed-test state changed.
+Before implementation, local `HEAD`, refreshed `origin/main`, and actual remote
+`main` matched accepted contract checkpoint `9443dec` with ahead/behind `0/0`
+and a clean worktree/index. Focused Phase 5 tests pass 41/41; relevant Phase 3/4
+regressions pass 182/182; and the complete 345-test suite passes with 344
+passes, one expected restricted-context MPS skip, and zero failures.
 
 ## Next exact step
 
-Obtain separate authorization to push and independently remote-verify the accepted-contract checkpoint.
+Obtain separate authorization to push and independently remote-verify the accepted implementation checkpoint.
 
 ## Known issues
 
@@ -92,7 +107,8 @@ Obtain separate authorization to push and independently remote-verify the accept
   regenerated only through the accepted publisher.
 - The catalog and artifact report different update/Last-Modified dates; both
   remain recorded without assuming they describe the same revision mechanism.
-- No accepted Phase 5 contract issue remains open after Gate 9 PASS.
+- No production, contract, conceptual, or evidence issue remains after the
+  focused PASS.
 
 ## Important constraints
 
@@ -103,19 +119,19 @@ Obtain separate authorization to push and independently remote-verify the accept
   probabilities, losses, token/window/target data, or a checkpoint.
 - Preserve the accepted tokenizer, vocabulary identity, Phase 3 representation,
   model architecture, frozen experiment settings, and evidence-limited claim.
-- Phase 5 work is limited to the current documentation-only proposal.
-- Do not create Phase 5 source, tests, parameters, training, or experiments.
+- The implementation and evidence suite are accepted; the dedicated checkpoint
+  commit is authorized.
+- Do not push, train, or run an experiment.
 - Do not add batching, caller masks, padding, residual paths, normalization,
   feed-forward layers, dropout, Transformer blocks, stacking, checkpoints,
   generation, final evaluation, or Phase 6 work.
-- Do not commit or push without separate authorization after contract
-  acceptance.
+- Do not begin Phase 5 closure or Phase 6.
 
 ## Open questions
 
 - No accepted conceptual or detailed-contract question remains open.
-- Push/remote verification and implementation authorization remain separate
-  gates.
+- Push/remote verification and Phase 5 exit-review authorization remain separate
+  future gates.
 
 ## Session handoff
 
@@ -124,8 +140,12 @@ conceptual approval, and documentation-only contract authorization are
 complete. DEC-0017, the proposed self-attention specification, and minimum
 continuity corrections completed Gate 8. Gate 9 focused re-review and Master
 Chat adjudication returned PASS, and Sebastien explicitly accepted the
-corrected detailed contract without changing DEC-0017. The dedicated Gate 10
-checkpoint commit is authorized. No implementation, tests, Phase 5 parameter
-construction, training, experiment, sealed-test access, push, or Phase 6 work
-is authorized. Proceed only to the separately gated push/remote-verification
-workflow after the checkpoint commit.
+corrected detailed contract without changing DEC-0017. Contract checkpoint
+`9443dec` is remotely verified. Gate 14 review found two test-only evidence
+gaps and no production or contract defect. Both corrections passed focused
+independent re-review; Master Chat adjudicated PASS; and Sebastien accepted the
+implementation and corrected evidence suite. Reviewed production and the
+accepted contract remain byte-identical, and DEC-0017 remains unchanged. The
+dedicated implementation checkpoint commit is authorized. Push, Phase 5 exit
+review/closure, training, experiment, sealed-test access, and Phase 6 remain
+unauthorized.

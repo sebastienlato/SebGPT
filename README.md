@@ -19,8 +19,18 @@ three SHOULD-FIX findings; and all eight accepted Gate 8 documentation
 corrections are resolved. Gate 9 focused re-review and Master Chat adjudication
 returned PASS, and Sebastien explicitly accepted the corrected contract without
 changing DEC-0017. Its detailed mechanics are authoritative for later
-implementation, and the dedicated accepted-contract checkpoint commit is
-authorized. Push, Phase 5 implementation, source, tests, parameters, training,
+implementation. The contract checkpoint is pushed and remotely verified at
+`9443dec240ccdb5fdc1ebfcbe0f7b334893dbfff`; Gate 12 authorized implementation;
+and Gate 13 implementation is complete locally with 40 focused tests passing.
+The full 344-test suite passes with 343 passes and one expected MPS skip. The
+Gate 14 independent review found two test-only evidence gaps and no production
+or contract defect. Both Gate 15 corrections are complete locally; focused
+tests pass 41/41 and the full 345-test suite passes with 344 passes and one
+expected MPS skip. Focused independent re-review and Master Chat adjudication
+returned PASS, and Sebastien explicitly accepted the implementation and
+corrected evidence suite. Production remained byte-identical, the accepted
+contract and DEC-0017 remain unchanged, and the dedicated implementation
+checkpoint commit is authorized. Push, Phase 5 exit review/closure, training,
 experiments, sealed-test access, and Phase 6 remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:

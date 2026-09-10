@@ -18,6 +18,14 @@ from sebgpt.model.phase4_experiment import (
     run_training_pass,
     validate_phase4_experiment_preflight,
 )
+from sebgpt.model.self_attention import (
+    AttentionContractError,
+    AttentionInspection,
+    AttentionNumericalError,
+    AttentionTypeError,
+    MultiHeadCausalSelfAttention,
+    SingleHeadCausalSelfAttention,
+)
 from sebgpt.model.simple_language_model import (
     Phase4ContractError,
     Phase4GovernanceError,
@@ -34,6 +42,10 @@ from sebgpt.model.simple_language_model import (
 
 
 __all__ = [
+    "AttentionContractError",
+    "AttentionInspection",
+    "AttentionNumericalError",
+    "AttentionTypeError",
     "EmbeddingContractError",
     "EmbeddingTypeError",
     "AggregateMeasurement",
@@ -43,7 +55,9 @@ __all__ = [
     "Phase4GovernanceError",
     "Phase4PermittedCorpus",
     "Phase4TypeError",
+    "MultiHeadCausalSelfAttention",
     "SimpleNeuralLanguageModel",
+    "SingleHeadCausalSelfAttention",
     "TokenPositionEmbedding",
     "TrainingPassResult",
     "clear_gradients",
