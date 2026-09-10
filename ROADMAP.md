@@ -208,9 +208,29 @@ corrections completed Gate 9. Gate 10 focused independent re-review returned
 PASS with all five findings resolved; Master Chat adjudicated PASS; and
 Sebastien explicitly accepted the corrected detailed contract without changing
 DEC-0018. Its mechanics are authoritative for later separately authorized
-implementation. The dedicated six-file accepted-contract checkpoint commit is
-authorized and completes Gate 13. Push, implementation, source, tests, parameter
-construction, and experiments remain unauthorized.
+implementation. The dedicated six-file accepted-contract checkpoint is committed
+at `2177c7e9aaf7a12790afb1fd25693723ac759170`, pushed, and independently
+remote-verified with local and remote `main` synchronized at ahead/behind `0/0`.
+Sebastien then explicitly authorized Phase 6 implementation. Gate 16 is complete
+locally with the explicit block components, accepted Phase 5 attention
+composition, complete two-stream dropout transaction, exports, and 50 focused
+synthetic tests. Relevant Phase 3–5 regressions pass 223/223, and the complete
+395-test suite has 394 passes, one expected MPS skip, and zero failures. The
+implementation remains unaccepted, unstaged, uncommitted, and unpushed pending
+Master Chat sanity review and fresh independent review. Independent review
+subsequently returned FAIL with three MUST-FIX findings accepted by Master Chat:
+one narrow standalone-dropout seed-validation defect and two test-evidence gaps.
+Focused source/test corrections are complete locally without changing the
+accepted contract or DEC-0018. Corrected focused tests pass 51/51, relevant
+Phase 3–5 regressions pass 223/223, and the complete 396-test suite has 395
+passes, one expected MPS skip, and zero failures. Focused independent
+implementation re-review subsequently returned PASS with all three findings
+resolved. Master Chat adjudicated PASS, and Sebastien explicitly accepted the
+corrected implementation and evidence suite. The accepted contract and
+DEC-0018 remain unchanged. The dedicated eight-file accepted-implementation
+checkpoint commit is authorized and completes Gate 23. Push and independent
+remote verification remain separate; Phase 6 exit review/closure remains
+unauthorized until they complete.
 
 **Exit criteria:**
 
