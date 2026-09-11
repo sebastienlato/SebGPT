@@ -15,6 +15,13 @@ For each concept covered, record:
 
 ## Concepts covered
 
+### 2026-09-10 — Assembling a complete decoder-only model without hiding its parts
+
+- **Explanation in our own words:** A complete decoder-only language model composes several already-understood boundaries: token IDs become token-plus-position vectors, four distinct causal Transformer blocks repeatedly refine one width-32 residual stream, a final per-position normalization prepares that stream for an untied affine head, and each row becomes 81 next-token logits. Stacking does not change sequence length or weaken causality; it increases the number of causal transformations and independently learned parameters. Logits-only forward remains separate from next-token alignment and cross-entropy, so complete-model architecture can be learned and tested without introducing a training loop.
+- **Small example or observation:** For a synthetic length-three input, every representation stage has shape `(3, 32)`, each block can expose four `(3, 3)` attention matrices, and the head produces `(3, 81)` logits. Exact accounting is 10,784 embedding parameters plus `4 * 12,576 = 50,304` block parameters, 64 final-normalization parameters, and 2,673 untied biased-head parameters, totaling 90 tensors and 63,825 parameters. The four accepted block constructors begin from identical standalone seeds, so Phase 7 must preserve their objects and mathematics while assigning new deterministic, non-identical assembled-model parameter states.
+- **What remains unclear:** No conceptual architecture or detailed-contract question remains. Fresh independent review required five precision/evidence corrections; focused re-review passed all five with no remaining finding, and Master Chat formally accepted the corrected contract. The documentation-checkpoint commit and every implementation action remain separately gated and unauthorized.
+- **Related code, test, decision, or experiment:** DEC-0019; proposed `docs/MINI_GPT_SPEC.md`; accepted `docs/EMBEDDING_SPEC.md`, `docs/SELF_ATTENTION_SPEC.md`, and `docs/TRANSFORMER_BLOCK_SPEC.md`. This was documentation-only learning/design work; no source, tests, parameters, training, experiment, generation, or sealed-test access occurred.
+
 ### 2026-09-10 — Inspecting a complete pre-norm Transformer block
 
 - **Explanation in our own words:** A Transformer block preserves representation width while combining two different learned branches with two identity routes. Per-position normalization and the `32 -> 128 -> 32` GELU FFN do not mix sequence positions; causal attention is the only cross-position mechanism. Dropout changes branch values only in training mode, and each residual path can preserve both values and gradients when its learned branch is zero.

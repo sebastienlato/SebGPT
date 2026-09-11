@@ -6,55 +6,31 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phases 0–4 are complete and remotely closed. Phase 5 — Self-Attention is also
-formally remotely closed at `6519d8c813b7e5bc899b73d6b1fa8c38a6819750`,
-`Complete Phase 5 self-attention`. Local `HEAD`, `origin/main`, and actual remote
-`main` were independently verified at that exact commit with ahead/behind `0/0`
-and a clean worktree/index. All four Phase 5 exit criteria remain satisfied, and
-the accepted implementation checkpoint remains
-`f4b5a1d8d29ab7ee6eb5b987fe150fb040c4544e`.
+Phases 0–6 are complete and remotely closed. Phase 6 closure commit
+`e84b364a7955ddba86b30938babd5dae9e829935`, `Complete Phase 6 transformer
+block`, is pushed and independently remote-verified; its accepted implementation
+checkpoint remains `c2624078eae5947e505d7f8093869e32c58e521b`.
 
-Sebastien subsequently explicitly authorized learning/design only for Phase 6
-— Transformer Block, whose exact goal is to combine attention and feed-forward
-computation into a stable reusable block. The read-only continuity inspection
-is complete and accepted. Sebastien then accepted the consolidated DEC-0018
-conceptual architecture and authorized documentation-only detailed-contract
-drafting. Proposed [docs/TRANSFORMER_BLOCK_SPEC.md](docs/TRANSFORMER_BLOCK_SPEC.md)
-is complete locally. Master Chat sanity review returned PASS; fresh Codex
-independent review returned FAIL with four MUST-FIX and one SHOULD-FIX finding;
-and Master Chat accepted all five without changing DEC-0018. The authorized
-documentation-only corrections completed Gate 9. Gate 10 focused independent
-re-review returned PASS with all findings resolved; Master Chat adjudicated
-PASS; and Sebastien explicitly accepted the corrected detailed contract. Its
-mechanics are authoritative for later separately authorized implementation.
-The dedicated six-file accepted-contract checkpoint commit is authorized. Push,
-Phase 6 implementation, source, tests, parameter construction, and experiments
-remain unauthorized. That checkpoint was subsequently committed as `2177c7e`,
-pushed, and independently remote-verified with ahead/behind `0/0`. Sebastien then
-explicitly authorized Phase 6 implementation. Gate 16 is complete locally with
-the explicit Transformer block source, public exports, and 50 focused synthetic
-tests. Relevant Phase 3–5 regressions pass 223/223, and the complete 395-test
-suite has 394 passes, one expected MPS skip, and zero failures. Implementation
-acceptance, staging, commit, and push remain unauthorized pending review.
-Independent review returned FAIL with three MUST-FIX findings accepted by
-Master Chat: one narrow standalone-dropout validation defect and two evidence
-gaps. Focused source/test corrections are complete without changing the accepted
-contract or DEC-0018. Focused tests pass 51/51, relevant Phase 3–5 regressions
-pass 223/223, and the complete 396-test suite has 395 passes, one expected MPS
-skip, and zero failures. Focused independent implementation re-review
-subsequently returned PASS with all three findings
-resolved. Master Chat adjudicated PASS, and Sebastien explicitly accepted the
-corrected implementation and evidence suite. The accepted contract and
-DEC-0018 remain unchanged. The dedicated eight-file accepted-implementation
-checkpoint commit is authorized; push and Phase 6 exit review/closure remain
-separately unauthorized. The implementation checkpoint was subsequently
-committed as `c2624078eae5947e505d7f8093869e32c58e521b`, pushed, and
-independently remote-verified. Educational inspection and independent exit
-review passed all three exact Phase 6 criteria with no MUST-FIX findings. Master
-Chat adjudicated PASS, and Sebastien accepted Phase 6 as technically complete.
-No training experiment was required or performed. Formal remote closure still
-requires a separately authorized closure commit, push, and independent remote
-verification. Phase 7 remains unauthorized.
+Sebastien authorized Phase 7 learning/design only. The continuity inspection is
+complete, and DEC-0019 records the accepted consolidated Complete Mini-GPT
+architecture: the accepted Phase 3 representation, exactly four distinct
+accepted Phase 6 block structures, final explicit width-32 normalization, an
+untied biased 81-class head, single-sequence length `1..256`, logits-only
+forward, separate next-token loss, same-call inspection, and 63,825 parameters.
+Documentation-only proposed
+[docs/MINI_GPT_SPEC.md](docs/MINI_GPT_SPEC.md) defines detailed interfaces,
+deterministic distinct-block initialization, parameter accounting, validation,
+inspection, evidence, exclusions, and gates. It remained unaccepted pending
+focused independent re-review after an initial CORRECT BEFORE ACCEPTANCE result
+with five IMPORTANT findings and no BLOCKER. All five targeted documentation
+corrections were completed without changing DEC-0019 or the initialization
+design. Focused re-review returned PASS with all five findings resolved and no
+remaining BLOCKER, IMPORTANT, or MINOR finding. Codex recommended `ACCEPT
+CORRECTED CONTRACT`, and Master Chat formally accepted the corrected detailed
+contract. Separate documentation-checkpoint commit authorization is next and
+remains unauthorized. Phase 7 implementation, source, tests, parameter
+construction, training, experiments, sealed-test access, staging, commit, push,
+Phase 8, and Phase 9 remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

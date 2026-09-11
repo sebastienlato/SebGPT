@@ -238,9 +238,11 @@ influence, same-call inspection, gradient, and parameter-count evidence.
 Independent Phase 6 exit review returned PASS with no MUST-FIX findings, Master
 Chat adjudicated PASS, and Sebastien explicitly accepted all three exact exit
 criteria and Phase 6 as technically complete. No training experiment was
-required or performed. Formal remote closure remains incomplete pending a
-separately authorized closure commit, push, and independent remote verification.
-Phase 7 remains unauthorized pending that closure and separate authorization.
+required or performed. The documentation-only closure was subsequently
+committed as `e84b364a7955ddba86b30938babd5dae9e829935`, `Complete Phase 6
+transformer block`, pushed, and independently remote-verified with local and
+remote `main` synchronized at ahead/behind `0/0`. Phase 6 is formally remotely
+closed. Sebastien then explicitly authorized Phase 7 learning/design only.
 
 **Exit criteria:**
 
@@ -251,6 +253,35 @@ Phase 7 remains unauthorized pending that closure and separate authorization.
 ## Phase 7 — Complete Mini-GPT
 
 **Goal:** Assemble a decoder-only autoregressive Transformer.
+
+Phase 6 is formally remotely closed at
+`e84b364a7955ddba86b30938babd5dae9e829935`. Sebastien explicitly authorized
+Phase 7 learning/design only, and the read-only continuity inspection is
+complete and accepted. Sebastien subsequently accepted the consolidated
+conceptual architecture in DEC-0019: one nonempty single sequence of length
+`1..256`, the unchanged accepted Phase 3 representation, exactly four distinct
+and non-shared accepted Phase 6 blocks, one final explicit width-32
+LayerNorm-style normalization, one untied biased `(32, 81)` language-model
+head, logits-only forward, separate next-token loss, same-call complete-model
+inspection, and exactly 63,825 parameters. Documentation-only detailed-contract
+drafting and continuity reconciliation are authorized and complete locally in
+proposed `docs/MINI_GPT_SPEC.md`. Fresh independent review returned CORRECT
+BEFORE ACCEPTANCE with five IMPORTANT findings and no BLOCKER. Master Chat
+accepted all five without changing DEC-0019 and authorized only targeted
+documentation correction. The five corrections are complete locally: safe
+parameter-validation order, an exact public/error oracle, equal-length
+causality evidence, stack-wide stochastic failure-state evidence without outer
+rollback, and fully separated irreversible-action gates. The proposal remains
+unaccepted at that correction checkpoint pending focused independent re-review
+and final acceptance. Focused independent re-review subsequently returned PASS with all five findings
+resolved and no BLOCKER, IMPORTANT, or MINOR findings. Codex recommended
+`ACCEPT CORRECTED CONTRACT`, and Master Chat formally accepted the corrected
+`docs/MINI_GPT_SPEC.md` detailed contract without changing DEC-0019. Complete-
+model authority remains exactly 90 learned-parameter tensors and 63,825
+parameters. Separate documentation-checkpoint commit authorization is the sole
+next gate and remains unauthorized. No Phase 7 source, tests, parameter
+construction, implementation, training, experiment, sealed-test access,
+staging, commit, push, Phase 8, or Phase 9 work is authorized.
 
 **Exit criteria:**
 
