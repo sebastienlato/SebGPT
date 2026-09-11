@@ -278,10 +278,34 @@ resolved and no BLOCKER, IMPORTANT, or MINOR findings. Codex recommended
 `ACCEPT CORRECTED CONTRACT`, and Master Chat formally accepted the corrected
 `docs/MINI_GPT_SPEC.md` detailed contract without changing DEC-0019. Complete-
 model authority remains exactly 90 learned-parameter tensors and 63,825
-parameters. Separate documentation-checkpoint commit authorization is the sole
-next gate and remains unauthorized. No Phase 7 source, tests, parameter
-construction, implementation, training, experiment, sealed-test access,
-staging, commit, push, Phase 8, or Phase 9 work is authorized.
+parameters. The accepted contract checkpoint was subsequently committed as
+`60b2a9cce55da79ccc9fbd03fad014cb2a939290`, pushed, and independently
+remote-verified with local and remote `main` synchronized at ahead/behind
+`0/0`. Master Chat then explicitly authorized Phase 7 implementation. Gate 20
+is complete locally with the exact four-block model, final normalization,
+untied biased head, logits-only forward, same-call inspection, required exports,
+and 44 focused synthetic tests. Focused tests pass 44/44; the complete 440-test
+suite has 439 passes, one expected restricted-context MPS skip, and zero
+failures. Implementation remains unaccepted, unstaged, uncommitted, and
+unpushed pending Master Chat sanity review and fresh independent review.
+Independent review subsequently returned CORRECT BEFORE ACCEPTANCE with three
+IMPORTANT findings and no BLOCKER. Master Chat accepted all three without
+changing DEC-0019 or the accepted contract and authorized targeted correction.
+The corrections are complete locally: exact child-module type-error ownership,
+literal complete public-signature evidence, and exact failure-path object
+handoff evidence. Corrected focused tests pass 47/47; Phase 3, 5, and 6 focused
+regressions pass 35/35, 41/41, and 51/51; and the complete 443-test suite has
+442 passes, one expected MPS skip, and zero failures. Implementation remains
+unaccepted, unstaged, uncommitted, and unpushed pending focused independent
+re-review. Focused re-review subsequently returned PASS with all three prior
+IMPORTANT findings resolved and no BLOCKER, IMPORTANT, or MINOR findings. Codex
+recommended `ACCEPT CORRECTED IMPLEMENTATION`, and Master Chat formally
+accepted the corrected implementation, exact file identities, 63,825-parameter
+and 90-tensor counts, and evidence suite without changing DEC-0019 or the
+accepted contract. The implementation is accepted locally but remains
+unstaged, uncommitted, and unpushed pending separate implementation-checkpoint
+commit authorization. No training, experiment, sealed-test access, Phase 8, or
+Phase 9 work is authorized.
 
 **Exit criteria:**
 

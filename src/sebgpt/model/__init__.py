@@ -54,6 +54,14 @@ from sebgpt.model.transformer_block import (
     TransformerBlockTypeError,
     explicit_gelu,
 )
+from sebgpt.model.mini_gpt import (
+    LanguageModelHead,
+    MiniGPT,
+    MiniGPTContractError,
+    MiniGPTInspection,
+    MiniGPTNumericalError,
+    MiniGPTTypeError,
+)
 
 
 __all__ = [
@@ -101,4 +109,10 @@ __all__ = [
     "run_training_pass",
     "scale_backward_loss",
     "validate_phase4_experiment_preflight",
+    "LanguageModelHead",
+    "MiniGPT",
+    "MiniGPTContractError",
+    "MiniGPTInspection",
+    "MiniGPTNumericalError",
+    "MiniGPTTypeError",
 ]

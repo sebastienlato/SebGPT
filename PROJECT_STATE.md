@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 7 — Complete Mini-GPT (detailed contract accepted; implementation unauthorized)
+Phase 7 — Complete Mini-GPT (implementation accepted locally; uncommitted)
 
 ## Current milestone
 
@@ -24,6 +24,20 @@ corrections completed locally. Focused independent re-review returned PASS with
 all five findings resolved and no BLOCKER, IMPORTANT, or MINOR findings. Codex
 recommended `ACCEPT CORRECTED CONTRACT`, and Master Chat formally accepted the
 corrected detailed contract.
+
+The accepted contract checkpoint was committed as
+`60b2a9cce55da79ccc9fbd03fad014cb2a939290`, `Define Phase 7 Mini-GPT
+contract`, pushed, and independently remote-verified at ahead/behind `0/0`.
+Master Chat then explicitly authorized Phase 7 implementation. Gate 20
+implementation and focused synthetic testing are complete locally and await
+Master Chat sanity review and fresh independent review. Independent review
+subsequently returned CORRECT BEFORE ACCEPTANCE with three IMPORTANT findings
+and no BLOCKER. Master Chat accepted all three without changing DEC-0019 or the
+accepted contract and authorized a targeted implementation/test correction
+pass. All three corrections completed locally. Focused independent re-review
+returned PASS with all three findings resolved and no BLOCKER, IMPORTANT, or
+MINOR findings. Codex recommended `ACCEPT CORRECTED IMPLEMENTATION`, and Master
+Chat formally accepted the corrected Phase 7 implementation checkpoint.
 
 ## Completed work
 
@@ -51,44 +65,60 @@ corrected detailed contract.
 - Focused independent re-review passed all five corrections with no remaining
   finding. The corrected `docs/MINI_GPT_SPEC.md` is formally accepted at SHA-256
   `3e1987658d4c9ece59bebbea7061f939c1138aaa73751a523f659f8b3217c022`.
+- Accepted contract checkpoint `60b2a9c` is pushed and independently
+  remote-verified.
+- The Phase 7 implementation composes four distinct accepted block structures,
+  in-place block-specific parameter initialization, final explicit
+  normalization, an untied biased head, logits-only forward, and same-call
+  inspection without changing accepted Phase 3, 5, or 6 source.
+- The targeted corrections separate child-type exceptions from structural
+  contract failures, replace partial signature checks with an exact literal
+  signature oracle, and add exact failure-path object-handoff evidence.
+- Corrected focused Phase 7 tests pass 47/47. The complete 443-test suite has
+  442 passes, one expected restricted-context MPS skip, and zero failures.
+- Focused implementation re-review passed all three corrections with no
+  remaining finding. Master Chat formally accepted the exact source, focused
+  tests, exports, counts, and evidence.
 
 ## Current work
 
-The Phase 7 detailed contract is accepted. Acceptance bookkeeping is complete
-locally. Separate documentation-checkpoint commit authorization is the sole
-next gate and remains unauthorized. No Phase 7 implementation is authorized.
+The corrected Phase 7 implementation is accepted locally. It remains unstaged,
+uncommitted, and unpushed pending separate implementation-checkpoint commit
+authorization.
 
 ## Current model status
 
-No complete Mini-GPT model exists and no Phase 7 parameters have been
-constructed. The accepted Phase 4 trained instance was not retained. Accepted
-Phase 3, 5, and 6 components remain source authority for later composition.
+The Phase 7 model implementation exists locally. Tests construct only ephemeral
+synthetic models; no parameter, activation, gradient, logit, loss, attention,
+mask, or checkpoint artifact is retained. The accepted Phase 4 trained instance
+was not retained. Accepted Phase 3, 5, and 6 components remain unchanged.
 
-The approved future Phase 7 architecture will contain 90 trainable tensors and
+The accepted Phase 7 implementation contains 90 unique trainable tensors and
 63,825 parameters: 10,784 in the accepted embedding representation, 50,304
 across four accepted block structures, 64 in final normalization, and 2,673 in
-the untied biased LM head. These are architectural counts only, not a retained
-model artifact.
+the untied biased LM head. Tests construct this structure ephemerally; no
+retained model artifact exists.
 
 ## Last verified working state
 
-Before this documentation-only work, local `HEAD` and `origin/main` matched
-Phase 6 closure commit `e84b364` at ahead/behind `0/0` with a clean worktree and
-index. The accepted Phase 6 specification, implementation, focused tests, and
-exports match their recorded SHA-256 identities. No code tests were rerun
-because this stage authorizes no parameter construction and changes no source
-or tests.
+Before implementation, local `HEAD`, `origin/main`, and actual remote `main`
+matched accepted Phase 7 contract checkpoint `60b2a9c` with ahead/behind `0/0`
+and a clean worktree/index. Corrected focused Phase 7 tests pass 47/47. Phase 3
+vocabulary/embedding, Phase 5 attention, and Phase 6 block regressions pass
+35/35, 41/41, and 51/51. The complete 443-test suite has 442 passes, one
+expected restricted-context MPS skip, and zero failures. The accepted
+specification and accepted Phase 3, 5, and 6 source remain byte-identical.
 
 ## Next exact step
 
 Obtain separate Master Chat authorization for the accepted Phase 7
-documentation-checkpoint commit.
+implementation-checkpoint commit.
 
 ## Known issues
 
 - The checked-in Phase 6 closure commit contained stale current-status wording;
-  this working documentation update supersedes it without rewriting historical
-  gate facts.
+  the accepted Phase 7 contract checkpoint supersedes it without rewriting
+  historical gate facts.
 - PyTorch warns that optional NumPy interoperability is unavailable. NumPy is
   intentionally absent because no accepted milestone requires it.
 - MPS may be unavailable in restricted execution contexts; CPU float32 remains
@@ -108,14 +138,18 @@ documentation-checkpoint commit.
 - DEC-0019 is the accepted Phase 7 conceptual architecture. Do not change it
   through detailed mechanics without Master Chat adjudication and Sebastien's
   explicit approval.
-- Do not create or modify Phase 7 source or tests, construct model parameters,
-  train, run experiments, stage, commit, or push.
+- Do not change DEC-0019, the accepted Phase 7 contract, source, focused tests,
+  or exports. The implementation is accepted locally; do not stage, commit, or
+  push it without separate authorization.
+- Do not train, run experiments, create an optimizer/checkpoint, or retain
+  model-derived artifacts.
 - Do not begin Phase 8 training/checkpointing or Phase 9 generation/evaluation.
 
 ## Open questions
 
 - No Phase 7 detailed-contract review finding remains unresolved.
 - No conceptual Phase 7 architecture question remains open under DEC-0019.
+- No Phase 7 implementation-review finding remains unresolved.
 
 ## Session handoff
 
@@ -131,7 +165,16 @@ BEFORE ACCEPTANCE with five IMPORTANT findings and no BLOCKER. The targeted
 documentation corrections are complete without changing DEC-0019 or the
 initialization design. Focused re-review returned PASS with all five findings
 resolved and no remaining finding, and Master Chat formally accepted the
-corrected detailed contract. No source, tests, parameters, training, experiment,
-sealed-test access, staging, commit, push, Phase 8, or Phase 9 work occurred.
-The sole next action is separate Master Chat authorization for the accepted
-documentation-checkpoint commit.
+corrected detailed contract. Contract checkpoint `60b2a9c` is pushed and
+remotely verified. Master Chat authorized implementation, and Gate 20 is
+complete locally with exact source, exports, and focused tests. Independent
+review returned CORRECT BEFORE ACCEPTANCE with three IMPORTANT findings and no
+BLOCKER. The authorized corrections are complete: child types now have accepted
+type-error ownership, public signatures have an exact literal oracle, and
+failure paths prove exact object handoffs. Corrected focused tests pass 47/47;
+the complete 443-test suite passes with one expected MPS skip. Focused re-review
+returned PASS with all three findings resolved and no remaining finding, and
+Master Chat formally accepted the corrected implementation. No training,
+experiment, sealed-test access, staging, commit, push, Phase 8, or Phase 9 work
+occurred. The sole next action is separate implementation-checkpoint commit
+authorization.
