@@ -308,10 +308,13 @@ commit authorization. The accepted implementation was subsequently committed as
 `3139b1736f005fe903e2ea111d91934478b5a683`, pushed, and independently
 remote-verified with local and remote `main` synchronized at ahead/behind
 `0/0`. All four exact Phase 7 exit criteria are satisfied. Phase 7 is
-technically complete and ready for formal closure. Documentation-only closure
-bookkeeping is complete locally; the separate closure commit remains
-unauthorized. No training, experiment, sealed-test access, Phase 8, or Phase 9
-work is authorized.
+technically complete. Its documentation-only closure was subsequently committed
+as `33d4510421107848c4aa8a6014f4a7b1e391065a`, `Complete Phase 7 Mini-GPT`,
+pushed, and remotely synchronized with local `main` and `origin/main` at
+ahead/behind `0/0`. Phase 7 is formally remotely closed. Sebastien then
+explicitly authorized Phase 8 learning/design and accepted DEC-0020; Phase 8
+implementation, feasibility measurement, training, sealed-test access, and
+Phase 9 remain unauthorized.
 
 **Exit criteria:**
 
@@ -323,6 +326,56 @@ work is authorized.
 ## Phase 8 — Training and Checkpointing
 
 **Goal:** Create a reproducible training loop and durable model state.
+
+Phase 7 is formally remotely closed at
+`33d4510421107848c4aa8a6014f4a7b1e391065a`. Phase 8 learning/design is
+explicitly authorized. The read-only continuity inspection is complete, and
+Sebastien accepted the consolidated conceptual training/checkpointing policy in
+DEC-0020: unchanged accepted data/tokenizer/model authority; context 256;
+document-local windows; deterministic per-epoch shuffling without replacement;
+rank-one logical batches of eight with target-token-weighted gradient
+accumulation; constant AdamW `3e-4`, betas `(0.9, 0.999)`, epsilon `1e-8`, and
+weight decay `0.01`; global-L2 gradient clipping at `1.0`; a ten-epoch maximum
+without validation early stopping; initialized and complete end-epoch training
+and validation evaluation; latest and best-validation checkpoints; complete
+runtime-state restoration; exact supported-environment resume; append-only
+experiment records; and an unchanged Phase 8/9 sealed-test boundary.
+
+Documentation-only detailed-contract drafting and stale Phase 7 closure
+reconciliation are complete locally in proposed
+`docs/TRAINING_CHECKPOINTING_SPEC.md`. The proposal defines stride-256
+exact-once windows with a retained unpadded tail, order seed 8001, final partial
+logical batches, exact token weighting, complete optimizer/update/evaluation
+order, all eight dropout streams and relevant runtime state, a versioned
+content-addressed atomic checkpoint scheme, fail-closed restoration, exact
+resume equality, evidence and numerical-failure policy, focused tests, and
+separate gates. Fresh independent review returned CORRECT BEFORE ACCEPTANCE
+with three BLOCKER, eight IMPORTANT, and one MINOR finding. Master Chat accepted
+all twelve without changing DEC-0020 and authorized a targeted
+documentation-only correction. The corrected proposal now defines crash-durable
+directory/object/catalog ordering, transactional caller-global-RNG load,
+complete runtime/API/schema/error authority, exact PyTorch-2.14.0 clipping,
+catalog/payload cross-validation, proportional local filesystem trust, live Git
+provenance, latest-only continuation, complete dual-branch epoch-2 resume
+evidence, 70 separately gated workflow steps, and a deterministic permutation
+oracle. Focused independent re-review passed those corrections but returned
+CORRECT AGAIN BEFORE ACCEPTANCE with one remaining AdamW-state BLOCKER, two
+public-ownership/configuration-schema IMPORTANT findings, and no MINOR finding.
+Master Chat accepted all three without changing DEC-0020 and authorized a final
+targeted documentation correction. The proposal now includes intrinsic
+PyTorch-2.14.0 `decoupled_weight_decay=True`, exact optimizer-step tensor/progress
+semantics, literal module/package ownership and exports, an unambiguous nested
+configuration schema version, expanded test oracles, and 74 sequential gates.
+Final focused independent re-review returned PASS: all three remaining findings
+are resolved, no new or remaining BLOCKER, IMPORTANT, or MINOR finding exists,
+and Codex recommended `ACCEPT CORRECTED CONTRACT`. Master Chat formally accepted
+the corrected detailed contract at SHA-256
+`0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` without
+changing DEC-0020. Gates 16–18 are complete. The accepted documentation remains
+unstaged, uncommitted, and unpushed pending separate Gate 19 contract-checkpoint
+commit authorization. No Phase 8 source, tests, optimizer/checkpoint
+construction, feasibility measurement, training, experiment result, generation,
+sampling, or sealed-test access is authorized.
 
 **Exit criteria:**
 

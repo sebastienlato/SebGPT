@@ -4,192 +4,169 @@
 
 ## Current phase
 
-Phase 7 — Complete Mini-GPT (technically complete; closure bookkeeping local)
+Phase 8 — Training and Checkpointing (detailed contract accepted; uncommitted)
 
 ## Current milestone
 
-Phase 6 is formally remotely closed at
-`e84b364a7955ddba86b30938babd5dae9e829935`, `Complete Phase 6 transformer
-block`. Its accepted implementation checkpoint is
-`c2624078eae5947e505d7f8093869e32c58e521b`.
+Phase 7 — Complete Mini-GPT is formally remotely closed at
+`33d4510421107848c4aa8a6014f4a7b1e391065a`, `Complete Phase 7 Mini-GPT`.
+Its accepted detailed-contract checkpoint is
+`60b2a9cce55da79ccc9fbd03fad014cb2a939290`, and its accepted implementation
+checkpoint is `3139b1736f005fe903e2ea111d91934478b5a683`.
 
-Sebastien authorized Phase 7 learning/design only. The read-only continuity
-inspection is complete and accepted. Sebastien then accepted the consolidated
-Phase 7 conceptual architecture recorded in DEC-0019 and authorized
-documentation-only detailed-contract drafting and stale-closure reconciliation.
-Fresh independent review returned CORRECT BEFORE ACCEPTANCE with five IMPORTANT
-findings and no BLOCKER. Master Chat accepted all five without changing
-DEC-0019 and authorized a targeted documentation-only correction pass. All five
-corrections completed locally. Focused independent re-review returned PASS with
-all five findings resolved and no BLOCKER, IMPORTANT, or MINOR findings. Codex
-recommended `ACCEPT CORRECTED CONTRACT`, and Master Chat formally accepted the
-corrected detailed contract.
+Sebastien explicitly authorized Phase 8 learning/design. The read-only
+continuity inspection is complete, and Sebastien accepted the consolidated
+Phase 8 conceptual training/checkpointing policy as DEC-0020. Documentation-only
+detailed-contract drafting and stale Phase 7 closure reconciliation were then
+authorized.
 
-The accepted contract checkpoint was committed as
-`60b2a9cce55da79ccc9fbd03fad014cb2a939290`, `Define Phase 7 Mini-GPT
-contract`, pushed, and independently remote-verified at ahead/behind `0/0`.
-Master Chat then explicitly authorized Phase 7 implementation. Gate 20
-implementation and focused synthetic testing are complete locally and await
-Master Chat sanity review and fresh independent review. Independent review
-subsequently returned CORRECT BEFORE ACCEPTANCE with three IMPORTANT findings
-and no BLOCKER. Master Chat accepted all three without changing DEC-0019 or the
-accepted contract and authorized a targeted implementation/test correction
-pass. All three corrections completed locally. Focused independent re-review
-returned PASS with all three findings resolved and no BLOCKER, IMPORTANT, or
-MINOR findings. Codex recommended `ACCEPT CORRECTED IMPLEMENTATION`, and Master
-Chat formally accepted the corrected Phase 7 implementation checkpoint.
-
-The accepted implementation checkpoint was committed as
-`3139b1736f005fe903e2ea111d91934478b5a683`, `Implement Phase 7 Mini-GPT`,
-pushed, and independently remote-verified at ahead/behind `0/0`. All four exact
-Phase 7 exit criteria are satisfied. Phase 7 is technically complete and ready
-for formal closure; closure bookkeeping is complete locally.
+`docs/TRAINING_CHECKPOINTING_SPEC.md` makes DEC-0020 mechanical. Its accepted
+SHA-256 is
+`0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd`.
+Fresh independent review returned CORRECT BEFORE
+ACCEPTANCE with three BLOCKER, eight IMPORTANT, and one MINOR finding. Master
+Chat accepted all twelve without changing DEC-0020 and authorized only their
+targeted documentation correction. Focused re-review passed those corrections
+but returned CORRECT AGAIN BEFORE ACCEPTANCE with one remaining BLOCKER, two
+IMPORTANT schema/API findings, and no MINOR finding. Master Chat accepted all
+three without changing DEC-0020 and authorized this final targeted correction.
+Final focused independent re-review returned PASS with all three resolved, no
+new or remaining finding, and exact recommendation `ACCEPT CORRECTED CONTRACT`.
+Master Chat formally accepted the corrected detailed contract without changing
+DEC-0020. No implementation, feasibility measurement, or training is authorized.
 
 ## Completed work
 
-- Phases 0–4 are complete and remotely closed.
-- Phase 5 is formally remotely closed at `6519d8c`; its accepted implementation
-  remains `f4b5a1d`.
-- Phase 6 is formally remotely closed at `e84b364`; its accepted contract is
-  `2177c7e`, and its accepted implementation is `c262407`.
-- All accepted Phase 3 embedding, Phase 5 attention, and Phase 6 block
-  interfaces remain unchanged.
-- Phase 7 continuity inspection separated inherited authority, open conceptual
-  choices, and later detailed mechanics.
-- DEC-0019 accepts exactly four distinct non-shared blocks, width 32, four
-  width-8 heads per block, sequence range `1..256`, the accepted Phase 3
-  representation, final explicit normalization, an untied biased 81-class
-  head, logits-only forward, separate next-token loss, same-call inspection,
-  and 63,825 parameters.
-- Proposed `docs/MINI_GPT_SPEC.md` resolves distinct-block initialization
-  without changing accepted Phase 5/6 code or standalone behavior.
-- Independent contract review confirmed the architecture, initialization
-  mechanism, parameter count, and tensor count, while identifying five
-  precision/evidence defects. The authorized corrections resolve validation
-  order, the public/error oracle, equal-length causality evidence, stack-wide
-  failure-state evidence, and irreversible-action gate separation.
-- Focused independent re-review passed all five corrections with no remaining
-  finding. The corrected `docs/MINI_GPT_SPEC.md` is formally accepted at SHA-256
-  `3e1987658d4c9ece59bebbea7061f939c1138aaa73751a523f659f8b3217c022`.
-- Accepted contract checkpoint `60b2a9c` is pushed and independently
-  remote-verified.
-- The Phase 7 implementation composes four distinct accepted block structures,
-  in-place block-specific parameter initialization, final explicit
-  normalization, an untied biased head, logits-only forward, and same-call
-  inspection without changing accepted Phase 3, 5, or 6 source.
-- The targeted corrections separate child-type exceptions from structural
-  contract failures, replace partial signature checks with an exact literal
-  signature oracle, and add exact failure-path object-handoff evidence.
-- Corrected focused Phase 7 tests pass 47/47. The complete 443-test suite has
-  442 passes, one expected restricted-context MPS skip, and zero failures.
-- Focused implementation re-review passed all three corrections with no
-  remaining finding. Master Chat formally accepted the exact source, focused
-  tests, exports, counts, and evidence.
-- Accepted implementation checkpoint `3139b17` is pushed and independently
-  remote-verified. All four Phase 7 exit criteria are satisfied, and Phase 7 is
-  technically complete.
+- Phases 0–7 are formally remotely closed.
+- Phase 7 closure commit `33d4510`, accepted contract `60b2a9c`, and accepted
+  implementation `3139b17` are recorded and synchronized.
+- The Phase 8 continuity inspection established inherited authority, open
+  choices, checkpoint gaps, and the Phase 8/9 boundary without accessing the
+  sealed test.
+- DEC-0020 accepts unchanged dataset/tokenizer/MiniGPT authority; CPU float32;
+  context 256; logical rank-one batches of eight; deterministic epoch shuffle;
+  constant AdamW with learning rate `3e-4`, betas `(0.9, 0.999)`, epsilon
+  `1e-8`, and weight decay `0.01`; global-norm clipping at `1.0`; ten epochs
+  without validation early stopping; complete initialized/end-epoch evaluation;
+  latest and best-validation checkpoints; complete stochastic/progress state;
+  exact resume; durable experiment evidence; and no Phase 9 or sealed-test use.
+- Accepted `docs/TRAINING_CHECKPOINTING_SPEC.md` defines stride-256 exact-once
+  document-local windows with retained unpadded tails, order seed 8001,
+  target-token-weighted gradient accumulation, final partial logical batches,
+  exact AdamW/update/clipping/evaluation order, ten runtime RNG states, complete
+  versioned checkpoint payloads, content-addressed immutable objects, one
+  atomic catalog commit point, fail-closed restoration, exact-resume equality,
+  experiment records, fitting evidence, numerical/failure behavior, focused
+  tests, feasibility boundary, and separate Phase 8 gates.
+- Stale Phase 7 remote-closure and Phase 8 authorization wording is reconciled
+  in current continuity documentation.
+- The authorized detailed-contract correction resolves checkpoint-directory
+  durability, caller-global-RNG load transactionality, the frozen runtime
+  envelope, exact PyTorch clipping, complete API/record/error/checkpoint/log
+  schemas, catalog/payload agreement, the local filesystem trust boundary,
+  live repository provenance, latest-only continuation, a complete-epoch real
+  resume audit, irreversible gate separation, and deterministic permutation
+  evidence. DEC-0020 is unchanged.
+- The final targeted correction adds intrinsic supported AdamW
+  `decoupled_weight_decay=True` state, exact 90-parameter step-tensor/progress
+  equality, literal owning modules and module/package exports for every public
+  Phase 8 object, and an unambiguous first-key nested configuration schema
+  version. All prior corrections remain unchanged.
+- Final focused independent re-review passed. All Phase 8 contract-review
+  findings are resolved; no BLOCKER, IMPORTANT, or MINOR finding remains. The
+  corrected specification is formally accepted at its exact SHA-256.
 
 ## Current work
 
-This documentation-only closure bookkeeping records the accepted Phase 7 exit
-result. It remains unstaged and uncommitted pending separate Phase 7
-closure-commit authorization.
+Detailed-contract acceptance bookkeeping is complete locally. The accepted
+specification and continuity updates are unstaged, uncommitted, and unpushed.
+They await separate accepted-contract documentation-checkpoint commit
+authorization.
 
 ## Current model status
 
-The Phase 7 model implementation exists locally. Tests construct only ephemeral
-synthetic models; no parameter, activation, gradient, logit, loss, attention,
-mask, or checkpoint artifact is retained. The accepted Phase 4 trained instance
-was not retained. Accepted Phase 3, 5, and 6 components remain unchanged.
+The accepted Phase 7 MiniGPT remains unchanged: one rank-one CPU-long sequence
+of length `1..256` produces CPU-float32 logits `(T, 81)`. It contains 90 unique
+trainable tensors and 63,825 parameters, four accepted blocks, eight local
+dropout generators, final normalization, and an untied biased head.
 
-The accepted Phase 7 implementation contains 90 unique trainable tensors and
-63,825 parameters: 10,784 in the accepted embedding representation, 50,304
-across four accepted block structures, 64 in final normalization, and 2,673 in
-the untied biased LM head. Tests construct this structure ephemerally; no
-retained model artifact exists.
+No retained Phase 7 model instance, optimizer, checkpoint, Phase 8 window,
+training tensor, gradient, logit, loss, metric, or generated sample exists. The
+accepted Phase 4 trained instance was not retained.
 
 ## Last verified working state
 
-Local `HEAD`, `origin/main`, and actual remote `main` matched accepted Phase 7
-implementation checkpoint `3139b17` with ahead/behind `0/0` and a clean
-worktree/index before closure bookkeeping. Focused Phase 7 tests pass 47/47. Phase 3
-vocabulary/embedding, Phase 5 attention, and Phase 6 block regressions pass
-35/35, 41/41, and 51/51. The complete 443-test suite has 442 passes, one
-expected restricted-context MPS skip, and zero failures. The accepted
-specification and accepted Phase 3, 5, and 6 source remain byte-identical.
+At the start of this documentation-only work, local `HEAD`, `main`, and
+`origin/main` matched Phase 7 closure commit `33d4510` at ahead/behind `0/0`
+with a clean worktree/index. The inherited last accepted regression evidence is
+the Phase 7 result: focused tests 47/47 and the complete 443-test suite with 442
+passes, one expected restricted-context MPS skip, and zero failures.
+
+This acceptance-bookkeeping stage did not rerun code tests. The accepted
+specification remains byte-identical at its recorded SHA-256, has 74 sequential
+gates and 48 sequential focused obligations, and preserves every fixed DEC-0020
+value. Documentation consistency checks and `git diff --check` pass.
 
 ## Next exact step
 
-Obtain separate Master Chat authorization for the Phase 7 closure commit.
+Obtain separate Master Chat authorization for the accepted Phase 8
+documentation-checkpoint commit.
 
 ## Known issues
 
-- The checked-in Phase 6 closure commit contained stale current-status wording;
-  the accepted Phase 7 contract checkpoint supersedes it without rewriting
-  historical gate facts.
-- PyTorch warns that optional NumPy interoperability is unavailable. NumPy is
-  intentionally absent because no accepted milestone requires it.
-- MPS may be unavailable in restricted execution contexts; CPU float32 remains
-  the accepted semantic baseline.
-- Processed corpus files are ignored reproducible derivatives and must be
-  regenerated only through the accepted publisher.
-- The catalog and artifact report different update/Last-Modified dates; both
-  remain recorded without assuming they describe the same revision mechanism.
+- No runtime feasibility evidence exists for context 256, logical batch
+  capacity 8, CPU float32, four blocks, and ten epochs.
+- Optional NumPy interoperability is unavailable and intentionally unnecessary.
+- MPS may be unavailable in restricted contexts; Phase 8 is CPU-only regardless.
+- Processed corpus files are ignored reproducible derivatives.
+- Checkpoint binaries are excluded from Git by accepted policy.
+- Content-addressed checkpoint objects may be orphaned by a failure before the
+  atomic catalog replacement; the accepted contract preserves them for diagnosis rather
+  than deleting uncertain state.
 
 ## Important constraints
 
-- Do not rerun or tune `EXP-20260909-01`.
+- DEC-0020 and the detailed specification at accepted SHA-256
+  `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` are
+  accepted authority and must not be changed without explicit adjudication.
+- Do not change context 256, logical batch capacity 8, CPU float32, model
+  architecture, optimizer, or training policy without a new explicit decision.
+- Preserve the accepted tokenizer/vocabulary identity and all accepted Phase
+  3, 5, 6, and 7 source, tests, contracts, and behavior.
 - Never access, tokenize, window, score, inspect, or derive statistics from the
   sealed test work.
-- Preserve the accepted tokenizer/vocabulary identity and accepted Phase 3,
-  Phase 5, and Phase 6 source, tests, contracts, and mathematical behavior.
-- DEC-0019 is the accepted Phase 7 conceptual architecture. Do not change it
-  through detailed mechanics without Master Chat adjudication and Sebastien's
-  explicit approval.
-- Do not change DEC-0019, the accepted Phase 7 contract, source, focused tests,
-  exports, or evidence suite.
-- Do not stage, commit, or push this closure bookkeeping without separate
-  authorization.
-- Do not train, run experiments, create an optimizer/checkpoint, or retain
-  model-derived artifacts.
-- Do not begin Phase 8 training/checkpointing or Phase 9 generation/evaluation.
+- Do not rerun or tune `EXP-20260909-01`.
+- Do not implement Phase 8 source or tests; construct an optimizer/checkpoint;
+  measure feasibility; train; generate; sample; stage; commit; or push without
+  the applicable separate authorization.
+- Do not begin Phase 9 generation or final evaluation.
 
 ## Open questions
 
-- No Phase 7 detailed-contract review finding remains unresolved.
-- No conceptual Phase 7 architecture question remains open under DEC-0019.
-- No Phase 7 implementation-review finding remains unresolved.
-- No Phase 7 technical or exit-criteria question remains open.
-- Formal closure commit authorization and later Phase 8 authorization remain
-  separate future gates.
+- No Phase 8 detailed-contract review finding remains unresolved.
+- No conceptual DEC-0020 question remains open.
+- Runtime feasibility remains deliberately unknown until a later specifically
+  authorized bounded measurement after accepted implementation.
 
 ## Session handoff
 
-Phase 6 is formally remotely closed at `e84b364`. Phase 7 learning/design was
-authorized, its continuity inspection was accepted, and DEC-0019 records the
-accepted consolidated conceptual architecture. Documentation-only proposed
-`docs/MINI_GPT_SPEC.md` defines exact interfaces, validation, conservative
-in-place block-specific initialization with Phase 7 seeds 7001–7004, head seed
-7005, final normalization, logits-only forward, separate inherited explicit
-cross-entropy, same-call inspection, causality, gradients, 90 tensors, 63,825
-parameters, tests, exclusions, and gates. Independent review returned CORRECT
-BEFORE ACCEPTANCE with five IMPORTANT findings and no BLOCKER. The targeted
-documentation corrections are complete without changing DEC-0019 or the
-initialization design. Focused re-review returned PASS with all five findings
-resolved and no remaining finding, and Master Chat formally accepted the
-corrected detailed contract. Contract checkpoint `60b2a9c` is pushed and
-remotely verified. Master Chat authorized implementation, and Gate 20 is
-complete locally with exact source, exports, and focused tests. Independent
-review returned CORRECT BEFORE ACCEPTANCE with three IMPORTANT findings and no
-BLOCKER. The authorized corrections are complete: child types now have accepted
-type-error ownership, public signatures have an exact literal oracle, and
-failure paths prove exact object handoffs. Corrected focused tests pass 47/47;
-the complete 443-test suite passes with one expected MPS skip. Focused re-review
-returned PASS with all three findings resolved and no remaining finding, and
-Master Chat formally accepted the corrected implementation. No training,
-experiment, sealed-test access, staging, commit, push, Phase 8, or Phase 9 work
-occurred. Accepted implementation checkpoint `3139b17` is pushed and remotely
-verified. All four exact Phase 7 exit criteria are satisfied, and Phase 7 is
-technically complete. Closure bookkeeping is complete locally. The sole next
-action is separate Phase 7 closure-commit authorization; Phase 8 remains
-unauthorized.
+Phase 7 is formally remotely closed at `33d4510`; accepted Phase 7 contract and
+implementation checkpoints remain `60b2a9c` and `3139b17`. Phase 8
+learning/design is authorized, its continuity inspection is complete, and
+DEC-0020 records the accepted consolidated policy. Accepted
+`docs/TRAINING_CHECKPOINTING_SPEC.md` defines exact windows, deterministic
+ordering, rank-one logical batches, token-weighted gradients, AdamW, clipping,
+evaluation, progress, the frozen runtime, all RNG state, crash-durable atomic
+checkpointing, transactional load, exact schemas, latest-only continuation,
+complete-epoch exact resume, experiment evidence, failures, tests, feasibility
+limits, and 74 gates. Independent review returned three BLOCKER, eight
+IMPORTANT, and one MINOR finding; all targeted documentation corrections are
+complete without changing DEC-0020. Focused re-review then found one remaining
+AdamW-state BLOCKER and two ownership/configuration-schema IMPORTANT findings;
+their final targeted corrections passed final focused re-review with no new or
+remaining finding. Master Chat accepted the corrected contract at SHA-256
+`0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` without
+changing DEC-0020. No source, tests, optimizer, checkpoint payload, benchmark,
+training, generation, sealed test, staging, commit, or push occurred. The sole
+next action is separate accepted-contract documentation-checkpoint commit
+authorization.

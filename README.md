@@ -6,49 +6,42 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phases 0–6 are complete and remotely closed. Phase 6 closure commit
-`e84b364a7955ddba86b30938babd5dae9e829935`, `Complete Phase 6 transformer
-block`, is pushed and independently remote-verified; its accepted implementation
-checkpoint remains `c2624078eae5947e505d7f8093869e32c58e521b`.
+Phases 0–7 are complete and remotely closed. Phase 7 closure commit
+`33d4510421107848c4aa8a6014f4a7b1e391065a`, `Complete Phase 7 Mini-GPT`, is
+pushed and synchronized; its accepted contract and implementation checkpoints
+remain `60b2a9cce55da79ccc9fbd03fad014cb2a939290` and
+`3139b1736f005fe903e2ea111d91934478b5a683`.
 
-Sebastien authorized Phase 7 learning/design only. The continuity inspection is
-complete, and DEC-0019 records the accepted consolidated Complete Mini-GPT
-architecture: the accepted Phase 3 representation, exactly four distinct
-accepted Phase 6 block structures, final explicit width-32 normalization, an
-untied biased 81-class head, single-sequence length `1..256`, logits-only
-forward, separate next-token loss, same-call inspection, and 63,825 parameters.
+Phase 8 — Training and Checkpointing is authorized for learning/design only.
+DEC-0020 records the accepted consolidated policy: unchanged accepted
+data/tokenizer/model authority; CPU float32; context 256; rank-one logical
+batches of eight; deterministic epoch shuffling; constant AdamW at `3e-4` with
+betas `(0.9, 0.999)`, epsilon `1e-8`, and weight decay `0.01`; global-norm
+clipping at `1.0`; ten epochs without validation early stopping; full
+initialized and end-epoch training/validation evaluation; latest and
+best-validation checkpoints; complete runtime-state restoration; and exact
+supported-environment resume.
+
 Documentation-only proposed
-[docs/MINI_GPT_SPEC.md](docs/MINI_GPT_SPEC.md) defines detailed interfaces,
-deterministic distinct-block initialization, parameter accounting, validation,
-inspection, evidence, exclusions, and gates. It remained unaccepted pending
-focused independent re-review after an initial CORRECT BEFORE ACCEPTANCE result
-with five IMPORTANT findings and no BLOCKER. All five targeted documentation
-corrections were completed without changing DEC-0019 or the initialization
-design. Focused re-review returned PASS with all five findings resolved and no
-remaining BLOCKER, IMPORTANT, or MINOR finding. Codex recommended `ACCEPT
-CORRECTED CONTRACT`, and Master Chat formally accepted the corrected detailed
-contract. Accepted contract checkpoint `60b2a9c` is pushed and independently
-remote-verified. Master Chat then authorized implementation under the accepted
-contract. The exact model, exports, and 44 focused synthetic tests are complete
-locally; focused tests pass 44/44, and the complete 440-test suite has 439
-passes, one expected restricted-context MPS skip, and zero failures. The
-implementation remains unaccepted, unstaged, uncommitted, and unpushed pending
-review. Independent review returned CORRECT BEFORE ACCEPTANCE with three
-IMPORTANT findings and no BLOCKER. The authorized targeted corrections are
-complete without changing DEC-0019 or the accepted contract. Corrected focused
-tests pass 47/47, and the complete 443-test suite has 442 passes, one expected
-MPS skip, and zero failures. The implementation remains unaccepted, unstaged,
-uncommitted, and unpushed pending focused re-review. Focused re-review returned
-PASS with all three findings resolved and no remaining finding. Codex
-recommended `ACCEPT CORRECTED IMPLEMENTATION`, and Master Chat formally
-accepted the corrected implementation. It remains unstaged, uncommitted, and
-unpushed pending separate checkpoint-commit authorization. Accepted
-implementation checkpoint `3139b1736f005fe903e2ea111d91934478b5a683` was
-subsequently pushed and independently remote-verified. All four exact Phase 7
-exit criteria are satisfied, and Phase 7 is technically complete and ready for
-formal closure. Closure bookkeeping is complete locally; its commit remains
-separately unauthorized. Training, experiments, sealed-test access, Phase 8,
-and Phase 9 remain unauthorized.
+[docs/TRAINING_CHECKPOINTING_SPEC.md](docs/TRAINING_CHECKPOINTING_SPEC.md)
+defines the detailed window, ordering, accumulation, optimizer, evaluation,
+checkpoint, restoration, evidence, failure, test, feasibility, and gate
+contracts. Independent review returned CORRECT BEFORE ACCEPTANCE with three
+BLOCKER, eight IMPORTANT, and one MINOR finding. The authorized targeted
+documentation corrections are complete without changing DEC-0020: durability,
+transactional RNG restoration, runtime identity, clipping, exact schemas,
+catalog agreement, filesystem trust, live provenance, latest-only continuation,
+extended resume evidence, gates, and permutation tests are corrected. The
+focused re-review passed those items but found one remaining AdamW-state BLOCKER
+and two public-ownership/configuration-schema IMPORTANT findings. Their final
+targeted documentation corrections passed final focused re-review with no new
+or remaining finding. Master Chat formally accepted the corrected contract at
+SHA-256 `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd`
+without changing DEC-0020. The accepted documentation remains unstaged,
+uncommitted, and unpushed pending separate checkpoint-commit authorization.
+Phase 8 source, tests, optimizer/checkpoint construction, feasibility
+measurement, training, generation, sampling, sealed-test access, and Phase 9
+remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
@@ -81,7 +74,7 @@ python -m pip check
 python -m unittest discover -s tests -v
 ```
 
-The expected Python version is `3.14.4`. On a normal session on this Mac, all three environment tests pass. A restricted execution environment without GPU access may skip the MPS test.
+The expected Python version is `3.14.4`. On a normal session on this Mac, all three environment tests pass. A restricted execution environment without GPU access may skip the MPS test. Phase 8 training remains CPU-only regardless of MPS availability.
 
 `requirements.in` contains the dependency intentionally chosen by the project. `requirements.lock` pins the complete resolved environment and is the reproducible installation source. Change or regenerate either file only as part of an approved dependency decision.
 
