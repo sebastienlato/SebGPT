@@ -304,15 +304,21 @@ accepted the corrected implementation, exact file identities, 63,825-parameter
 and 90-tensor counts, and evidence suite without changing DEC-0019 or the
 accepted contract. The implementation is accepted locally but remains
 unstaged, uncommitted, and unpushed pending separate implementation-checkpoint
-commit authorization. No training, experiment, sealed-test access, Phase 8, or
-Phase 9 work is authorized.
+commit authorization. The accepted implementation was subsequently committed as
+`3139b1736f005fe903e2ea111d91934478b5a683`, pushed, and independently
+remote-verified with local and remote `main` synchronized at ahead/behind
+`0/0`. All four exact Phase 7 exit criteria are satisfied. Phase 7 is
+technically complete and ready for formal closure. Documentation-only closure
+bookkeeping is complete locally; the separate closure commit remains
+unauthorized. No training, experiment, sealed-test access, Phase 8, or Phase 9
+work is authorized.
 
 **Exit criteria:**
 
-- Embeddings, stacked blocks, final normalization, and language-model head are integrated.
-- Parameter count and configuration are explicit.
-- Forward pass, loss path, causality, and shape behavior are tested.
-- The architecture is documented and matches recorded decisions.
+- Embeddings, stacked blocks, final normalization, and language-model head are integrated. **Verified and satisfied.**
+- Parameter count and configuration are explicit. **Verified and satisfied.**
+- Forward pass, loss path, causality, and shape behavior are tested. **Verified and satisfied.**
+- The architecture is documented and matches recorded decisions. **Verified and satisfied.**
 
 ## Phase 8 — Training and Checkpointing
 

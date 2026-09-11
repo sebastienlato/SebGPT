@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 7 — Complete Mini-GPT (implementation accepted locally; uncommitted)
+Phase 7 — Complete Mini-GPT (technically complete; closure bookkeeping local)
 
 ## Current milestone
 
@@ -38,6 +38,12 @@ pass. All three corrections completed locally. Focused independent re-review
 returned PASS with all three findings resolved and no BLOCKER, IMPORTANT, or
 MINOR findings. Codex recommended `ACCEPT CORRECTED IMPLEMENTATION`, and Master
 Chat formally accepted the corrected Phase 7 implementation checkpoint.
+
+The accepted implementation checkpoint was committed as
+`3139b1736f005fe903e2ea111d91934478b5a683`, `Implement Phase 7 Mini-GPT`,
+pushed, and independently remote-verified at ahead/behind `0/0`. All four exact
+Phase 7 exit criteria are satisfied. Phase 7 is technically complete and ready
+for formal closure; closure bookkeeping is complete locally.
 
 ## Completed work
 
@@ -79,12 +85,15 @@ Chat formally accepted the corrected Phase 7 implementation checkpoint.
 - Focused implementation re-review passed all three corrections with no
   remaining finding. Master Chat formally accepted the exact source, focused
   tests, exports, counts, and evidence.
+- Accepted implementation checkpoint `3139b17` is pushed and independently
+  remote-verified. All four Phase 7 exit criteria are satisfied, and Phase 7 is
+  technically complete.
 
 ## Current work
 
-The corrected Phase 7 implementation is accepted locally. It remains unstaged,
-uncommitted, and unpushed pending separate implementation-checkpoint commit
-authorization.
+This documentation-only closure bookkeeping records the accepted Phase 7 exit
+result. It remains unstaged and uncommitted pending separate Phase 7
+closure-commit authorization.
 
 ## Current model status
 
@@ -101,9 +110,9 @@ retained model artifact exists.
 
 ## Last verified working state
 
-Before implementation, local `HEAD`, `origin/main`, and actual remote `main`
-matched accepted Phase 7 contract checkpoint `60b2a9c` with ahead/behind `0/0`
-and a clean worktree/index. Corrected focused Phase 7 tests pass 47/47. Phase 3
+Local `HEAD`, `origin/main`, and actual remote `main` matched accepted Phase 7
+implementation checkpoint `3139b17` with ahead/behind `0/0` and a clean
+worktree/index before closure bookkeeping. Focused Phase 7 tests pass 47/47. Phase 3
 vocabulary/embedding, Phase 5 attention, and Phase 6 block regressions pass
 35/35, 41/41, and 51/51. The complete 443-test suite has 442 passes, one
 expected restricted-context MPS skip, and zero failures. The accepted
@@ -111,8 +120,7 @@ specification and accepted Phase 3, 5, and 6 source remain byte-identical.
 
 ## Next exact step
 
-Obtain separate Master Chat authorization for the accepted Phase 7
-implementation-checkpoint commit.
+Obtain separate Master Chat authorization for the Phase 7 closure commit.
 
 ## Known issues
 
@@ -139,8 +147,9 @@ implementation-checkpoint commit.
   through detailed mechanics without Master Chat adjudication and Sebastien's
   explicit approval.
 - Do not change DEC-0019, the accepted Phase 7 contract, source, focused tests,
-  or exports. The implementation is accepted locally; do not stage, commit, or
-  push it without separate authorization.
+  exports, or evidence suite.
+- Do not stage, commit, or push this closure bookkeeping without separate
+  authorization.
 - Do not train, run experiments, create an optimizer/checkpoint, or retain
   model-derived artifacts.
 - Do not begin Phase 8 training/checkpointing or Phase 9 generation/evaluation.
@@ -150,6 +159,9 @@ implementation-checkpoint commit.
 - No Phase 7 detailed-contract review finding remains unresolved.
 - No conceptual Phase 7 architecture question remains open under DEC-0019.
 - No Phase 7 implementation-review finding remains unresolved.
+- No Phase 7 technical or exit-criteria question remains open.
+- Formal closure commit authorization and later Phase 8 authorization remain
+  separate future gates.
 
 ## Session handoff
 
@@ -176,5 +188,8 @@ the complete 443-test suite passes with one expected MPS skip. Focused re-review
 returned PASS with all three findings resolved and no remaining finding, and
 Master Chat formally accepted the corrected implementation. No training,
 experiment, sealed-test access, staging, commit, push, Phase 8, or Phase 9 work
-occurred. The sole next action is separate implementation-checkpoint commit
-authorization.
+occurred. Accepted implementation checkpoint `3139b17` is pushed and remotely
+verified. All four exact Phase 7 exit criteria are satisfied, and Phase 7 is
+technically complete. Closure bookkeeping is complete locally. The sole next
+action is separate Phase 7 closure-commit authorization; Phase 8 remains
+unauthorized.
