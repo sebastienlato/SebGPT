@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 8 — Training and Checkpointing (implementation remotely accepted; provenance contract corrected and accepted)
+Phase 8 — Training and Checkpointing (provenance implementation correction accepted locally; commit pending)
 
 ## Current milestone
 
@@ -63,7 +63,15 @@ passed Gate 46 independent review with no remaining BLOCKER or IMPORTANT
 finding and exact recommendation `ACCEPT PROVENANCE CONTRACT CORRECTION`.
 Master Chat formally accepted the corrected provenance contract at SHA-256
 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd` without
-changing DEC-0020 or the accepted implementation.
+changing DEC-0020 or the accepted implementation. Corrected contract checkpoint
+`c50d77a` was committed, pushed, and remotely verified. Master Chat then
+authorized the bounded production provenance implementation correction, which
+completed locally with focused and full regression verification. Gate 56 review
+accepted all but one IMPORTANT run-authority evidence path finding. Master Chat
+authorized its targeted correction. Focused re-review returned PASS / NO ISSUE
+with no remaining BLOCKER, IMPORTANT, or MINOR finding and exact recommendation
+`ACCEPT PROVENANCE IMPLEMENTATION CORRECTION`; Master Chat formally accepted the
+corrected local implementation checkpoint.
 
 ## Completed work
 
@@ -146,6 +154,21 @@ changing DEC-0020 or the accepted implementation.
   finding, and recommended `ACCEPT PROVENANCE CONTRACT CORRECTION`. Master Chat
   formally accepted the corrected provenance contract without changing
   DEC-0020 or accepted Phase 8 production source/tests.
+- Corrected provenance-contract checkpoint `c50d77a` is pushed and remotely
+  verified. The authorized production correction now implements the accepted
+  implementation-anchor/external-pre-registration split, committed planned-log
+  proof, exact executable-byte authority, run-level provenance evidence,
+  checkpoint save/load validation, resume refusal across governance authority,
+  and distinct result provenance.
+- Gate 56 review found only one remaining IMPORTANT path-safety issue. The
+  run-authority evidence tree now uses retained descriptor-relative no-follow
+  traversal, exact entry/descriptor identity checks, durable child/parent fsync
+  order, safe governance-error mapping, and substitution-safe cleanup, with
+  direct zero-outside-write evidence.
+- Final focused re-review returned PASS / NO ISSUE, accepted the path correction,
+  found no remaining BLOCKER, IMPORTANT, or MINOR finding, and recommended
+  `ACCEPT PROVENANCE IMPLEMENTATION CORRECTION`. Master Chat formally accepted
+  the exact reviewed production/test identities.
 - Focused Phase 8 tests pass 87/87 with all 48 accepted obligations explicitly
   mapped to behavioral/literal evidence. Relevant accepted Phase 3/5/6/7
   regressions pass 174/174. The complete 530-test suite has 529 passes, one expected
@@ -153,11 +176,9 @@ changing DEC-0020 or the accepted implementation.
 
 ## Current work
 
-Gates 45–48 are complete. The corrected provenance contract is accepted in
-`docs/TRAINING_CHECKPOINTING_SPEC.md` at SHA-256
-`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`.
-It is byte-frozen, unstaged, uncommitted, and unpushed pending separate
-corrected-contract checkpoint commit authorization.
+The corrected provenance implementation checkpoint is accepted locally at its
+exact reviewed source/test identities. It remains unstaged, uncommitted, and
+unpushed pending separate checkpoint commit authorization from Master Chat.
 
 ## Current model status
 
@@ -179,17 +200,19 @@ Immediately before this documentation correction, local `HEAD`, `main`,
 `origin/main`, and actual remote `main` matched accepted implementation commit
 `8098343` at ahead/behind `0/0` with a clean worktree/index.
 
-Latest behavioral verification remains: Phase 8 focused tests pass 87/87;
-accepted Phase 3/5/6/7 regressions pass 174/174; and the complete suite runs 530 tests with
-529 passes, one expected restricted-context MPS skip, and zero failures. The
+Current verification: new path-focused tests pass 4/4; the targeted provenance
+matrix passes 7/7; complete Phase 8 focused tests pass 95/95; accepted Phase
+3/5/6/7 regressions pass 174/174; and the complete suite runs 538 tests with 537 passes,
+one expected restricted-context MPS skip, and zero failures. The
 accepted provenance-corrected specification remains byte-identical at SHA-256
 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`; DEC-0020,
-accepted Phase 8 production source/tests, and accepted Phase 7 identities remain
-unchanged. Acceptance-bookkeeping `git diff --check` passes.
+accepted Phase 7 identities, and unrelated Phase 8 behavior remain unchanged.
+Synthetic provenance/checkpoint artifacts were removed with their temporary
+directories. `git diff --check` passes.
 
 ## Next exact step
 
-Obtain separate Gate 49 corrected-contract checkpoint commit authorization from
+Obtain separate provenance-implementation checkpoint commit authorization from
 Master Chat.
 
 ## Known issues
@@ -210,9 +233,10 @@ Master Chat.
 
 ## Important constraints
 
-- DEC-0020 remains unchanged. The provenance-corrected detailed contract at
+- DEC-0020 remains unchanged. The remotely authoritative provenance-corrected
+  contract commit is `c50d77a`; the detailed contract at
   SHA-256 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd` is
-  accepted and byte-frozen pending separate checkpoint commit authorization.
+  accepted and byte-frozen.
 - The Phase 8 implementation is accepted and remotely synchronized at
   `8098343`; do not alter source/tests without separate authorization.
 - Do not change context 256, logical batch capacity 8, CPU float32, model
@@ -222,8 +246,8 @@ Master Chat.
 - Never access, tokenize, window, score, inspect, or derive statistics from the
   sealed test work.
 - Do not rerun or tune `EXP-20260909-01`.
-- Do not implement the production provenance correction or change Phase 8
-  source/tests without separate authorization.
+- Do not change, stage, commit, or push the accepted provenance implementation
+  checkpoint without separate authorization.
 - Do not stage, commit, or push without the applicable separate authorization.
 - Do not rerun feasibility; create pre-registration; perform real training or
   the real-run audit; retain experiment checkpoints; generate; or sample.
@@ -235,6 +259,8 @@ Master Chat.
 - No conceptual DEC-0020 question remains open.
 - No provenance-contract BLOCKER or IMPORTANT finding remains; Gate 46 review
   and Master Chat acceptance are complete.
+- No provenance implementation review finding remains; focused re-review and
+  Master Chat acceptance are complete.
 - Runtime feasibility is accepted as `FEASIBLE WITH MATERIAL RUNTIME COST`.
 
 ## Session handoff
@@ -302,8 +328,28 @@ specification identities and ancestry remain enforced. The accepted corrected
 specification SHA-256 is
 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`.
 DEC-0020 and accepted Phase 8 production source/tests remain unchanged. No
-production provenance implementation correction, pre-registration record,
-training, evaluation, checkpoint, audit, generation, sealed-test access,
-staging, commit, or push occurred or is authorized. The sole next action is
-separate Gate 49 corrected-contract checkpoint commit authorization from Master
-Chat.
+planned pre-registration record, training, real evaluation, real checkpoint,
+audit, generation, sealed-test access, staging, commit, or push occurred or is
+authorized. Corrected contract checkpoint `c50d77a` is remotely authoritative.
+The bounded production provenance correction is complete locally: planned and
+checkpoint `Code commit` stays at implementation anchor `8098343`; launch
+`HEAD` is derived as separate external pre-registration authority; committed
+planned-log bytes and the first-parent introduction are proven; live Phase 7,
+corrected-spec, and latest Phase 8 source/test bytes are exact; every save/load
+requires durable run-level implementation/pre-registration/planned-log evidence;
+resume under different authority fails; and result evidence/labels preserve the
+two commits distinctly. The targeted provenance matrix passes 7/7, Phase 8 passes
+91/91, prior-phase regressions pass 174/174, and the full suite has 533 passes,
+one expected skip, and zero failures. Gate 56 review accepted all but one
+run-authority path finding. Its targeted correction replaces ambient recursive
+path handling with retained descriptor-relative no-follow traversal, exact
+device/inode validation, ordered directory/file fsyncs, safe error mapping, and
+substitution-safe cleanup. New path tests pass 4/4, the provenance matrix 7/7,
+Phase 8 95/95, prior-phase regressions 174/174, and the full suite has 537
+passes, one expected skip, and zero failures across 538 tests. Final focused
+re-review returned PASS / NO ISSUE with no remaining finding and exact
+recommendation `ACCEPT PROVENANCE IMPLEMENTATION CORRECTION`; Master Chat
+formally accepted the exact reviewed checkpoint. DEC-0020 and the corrected
+specification remain unchanged. The correction is unstaged, uncommitted, and
+unpushed; the sole next action is separate provenance-implementation checkpoint
+commit authorization from Master Chat.

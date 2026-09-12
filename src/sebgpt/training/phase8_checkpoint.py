@@ -72,11 +72,14 @@ from sebgpt.training.phase8_types import (
 PHASE7_CLOSURE_COMMIT = "33d4510421107848c4aa8a6014f4a7b1e391065a"
 PHASE7_CONTRACT_COMMIT = "60b2a9cce55da79ccc9fbd03fad014cb2a939290"
 PHASE7_IMPLEMENTATION_COMMIT = "3139b1736f005fe903e2ea111d91934478b5a683"
-PHASE8_CONTRACT_COMMIT = "09b2c2e0487a0b7a766655951422471085d943a8"
+PHASE8_ORIGINAL_CONTRACT_COMMIT = "09b2c2e0487a0b7a766655951422471085d943a8"
+PHASE8_CONTRACT_COMMIT = "c50d77ac935bdf924b9b429a5776c419982a5d11"
+PHASE8_IMPLEMENTATION_COMMIT = "809834323d53407cb4a54ae539585bb3d78856eb"
 MINI_GPT_SPEC_SHA256 = "3e1987658d4c9ece59bebbea7061f939c1138aaa73751a523f659f8b3217c022"
+MINI_GPT_EXPORT_SHA256 = "af056658e6d7ffe6de89b3ac0486929305655ea76029240d26869b705a2a5d86"
 MINI_GPT_SOURCE_SHA256 = "6b8db96577a0ad1f5daa4649d7ca9375e59873d4b635c3f76e75a6751f74f12d"
 MINI_GPT_TEST_SHA256 = "95ec62d1164c48525e59e33f3f90fada6d482c84a31ca16edba38178b16b2cab"
-PHASE8_SPEC_SHA256 = "0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd"
+PHASE8_SPEC_SHA256 = "1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd"
 TOKENIZER_IMPLEMENTATION_COMMIT = "de7a7f096fbbd8607c944412eaef30be9b686b56"
 PHASE1_MANIFEST_SHA256 = "157e324c41c6aee756b9c554ae465388a892ea9a0f8fb8296ef0d986a0c9f6fb"
 PROCESSING_MANIFEST_SHA256 = "bbf938e565022dde72f26470e2fa7214f2fe1735afbc62ace320f1e6ebf372cc"
@@ -86,6 +89,33 @@ SHA256_PATTERN = re.compile(r"[0-9a-f]{64}\Z")
 GIT_COMMIT_PATTERN = re.compile(r"[0-9a-f]{40}\Z")
 MAXIMUM_CATALOG_BYTES = 16_384
 MAXIMUM_OBJECT_BYTES = 67_108_864
+_PHASE8_SOURCE_TEST_PATHS = (
+    "src/sebgpt/training/__init__.py",
+    "src/sebgpt/training/phase8_types.py",
+    "src/sebgpt/training/phase8_data.py",
+    "src/sebgpt/training/phase8_optimization.py",
+    "src/sebgpt/training/phase8_checkpoint.py",
+    "src/sebgpt/training/phase8_experiment.py",
+    "tests/test_phase8_types.py",
+    "tests/test_phase8_data.py",
+    "tests/test_phase8_optimization.py",
+    "tests/test_phase8_checkpoint.py",
+    "tests/test_phase8_experiment.py",
+)
+_POST_IMPLEMENTATION_ALLOWED_PATHS = frozenset(
+    (
+        "DECISIONS.md",
+        "PROJECT_STATE.md",
+        "README.md",
+        "ROADMAP.md",
+        "docs/TRAINING_CHECKPOINTING_SPEC.md",
+        "src/sebgpt/training/phase8_checkpoint.py",
+        "src/sebgpt/training/phase8_experiment.py",
+        "tests/test_phase8_types.py",
+        "tests/test_phase8_checkpoint.py",
+        "tests/test_phase8_experiment.py",
+    )
+)
 _DROPOUT_NAMES = (
     "blocks.0.attention_dropout",
     "blocks.0.feed_forward_dropout",
@@ -193,13 +223,434 @@ def _git(repository_root: Path, *arguments: str) -> str:
     return result.stdout.strip()
 
 
-def _validate_live_repository(repository_root: Path, code_commit: str) -> None:
+def _git_blob_bytes(repository_root: Path, revision: str, relative_path: str) -> bytes:
+    try:
+        result = subprocess.run(
+            ("git", "show", f"{revision}:{relative_path}"),
+            cwd=repository_root,
+            check=True,
+            capture_output=True,
+        )
+    except (OSError, subprocess.CalledProcessError) as error:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        ) from error
+    return result.stdout
+
+
+def _require_ancestor(
+    repository_root: Path,
+    ancestor: str,
+    descendant: str,
+    *,
+    field: str,
+) -> None:
+    try:
+        _git(repository_root, "merge-base", "--is-ancestor", ancestor, descendant)
+    except Phase8GovernanceError as error:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field=field,
+        ) from error
+
+
+def _git_authority_fact(
+    repository_root: Path,
+    field: str,
+    *arguments: str,
+) -> str:
+    try:
+        return _git(repository_root, *arguments)
+    except Phase8GovernanceError as error:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field=field,
+        ) from error
+
+
+def _run_authority_evidence_bytes(
+    run_id: str,
+    code_commit: str,
+    pre_registration_commit: str,
+    planned_record_sha256: str,
+) -> bytes:
+    value = {
+        "schema_version": 1,
+        "run_id": run_id,
+        "code_commit": code_commit,
+        "pre_registration_commit": pre_registration_commit,
+        "planned_record_sha256": planned_record_sha256,
+    }
+    return (
+        json.dumps(
+            value,
+            ensure_ascii=True,
+            sort_keys=True,
+            separators=(",", ":"),
+        )
+        + "\n"
+    ).encode("ascii")
+
+
+_RUN_AUTHORITY_EVIDENCE_NAME = "phase8-run-authority.json"
+
+
+def _run_authority_failure() -> Phase8GovernanceError:
+    return Phase8GovernanceError(
+        "phase8.governance.repository",
+        field="pre_registration_commit",
+    )
+
+
+def _run_authority_directory_identity(fd: int) -> tuple[int, int]:
+    try:
+        value = os.fstat(fd)
+    except OSError:
+        raise _run_authority_failure() from None
+    if not stat.S_ISDIR(value.st_mode):
+        raise _run_authority_failure()
+    return value.st_dev, value.st_ino
+
+
+def _require_run_authority_entry_identity(
+    parent_fd: int,
+    name: str,
+    expected: tuple[int, int],
+    *,
+    directory: bool,
+) -> None:
+    try:
+        value = os.stat(name, dir_fd=parent_fd, follow_symlinks=False)
+    except OSError:
+        raise _run_authority_failure() from None
+    expected_type = stat.S_ISDIR if directory else stat.S_ISREG
+    if not expected_type(value.st_mode) or (value.st_dev, value.st_ino) != expected:
+        raise _run_authority_failure()
+
+
+def _open_run_authority_root(repository_root: Path) -> int:
+    try:
+        fd = os.open(
+            repository_root,
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
+        )
+    except OSError:
+        raise _run_authority_failure() from None
+    try:
+        _run_authority_directory_identity(fd)
+    except Phase8GovernanceError:
+        os.close(fd)
+        raise
+    return fd
+
+
+def _open_run_authority_directory(parent_fd: int, name: str) -> int:
+    try:
+        fd = os.open(
+            name,
+            os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW,
+            dir_fd=parent_fd,
+        )
+    except OSError:
+        raise _run_authority_failure() from None
+    try:
+        identity = _run_authority_directory_identity(fd)
+        _require_run_authority_entry_identity(
+            parent_fd,
+            name,
+            identity,
+            directory=True,
+        )
+    except Phase8GovernanceError:
+        os.close(fd)
+        raise
+    return fd
+
+
+def _ensure_run_authority_directory(parent_fd: int, name: str) -> int:
+    created = False
+    try:
+        os.mkdir(name, mode=0o700, dir_fd=parent_fd)
+        created = True
+    except FileExistsError:
+        pass
+    except OSError:
+        raise _run_authority_failure() from None
+    child_fd = _open_run_authority_directory(parent_fd, name)
+    if created:
+        try:
+            os.fsync(child_fd)
+            _require_run_authority_entry_identity(
+                parent_fd,
+                name,
+                _run_authority_directory_identity(child_fd),
+                directory=True,
+            )
+            os.fsync(parent_fd)
+        except OSError:
+            os.close(child_fd)
+            raise _run_authority_failure() from None
+        except Phase8GovernanceError:
+            os.close(child_fd)
+            raise
+    return child_fd
+
+
+def _open_run_authority_directories(
+    repository_root: Path,
+    run_id: str,
+    *,
+    create: bool,
+) -> tuple[int, int, int, int]:
+    root_fd = _open_run_authority_root(repository_root)
+    opened = [root_fd]
+    try:
+        experiments_fd = _open_run_authority_directory(root_fd, "experiments")
+        opened.append(experiments_fd)
+        operation = _ensure_run_authority_directory if create else _open_run_authority_directory
+        run_fd = operation(experiments_fd, run_id)
+        opened.append(run_fd)
+        artifacts_fd = operation(run_fd, "artifacts")
+        opened.append(artifacts_fd)
+        return root_fd, experiments_fd, run_fd, artifacts_fd
+    except BaseException:
+        for fd in reversed(opened):
+            os.close(fd)
+        raise
+
+
+def _require_run_authority_directory_chain(
+    directories: tuple[int, int, int, int],
+    run_id: str,
+) -> None:
+    root_fd, experiments_fd, run_fd, artifacts_fd = directories
+    relationships = (
+        (root_fd, "experiments", experiments_fd),
+        (experiments_fd, run_id, run_fd),
+        (run_fd, "artifacts", artifacts_fd),
+    )
+    for parent_fd, name, child_fd in relationships:
+        _require_run_authority_entry_identity(
+            parent_fd,
+            name,
+            _run_authority_directory_identity(child_fd),
+            directory=True,
+        )
+
+
+def _read_run_authority_evidence_fd(artifacts_fd: int) -> bytes:
+    try:
+        fd = os.open(
+            _RUN_AUTHORITY_EVIDENCE_NAME,
+            os.O_RDONLY | os.O_NOFOLLOW,
+            dir_fd=artifacts_fd,
+        )
+    except OSError:
+        raise _run_authority_failure() from None
+    try:
+        try:
+            metadata = os.fstat(fd)
+            if not stat.S_ISREG(metadata.st_mode) or not 0 < metadata.st_size <= 4_096:
+                raise _run_authority_failure()
+            identity = metadata.st_dev, metadata.st_ino
+            _require_run_authority_entry_identity(
+                artifacts_fd,
+                _RUN_AUTHORITY_EVIDENCE_NAME,
+                identity,
+                directory=False,
+            )
+            content = os.read(fd, metadata.st_size + 1)
+            if len(content) != metadata.st_size or os.read(fd, 1) != b"":
+                raise _run_authority_failure()
+            current = os.fstat(fd)
+            if (
+                not stat.S_ISREG(current.st_mode)
+                or (current.st_dev, current.st_ino) != identity
+                or current.st_size != metadata.st_size
+            ):
+                raise _run_authority_failure()
+            _require_run_authority_entry_identity(
+                artifacts_fd,
+                _RUN_AUTHORITY_EVIDENCE_NAME,
+                identity,
+                directory=False,
+            )
+            return content
+        except OSError:
+            raise _run_authority_failure() from None
+    finally:
+        os.close(fd)
+
+
+def _unlink_run_authority_evidence_if_identity(
+    artifacts_fd: int,
+    expected: tuple[int, int] | None,
+) -> None:
+    if expected is None:
+        return
+    try:
+        value = os.stat(
+            _RUN_AUTHORITY_EVIDENCE_NAME,
+            dir_fd=artifacts_fd,
+            follow_symlinks=False,
+        )
+        if (value.st_dev, value.st_ino) == expected:
+            os.unlink(_RUN_AUTHORITY_EVIDENCE_NAME, dir_fd=artifacts_fd)
+    except OSError:
+        pass
+
+
+def _publish_run_authority_evidence(
+    repository_root: Path,
+    run_id: str,
+    code_commit: str,
+    pre_registration_commit: str,
+    planned_record_sha256: str,
+) -> None:
+    if (
+        not RUN_ID_PATTERN.fullmatch(run_id)
+        or code_commit != PHASE8_IMPLEMENTATION_COMMIT
+        or not GIT_COMMIT_PATTERN.fullmatch(pre_registration_commit)
+        or pre_registration_commit == code_commit
+        or not SHA256_PATTERN.fullmatch(planned_record_sha256)
+    ):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+    expected = _run_authority_evidence_bytes(
+        run_id,
+        code_commit,
+        pre_registration_commit,
+        planned_record_sha256,
+    )
+    directories: tuple[int, int, int, int] | None = None
+    evidence_identity: tuple[int, int] | None = None
+    try:
+        directories = _open_run_authority_directories(
+            repository_root,
+            run_id,
+            create=True,
+        )
+        _require_run_authority_directory_chain(directories, run_id)
+        artifacts_fd = directories[-1]
+        try:
+            fd = os.open(
+                _RUN_AUTHORITY_EVIDENCE_NAME,
+                os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
+                0o600,
+                dir_fd=artifacts_fd,
+            )
+        except FileExistsError:
+            if _read_run_authority_evidence_fd(artifacts_fd) != expected:
+                raise _run_authority_failure()
+            _require_run_authority_directory_chain(directories, run_id)
+            return
+        except OSError:
+            raise _run_authority_failure() from None
+        try:
+            try:
+                metadata = os.fstat(fd)
+                if not stat.S_ISREG(metadata.st_mode):
+                    raise _run_authority_failure()
+                evidence_identity = metadata.st_dev, metadata.st_ino
+                _require_run_authority_entry_identity(
+                    artifacts_fd,
+                    _RUN_AUTHORITY_EVIDENCE_NAME,
+                    evidence_identity,
+                    directory=False,
+                )
+                if os.write(fd, expected) != len(expected):
+                    raise OSError("short run-authority write")
+                os.fsync(fd)
+                _require_run_authority_entry_identity(
+                    artifacts_fd,
+                    _RUN_AUTHORITY_EVIDENCE_NAME,
+                    evidence_identity,
+                    directory=False,
+                )
+                _require_run_authority_directory_chain(directories, run_id)
+                os.fsync(artifacts_fd)
+            except OSError:
+                raise _run_authority_failure() from None
+        finally:
+            os.close(fd)
+    except BaseException:
+        if directories is not None:
+            _unlink_run_authority_evidence_if_identity(
+                directories[-1],
+                evidence_identity,
+            )
+        raise
+    finally:
+        if directories is not None:
+            for directory_fd in reversed(directories):
+                os.close(directory_fd)
+
+
+def _require_run_authority_evidence(
+    repository_root: Path,
+    run_id: str,
+    code_commit: str,
+    pre_registration_commit: str,
+    planned_record_sha256: str,
+) -> None:
+    expected = _run_authority_evidence_bytes(
+        run_id,
+        code_commit,
+        pre_registration_commit,
+        planned_record_sha256,
+    )
+    directories: tuple[int, int, int, int] | None = None
+    try:
+        directories = _open_run_authority_directories(
+            repository_root,
+            run_id,
+            create=False,
+        )
+        _require_run_authority_directory_chain(directories, run_id)
+        observed = _read_run_authority_evidence_fd(directories[-1])
+        _require_run_authority_directory_chain(directories, run_id)
+        if observed != expected:
+            raise _run_authority_failure()
+    finally:
+        if directories is not None:
+            for directory_fd in reversed(directories):
+                os.close(directory_fd)
+
+
+def _validate_live_repository(
+    repository_root: Path,
+    code_commit: str,
+    *,
+    run_id: str,
+    configuration: Phase8Configuration,
+    require_run_evidence: bool = False,
+) -> str:
     if not isinstance(repository_root, Path):
         raise Phase8TypeError("phase8.type.argument", field="repository_root")
     if type(code_commit) is not str:
         raise Phase8TypeError("phase8.type.argument", field="code_commit")
-    if not GIT_COMMIT_PATTERN.fullmatch(code_commit):
-        raise Phase8GovernanceError("phase8.governance.repository", field="commit")
+    if type(run_id) is not str:
+        raise Phase8TypeError("phase8.type.argument", field="run_id")
+    if type(configuration) is not Phase8Configuration:
+        raise Phase8TypeError("phase8.type.record", field="configuration")
+    if type(require_run_evidence) is not bool:
+        raise Phase8TypeError("phase8.type.argument", field="require_run_evidence")
+    if (
+        not GIT_COMMIT_PATTERN.fullmatch(code_commit)
+        or code_commit != PHASE8_IMPLEMENTATION_COMMIT
+    ):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="implementation_authority",
+        )
+    if not RUN_ID_PATTERN.fullmatch(run_id):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
     try:
         root_lstat = repository_root.lstat()
         resolved = repository_root.resolve(strict=True)
@@ -209,42 +660,149 @@ def _validate_live_repository(repository_root: Path, code_commit: str) -> None:
         raise Phase8GovernanceError("phase8.governance.repository", field="repository")
     if _git(repository_root, "rev-parse", "--show-toplevel") != str(repository_root):
         raise Phase8GovernanceError("phase8.governance.repository", field="root")
-    checks = (
-        (_git(repository_root, "branch", "--show-current") == "main", "branch"),
-        (_git(repository_root, "rev-parse", "HEAD") == code_commit, "head"),
-        (_git(repository_root, "rev-parse", "origin/main") == code_commit, "origin"),
-        (
-            _git(repository_root, "status", "--porcelain=v2", "--untracked-files=all")
-            == "",
-            "clean",
-        ),
+    if _git(repository_root, "branch", "--show-current") != "main":
+        raise Phase8GovernanceError("phase8.governance.repository", field="branch")
+    head = _git_authority_fact(
+        repository_root,
+        "pre_registration_commit",
+        "rev-parse",
+        "HEAD",
     )
-    for valid, field in checks:
-        if not valid:
-            raise Phase8GovernanceError(
-                "phase8.governance.repository",
-                field=field,
-            )
+    origin = _git_authority_fact(
+        repository_root,
+        "pre_registration_commit",
+        "rev-parse",
+        "origin/main",
+    )
+    if (
+        not GIT_COMMIT_PATTERN.fullmatch(head)
+        or not GIT_COMMIT_PATTERN.fullmatch(origin)
+        or head != origin
+    ):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+    if _git(
+        repository_root,
+        "status",
+        "--porcelain=v2",
+        "--untracked-files=all",
+    ) != "":
+        raise Phase8GovernanceError("phase8.governance.repository", field="clean")
+
+    _require_ancestor(
+        repository_root,
+        PHASE8_IMPLEMENTATION_COMMIT,
+        head,
+        field="implementation_authority",
+    )
     for ancestor in (
         PHASE7_CLOSURE_COMMIT,
         PHASE7_CONTRACT_COMMIT,
         PHASE7_IMPLEMENTATION_COMMIT,
+        PHASE8_ORIGINAL_CONTRACT_COMMIT,
         PHASE8_CONTRACT_COMMIT,
     ):
-        try:
-            subprocess.run(
-                ("git", "merge-base", "--is-ancestor", ancestor, "HEAD"),
-                cwd=repository_root,
-                check=True,
-                capture_output=True,
-            )
-        except (OSError, subprocess.CalledProcessError) as error:
-            raise Phase8GovernanceError(
-                "phase8.governance.repository",
-                field="ancestor",
-            ) from error
+        _require_ancestor(repository_root, ancestor, head, field="ancestor")
+
+    parent_record = _git_authority_fact(
+        repository_root,
+        "pre_registration_commit",
+        "rev-list",
+        "--parents",
+        "-n",
+        "1",
+        head,
+    )
+    parent_parts = parent_record.split()
+    if (
+        len(parent_parts) != 2
+        or parent_parts[0] != head
+        or not GIT_COMMIT_PATTERN.fullmatch(parent_parts[1])
+    ):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+    implementation_authority = parent_parts[1]
+    _require_ancestor(
+        repository_root,
+        PHASE8_CONTRACT_COMMIT,
+        implementation_authority,
+        field="implementation_authority",
+    )
+    if _git_authority_fact(
+        repository_root,
+        "pre_registration_commit",
+        "diff",
+        "--name-only",
+        implementation_authority,
+        head,
+    ).splitlines() != ["EXPERIMENT_LOG.md"]:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+    changed_after_anchor = frozenset(
+        _git_authority_fact(
+            repository_root,
+            "implementation_authority",
+            "diff",
+            "--name-only",
+            PHASE8_IMPLEMENTATION_COMMIT,
+            implementation_authority,
+        ).splitlines()
+    )
+    if not changed_after_anchor.issubset(_POST_IMPLEMENTATION_ALLOWED_PATHS):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="implementation_authority",
+        )
+
+    try:
+        working_log = (repository_root / "EXPERIMENT_LOG.md").read_bytes()
+    except OSError:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        ) from None
+    committed_log = _git_blob_bytes(repository_root, head, "EXPERIMENT_LOG.md")
+    parent_log = _git_blob_bytes(
+        repository_root,
+        implementation_authority,
+        "EXPERIMENT_LOG.md",
+    )
+    planned_heading = f"### {run_id} — Phase 8".encode("utf-8")
+    if working_log != committed_log or planned_heading in parent_log:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+    from sebgpt.training.phase8_experiment import _planned_run_record
+
+    observed_run_id, _ = _planned_run_record(
+        repository_root,
+        code_commit=PHASE8_IMPLEMENTATION_COMMIT,
+        configuration=configuration,
+    )
+    if observed_run_id != run_id:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+    if require_run_evidence:
+        _require_run_authority_evidence(
+            repository_root,
+            run_id,
+            PHASE8_IMPLEMENTATION_COMMIT,
+            head,
+            hashlib.sha256(committed_log).hexdigest(),
+        )
+
     identities = (
         ("docs/MINI_GPT_SPEC.md", MINI_GPT_SPEC_SHA256),
+        ("src/sebgpt/model/__init__.py", MINI_GPT_EXPORT_SHA256),
         ("src/sebgpt/model/mini_gpt.py", MINI_GPT_SOURCE_SHA256),
         ("tests/test_mini_gpt.py", MINI_GPT_TEST_SHA256),
         ("docs/TRAINING_CHECKPOINTING_SPEC.md", PHASE8_SPEC_SHA256),
@@ -262,8 +820,37 @@ def _validate_live_repository(repository_root: Path, code_commit: str) -> None:
         if _sha256_file(repository_root / relative_path) != digest:
             raise Phase8GovernanceError(
                 "phase8.governance.repository",
-                field=relative_path,
+                field=(
+                    "implementation_authority"
+                    if relative_path.startswith(("docs/MINI_GPT", "src/sebgpt/model", "tests/test_mini_gpt", "docs/TRAINING"))
+                    else relative_path
+                ),
             )
+    for relative_path in _PHASE8_SOURCE_TEST_PATHS:
+        try:
+            live_bytes = (repository_root / relative_path).read_bytes()
+        except OSError:
+            raise Phase8GovernanceError(
+                "phase8.governance.repository",
+                field="implementation_authority",
+            ) from None
+        try:
+            accepted_bytes = _git_blob_bytes(
+                repository_root,
+                implementation_authority,
+                relative_path,
+            )
+        except Phase8GovernanceError as error:
+            raise Phase8GovernanceError(
+                "phase8.governance.repository",
+                field="implementation_authority",
+            ) from error
+        if live_bytes != accepted_bytes:
+            raise Phase8GovernanceError(
+                "phase8.governance.repository",
+                field="implementation_authority",
+            )
+    return head
 
 
 def _runtime_mapping(value: Phase8RuntimeIdentity) -> dict[str, object]:
@@ -443,7 +1030,10 @@ def _validate_training_state(
         raise Phase8TypeError("phase8.type.record", field="state")
     if not RUN_ID_PATTERN.fullmatch(state.run_id):
         raise Phase8ContractError("phase8.contract.lifecycle", field="run_id")
-    if not GIT_COMMIT_PATTERN.fullmatch(state.code_commit):
+    if (
+        not GIT_COMMIT_PATTERN.fullmatch(state.code_commit)
+        or state.code_commit != PHASE8_IMPLEMENTATION_COMMIT
+    ):
         raise Phase8ContractError("phase8.contract.lifecycle", field="code_commit")
     if type(state.configuration) is not Phase8Configuration:
         raise Phase8TypeError("phase8.type.record", field="configuration")
@@ -1124,7 +1714,13 @@ def save_phase8_checkpoint(
     repository_root: Path,
 ) -> Phase8CheckpointReference:
     _validate_training_state(state)
-    _validate_live_repository(repository_root, state.code_commit)
+    _validate_live_repository(
+        repository_root,
+        state.code_commit,
+        run_id=state.run_id,
+        configuration=state.configuration,
+        require_run_evidence=True,
+    )
     try:
         return _publish_payload(_payload(state, repository_root), repository_root)
     except (
@@ -2138,8 +2734,14 @@ def _load_phase8_checkpoint(
     rollback_attempted = False
     directories: tuple[int, ...] | None = None
     try:
-        catalog_code_commit = _git(repository_root, "rev-parse", "HEAD")
-        _validate_live_repository(repository_root, catalog_code_commit)
+        configuration = _fixed_configuration(runtime)
+        _validate_live_repository(
+            repository_root,
+            PHASE8_IMPLEMENTATION_COMMIT,
+            run_id=run_id,
+            configuration=configuration,
+            require_run_evidence=True,
+        )
         directories = _open_checkpoint_directories(
             repository_root,
             run_id,
@@ -2170,7 +2772,7 @@ def _load_phase8_checkpoint(
             hashlib.sha256(best_content).hexdigest(),
         )
         _require_directory_identities(directories, directory_identities)
-        if payload["run"]["code_commit"] != catalog_code_commit:  # type: ignore[index]
+        if payload["run"]["code_commit"] != PHASE8_IMPLEMENTATION_COMMIT:  # type: ignore[index]
             raise Phase8CheckpointError(
                 "phase8.checkpoint.authority",
                 field="code_commit",
@@ -2225,7 +2827,7 @@ def _load_phase8_checkpoint(
         selected_sha = latest["sha256"]
         restored = _make_training_state(
             run_id=run_id,
-            code_commit=catalog_code_commit,
+            code_commit=PHASE8_IMPLEMENTATION_COMMIT,
             configuration=configuration,
             model=model,
             optimizer=optimizer,

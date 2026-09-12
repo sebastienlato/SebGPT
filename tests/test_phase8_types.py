@@ -400,7 +400,7 @@ OBLIGATION_EVIDENCE = {
     42: ("descriptor-relative-no-follow-no-ambient-reopen", ("tests.test_phase8_checkpoint.Phase8CheckpointTests.test_checkpoint_filesystem_calls_are_descriptor_relative_no_follow", "tests.test_phase8_checkpoint.Phase8CheckpointTests.test_cleanup_refuses_substituted_temporary_entry", "tests.test_phase8_checkpoint.Phase8CheckpointTests.test_hash_and_deserialization_use_the_same_bounded_bytes")),
     43: ("bounded-read-edge-matrix", ("tests.test_phase8_checkpoint.Phase8CheckpointTests.test_bounded_read_zero_limit_growth_shrink_short_and_truncated_cases", "tests.test_phase8_checkpoint.Phase8CheckpointTests.test_hash_and_deserialization_use_the_same_bounded_bytes")),
     44: ("trusted-local-resource-boundary", ("tests.test_phase8_checkpoint.Phase8CheckpointTests.test_object_byte_limit_is_checked_before_deserialization", "tests.test_phase8_checkpoint.Phase8CheckpointTests.test_symlinked_objects_directory_is_rejected")),
-    45: ("live-preflight-and-preregistration", ("tests.test_phase8_experiment.Phase8ExperimentTests.test_live_repository_preflight_rejects_caller_commit_mismatch_first", "tests.test_phase8_experiment.Phase8ExperimentTests.test_complete_pre_registration_binds_every_authority_mapping")),
+    45: ("live-preflight-and-preregistration", ("tests.test_phase8_experiment.Phase8ExperimentTests.test_planned_code_commit_is_literal_implementation_anchor", "tests.test_phase8_experiment.Phase8ExperimentTests.test_corrected_live_repository_preflight_matrix", "tests.test_phase8_checkpoint.Phase8CheckpointTests.test_checkpoint_save_and_load_validate_corrected_provenance", "tests.test_phase8_checkpoint.Phase8CheckpointTests.test_resume_under_different_pre_registration_authority_fails", "tests.test_phase8_experiment.Phase8ExperimentTests.test_result_provenance_representation_keeps_commits_distinct", "tests.test_phase8_experiment.Phase8ExperimentTests.test_run_authority_path_rejects_symlinks_and_wrong_types_without_outside_write", "tests.test_phase8_experiment.Phase8ExperimentTests.test_run_authority_path_existing_tree_and_descriptor_relative_fsync_order", "tests.test_phase8_experiment.Phase8ExperimentTests.test_run_authority_directory_failure_maps_to_governance", "tests.test_phase8_experiment.Phase8ExperimentTests.test_run_authority_cleanup_preserves_substituted_evidence")),
     46: ("latest-only-continuation", ("tests.test_phase8_checkpoint.Phase8CheckpointTests.test_best_validation_is_not_a_continuation_role",)),
     47: ("dual-branch-public-reload-audit", ("tests.test_phase8_experiment.Phase8ExperimentTests.test_runner_has_no_epoch_zero_state_and_executes_durable_dual_branch_audit",)),
     48: ("literal-sequential-gate-oracle", ("tests.test_phase8_types.Phase8PublicSurfaceTests.test_contract_gate_oracle_is_literal_sequential_and_distinct",)),
@@ -626,8 +626,8 @@ class Phase8PublicSurfaceTests(unittest.TestCase):
             for line in gate_section.splitlines()
             if line and line[0].isdigit() and "." in line
         )
-        self.assertEqual(gate_numbers, tuple(range(1, 75)))
-        self.assertEqual(len(set(gate_numbers)), 74)
+        self.assertEqual(gate_numbers, tuple(range(1, 95)))
+        self.assertEqual(len(set(gate_numbers)), 94)
 
     def test_exact_record_fields(self) -> None:
         self.assertEqual(len(RECORD_ORACLE), 11)

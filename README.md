@@ -110,6 +110,44 @@ gate. Production provenance implementation correction, pre-registration, real
 training, Phase 9, generation, sampling, and sealed-test access remain
 unauthorized.
 
+Corrected contract checkpoint `c50d77a` was then committed, pushed, and remotely
+verified. The authorized production provenance correction is now complete
+locally: `Code commit` remains implementation anchor `8098343`; live `HEAD` is
+the separately derived pre-registration authority and must equal `origin/main`;
+committed planned-record bytes, accepted ancestry, corrected-spec/Phase 7
+identities, and latest Phase 8 source/test bytes are verified; checkpoint
+save/load and exact resume require matching durable run-level provenance; and
+result evidence keeps implementation and pre-registration commits distinct.
+The targeted provenance matrix passes 7/7, the complete Phase 8 suite passes 91/91,
+accepted Phase 3/5/6/7 regressions pass 174/174, and the complete suite has 533
+passes, one expected MPS skip, and zero failures across 534 tests. The correction
+remains unaccepted, unstaged, uncommitted, and unpushed pending fresh focused
+independent review. Pre-registration and real training remain unauthorized.
+
+Gate 56 review accepted all provenance behavior except one IMPORTANT evidence-
+path issue. Its targeted correction is complete locally: run-authority evidence
+now traverses and creates the run/artifacts tree only through retained
+descriptor-relative no-follow directory handles, verifies device/inode identity,
+fsyncs each new child and exact parent in order, reads/writes the evidence file
+relative to the retained artifacts handle, maps filesystem failures to the safe
+governance error, and removes a failed new file only when its identity still
+matches. Symlink/wrong-type cases cannot write outside the repository. New path
+tests pass 4/4, the provenance matrix 7/7, Phase 8 95/95, prior regressions
+174/174, and the full suite has 537 passes, one expected skip, and zero failures
+across 538 tests. Focused re-review of this sole correction is next;
+pre-registration and real training remain unauthorized.
+
+Final focused re-review returned PASS / NO ISSUE: the sole run-authority path
+finding is resolved, no BLOCKER, IMPORTANT, or MINOR provenance implementation
+finding remains, and Codex recommended `ACCEPT PROVENANCE IMPLEMENTATION
+CORRECTION`. Master Chat formally accepted the exact reviewed local source/test
+checkpoint under unchanged DEC-0020 and corrected specification authority.
+Evidence remains path 4/4, provenance 7/7, Phase 8 95/95, prior regressions
+174/174, and 537 passes plus one expected skip with zero failures across 538
+tests. The correction is unstaged, uncommitted, and unpushed; separate
+provenance-implementation checkpoint commit authorization is next.
+Pre-registration and real training remain unauthorized.
+
 Run the read-only Phase 1 preflight from the repository root with:
 
 ```sh

@@ -32,6 +32,7 @@ from sebgpt.tokenization.vocabulary_artifact import (  # noqa: E402
 from sebgpt.training import (  # noqa: E402
     Phase8CheckpointError,
     Phase8Evaluation,
+    Phase8GovernanceError,
     Phase8LogicalBatch,
     Phase8Progress,
     Phase8PublicationError,
@@ -52,7 +53,8 @@ from sebgpt.training.phase8_types import (  # noqa: E402
 )
 
 
-CODE_COMMIT = "a" * 40
+CODE_COMMIT = "809834323d53407cb4a54ae539585bb3d78856eb"
+PRE_REGISTRATION_COMMIT = "b" * 40
 RUN_ID = "EXP-20260911-01"
 EXPECTED_MODE_NAMES = (
     "",
@@ -306,7 +308,11 @@ class Phase8CheckpointTests(unittest.TestCase):
 
     def _patch_authority(self):
         return (
-            patch.object(checkpoint, "_validate_live_repository", return_value=None),
+            patch.object(
+                checkpoint,
+                "_validate_live_repository",
+                return_value=PRE_REGISTRATION_COMMIT,
+            ),
             patch.object(checkpoint, "_git", return_value=CODE_COMMIT),
         )
 
@@ -359,6 +365,53 @@ class Phase8CheckpointTests(unittest.TestCase):
             + "\n",
             encoding="utf-8",
         )
+
+    def test_checkpoint_save_and_load_validate_corrected_provenance(self) -> None:
+        state = _state(self.repository_root)
+        with patch.object(
+            checkpoint,
+            "_validate_live_repository",
+            return_value=PRE_REGISTRATION_COMMIT,
+        ) as validate:
+            save_phase8_checkpoint(state, self.repository_root)
+            restored = load_phase8_checkpoint(
+                self.repository_root,
+                run_id=RUN_ID,
+                role="latest",
+            )
+        self.assertEqual(restored.code_commit, CODE_COMMIT)
+        self.assertEqual(validate.call_count, 2)
+        for call in validate.call_args_list:
+            self.assertEqual(call.args, (self.repository_root, CODE_COMMIT))
+            self.assertEqual(call.kwargs["run_id"], RUN_ID)
+            self.assertEqual(call.kwargs["configuration"], state.configuration)
+
+    def test_resume_under_different_pre_registration_authority_fails(self) -> None:
+        state = _state(self.repository_root)
+        with patch.object(
+            checkpoint,
+            "_validate_live_repository",
+            return_value=PRE_REGISTRATION_COMMIT,
+        ):
+            save_phase8_checkpoint(state, self.repository_root)
+        mismatch = Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
+        with (
+            patch.object(
+                checkpoint,
+                "_validate_live_repository",
+                side_effect=mismatch,
+            ),
+            self.assertRaises(Phase8GovernanceError) as caught,
+        ):
+            load_phase8_checkpoint(
+                self.repository_root,
+                run_id=RUN_ID,
+                role="latest",
+            )
+        self.assertEqual(caught.exception.details["field"], "pre_registration_commit")
 
     def test_save_bootstraps_content_addressed_object_and_catalog(self) -> None:
         reference = self._save()

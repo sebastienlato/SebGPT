@@ -517,6 +517,55 @@ is the sole next gate. Production provenance implementation/test correction,
 pre-registration creation, real training, checkpoints, the real audit,
 generation, sampling, Phase 9, and sealed-test access remain unauthorized.
 
+Corrected contract checkpoint `c50d77a` was subsequently committed, pushed,
+and remotely verified at ahead/behind `0/0`. Master Chat then authorized the
+bounded production provenance implementation correction. Gate 55 is complete
+locally: planned/checkpoint `Code commit` is literal implementation anchor
+`8098343`; live `HEAD` is derived as separate `pre_registration_commit` and must
+equal `origin/main`; the pre-registration commit must introduce exactly one
+accepted planned record through an `EXPERIMENT_LOG.md`-only commit; committed
+planned-log bytes, first-parent absence, accepted ancestry, corrected spec and
+Phase 7 hashes, and latest Phase 8 source/test bytes are verified before corpus
+or checkpoint access. Ignored durable run-authority evidence binds checkpoints
+and resume to one implementation commit, pre-registration commit, and planned
+record without changing checkpoint payload schema; result evidence and labels
+carry the two commit concepts separately. The targeted provenance matrix passes 7/7,
+the complete Phase 8 suite passes 91/91, accepted Phase 3/5/6/7 regressions pass
+174/174, and the complete 534-test suite has 533 passes, one expected MPS skip,
+and zero failures. The correction is unaccepted, unstaged, uncommitted, and
+unpushed pending Gate 56 fresh focused independent review. Pre-registration,
+real training/checkpoints/audit, Phase 9, generation, sampling, and sealed-test
+access remain unauthorized.
+
+Gate 56 independent review accepted every provenance area except one IMPORTANT
+run-authority evidence path issue: recursive pathname creation could follow a
+symlinked run/artifacts component outside the repository and did not completely
+prove parent-directory durability or safe error mapping. The authorized targeted
+correction is complete locally. Run-authority evidence now uses one trusted root
+descriptor, descriptor-relative `O_DIRECTORY|O_NOFOLLOW` traversal, retained
+device/inode validation, exact new-child then parent fsync ordering, relative
+exclusive evidence publication/read, chain revalidation, governance-safe failure
+mapping, and identity-conditional cleanup that preserves substitutions. New path
+tests pass 4/4; the provenance matrix passes 7/7; Phase 8 passes 95/95; accepted
+Phase 3/5/6/7 regressions pass 174/174; and the full 538-test suite has 537
+passes, one expected MPS skip, and zero failures. The correction remains
+unaccepted, unstaged, uncommitted, and unpushed pending focused independent
+re-review of the sole finding; all execution boundaries remain unchanged.
+
+Focused independent re-review subsequently returned PASS / NO ISSUE. The prior
+run-authority evidence path-safety IMPORTANT finding is resolved; no BLOCKER,
+IMPORTANT, or MINOR provenance implementation finding remains; and Codex's exact
+recommendation is `ACCEPT PROVENANCE IMPLEMENTATION CORRECTION`. Master Chat
+formally accepted the corrected local implementation checkpoint at its reviewed
+source/test identities under unchanged DEC-0020 and corrected specification
+SHA-256 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`.
+Accepted evidence remains path 4/4, provenance 7/7, Phase 8 95/95, prior-phase
+174/174, and full suite 537 passes plus one expected skip with zero failures
+across 538 tests. The accepted correction is unstaged, uncommitted, and unpushed;
+separate provenance-implementation checkpoint commit authorization from Master
+Chat is the sole next gate. Pre-registration, real training/checkpoints/audit,
+Phase 9, generation, sampling, and sealed-test access remain unauthorized.
+
 **Exit criteria:**
 
 - Batching, optimization, evaluation intervals, seeds, and device behavior are explicit.

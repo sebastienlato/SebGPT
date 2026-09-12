@@ -29,12 +29,14 @@ from sebgpt.model.mini_gpt import (
 from sebgpt.model.phase4_experiment import Phase4PermittedCorpus
 from sebgpt.tokenization.vocabulary_artifact import VocabularyBinding
 from sebgpt.training.phase8_checkpoint import (
+    PHASE8_IMPLEMENTATION_COMMIT,
     _authority_mapping,
     _catalog_references,
     _configuration_mapping,
     _load_phase8_checkpoint,
     _payload,
     _publish_payload,
+    _publish_run_authority_evidence,
     _validate_live_repository,
     load_phase8_checkpoint,
     save_phase8_checkpoint,
@@ -109,6 +111,7 @@ _RESULT_RECORD_FIELDS = (
     "Question",
     "Authorization and predecessor",
     "Code commit",
+    "Pre-registration commit",
     "Phase 7 authority",
     "Phase 8 contract authority",
     "Runtime identity",
@@ -248,7 +251,10 @@ def _planned_run_record(
             "phase8.contract.lifecycle",
             field="planned_record_identity",
         )
-    if code_commit is not None and record["Code commit"] != code_commit:
+    if (
+        record["Code commit"] != PHASE8_IMPLEMENTATION_COMMIT
+        or (code_commit is not None and code_commit != PHASE8_IMPLEMENTATION_COMMIT)
+    ):
         raise Phase8ContractError(
             "phase8.contract.lifecycle",
             field="planned_record_code_commit",
@@ -430,10 +436,25 @@ def _branch_runtime_equal(
 def _write_evidence_artifact(
     repository_root: Path,
     run_id: str,
+    code_commit: str,
+    pre_registration_commit: str,
     records: tuple[dict[str, object], ...],
     latest: Phase8CheckpointReference,
     best: Phase8CheckpointReference,
 ) -> dict[str, object]:
+    if code_commit != PHASE8_IMPLEMENTATION_COMMIT:
+        raise Phase8ContractError(
+            "phase8.contract.lifecycle",
+            field="planned_record_code_commit",
+        )
+    if (
+        re.fullmatch(r"[0-9a-f]{40}", pre_registration_commit) is None
+        or pre_registration_commit == code_commit
+    ):
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
     artifact_root = repository_root / "experiments" / run_id / "artifacts"
     artifact_root.mkdir(mode=0o700, parents=True, exist_ok=True)
     content = (
@@ -441,6 +462,8 @@ def _write_evidence_artifact(
             {
                 "schema_version": 1,
                 "run_id": run_id,
+                "code_commit": code_commit,
+                "pre_registration_commit": pre_registration_commit,
                 "batch_and_resume_evidence": records,
                 "latest_checkpoint": {
                     name: getattr(latest, name)
@@ -846,11 +869,32 @@ def run_fixed_phase8_experiment(
         raise Phase8GovernanceError("phase8.governance.sealed_test")
     if config != load_phase8_configuration():
         raise Phase8ContractError("phase8.contract.configuration")
-    _validate_live_repository(REPOSITORY_ROOT, code_commit)
     run_id, _ = _planned_run_record(
         REPOSITORY_ROOT,
         code_commit=code_commit,
         configuration=config,
+    )
+    pre_registration_commit = _validate_live_repository(
+        REPOSITORY_ROOT,
+        code_commit,
+        run_id=run_id,
+        configuration=config,
+    )
+    try:
+        planned_record_sha256 = hashlib.sha256(
+            (REPOSITORY_ROOT / "EXPERIMENT_LOG.md").read_bytes()
+        ).hexdigest()
+    except OSError:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        ) from None
+    _publish_run_authority_evidence(
+        REPOSITORY_ROOT,
+        run_id,
+        code_commit,
+        pre_registration_commit,
+        planned_record_sha256,
     )
     training_windows = build_phase8_windows(
         corpus.training_works,
@@ -1019,9 +1063,23 @@ def run_fixed_phase8_experiment(
         state = _state_with(state, progress=progress, metrics=metrics)
         save_phase8_checkpoint(state, REPOSITORY_ROOT)
     latest, best = _catalog_references(REPOSITORY_ROOT, run_id)
+    final_pre_registration_commit = _validate_live_repository(
+        REPOSITORY_ROOT,
+        code_commit,
+        run_id=run_id,
+        configuration=config,
+        require_run_evidence=True,
+    )
+    if final_pre_registration_commit != pre_registration_commit:
+        raise Phase8GovernanceError(
+            "phase8.governance.repository",
+            field="pre_registration_commit",
+        )
     _write_evidence_artifact(
         REPOSITORY_ROOT,
         run_id,
+        code_commit,
+        pre_registration_commit,
         tuple(training_evidence),
         latest,
         best,
