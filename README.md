@@ -12,7 +12,8 @@ pushed and synchronized; its accepted contract and implementation checkpoints
 remain `60b2a9cce55da79ccc9fbd03fad014cb2a939290` and
 `3139b1736f005fe903e2ea111d91934478b5a683`.
 
-Phase 8 — Training and Checkpointing is authorized for learning/design only.
+Phase 8 — Training and Checkpointing has an accepted contract and authorized
+local implementation work.
 DEC-0020 records the accepted consolidated policy: unchanged accepted
 data/tokenizer/model authority; CPU float32; context 256; rank-one logical
 batches of eight; deterministic epoch shuffling; constant AdamW at `3e-4` with
@@ -39,9 +40,56 @@ or remaining finding. Master Chat formally accepted the corrected contract at
 SHA-256 `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd`
 without changing DEC-0020. The accepted documentation remains unstaged,
 uncommitted, and unpushed pending separate checkpoint-commit authorization.
-Phase 8 source, tests, optimizer/checkpoint construction, feasibility
-measurement, training, generation, sampling, sealed-test access, and Phase 9
-remain unauthorized.
+At the contract-acceptance checkpoint, Phase 8 source/tests and all later work
+remained unauthorized; the subsequent Gate 24 authorization below supersedes
+only the implementation portion of that historical boundary.
+
+The accepted contract checkpoint `09b2c2e` is pushed and remotely verified.
+Master Chat then authorized Phase 8 implementation. Gate 25 is complete locally.
+Fresh independent review found five BLOCKER, six IMPORTANT, and one MINOR issue;
+their authorized targeted correction is complete without changing DEC-0020 or
+the accepted contract. Focused re-review found one remaining historical-best
+mode-map BLOCKER and two IMPORTANT evidence/batching gaps; their final targeted
+correction is complete. The focused suite now maps all 48 obligations to
+categorized substantive evidence across 77 passing tests; relevant Phase
+3/5/6/7 regressions pass 174/174; and the complete 520-test suite has 519 passes,
+one expected MPS skip, and zero failures. Final focused re-review accepted the
+production behavior but found one remaining evidence-quality gap. Its
+evidence-only correction changed no Phase 8 source and expanded the focused
+suite to 85/85 passes with direct matrices for ordering restoration, evaluation,
+publication, restoration order, durable audit roots, bootstrap, descriptor
+safety, and bounded reads. Relevant regressions remain 174/174; the complete
+528-test suite has 527 passes, one expected MPS skip, and zero failures. The
+checkpoint is unaccepted, unstaged, uncommitted, and unpushed pending one final
+evidence-focused re-review. Feasibility measurement, real training, generation,
+sampling, sealed-test access, and Phase 9 remain unauthorized.
+
+That re-review left only static-boundary and unrelated-RNG ordering evidence
+incomplete. Their final test-only correction changed no production source: a
+mutation-tested AST oracle now covers all prohibited Phase 8 policy families,
+and a real checkpoint round trip deliberately perturbs global/dropout RNG before
+proving exact local order-state independence. Focused tests pass 86/86, the
+174-test prior-phase subset passes, and the complete 529-test suite has 528
+passes, one expected MPS skip, and zero failures. Final two-obligation review is
+next; all implementation and execution boundaries remain unchanged.
+
+Final verification accepted obligation 9 and left only static-boundary bypass
+coverage incomplete. Its final test-only correction adds alias-aware padding,
+special-token IDs/literals, prohibited precision strings, bounded test/sealed
+alias propagation, expanded mutations across every Phase 8 module, and safe
+negative controls. No production source changed. Focused tests pass 87/87; the
+174-test prior-phase subset passes; and the complete 530-test suite has 529
+passes, one expected MPS skip, and zero failures. Obligation-4-only verification
+is next.
+
+Final obligation-4 verification returned PASS with no remaining implementation
+finding, all 48 focused obligations satisfied, and exact recommendation
+`ACCEPT CORRECTED IMPLEMENTATION`. Master Chat formally accepts the corrected
+Phase 8 implementation. The accepted local checkpoint retains the verified
+87/87 focused, 174/174 prior-phase regression, and 529-pass/one-skip full-suite
+evidence. It remains unstaged, uncommitted, and unpushed pending separate
+implementation-checkpoint commit authorization. Feasibility, real training,
+Phase 9, generation, sampling, and sealed-test access remain unauthorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

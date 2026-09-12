@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 8 — Training and Checkpointing (detailed contract accepted; uncommitted)
+Phase 8 — Training and Checkpointing (implementation accepted locally; uncommitted)
 
 ## Current milestone
 
@@ -33,7 +33,27 @@ three without changing DEC-0020 and authorized this final targeted correction.
 Final focused independent re-review returned PASS with all three resolved, no
 new or remaining finding, and exact recommendation `ACCEPT CORRECTED CONTRACT`.
 Master Chat formally accepted the corrected detailed contract without changing
-DEC-0020. No implementation, feasibility measurement, or training is authorized.
+DEC-0020. The contract checkpoint was committed, pushed, and remotely verified
+at `09b2c2e0487a0b7a766655951422471085d943a8`. Master Chat then explicitly
+authorized Phase 8 implementation and focused/full synthetic verification.
+Gate 25 implementation is complete locally. Fresh independent implementation
+review returned five BLOCKER, six IMPORTANT, and one MINOR finding. Master Chat
+authorized their targeted correction, which is complete locally under unchanged
+DEC-0020 and the accepted contract. Feasibility measurement and real training
+remain unauthorized. Focused re-review then returned one remaining BLOCKER and
+two IMPORTANT findings. Their final targeted production/evidence correction is
+complete locally. Final focused re-review accepted those production corrections
+and returned one remaining IMPORTANT evidence-quality gap. Its evidence-only
+correction is complete and changed no Phase 8 source.
+Final evidence-focused re-review left only obligations 4 and 9 partially
+evidenced. Their final test-only correction is complete, found no production
+defect, and changed no Phase 8 source.
+Final two-obligation verification accepted obligation 9 and left only
+obligation 4's static evidence bypassable. Its final test-only correction is
+complete, found no production defect, and changed no Phase 8 source.
+Final obligation-4-only verification returned PASS with no remaining BLOCKER,
+IMPORTANT, or MINOR finding. All 48 obligations are independently satisfied,
+and Master Chat formally accepted the corrected Phase 8 implementation.
 
 ## Completed work
 
@@ -75,13 +95,44 @@ DEC-0020. No implementation, feasibility measurement, or training is authorized.
 - Final focused independent re-review passed. All Phase 8 contract-review
   findings are resolved; no BLOCKER, IMPORTANT, or MINOR finding remains. The
   corrected specification is formally accepted at its exact SHA-256.
+- Accepted contract checkpoint `09b2c2e` is pushed and remotely verified.
+- Gate 25 implements the exact five Phase 8 modules, package exports, runtime,
+  windows/order/batches, AdamW/gradients/evaluation, durable checkpoint/load,
+  provenance, lifecycle, record schema, and synthetic exact-resume behavior.
+- The targeted implementation correction resolves training-window update
+  authority; latest/historical-best catalog semantics; complete non-coercing
+  checkpoint schemas; full synthetic epoch-2 exact-resume audit publication and
+  reload; runtime/pre-registration binding; post-clip gradients; filesystem
+  publication mechanics; epoch-0 placeholder state; retained ignored evidence;
+  RNG rollback; focused-test independence; and safe window repr.
+- The final targeted correction adds complete literal mode-map validation for
+  both latest and historical-best payloads, valid paired-empty logical batching,
+  exact mode corruption matrices, direct prior-phase/static-boundary/checkpoint-
+  content/public-record evidence, descriptor-specific fsync evidence, and a
+  categorized substantive obligation-to-evidence audit.
+- The final evidence-only correction adds direct static-boundary, checkpointed-
+  ordering, evaluation-failure, publication-failure, restoration-order,
+  durable-audit, bootstrap, descriptor-relative, and bounded-read evidence.
+- The final two-obligation evidence correction adds a 19-category mutation-tested
+  AST boundary oracle across all six modules and deliberate global/dropout RNG
+  perturbation around an actual checkpointed ordering-stream round trip.
+- The obligation-4 final correction adds qualified/assigned alias resolution,
+  bounded string propagation, precise special-token and dtype-string detection,
+  cross-module bypass mutations, and false-positive controls.
+- Final independent Codex verification returned PASS, all implementation-review
+  findings are resolved, and Master Chat formally accepted the exact corrected
+  implementation/source/test checkpoint without changing DEC-0020 or the
+  accepted Phase 8 specification.
+- Focused Phase 8 tests pass 87/87 with all 48 accepted obligations explicitly
+  mapped to behavioral/literal evidence. Relevant accepted Phase 3/5/6/7
+  regressions pass 174/174. The complete 530-test suite has 529 passes, one expected
+  restricted-context MPS skip, and zero failures.
 
 ## Current work
 
-Detailed-contract acceptance bookkeeping is complete locally. The accepted
-specification and continuity updates are unstaged, uncommitted, and unpushed.
-They await separate accepted-contract documentation-checkpoint commit
-authorization.
+Phase 8 implementation acceptance bookkeeping is complete locally. The accepted
+source, tests, and continuity documentation remain unstaged, uncommitted, and
+unpushed pending separate implementation-checkpoint commit authorization.
 
 ## Current model status
 
@@ -90,27 +141,29 @@ of length `1..256` produces CPU-float32 logits `(T, 81)`. It contains 90 unique
 trainable tensors and 63,825 parameters, four accepted blocks, eight local
 dropout generators, final normalization, and an untied biased head.
 
-No retained Phase 7 model instance, optimizer, checkpoint, Phase 8 window,
-training tensor, gradient, logit, loss, metric, or generated sample exists. The
-accepted Phase 4 trained instance was not retained.
+Focused tests construct only ephemeral synthetic Phase 8 windows, models,
+AdamW instances, gradients, checkpoint payloads/catalogs, temporary filesystem
+trees, evaluations, and resume controls. All temporary artifacts are removed.
+No retained project checkpoint, real Phase 8 training state, corpus-derived
+window/tensor, generated sample, or Phase 7 model instance exists. The accepted
+Phase 4 trained instance was not retained.
 
 ## Last verified working state
 
-At the start of this documentation-only work, local `HEAD`, `main`, and
-`origin/main` matched Phase 7 closure commit `33d4510` at ahead/behind `0/0`
-with a clean worktree/index. The inherited last accepted regression evidence is
-the Phase 7 result: focused tests 47/47 and the complete 443-test suite with 442
-passes, one expected restricted-context MPS skip, and zero failures.
+Immediately before implementation, local `HEAD`, `main`, and `origin/main`
+matched accepted Phase 8 contract checkpoint `09b2c2e` at ahead/behind `0/0`
+with a clean worktree/index.
 
-This acceptance-bookkeeping stage did not rerun code tests. The accepted
-specification remains byte-identical at its recorded SHA-256, has 74 sequential
-gates and 48 sequential focused obligations, and preserves every fixed DEC-0020
-value. Documentation consistency checks and `git diff --check` pass.
+Final local verification: Phase 8 focused tests pass 87/87; accepted Phase
+3/5/6/7 regressions pass 174/174; and the complete suite runs 530 tests with
+529 passes, one expected restricted-context MPS skip, and zero failures. The
+accepted specification remains byte-identical at its recorded SHA-256, and
+accepted Phase 7 identities remain unchanged. `git diff --check` passes.
 
 ## Next exact step
 
-Obtain separate Master Chat authorization for the accepted Phase 8
-documentation-checkpoint commit.
+Obtain separate Master Chat authorization to create the accepted Phase 8
+implementation-checkpoint commit.
 
 ## Known issues
 
@@ -121,14 +174,16 @@ documentation-checkpoint commit.
 - Processed corpus files are ignored reproducible derivatives.
 - Checkpoint binaries are excluded from Git by accepted policy.
 - Content-addressed checkpoint objects may be orphaned by a failure before the
-  atomic catalog replacement; the accepted contract preserves them for diagnosis rather
-  than deleting uncertain state.
+  atomic catalog replacement; the accepted contract preserves them for
+  diagnosis rather than deleting uncertain state.
 
 ## Important constraints
 
 - DEC-0020 and the detailed specification at accepted SHA-256
   `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` are
   accepted authority and must not be changed without explicit adjudication.
+- The Phase 8 implementation is accepted locally; do not stage, commit, or push
+  it without separate Master Chat authorization.
 - Do not change context 256, logical batch capacity 8, CPU float32, model
   architecture, optimizer, or training policy without a new explicit decision.
 - Preserve the accepted tokenizer/vocabulary identity and all accepted Phase
@@ -136,15 +191,17 @@ documentation-checkpoint commit.
 - Never access, tokenize, window, score, inspect, or derive statistics from the
   sealed test work.
 - Do not rerun or tune `EXP-20260909-01`.
-- Do not implement Phase 8 source or tests; construct an optimizer/checkpoint;
-  measure feasibility; train; generate; sample; stage; commit; or push without
-  the applicable separate authorization.
+- Do not change, stage, commit, or push the unaccepted Phase 8 source/tests
+  without the applicable separate review and authorization.
+- Do not measure feasibility; perform real training or the real-run audit;
+  retain experiment checkpoints; generate; or sample.
 - Do not begin Phase 9 generation or final evaluation.
 
 ## Open questions
 
 - No Phase 8 detailed-contract review finding remains unresolved.
 - No conceptual DEC-0020 question remains open.
+- Phase 8 implementation-checkpoint commit authorization remains open.
 - Runtime feasibility remains deliberately unknown until a later specifically
   authorized bounded measurement after accepted implementation.
 
@@ -166,7 +223,32 @@ AdamW-state BLOCKER and two ownership/configuration-schema IMPORTANT findings;
 their final targeted corrections passed final focused re-review with no new or
 remaining finding. Master Chat accepted the corrected contract at SHA-256
 `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` without
-changing DEC-0020. No source, tests, optimizer, checkpoint payload, benchmark,
-training, generation, sealed test, staging, commit, or push occurred. The sole
-next action is separate accepted-contract documentation-checkpoint commit
-authorization.
+changing DEC-0020. Contract checkpoint `09b2c2e` is pushed and remotely verified;
+Master Chat authorized implementation, and Gate 25 produced five source modules,
+exact package exports, and 48 initial focused tests. Fresh independent review
+then returned five BLOCKER, six IMPORTANT, and one MINOR finding; their targeted
+correction is complete without changing DEC-0020 or the accepted contract.
+Focused re-review then found one remaining historical-best mode-map BLOCKER and
+two IMPORTANT zero-window/evidence findings. Their final correction is complete:
+both payload roles validate the exact 53-entry mode map before cross-validation,
+paired empty batching yields no batches, and every accepted obligation maps to
+categorized substantive evidence. Final focused re-review accepted those
+production behaviors and found one remaining evidence-quality gap. The
+evidence-only correction changed no source and added direct matrices for static
+exclusions, ordering restoration, evaluation/publication failures, restoration
+order, durable audit roots, bootstrap, descriptor safety, and bounded reads.
+Evidence re-review then left only static-boundary mutation coverage and
+unrelated-RNG ordering perturbation incomplete. Their final test-only correction
+changed no source and directly resolves both obligations. Final verification
+accepted obligation 9 and left only obligation 4's analyzer bypassable. The
+alias-aware, constant-propagating, mutation-tested final correction resolves
+those bypasses while preserving safe negative controls. Final independent
+verification returned PASS with no remaining BLOCKER, IMPORTANT, or MINOR
+finding and exact recommendation `ACCEPT CORRECTED IMPLEMENTATION`; Master Chat
+formally accepted the implementation. Focused tests pass 87/87, accepted Phase
+3/5/6/7 regressions pass 174/174, and the complete 530-test suite has 529
+passes, one expected MPS skip, and zero failures. Synthetic checkpoint objects
+remain temporary. No feasibility benchmark, real training, real-run audit,
+retained project checkpoint, generation, sealed test, staging, commit, or push
+occurred. The sole next action is separate implementation-checkpoint commit
+authorization from Master Chat.
