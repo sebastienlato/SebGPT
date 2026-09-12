@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 8 — Training and Checkpointing (implementation accepted locally; uncommitted)
+Phase 8 — Training and Checkpointing (implementation remotely accepted; provenance contract corrected and accepted)
 
 ## Current milestone
 
@@ -20,8 +20,8 @@ Phase 8 conceptual training/checkpointing policy as DEC-0020. Documentation-only
 detailed-contract drafting and stale Phase 7 closure reconciliation were then
 authorized.
 
-`docs/TRAINING_CHECKPOINTING_SPEC.md` makes DEC-0020 mechanical. Its accepted
-SHA-256 is
+`docs/TRAINING_CHECKPOINTING_SPEC.md` makes DEC-0020 mechanical. Its original
+accepted pre-provenance SHA-256 was
 `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd`.
 Fresh independent review returned CORRECT BEFORE
 ACCEPTANCE with three BLOCKER, eight IMPORTANT, and one MINOR finding. Master
@@ -54,6 +54,16 @@ complete, found no production defect, and changed no Phase 8 source.
 Final obligation-4-only verification returned PASS with no remaining BLOCKER,
 IMPORTANT, or MINOR finding. All 48 obligations are independently satisfied,
 and Master Chat formally accepted the corrected Phase 8 implementation.
+Implementation checkpoint `8098343` was committed, pushed, and remotely
+verified. The bounded feasibility result `FEASIBLE WITH MATERIAL RUNTIME COST`
+was accepted. The later fixed-run authorization stopped correctly before work
+because pre-registration authority was absent and exposed a genuine
+self-referential `code_commit` contract defect. Its documentation correction
+passed Gate 46 independent review with no remaining BLOCKER or IMPORTANT
+finding and exact recommendation `ACCEPT PROVENANCE CONTRACT CORRECTION`.
+Master Chat formally accepted the corrected provenance contract at SHA-256
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd` without
+changing DEC-0020 or the accepted implementation.
 
 ## Completed work
 
@@ -123,6 +133,19 @@ and Master Chat formally accepted the corrected Phase 8 implementation.
   findings are resolved, and Master Chat formally accepted the exact corrected
   implementation/source/test checkpoint without changing DEC-0020 or the
   accepted Phase 8 specification.
+- Accepted implementation checkpoint `8098343` is pushed and remotely verified.
+- The bounded feasibility measurement is accepted as `FEASIBLE WITH MATERIAL
+  RUNTIME COST`; it changed no policy or repository file and retained no state.
+- The accepted pre-run stop exposed and adjudicated the planned-record commit
+  self-reference. The accepted provenance correction separates immutable
+  implementation `Code commit` `8098343` from the future external
+  `pre_registration_commit`, binds launch `HEAD` to the latter, and preserves
+  exact implementation ancestry/bytes and planned-record immutability.
+- Gate 46 independent review returned PASS / NO ISSUE, confirmed the original
+  contradiction was real, found no remaining provenance BLOCKER or IMPORTANT
+  finding, and recommended `ACCEPT PROVENANCE CONTRACT CORRECTION`. Master Chat
+  formally accepted the corrected provenance contract without changing
+  DEC-0020 or accepted Phase 8 production source/tests.
 - Focused Phase 8 tests pass 87/87 with all 48 accepted obligations explicitly
   mapped to behavioral/literal evidence. Relevant accepted Phase 3/5/6/7
   regressions pass 174/174. The complete 530-test suite has 529 passes, one expected
@@ -130,9 +153,11 @@ and Master Chat formally accepted the corrected Phase 8 implementation.
 
 ## Current work
 
-Phase 8 implementation acceptance bookkeeping is complete locally. The accepted
-source, tests, and continuity documentation remain unstaged, uncommitted, and
-unpushed pending separate implementation-checkpoint commit authorization.
+Gates 45–48 are complete. The corrected provenance contract is accepted in
+`docs/TRAINING_CHECKPOINTING_SPEC.md` at SHA-256
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`.
+It is byte-frozen, unstaged, uncommitted, and unpushed pending separate
+corrected-contract checkpoint commit authorization.
 
 ## Current model status
 
@@ -150,25 +175,31 @@ Phase 4 trained instance was not retained.
 
 ## Last verified working state
 
-Immediately before implementation, local `HEAD`, `main`, and `origin/main`
-matched accepted Phase 8 contract checkpoint `09b2c2e` at ahead/behind `0/0`
-with a clean worktree/index.
+Immediately before this documentation correction, local `HEAD`, `main`,
+`origin/main`, and actual remote `main` matched accepted implementation commit
+`8098343` at ahead/behind `0/0` with a clean worktree/index.
 
-Final local verification: Phase 8 focused tests pass 87/87; accepted Phase
-3/5/6/7 regressions pass 174/174; and the complete suite runs 530 tests with
+Latest behavioral verification remains: Phase 8 focused tests pass 87/87;
+accepted Phase 3/5/6/7 regressions pass 174/174; and the complete suite runs 530 tests with
 529 passes, one expected restricted-context MPS skip, and zero failures. The
-accepted specification remains byte-identical at its recorded SHA-256, and
-accepted Phase 7 identities remain unchanged. `git diff --check` passes.
+accepted provenance-corrected specification remains byte-identical at SHA-256
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`; DEC-0020,
+accepted Phase 8 production source/tests, and accepted Phase 7 identities remain
+unchanged. Acceptance-bookkeeping `git diff --check` passes.
 
 ## Next exact step
 
-Obtain separate Master Chat authorization to create the accepted Phase 8
-implementation-checkpoint commit.
+Obtain separate Gate 49 corrected-contract checkpoint commit authorization from
+Master Chat.
 
 ## Known issues
 
-- No runtime feasibility evidence exists for context 256, logical batch
-  capacity 8, CPU float32, four blocks, and ten epochs.
+- Accepted feasibility is `FEASIBLE WITH MATERIAL RUNTIME COST`: training epoch
+  approximately 78.44 seconds, full training evaluation approximately 58.69
+  seconds, validation evaluation approximately 7.28 seconds, complete epoch
+  cycle approximately 144.41 seconds, accepted runner including exact-resume
+  audit branch approximately 27.58 minutes compute excluding checkpoint I/O,
+  and measured peak RSS approximately 336.6 MB.
 - Optional NumPy interoperability is unavailable and intentionally unnecessary.
 - MPS may be unavailable in restricted contexts; Phase 8 is CPU-only regardless.
 - Processed corpus files are ignored reproducible derivatives.
@@ -179,11 +210,11 @@ implementation-checkpoint commit.
 
 ## Important constraints
 
-- DEC-0020 and the detailed specification at accepted SHA-256
-  `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` are
-  accepted authority and must not be changed without explicit adjudication.
-- The Phase 8 implementation is accepted locally; do not stage, commit, or push
-  it without separate Master Chat authorization.
+- DEC-0020 remains unchanged. The provenance-corrected detailed contract at
+  SHA-256 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd` is
+  accepted and byte-frozen pending separate checkpoint commit authorization.
+- The Phase 8 implementation is accepted and remotely synchronized at
+  `8098343`; do not alter source/tests without separate authorization.
 - Do not change context 256, logical batch capacity 8, CPU float32, model
   architecture, optimizer, or training policy without a new explicit decision.
 - Preserve the accepted tokenizer/vocabulary identity and all accepted Phase
@@ -191,19 +222,20 @@ implementation-checkpoint commit.
 - Never access, tokenize, window, score, inspect, or derive statistics from the
   sealed test work.
 - Do not rerun or tune `EXP-20260909-01`.
-- Do not change, stage, commit, or push the unaccepted Phase 8 source/tests
-  without the applicable separate review and authorization.
-- Do not measure feasibility; perform real training or the real-run audit;
-  retain experiment checkpoints; generate; or sample.
+- Do not implement the production provenance correction or change Phase 8
+  source/tests without separate authorization.
+- Do not stage, commit, or push without the applicable separate authorization.
+- Do not rerun feasibility; create pre-registration; perform real training or
+  the real-run audit; retain experiment checkpoints; generate; or sample.
 - Do not begin Phase 9 generation or final evaluation.
 
 ## Open questions
 
 - No Phase 8 detailed-contract review finding remains unresolved.
 - No conceptual DEC-0020 question remains open.
-- Phase 8 implementation-checkpoint commit authorization remains open.
-- Runtime feasibility remains deliberately unknown until a later specifically
-  authorized bounded measurement after accepted implementation.
+- No provenance-contract BLOCKER or IMPORTANT finding remains; Gate 46 review
+  and Master Chat acceptance are complete.
+- Runtime feasibility is accepted as `FEASIBLE WITH MATERIAL RUNTIME COST`.
 
 ## Session handoff
 
@@ -221,7 +253,7 @@ IMPORTANT, and one MINOR finding; all targeted documentation corrections are
 complete without changing DEC-0020. Focused re-review then found one remaining
 AdamW-state BLOCKER and two ownership/configuration-schema IMPORTANT findings;
 their final targeted corrections passed final focused re-review with no new or
-remaining finding. Master Chat accepted the corrected contract at SHA-256
+remaining finding. Master Chat accepted the pre-provenance corrected detailed contract at SHA-256
 `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd` without
 changing DEC-0020. Contract checkpoint `09b2c2e` is pushed and remotely verified;
 Master Chat authorized implementation, and Gate 25 produced five source modules,
@@ -252,3 +284,26 @@ remain temporary. No feasibility benchmark, real training, real-run audit,
 retained project checkpoint, generation, sealed test, staging, commit, or push
 occurred. The sole next action is separate implementation-checkpoint commit
 authorization from Master Chat.
+
+Implementation checkpoint `8098343` was subsequently committed, pushed, and
+remotely verified. Accepted bounded feasibility is `FEASIBLE WITH MATERIAL
+RUNTIME COST` at an estimated 27.58 minutes compute excluding checkpoint I/O.
+The attempted run authorization correctly stopped before corpus/model/training
+because the required planned record did not exist; adjudication and Gate 46
+review confirmed the contract's self-referential Git authority contradiction
+was real. Gate 46 returned PASS / NO ISSUE with no remaining BLOCKER or
+IMPORTANT provenance finding and exact recommendation
+`ACCEPT PROVENANCE CONTRACT CORRECTION`; Master Chat formally accepted it.
+Planned/checkpoint/result `Code commit` is immutable accepted implementation
+anchor `8098343`; the future planned-record commit is separate external
+`pre_registration_commit` authority after its own commit/push/remote verification;
+and run-launch `HEAD` must equal that authority while exact accepted code/test/
+specification identities and ancestry remain enforced. The accepted corrected
+specification SHA-256 is
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`.
+DEC-0020 and accepted Phase 8 production source/tests remain unchanged. No
+production provenance implementation correction, pre-registration record,
+training, evaluation, checkpoint, audit, generation, sealed-test access,
+staging, commit, or push occurred or is authorized. The sole next action is
+separate Gate 49 corrected-contract checkpoint commit authorization from Master
+Chat.

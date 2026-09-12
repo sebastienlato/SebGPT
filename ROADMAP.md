@@ -482,6 +482,41 @@ implementation-checkpoint commit authorization from Master Chat. Feasibility,
 real training, Phase 9, generation, sampling, and sealed-test access remain
 unauthorized.
 
+Implementation checkpoint `8098343` was then committed, pushed, and remotely
+verified. The bounded feasibility result was accepted as `FEASIBLE WITH
+MATERIAL RUNTIME COST`, with about 27.58 minutes estimated accepted-run compute
+excluding checkpoint I/O. A subsequent fixed-run authorization stopped before
+corpus/model/training because no planned record existed and exposed a genuine
+self-reference between planned `Code commit`, its future containing commit, and
+live `HEAD`. Master Chat accepted the stop and authorized only documentation
+correction. Gate 45 now proposes a non-circular provenance model and 94-gate
+workflow: planned/checkpoint `Code commit` remains implementation anchor
+`8098343`; the future accepted planned-record commit is separate external
+`pre_registration_commit`; launch `HEAD == origin/main` must equal that external
+authority; and exact latest accepted contract/code hashes and ancestry remain
+mandatory. Corrected specification SHA-256 is
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`.
+It remains proposed, unstaged, uncommitted, and unpushed pending Gate 46 focused
+independent review. No pre-registration, source/test correction, run, training,
+checkpoint, audit, generation, sampling, or sealed-test access is authorized.
+
+Gate 46 independent provenance review subsequently returned PASS / NO ISSUE,
+confirmed that the original self-referential Git authority contradiction was
+REAL, found no remaining provenance-contract BLOCKER or IMPORTANT finding, and
+gave the exact recommendation `ACCEPT PROVENANCE CONTRACT CORRECTION`. Master
+Chat formally accepted the corrected provenance contract at SHA-256
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd` without
+changing DEC-0020 or accepted Phase 8 production source/tests. `Code commit`
+now authoritatively means immutable accepted implementation anchor `8098343`;
+the future commit containing the accepted planned record is separate external
+`pre_registration_commit` authority and is established only through its later
+commit/push/remote-verification gates. Gates 46–48 are complete. The corrected
+specification is byte-frozen, unstaged, uncommitted, and unpushed; Gate 49,
+separate corrected-contract checkpoint commit authorization from Master Chat,
+is the sole next gate. Production provenance implementation/test correction,
+pre-registration creation, real training, checkpoints, the real audit,
+generation, sampling, Phase 9, and sealed-test access remain unauthorized.
+
 **Exit criteria:**
 
 - Batching, optimization, evaluation intervals, seeds, and device behavior are explicit.

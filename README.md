@@ -91,6 +91,25 @@ evidence. It remains unstaged, uncommitted, and unpushed pending separate
 implementation-checkpoint commit authorization. Feasibility, real training,
 Phase 9, generation, sampling, and sealed-test access remain unauthorized.
 
+Implementation checkpoint `8098343` was subsequently committed, pushed, and
+remotely verified. The bounded feasibility result is accepted as `FEASIBLE WITH
+MATERIAL RUNTIME COST`. The attempted real-run authorization correctly stopped
+before work because no planned record existed and exposed a self-referential
+commit-authority defect. Gate 45 corrected it by separating immutable implementation
+`Code commit` (`8098343`) and external future `pre_registration_commit`
+authority, with launch `HEAD` bound to the latter and exact accepted code/spec
+ancestry and hashes preserved. The corrected specification SHA-256 is
+`1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`;
+Gate 46 independent review returned PASS / NO ISSUE, confirmed the contradiction
+was real, found no remaining BLOCKER or IMPORTANT provenance finding, and
+recommended `ACCEPT PROVENANCE CONTRACT CORRECTION`. Master Chat formally
+accepted the corrected provenance contract without changing DEC-0020 or accepted
+Phase 8 source/tests. It is byte-frozen, unstaged, uncommitted, and unpushed;
+separate corrected-contract checkpoint commit authorization is the sole next
+gate. Production provenance implementation correction, pre-registration, real
+training, Phase 9, generation, sampling, and sealed-test access remain
+unauthorized.
+
 Run the read-only Phase 1 preflight from the repository root with:
 
 ```sh

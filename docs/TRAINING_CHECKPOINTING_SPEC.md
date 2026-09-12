@@ -32,6 +32,15 @@ tensors, literal ownership/exports for every public Phase 8 object, and an
 unambiguous first-key `configuration.schema_version`. It remains unaccepted
 pending one final focused independent re-review.
 
+The corrected contract and implementation were subsequently accepted, committed,
+pushed, and remotely verified. During the separately authorized real-run
+pre-registration gate, the original provenance wording was found to be
+self-referential: it required a planned record to contain the SHA of the commit
+that would later contain that same record. Master Chat accepted the stop and
+authorized only the provenance/governance correction below. This corrected
+documentation remains proposed pending focused independent review and acceptance;
+it changes no DEC-0020 training policy or accepted training behavior.
+
 DEC-0020 is the conceptual authority. This specification may make its approved
 policy mechanical, but may not change the dataset, tokenizer, Phase 7 model,
 CPU-float32 boundary, rank-one model call, context length 256, logical batch
@@ -222,44 +231,112 @@ backend, device, or dtype.
 ## Live repository and run-authority preflight
 
 An authorized feasibility measurement or training run may begin only in a
-dedicated process after an independent live repository preflight. A caller-
-supplied `code_commit` is evidence to verify, never authority by itself.
+dedicated process after an independent live repository preflight. The planned
+record's `Code commit` is the accepted Phase 8 implementation anchor, exactly
+`809834323d53407cb4a54ae539585bb3d78856eb`; it is not the later commit that
+contains the planned record. A caller-supplied `code_commit` is evidence to
+verify against that immutable planned value, never authority by itself.
+
+The future pre-registration commit is separate external repository authority.
+It is not and cannot be embedded in the planned record that it creates. The
+separate commit, push, and remote-verification gates establish its exact SHA as
+`pre_registration_commit`. At run launch, live `HEAD` is that exact remotely
+verified commit and the locally refreshed `origin/main` matches it. The runner
+derives this value from live Git state and verifies the committed planned record;
+it does not accept a caller substitute for it.
 
 Before corpus, vocabulary binding, model, optimizer, window, generator, or
 training-state construction, the preflight requires exactly:
 
 1. the working directory is the physical repository root, not a symlink;
 2. the checked-out branch is exactly `main`;
-3. live `HEAD` equals the recorded 40-character lowercase `code_commit`;
-4. live `HEAD` equals the locally refreshed `origin/main`, with ahead/behind
+3. planned-record `Code commit` and caller `code_commit` both equal the accepted
+   implementation anchor `809834323d53407cb4a54ae539585bb3d78856eb`;
+4. that accepted implementation commit is an ancestor of live `HEAD`;
+5. live `HEAD` is the exact accepted, remotely verified pre-registration commit;
+6. live `HEAD` equals the locally refreshed `origin/main`, with ahead/behind
    `0/0`; the separate prior remote-verification gate supplies actual-remote
    authority and a run does not perform network access;
-5. index, tracked worktree, and non-ignored untracked status are empty under
+7. index, tracked worktree, and non-ignored untracked status are empty under
    `git status --porcelain=v2 --untracked-files=all`;
-6. ignored processed corpus derivatives, checkpoint objects/catalogs, and
+8. ignored processed corpus derivatives, checkpoint objects/catalogs, and
    ignored experiment artifacts are the only permitted generated filesystem
    state and do not relax tracked cleanliness;
-7. accepted Phase 7 closure, contract, and implementation commits are ancestors
+9. accepted Phase 7 closure, contract, and implementation commits are ancestors
    of `HEAD` and equal the recorded identities;
-8. live `docs/MINI_GPT_SPEC.md`, `src/sebgpt/model/mini_gpt.py`, and accepted
+10. live `docs/MINI_GPT_SPEC.md`, `src/sebgpt/model/mini_gpt.py`, and accepted
    Phase 7 focused test bytes equal their accepted SHA-256 identities;
-9. the accepted Phase 8 contract commit is an ancestor of `HEAD`, and live
-   `docs/TRAINING_CHECKPOINTING_SPEC.md` equals its accepted recorded SHA-256;
-10. `requirements.lock`, tokenizer artifact, dataset manifest, processing
+11. the accepted Phase 8 contract commit and the accepted provenance-corrected
+    contract commit are ancestors of `HEAD`, and live
+    `docs/TRAINING_CHECKPOINTING_SPEC.md` equals the latest accepted corrected
+    SHA-256;
+12. the accepted Phase 8 implementation commit and any separately reviewed,
+    accepted provenance-only implementation-correction commit are ancestors of
+    `HEAD`; every Phase 8 source/test file equals its latest accepted exact hash;
+    and the Git diff from that latest accepted implementation authority to the
+    pre-registration commit contains no source, test, model, tokenizer, dataset,
+    runtime-policy, or specification change;
+13. live `EXPERIMENT_LOG.md` bytes equal the blob committed at live `HEAD`; that
+    commit introduces exactly one accepted planned Phase 8 record whose run ID
+    was absent from its first parent, and the record passes its complete schema,
+    authority, and configuration validation;
+14. `requirements.lock`, tokenizer artifact, dataset manifest, processing
     manifest, and the exact seven permitted work identities/hashes match their
     accepted authorities through existing content-safe verifiers; and
-11. configured live runtime equals the complete recorded runtime envelope.
+15. configured live runtime equals the complete recorded runtime envelope.
 
 The future planned `EXPERIMENT_LOG.md` pre-registration must therefore be
 reviewed, committed, pushed, and remotely verified before fixed-run
-authorization. Its commit becomes the run's `code_commit`. The runner produces
-only ignored checkpoint and experiment artifacts while active, so tracked state
-stays clean. Result text is appended to `EXPERIMENT_LOG.md` only after the run
-stops and under its separate result-recording gate.
+authorization. That commit becomes the external `pre_registration_commit`, not
+the planned record's `Code commit`. The planned text is never rewritten. The
+runner produces only ignored checkpoint and experiment artifacts while active,
+so tracked state stays clean. Result text is appended to `EXPERIMENT_LOG.md`
+only after the run stops and under its separate result-recording gate.
 
-Any mismatch raises `Phase8GovernanceError` with invariant
-`phase8.governance.repository` before corpus text access or any training object
-construction. Tests mock repository facts; they do not change live Git state.
+Wrong planned `Code commit` retains `Phase8ContractError` invariant
+`phase8.contract.lifecycle` with field `planned_record_code_commit`. Missing,
+wrong, uncommitted, unpushed, or nonmatching pre-registration authority raises
+`Phase8GovernanceError` with invariant `phase8.governance.repository` and field
+`pre_registration_commit`. An implementation ancestry or accepted-byte mismatch
+raises the same governance invariant with field `implementation_authority`.
+Dirty state retains field `clean`. Every mismatch occurs before corpus text
+access or training-object construction. Tests mock repository facts; they do
+not change live Git state.
+
+### Required provenance-only implementation correction
+
+A later separately authorized implementation pass must make only these
+mechanical changes:
+
+1. `_planned_run_record` validates planned `Code commit` against literal
+   accepted implementation anchor
+   `809834323d53407cb4a54ae539585bb3d78856eb`.
+2. `_validate_live_repository` no longer requires `HEAD == code_commit`. It
+   requires the implementation anchor to be an ancestor, derives
+   `pre_registration_commit = HEAD`, requires `HEAD == origin/main`, proves the
+   planned record is committed at that exact `HEAD`, and applies every accepted
+   hash/cleanliness/data/runtime check above.
+3. The preflight proves that only separately accepted provenance-governance
+   source/test corrections and later pre-registration documentation changed
+   after the implementation anchor; every executable Phase 8 file matches its
+   latest independently accepted hash.
+4. The existing `Phase 8 contract authority` mapping and checkpoint authority
+   keys retain their schema but, after this correction is accepted and committed,
+   their commit/hash values identify the latest accepted provenance-corrected
+   contract. Original contract commit
+   `09b2c2e0487a0b7a766655951422471085d943a8` remains a required ancestor.
+5. `run_fixed_phase8_experiment` completes this preflight before corpus access,
+   retains the derived pre-registration SHA as private run evidence, and keeps
+   `Phase8TrainingState.code_commit` equal to the implementation anchor.
+6. Save/load validate the same planned record, implementation anchor, live
+   pre-registration commit, and accepted bytes at every checkpoint boundary.
+7. Ignored experiment/audit evidence and the later result record include the
+   external pre-registration SHA. Payload and resume-lineage schemas remain
+   unchanged; exact-resume branches share this run-level external authority.
+
+No caller value may replace live Git or committed-record evidence. No model,
+optimizer, batching, RNG, evaluation, checkpoint durability, or Phase 8/9
+behavior changes in this correction.
 
 ## Proposed file ownership and public surface
 
@@ -437,6 +514,11 @@ resumed_from_checkpoint_sha256: str | None
 resume_checkpoint_sha256s: tuple[str, ...]
 ```
 
+`code_commit` is exactly the planned record's accepted implementation anchor
+`809834323d53407cb4a54ae539585bb3d78856eb`. The separate live
+`pre_registration_commit` is repository/run-launch authority validated before
+state construction; it is not duplicated in this in-memory semantic record.
+
 Model-, optimizer-, generator-, RNG-, and corpus-bearing fields are repr-hidden.
 The optional resumed-from hash is `None` only before the first continuation;
 each later checkpoint requires it to equal the last item of the nonempty lineage
@@ -513,6 +595,11 @@ run_fixed_phase8_experiment(
     code_commit: str,
 ) -> Phase8RunResult
 ```
+
+For `run_fixed_phase8_experiment`, `code_commit` means the immutable accepted
+implementation anchor recorded by the planned entry, not live launch `HEAD`.
+The operation independently derives and validates live `HEAD` as the accepted
+external pre-registration authority before corpus access.
 
 All arguments are required and have no defaults except the keyword-only
 boundaries shown. `role` accepts exactly `latest`; `best_validation` is not a
@@ -1033,8 +1120,17 @@ resume_lineage: mapping
 run_id: str                              # exact run-ID grammar
 logical_id: str                          # epoch-0001..epoch-0010
 completed_epoch: int                     # 1..10 and matches logical ID
-code_commit: str                         # 40 lowercase hex
+code_commit: str                         # accepted implementation anchor; exact 8098343...
 ```
+
+Checkpoint `run.code_commit` remains the planned record's accepted
+implementation anchor. The external `pre_registration_commit` is deliberately
+not inserted into the semantic payload after pre-registration: doing so would
+change the accepted planned record or require another self-referential value.
+Every save and load instead re-runs the corrected live repository preflight,
+which binds the payload run ID and implementation anchor to the exact committed
+planned record at live `HEAD`. The final result record stores that externally
+derived pre-registration SHA for durable review.
 
 `authority` has exactly these keys in order:
 
@@ -1241,6 +1337,10 @@ checkpoint_sha256s: tuple[str, ...]
 `root_run_id` equals `run.run_id`; tuple length equals `resume_count`; the
 nullable field is `None` exactly when the tuple is empty and otherwise equals
 its last item. Operational lineage is provenance, not training-semantic state.
+Both exact-resume branches share the same externally validated
+`pre_registration_commit`; it is run-level provenance rather than a branch or
+training-semantic difference. Resume lineage therefore remains unchanged and
+may differ only as already specified.
 
 The canonical catalog has these exact top-level keys in order:
 
@@ -1393,7 +1493,11 @@ succeeded.
 Continuation loading accepts role `latest` only and performs exactly:
 
 1. Validate public arguments, exact run-ID grammar, dedicated runtime envelope,
-   and live repository authority before checkpoint path access.
+   accepted implementation anchor, externally derived pre-registration commit,
+   committed planned-record bytes, and complete live repository authority before
+   checkpoint path access. The payload `run.code_commit` must equal the planned
+   implementation anchor; live `HEAD` must equal the accepted pre-registration
+   commit.
 2. Snapshot caller global CPU RNG state as a cloned one-dimensional CPU
    `torch.uint8` tensor. From this step until final commit, no operation may
    mutate caller global CPU RNG.
@@ -1546,6 +1650,9 @@ assigned one `EXP-YYYYMMDD-NN` ID during a separately authorized
 pre-registration gate. The planned record freezes the implementation commit,
 configuration, success rules, feasibility evidence, and run authorization.
 Later status/result material is appended; the planned text is never rewritten.
+Its `Code commit` is exactly
+`809834323d53407cb4a54ae539585bb3d78856eb`. No proposed planned-record field
+contains the unknown future pre-registration commit.
 
 The planned entry uses exactly these bold labels in order, with no omitted or
 extra field:
@@ -1585,6 +1692,7 @@ Status
 Question
 Authorization and predecessor
 Code commit
+Pre-registration commit
 Phase 7 authority
 Phase 8 contract authority
 Runtime identity
@@ -1626,6 +1734,14 @@ schema. `Sealed-test access` is exactly `none`; `Generation and samples` is
 exactly `none`. A failed/stopped result uses explicit `null` only for checkpoint
 or metric fields that were never durably produced and identifies the last valid
 catalog reference. No generated prose is treated as a machine authority.
+
+In the result entry, `Code commit` repeats the planned implementation anchor and
+`Pre-registration commit` is the exact lowercase 40-hex live launch `HEAD`
+established by the pre-registration commit/push/remote-verification gates. This
+later result field records the external authority without rewriting the planned
+record. Checkpoint identities and resume-audit evidence are reviewed together
+with both commits; checkpoint payload `run.code_commit` remains the
+implementation anchor.
 
 Machine-generated event details may be stored under ignored
 `experiments/<run_id>/artifacts/`, but they are subordinate to the checkpoint
@@ -1784,14 +1900,17 @@ The exact major stages are:
    authority; all-None gradients; snapshot semantic state; eval/no-grad
    traversal; aggregate; restore train mode in `finally`; validate complete
    nonmutation; package result.
-10. `save_phase8_checkpoint`: validate argument types, runtime and live
-    repository; exact training-state record; configuration/model/optimizer;
+10. `save_phase8_checkpoint`: validate argument types, runtime, accepted
+    implementation anchor, external pre-registration commit, committed planned
+    record, and live repository; exact training-state record; configuration/model/optimizer;
     progress/metrics; modes/gradients; RNGs/lineage; complete payload/schema and
     cross-fields; then bootstrap and atomic publication stages.
 11. `load_phase8_checkpoint`: use the exact nineteen-stage transactional load
     order in its section; no alternate order is accepted.
 12. `run_fixed_phase8_experiment`: validate arguments, runtime, live repository,
-    code/config authority, permitted corpus and vocabulary before text; build
+    planned implementation-code/config authority, implementation ancestry and
+    accepted bytes, external live-HEAD pre-registration authority, and committed
+    planned-record bytes before permitted corpus and vocabulary text; build
     windows; initialized evaluation; ten epoch lifecycles; epoch-1 resume audit;
     checkpoint/result completeness; success predicate; package one final result.
 
@@ -1942,8 +2061,8 @@ production constants or helpers under test.
     every module `__all__`, package re-export/`__all__`, runtime-operation and
     six-exception ownership, invariant, validation stage, checkpoint/catalog/
     reference key, configuration schema-version presence/order/value, rejection
-    of missing/unknown versions, and experiment-record label with no production
-    imports.
+    of missing/unknown versions, planned/result experiment-record labels
+    including result-only `Pre-registration commit`, and no production imports.
 40. Catalog/payload negatives independently alter run ID, logical ID, epoch,
     progress, validation-loss hex, role, digest, relative path, current/best
     metrics, and best identity while retaining otherwise valid bytes; every case
@@ -1960,16 +2079,25 @@ production constants or helpers under test.
 44. Security tests document that only trusted local project artifacts are
     accepted and that `weights_only=True` is not represented as a hostile-file
     or resource-exhaustion sandbox.
-45. Live repository preflight proves caller `code_commit` is subordinate to
-    actual branch/HEAD/origin/cleanliness/ancestor/file-hash/runtime/data/tokenizer
-    facts and that every mismatch precedes corpus/model/training construction.
+45. Live repository and pre-registration tests prove independently that the
+    planned `Code commit` equals accepted implementation commit
+    `809834323d53407cb4a54ae539585bb3d78856eb`; that commit is an ancestor of
+    run-launch `HEAD`; live `HEAD` equals the externally accepted, remotely
+    verified pre-registration commit and refreshed `origin/main`; the planned
+    record is committed there and did not require its own future SHA; all latest
+    accepted implementation/source/test/spec hashes match; an unapproved
+    source/test change after implementation authority fails; wrong planned
+    `Code commit`, wrong/missing pre-registration authority, and dirty tracked
+    state each fail with the exact corrected invariant/field before corpus,
+    model, optimizer, generator, or training-state construction.
 46. Continuation succeeds only for canonical `latest`; a valid older
     `best_validation` reference is integrity-checkable but rejected for Phase 8
     training continuation without constructing returned training state.
 47. The real-run resume oracle retains both branches through the complete next
     epoch, full train/validation evaluation, metric/best update, serialized
     semantic payload, durable object/catalog boundary, reload, and complete
-    semantic comparison; only enumerated lineage/hash/location fields differ.
+    semantic comparison; both share one externally validated pre-registration
+    authority and only enumerated lineage/hash/location fields differ.
 48. A literal gate oracle proves every contract, implementation, feasibility,
     pre-registration, run, result/checkpoint acceptance, exit, and closure
     authorization/action/verification gate is distinct and sequential.
@@ -2054,51 +2182,82 @@ optimizer, device, or training policy.
     impractical.
 43. Sebastien's explicit feasibility result acceptance and authorization to
     proceed toward pre-registration.
-44. Separate experiment pre-registration authorization.
-45. Append only the planned `EXPERIMENT_LOG.md` record.
-46. Fresh independent pre-registration review.
-47. Master Chat pre-registration adjudication.
-48. Sebastien's explicit pre-registration acceptance.
-49. Separate pre-registration commit authorization.
-50. Pre-registration commit creation without amendment or extra files.
-51. Separate pre-registration push authorization.
-52. Pre-registration push.
-53. Independent remote verification of the clean run-authority commit.
-54. Separate fixed Phase 8 run authorization.
-55. Execute exactly one fixed run, including checkpointing and the complete
-    dual-branch epoch-2 resume audit; no retry or tuning.
-56. Separate experiment-result recording authorization.
-57. Append only the exact result and checkpoint identities to
-    `EXPERIMENT_LOG.md`.
-58. Fresh independent experiment, checkpoint, exact-resume, and Phase 8 exit
-    review.
-59. Master Chat result/checkpoint/exit adjudication.
-60. Sebastien's explicit experiment, checkpoint, and technical Phase 8 exit
+44. Stop at the discovered pre-registration self-reference; Master Chat
+    adjudication and separate documentation-only correction authorization.
+    **Complete.**
+45. Apply only the authorized non-circular provenance-contract correction.
+    **Complete locally; corrected contract remains unaccepted.**
+46. Fresh independent focused review of the provenance correction.
+47. Master Chat provenance-correction adjudication.
+48. Sebastien's explicit corrected-contract acceptance.
+49. Separate corrected-contract documentation commit authorization.
+50. Corrected-contract documentation commit creation without amendment or
+    extra files.
+51. Separate corrected-contract push authorization.
+52. Corrected-contract push.
+53. Independent remote verification of the corrected-contract commit.
+54. Separate provenance-only implementation/test correction authorization.
+55. Apply only the accepted runner, checkpoint-provenance, result-schema, and
+    focused-test changes required by this correction.
+56. Fresh independent focused implementation-correction review.
+57. Master Chat implementation-correction adjudication.
+58. Sebastien's explicit provenance implementation-correction acceptance.
+59. Separate provenance implementation-correction commit authorization.
+60. Provenance implementation-correction commit creation without amendment or
+    extra files.
+61. Separate provenance implementation-correction push authorization.
+62. Provenance implementation-correction push.
+63. Independent remote verification of the latest accepted implementation and
+    exact source/test hashes.
+64. Separate experiment pre-registration proposal authorization.
+65. Append only the planned `EXPERIMENT_LOG.md` record. Its `Code commit` is
+    the accepted implementation anchor; it contains no pre-registration SHA.
+66. Fresh independent pre-registration review.
+67. Master Chat pre-registration adjudication.
+68. Sebastien's explicit pre-registration acceptance.
+69. Separate pre-registration commit authorization.
+70. Pre-registration commit creation without amendment or extra files. This
+    commit becomes external `pre_registration_commit` authority.
+71. Separate pre-registration push authorization.
+72. Pre-registration push.
+73. Independent remote verification of the clean pre-registration/run-launch
+    authority commit and exact planned-record bytes.
+74. Separate fixed Phase 8 run authorization naming that verified authority.
+75. Execute exactly one fixed run at live `HEAD == pre_registration_commit`,
+    including checkpointing and the complete dual-branch epoch-2 resume audit;
+    no retry or tuning.
+76. Separate experiment-result recording authorization.
+77. Append only the exact result, external `Pre-registration commit`, and
+    checkpoint identities to `EXPERIMENT_LOG.md`.
+78. Fresh independent experiment, checkpoint, exact-resume, provenance, and
+    Phase 8 exit review.
+79. Master Chat result/checkpoint/exit adjudication.
+80. Sebastien's explicit experiment, checkpoint, and technical Phase 8 exit
     acceptance.
-61. Separate accepted-result documentation commit authorization.
-62. Accepted-result commit creation without amendment or extra files.
-63. Separate accepted-result push authorization.
-64. Accepted-result push.
-65. Independent remote verification of the accepted result record.
-66. Sebastien's separate Phase 8 closure-state acceptance.
-67. Separate documentation-only closure-bookkeeping authorization.
-68. Apply only authorized closure bookkeeping.
-69. Separate Phase 8 closure-commit authorization.
-70. Phase 8 closure-commit creation without amendment or extra files.
-71. Separate Phase 8 closure-push authorization.
-72. Phase 8 closure push.
-73. Independent final remote verification of the Phase 8 closure commit.
-74. Only then consider separate Phase 9 learning/design authorization.
+81. Separate accepted-result documentation commit authorization.
+82. Accepted-result commit creation without amendment or extra files.
+83. Separate accepted-result push authorization.
+84. Accepted-result push.
+85. Independent remote verification of the accepted result record.
+86. Sebastien's separate Phase 8 closure-state acceptance.
+87. Separate documentation-only closure-bookkeeping authorization.
+88. Apply only authorized closure bookkeeping.
+89. Separate Phase 8 closure-commit authorization.
+90. Phase 8 closure-commit creation without amendment or extra files.
+91. Separate Phase 8 closure-push authorization.
+92. Phase 8 closure push.
+93. Independent final remote verification of the Phase 8 closure commit.
+94. Only then consider separate Phase 9 learning/design authorization.
 
 No gate silently authorizes a later gate. Review findings authorize no change
 until Master Chat accepts them and Sebastien authorizes the bounded correction.
 
 ## Current authorization boundary
 
-DEC-0020 is accepted and this documentation-only detailed-contract proposal is
-complete locally. It remains unaccepted, unstaged, uncommitted, and unpushed
-pending one final focused independent detailed-contract re-review of the
-remaining three corrected schema/API findings. No Phase 8 source, tests,
-optimizer, checkpoint payload, feasibility measurement, corpus run, training,
-generation, sampling, sealed-test access, staging, commit, push, or Phase 9
-work is authorized.
+DEC-0020, the accepted training policy, and the accepted implementation remain
+unchanged. The non-circular provenance-contract correction at Gate 45 is
+complete locally and remains unaccepted, unstaged, uncommitted, and unpushed
+pending Gate 46 fresh focused independent review. No pre-registration record,
+production-source/test correction, corpus run, training, evaluation, checkpoint,
+exact-resume audit, generation, sampling, sealed-test access, staging, commit,
+push, or Phase 9 work is authorized.
