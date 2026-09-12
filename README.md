@@ -12,141 +12,36 @@ pushed and synchronized; its accepted contract and implementation checkpoints
 remain `60b2a9cce55da79ccc9fbd03fad014cb2a939290` and
 `3139b1736f005fe903e2ea111d91934478b5a683`.
 
-Phase 8 — Training and Checkpointing has an accepted contract and authorized
-local implementation work.
-DEC-0020 records the accepted consolidated policy: unchanged accepted
-data/tokenizer/model authority; CPU float32; context 256; rank-one logical
-batches of eight; deterministic epoch shuffling; constant AdamW at `3e-4` with
-betas `(0.9, 0.999)`, epsilon `1e-8`, and weight decay `0.01`; global-norm
-clipping at `1.0`; ten epochs without validation early stopping; full
-initialized and end-epoch training/validation evaluation; latest and
-best-validation checkpoints; complete runtime-state restoration; and exact
-supported-environment resume.
-
-Documentation-only proposed
-[docs/TRAINING_CHECKPOINTING_SPEC.md](docs/TRAINING_CHECKPOINTING_SPEC.md)
-defines the detailed window, ordering, accumulation, optimizer, evaluation,
-checkpoint, restoration, evidence, failure, test, feasibility, and gate
-contracts. Independent review returned CORRECT BEFORE ACCEPTANCE with three
-BLOCKER, eight IMPORTANT, and one MINOR finding. The authorized targeted
-documentation corrections are complete without changing DEC-0020: durability,
-transactional RNG restoration, runtime identity, clipping, exact schemas,
-catalog agreement, filesystem trust, live provenance, latest-only continuation,
-extended resume evidence, gates, and permutation tests are corrected. The
-focused re-review passed those items but found one remaining AdamW-state BLOCKER
-and two public-ownership/configuration-schema IMPORTANT findings. Their final
-targeted documentation corrections passed final focused re-review with no new
-or remaining finding. Master Chat formally accepted the corrected contract at
-SHA-256 `0b3e2a79de7038e2233560c0836101d2f5757f9a5e3c3e89e6ccb62e7cc6fffd`
-without changing DEC-0020. The accepted documentation remains unstaged,
-uncommitted, and unpushed pending separate checkpoint-commit authorization.
-At the contract-acceptance checkpoint, Phase 8 source/tests and all later work
-remained unauthorized; the subsequent Gate 24 authorization below supersedes
-only the implementation portion of that historical boundary.
-
-The accepted contract checkpoint `09b2c2e` is pushed and remotely verified.
-Master Chat then authorized Phase 8 implementation. Gate 25 is complete locally.
-Fresh independent review found five BLOCKER, six IMPORTANT, and one MINOR issue;
-their authorized targeted correction is complete without changing DEC-0020 or
-the accepted contract. Focused re-review found one remaining historical-best
-mode-map BLOCKER and two IMPORTANT evidence/batching gaps; their final targeted
-correction is complete. The focused suite now maps all 48 obligations to
-categorized substantive evidence across 77 passing tests; relevant Phase
-3/5/6/7 regressions pass 174/174; and the complete 520-test suite has 519 passes,
-one expected MPS skip, and zero failures. Final focused re-review accepted the
-production behavior but found one remaining evidence-quality gap. Its
-evidence-only correction changed no Phase 8 source and expanded the focused
-suite to 85/85 passes with direct matrices for ordering restoration, evaluation,
-publication, restoration order, durable audit roots, bootstrap, descriptor
-safety, and bounded reads. Relevant regressions remain 174/174; the complete
-528-test suite has 527 passes, one expected MPS skip, and zero failures. The
-checkpoint is unaccepted, unstaged, uncommitted, and unpushed pending one final
-evidence-focused re-review. Feasibility measurement, real training, generation,
-sampling, sealed-test access, and Phase 9 remain unauthorized.
-
-That re-review left only static-boundary and unrelated-RNG ordering evidence
-incomplete. Their final test-only correction changed no production source: a
-mutation-tested AST oracle now covers all prohibited Phase 8 policy families,
-and a real checkpoint round trip deliberately perturbs global/dropout RNG before
-proving exact local order-state independence. Focused tests pass 86/86, the
-174-test prior-phase subset passes, and the complete 529-test suite has 528
-passes, one expected MPS skip, and zero failures. Final two-obligation review is
-next; all implementation and execution boundaries remain unchanged.
-
-Final verification accepted obligation 9 and left only static-boundary bypass
-coverage incomplete. Its final test-only correction adds alias-aware padding,
-special-token IDs/literals, prohibited precision strings, bounded test/sealed
-alias propagation, expanded mutations across every Phase 8 module, and safe
-negative controls. No production source changed. Focused tests pass 87/87; the
-174-test prior-phase subset passes; and the complete 530-test suite has 529
-passes, one expected MPS skip, and zero failures. Obligation-4-only verification
-is next.
-
-Final obligation-4 verification returned PASS with no remaining implementation
-finding, all 48 focused obligations satisfied, and exact recommendation
-`ACCEPT CORRECTED IMPLEMENTATION`. Master Chat formally accepts the corrected
-Phase 8 implementation. The accepted local checkpoint retains the verified
-87/87 focused, 174/174 prior-phase regression, and 529-pass/one-skip full-suite
-evidence. It remains unstaged, uncommitted, and unpushed pending separate
-implementation-checkpoint commit authorization. Feasibility, real training,
-Phase 9, generation, sampling, and sealed-test access remain unauthorized.
-
-Implementation checkpoint `8098343` was subsequently committed, pushed, and
-remotely verified. The bounded feasibility result is accepted as `FEASIBLE WITH
-MATERIAL RUNTIME COST`. The attempted real-run authorization correctly stopped
-before work because no planned record existed and exposed a self-referential
-commit-authority defect. Gate 45 corrected it by separating immutable implementation
-`Code commit` (`8098343`) and external future `pre_registration_commit`
-authority, with launch `HEAD` bound to the latter and exact accepted code/spec
-ancestry and hashes preserved. The corrected specification SHA-256 is
+Phase 8 — Training and Checkpointing is technically complete, its result and
+exit state are accepted, and it is ready for formal closure. It is not yet
+formally or remotely closed. DEC-0020 remains the accepted conceptual policy;
+the corrected detailed contract is fixed at commit `c50d77a` and SHA-256
 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`;
-Gate 46 independent review returned PASS / NO ISSUE, confirmed the contradiction
-was real, found no remaining BLOCKER or IMPORTANT provenance finding, and
-recommended `ACCEPT PROVENANCE CONTRACT CORRECTION`. Master Chat formally
-accepted the corrected provenance contract without changing DEC-0020 or accepted
-Phase 8 source/tests. It is byte-frozen, unstaged, uncommitted, and unpushed;
-separate corrected-contract checkpoint commit authorization is the sole next
-gate. Production provenance implementation correction, pre-registration, real
-training, Phase 9, generation, sampling, and sealed-test access remain
-unauthorized.
+the accepted implementation and corrected provenance implementation are
+`8098343` and `3e0b9c6`.
 
-Corrected contract checkpoint `c50d77a` was then committed, pushed, and remotely
-verified. The authorized production provenance correction is now complete
-locally: `Code commit` remains implementation anchor `8098343`; live `HEAD` is
-the separately derived pre-registration authority and must equal `origin/main`;
-committed planned-record bytes, accepted ancestry, corrected-spec/Phase 7
-identities, and latest Phase 8 source/test bytes are verified; checkpoint
-save/load and exact resume require matching durable run-level provenance; and
-result evidence keeps implementation and pre-registration commits distinct.
-The targeted provenance matrix passes 7/7, the complete Phase 8 suite passes 91/91,
-accepted Phase 3/5/6/7 regressions pass 174/174, and the complete suite has 533
-passes, one expected MPS skip, and zero failures across 534 tests. The correction
-remains unaccepted, unstaged, uncommitted, and unpushed pending fresh focused
-independent review. Pre-registration and real training remain unauthorized.
+The fixed real run `EXP-20260912-01` completed all ten epochs and `3880`
+optimizer updates. Training loss improved from `4.750465878532` to
+`2.4611534265660575`; validation loss improved from `4.754711149949085` to its
+epoch-10 best/final value `2.4967258539791177`. The training-improvement
+predicate, checkpoint/catalog validation, and complete exact-resume audit all
+passed. Latest and best-validation are distinct roles for immutable epoch-10
+checkpoint `6990c89166d48732b0601aeae1edd57a9f0e22eec1c7c1160d5be1b8281c9148`;
+catalog SHA-256 is
+`6d590f0355ec950d770e77b4c542d65cda15012fbea56349b97b154a0d614241`.
 
-Gate 56 review accepted all provenance behavior except one IMPORTANT evidence-
-path issue. Its targeted correction is complete locally: run-authority evidence
-now traverses and creates the run/artifacts tree only through retained
-descriptor-relative no-follow directory handles, verifies device/inode identity,
-fsyncs each new child and exact parent in order, reads/writes the evidence file
-relative to the retained artifacts handle, maps filesystem failures to the safe
-governance error, and removes a failed new file only when its identity still
-matches. Symlink/wrong-type cases cannot write outside the repository. New path
-tests pass 4/4, the provenance matrix 7/7, Phase 8 95/95, prior regressions
-174/174, and the full suite has 537 passes, one expected skip, and zero failures
-across 538 tests. Focused re-review of this sole correction is next;
-pre-registration and real training remain unauthorized.
+Gate 78 independent review returned PASS / NO ISSUE with no BLOCKER, IMPORTANT,
+or MINOR finding and recommended `ACCEPT PHASE 8 RUN RESULT`. Sebastien accepted
+the experiment, checkpoint state, technical exit, and closure-ready state at
+Gates 80 and 86. The one-file result commit
+`334119e63c716e4922cd0b67da4f5fc221faa886`, `Record Phase 8 training result`,
+is pushed and remotely verified.
 
-Final focused re-review returned PASS / NO ISSUE: the sole run-authority path
-finding is resolved, no BLOCKER, IMPORTANT, or MINOR provenance implementation
-finding remains, and Codex recommended `ACCEPT PROVENANCE IMPLEMENTATION
-CORRECTION`. Master Chat formally accepted the exact reviewed local source/test
-checkpoint under unchanged DEC-0020 and corrected specification authority.
-Evidence remains path 4/4, provenance 7/7, Phase 8 95/95, prior regressions
-174/174, and 537 passes plus one expected skip with zero failures across 538
-tests. The correction is unstaged, uncommitted, and unpushed; separate
-provenance-implementation checkpoint commit authorization is next.
-Pre-registration and real training remain unauthorized.
+Gate 88 documentation-only closure bookkeeping is complete locally. Gate 89
+separate closure-commit authorization is next. No generation or sampling
+occurred, *Twelfth Night* and the sealed test were not accessed, and Phase 9
+remains unauthorized until Gate 93 independently verifies formal remote Phase 8
+closure.
 
 Run the read-only Phase 1 preflight from the repository root with:
 
@@ -183,7 +78,7 @@ The expected Python version is `3.14.4`. On a normal session on this Mac, all th
 
 `requirements.in` contains the dependency intentionally chosen by the project. `requirements.lock` pins the complete resolved environment and is the reproducible installation source. Change or regenerate either file only as part of an approved dependency decision.
 
-Deactivate the virtual environment when finished:
+Deactivate the environment when finished:
 
 ```sh
 deactivate

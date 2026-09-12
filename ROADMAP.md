@@ -566,12 +566,32 @@ separate provenance-implementation checkpoint commit authorization from Master
 Chat is the sole next gate. Pre-registration, real training/checkpoints/audit,
 Phase 9, generation, sampling, and sealed-test access remain unauthorized.
 
+The remaining run workflow subsequently completed through Gate 86. Corrected
+provenance implementation commit `3e0b9c6`, pre-registration commit `2871ebf`,
+and accepted-result commit `334119e` are pushed and remotely verified.
+`EXP-20260912-01` completed all ten fixed epochs and `3880` optimizer updates;
+training loss improved from `4.750465878532` to `2.4611534265660575`, while
+validation improved from `4.754711149949085` to its epoch-10 best/final value
+`2.4967258539791177`. The training-improvement predicate, checkpoint/catalog
+validation, and exact-resume audit all passed. Latest and best-validation are
+distinct roles for immutable epoch-10 object
+`6990c89166d48732b0601aeae1edd57a9f0e22eec1c7c1160d5be1b8281c9148`;
+catalog SHA-256 is
+`6d590f0355ec950d770e77b4c542d65cda15012fbea56349b97b154a0d614241`.
+Gate 78 independent review returned PASS / NO ISSUE with no remaining finding;
+Gates 80 and 86 accepted the technical exit and closure-ready state. Gate 88
+documentation-only closure bookkeeping is complete locally. Phase 8 is
+technically complete and ready for formal closure, but is not yet formally or
+remotely closed. No generation, sampling, Phase 9 work, or *Twelfth Night*/sealed-
+test access occurred. Gate 89 closure-commit authorization is the sole next
+gate; Phase 9 remains unauthorized through Gate 93.
+
 **Exit criteria:**
 
-- Batching, optimization, evaluation intervals, seeds, and device behavior are explicit.
-- Training and validation loss are recorded reproducibly.
-- Checkpoints save and restore model, optimizer, configuration, and progress.
-- At least one fully documented training run can be resumed successfully.
+- Batching, optimization, evaluation intervals, seeds, and device behavior are explicit. **Verified and satisfied.**
+- Training and validation loss are recorded reproducibly. **Verified and satisfied.**
+- Checkpoints save and restore model, optimizer, configuration, and progress. **Verified and satisfied.**
+- At least one fully documented training run can be resumed successfully. **Verified and satisfied.**
 
 ## Phase 9 — Generation and Evaluation
 
