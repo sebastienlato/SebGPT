@@ -4,7 +4,7 @@
 
 ## Current phase
 
-Phase 8 — Training and Checkpointing (provenance implementation correction accepted locally; commit pending)
+Phase 8 — Training and Checkpointing (planned pre-registration accepted; split bookkeeping commit required)
 
 ## Current milestone
 
@@ -72,6 +72,11 @@ authorized its targeted correction. Focused re-review returned PASS / NO ISSUE
 with no remaining BLOCKER, IMPORTANT, or MINOR finding and exact recommendation
 `ACCEPT PROVENANCE IMPLEMENTATION CORRECTION`; Master Chat formally accepted the
 corrected local implementation checkpoint.
+Provenance implementation checkpoint `3e0b9c6` was then committed, pushed, and
+remotely verified. The planned record `EXP-20260912-01` was created append-only
+under separate authorization. Gate 66 independent review returned PASS / NO
+ISSUE with no finding and recommendation `ACCEPT PRE-REGISTRATION`; Master Chat
+formally accepted and byte-froze the exact record.
 
 ## Completed work
 
@@ -169,6 +174,11 @@ corrected local implementation checkpoint.
   found no remaining BLOCKER, IMPORTANT, or MINOR finding, and recommended
   `ACCEPT PROVENANCE IMPLEMENTATION CORRECTION`. Master Chat formally accepted
   the exact reviewed production/test identities.
+- Provenance implementation checkpoint `3e0b9c6` is pushed and remotely verified.
+- Gates 64–68 are complete: the `EXP-20260912-01` proposal was appended, Gate 66
+  returned PASS / NO ISSUE with no remaining finding, Codex recommended
+  `ACCEPT PRE-REGISTRATION`, and Master Chat formally accepted the exact planned
+  record without authorizing execution.
 - Focused Phase 8 tests pass 87/87 with all 48 accepted obligations explicitly
   mapped to behavioral/literal evidence. Relevant accepted Phase 3/5/6/7
   regressions pass 174/174. The complete 530-test suite has 529 passes, one expected
@@ -176,9 +186,11 @@ corrected local implementation checkpoint.
 
 ## Current work
 
-The corrected provenance implementation checkpoint is accepted locally at its
-exact reviewed source/test identities. It remains unstaged, uncommitted, and
-unpushed pending separate checkpoint commit authorization from Master Chat.
+`EXP-20260912-01` is accepted and byte-frozen in `EXPERIMENT_LOG.md`. Gate 66
+acceptance bookkeeping is recorded separately in `DECISIONS.md` and this file.
+Because the eventual pre-registration commit must change only
+`EXPERIMENT_LOG.md`, these continuity changes require their own authorized
+commit and remote synchronization first. Nothing is staged.
 
 ## Current model status
 
@@ -212,8 +224,8 @@ directories. `git diff --check` passes.
 
 ## Next exact step
 
-Obtain separate provenance-implementation checkpoint commit authorization from
-Master Chat.
+Obtain separate authorization to commit only Gate 66 continuity bookkeeping,
+excluding the frozen `EXPERIMENT_LOG.md`, before numbered Gate 69.
 
 ## Known issues
 
@@ -248,6 +260,10 @@ Master Chat.
 - Do not rerun or tune `EXP-20260909-01`.
 - Do not change, stage, commit, or push the accepted provenance implementation
   checkpoint without separate authorization.
+- Do not modify the accepted `EXP-20260912-01` record or any
+  `EXPERIMENT_LOG.md` byte before its dedicated one-file pre-registration commit.
+- Do not bundle Gate 66 continuity bookkeeping with the future pre-registration
+  commit; commit and synchronize the bookkeeping separately first.
 - Do not stage, commit, or push without the applicable separate authorization.
 - Do not rerun feasibility; create pre-registration; perform real training or
   the real-run audit; retain experiment checkpoints; generate; or sample.
@@ -261,6 +277,8 @@ Master Chat.
   and Master Chat acceptance are complete.
 - No provenance implementation review finding remains; focused re-review and
   Master Chat acceptance are complete.
+- No pre-registration review finding remains; `EXP-20260912-01` is accepted but
+  not committed or pushed.
 - Runtime feasibility is accepted as `FEASIBLE WITH MATERIAL RUNTIME COST`.
 
 ## Session handoff
@@ -353,3 +371,17 @@ formally accepted the exact reviewed checkpoint. DEC-0020 and the corrected
 specification remain unchanged. The correction is unstaged, uncommitted, and
 unpushed; the sole next action is separate provenance-implementation checkpoint
 commit authorization from Master Chat.
+
+Provenance implementation commit `3e0b9c6` was subsequently pushed and remotely
+verified. The separately authorized planned record `EXP-20260912-01` passed Gate
+66 independent review with PASS / NO ISSUE, no BLOCKER, IMPORTANT, or MINOR
+finding, and exact recommendation `ACCEPT PRE-REGISTRATION`; Master Chat formally
+accepted it. The complete frozen working `EXPERIMENT_LOG.md` SHA-256 is
+`85cc0af95076bb20124f585486751ad1a5b75552e9fe14d4df5e000d23174e27`; its exact
+6,969-byte planned-record extraction is
+`199136f76e727d252a8c29a789ab9055ff32707b7fc257abc5de0002b0ba8f53`, and the
+historical committed log remains an exact prefix. No execution occurred. The
+eventual pre-registration commit must contain only the frozen log change, so
+these continuity updates require a separate authorized commit and remote
+synchronization before Gate 69. Real training and all later execution remain
+unauthorized.
