@@ -620,9 +620,32 @@ BLOCKER, MAJOR, or MINOR finding, and Sebastien explicitly accepted the complete
 implementation checkpoint. Fresh focused tests pass 94/94, inherited
 regressions pass 119/119, and the complete suite runs 632 tests with 631 passes,
 one expected MPS skip, and zero failures. The accepted implementation checkpoint
-is committed locally and remains unpushed. Real checkpoint/corpus execution,
-trained-model generation, evidence publication, and sealed-test access remain
-unauthorized.
+is remotely preserved unchanged at
+`41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Read-only execution-readiness
+inspection established development pre-registration as the next gate.
+Documentation-only plan `EXP-20260913-01` passed independent review and was
+accepted at exact record SHA-256
+`582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9`.
+Original local commit `13bedfa917a386501ce90783c080bf179ccf263d`
+received post-commit verdict `FAIL — DO NOT PUSH` for stale current-state
+governance only. That correction passed focused independent re-review and was
+incorporated into amended checkpoint
+`fd0890e38e24907e740a71c5d933febe4c1ce38e`; its final post-amend review still
+returned `FAIL — DO NOT PUSH` because current wording named the superseded
+pre-amend SHA as current. That correction passed focused independent review and
+was incorporated into amended checkpoint
+`9408211609e2f19089c519acd77f091d2866fe10`. Its independent verification
+returned `FAIL — DO NOT PUSH` because durable current-state sections still
+encoded ephemeral correction/worktree/review mechanics. The accepted plan
+remains unchanged in the current local unpushed checkpoint. Local `main` is one
+commit ahead and zero behind live `origin/main` at
+`41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Before push, the complete current
+local checkpoint must pass final independent verification. A PASS advances only
+to a separate push/live-verification gate; a FAIL blocks push and requires
+correction and re-review. No development or sealed-test authorization, attempt
+marker, artifact, evidence, or result exists. Real checkpoint/catalog/corpus
+execution, trained-model generation, evaluation, baseline fitting, evidence or
+result publication, and sealed-test access remain unauthorized.
 
 **Exit criteria:**
 

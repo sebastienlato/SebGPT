@@ -7,8 +7,11 @@
 Phase 9 — Generation and Evaluation (accepted contract remotely published at
 `48357be6f717e7d4e0445b96ca9886f122673a83`; implementation and final
 sample-stage correction independently accepted; accepted implementation
-checkpoint committed locally and not pushed; real development/sealed execution
-remains unauthorized)
+checkpoint remotely preserved at
+`41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`; accepted development
+pre-registration contained in the current local unpushed checkpoint; final
+independent verification of the complete committed checkpoint required before
+push; real development/sealed execution remains unauthorized)
 
 ## Current milestone
 
@@ -144,15 +147,68 @@ sealed-test evaluation.
 - Sebastien explicitly accepted the reviewed Phase 9 implementation checkpoint
   and authorized its complete local commit. Fresh focused tests pass 94/94,
   inherited regressions pass 119/119, and the complete suite passes 631 tests
-  with one expected restricted-context MPS skip. Nothing was pushed.
+  with one expected restricted-context MPS skip. The exact 11-file checkpoint
+  was committed, pushed unchanged, and live-remote verified at
+  `41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`.
+- Read-only real-execution readiness inspection established the exact
+  development-before-sealed lifecycle and found no implementation defect. It
+  also confirmed that a later execution process must first establish the
+  accepted deterministic runtime envelope without weakening it.
+- Sebastien authorized documentation-only development pre-registration
+  drafting. Unused ID `EXP-20260913-01` now has one exact development plan in
+  `EXPERIMENT_LOG.md`; it freezes the accepted contract, implementation,
+  checkpoint, runtime, dataset, tokenizer, model, evaluation, sample, marker,
+  evidence, sealed-exclusion, and score-independent success authorities.
+- Independent Codex review returned `PASS — READY FOR PHASE 9 DEVELOPMENT
+  PRE-REGISTRATION ACCEPTANCE`, with no BLOCKER, MAJOR, or MINOR finding.
+  Sebastien accepted the exact plan at SHA-256
+  `582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9`
+  and authorized its three-file acceptance commit. Commit
+  `13bedfa917a386501ce90783c080bf179ccf263d`, `Pre-register Phase 9 development
+  evaluation`, was created locally and not pushed.
+- Independent post-commit review returned `FAIL — DO NOT PUSH` with one MAJOR
+  governance-only finding: `PROJECT_STATE.md` and `ROADMAP.md` still described
+  the already accepted/committed pre-registration as an uncommitted draft
+  awaiting initial review. The accepted `EXPERIMENT_LOG.md` plan remains
+  byte-for-byte correct and is not reopened.
+- Sebastien authorized only a two-file documentation correction draft for that
+  finding. Incorporating it into the accepted local checkpoint, post-amend
+  verification, and push/live verification remain separate later gates.
+- Focused independent re-review returned `PASS — GOVERNANCE CORRECTION READY
+  FOR INCORPORATION`, with no BLOCKER, MAJOR, or MINOR finding. Sebastien then
+  authorized its incorporation into the unpushed checkpoint by amend.
+- The reviewed correction was incorporated into amended commit
+  `fd0890e38e24907e740a71c5d933febe4c1ce38e`, retaining parent
+  `41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`, the title `Pre-register Phase 9
+  development evaluation`, and the exact accepted plan bytes.
+- Final post-amend review returned `FAIL — DO NOT PUSH` with one remaining
+  MAJOR governance finding: present-state wording still named superseded
+  pre-amend commit `13bedfa917a386501ce90783c080bf179ccf263d` as the current
+  checkpoint. The finding does not reopen the accepted plan. Sebastien
+  authorized only this final two-file self-reference correction draft.
+- Focused independent review passed that self-reference correction, and
+  Sebastien authorized its incorporation. Amended checkpoint
+  `9408211609e2f19089c519acd77f091d2866fe10` retained the same parent, title,
+  three-file scope, and accepted plan bytes.
+- The latest independent verification returned `FAIL — DO NOT PUSH` with one
+  MAJOR governance finding: current-state sections still encoded ephemeral
+  correction, worktree, review, and amendment mechanics. The accepted plan
+  remained unchanged. Sebastien authorized a narrow durable-governance wording
+  correction that preserves history while keeping transient mechanics out of
+  current state.
 
 ## Current work
 
-The independently accepted Phase 9 implementation checkpoint is committed
-locally on `main` and remains unpushed. No implementation correction or real
-evaluation work is in progress. Real checkpoint loading, real train/validation
-execution, generation, evidence publication, and sealed-test access remain
-unauthorized.
+The accepted `EXP-20260913-01` development plan remains unchanged in the current
+local unpushed Phase 9 development pre-registration checkpoint. Local `main` is
+one commit ahead of live `origin/main` at
+`41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Before push, the complete current
+local checkpoint must pass final independent verification. A PASS advances only
+to a separate push/live-verification gate; a FAIL blocks push and requires
+correction and re-review. No development authorization or sealed-test
+authorization exists. Real checkpoint loading, train/validation corpus access,
+generation, evaluation, baseline fitting, evidence publication, result
+publication, and sealed-test access remain unauthorized.
 
 ## Current model status
 
@@ -168,9 +224,10 @@ unchanged.
 
 ## Last verified working state
 
-- Branch `main`; the accepted implementation checkpoint is the current local
-  `HEAD`, one commit ahead of `origin/main` and zero behind. The worktree and
-  index are clean; nothing was pushed.
+- Branch `main`; the accepted pre-registration is in current local `HEAD`; live
+  `origin/main` remains accepted implementation commit
+  `41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Local `main` is ahead 1 and
+  behind 0.
 - Focused Phase 9 synthetic tests pass 94/94. Relevant tokenizer, vocabulary,
   MiniGPT, and Phase 8 checkpoint regressions pass 119/119. The complete suite
   runs 632 tests with 631 passes, one expected restricted-context MPS skip, and
@@ -178,8 +235,11 @@ unchanged.
 - Corrected specification SHA-256 is
   `61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`;
   the accepted specification remains unmodified and `git diff --check` passes.
-- Canonical catalog, epoch-10 checkpoint, retained training evidence, and
-  `EXPERIMENT_LOG.md` hashes remain exact.
+- The accepted Phase 8 result record and all tracked authority identities remain
+  exact; no retained checkpoint, catalog, corpus, or evidence bytes were opened
+  or modified during pre-registration drafting.
+- The accepted `EXP-20260913-01` plan remains byte-for-byte unchanged at
+  SHA-256 `582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9`.
 - No real checkpoint/model was loaded; no real train/validation/test prose was
   opened; no trained-model generation, real baseline fitting, or real metric
   calculation occurred. Tests used only tracked vocabulary metadata and small
@@ -190,16 +250,19 @@ model-quality claim.
 
 ## Next exact step
 
-Obtain separate authorization to push and remotely verify the accepted Phase 9
-implementation checkpoint.
+Obtain final independent verification of the complete committed current local
+Phase 9 development pre-registration checkpoint.
 
 ## Remaining workflow
 
-Push and remote-verify the accepted implementation checkpoint only when
-separately authorized; then pre-register and separately authorize one
-development evaluation. Review and accept its result before any optional
-one-shot sealed-test authorization, result review, exit acceptance, and formal
-Phase 9 closure.
+Final independent verification must cover the complete committed current local
+pre-registration checkpoint. A PASS may advance only to separate push and live-
+remote verification; a FAIL blocks push and requires correction and re-review.
+Only after remote preservation may a distinct development-authorization record
+be drafted, reviewed, accepted, committed, and pushed before any one-shot
+development attempt. Review and accept its result before any optional one-shot
+sealed-test authorization, result review, exit acceptance, and formal Phase 9
+closure.
 
 ## Known issues
 
@@ -214,6 +277,12 @@ Phase 9 closure.
   validation, lifecycle, record, schema, publication, evidence, and test
   mechanics are explicitly accepted.
 - No independent Phase 9 implementation-review finding remains.
+- The ordinary interactive runtime is not the accepted execution envelope;
+  later authorized execution must use a fresh dedicated process with the exact
+  frozen CPU/determinism/thread/MKLDNN identity before runner preflight.
+- The accepted development pre-registration is not yet remotely preserved and
+  cannot be pushed until final independent verification of the complete current
+  local checkpoint returns PASS.
 
 ## Important constraints
 
@@ -224,26 +293,34 @@ Phase 9 closure.
   the applicable later authorization.
 - Do not access *Twelfth Night* or the sealed test without a separate explicit
   one-shot authorization after the complete evaluation authority is frozen.
-- Do not push, run governed evaluation, or create Phase 9 experiment/evidence
-  records without the applicable later authorization.
+- Do not append a development authorization/result, stage, amend, replace,
+  commit, push, run governed evaluation, or create Phase 9 attempt/evidence
+  artifacts without the applicable later authorization.
 - Keep exploratory generation distinct from accepted evaluation evidence and
   do not silently change the accepted conceptual architecture.
 
 ## Open questions
 
 No model-architecture or detailed-contract choice remains open. The consolidated
-contract-level policy package and implementation are accepted. Remote
-publication, later real development authorization, and the optional sealed-test
-decision remain separate gates.
+contract-level policy package and implementation are accepted. Development
+pre-registration final verification/publication, later real development
+authorization, and the optional sealed-test decision remain separate gates.
 
 ## Session handoff
 
 Phase 8 is formally remotely closed at `6d086625`. The exact accepted Phase 9
-contract is remotely published at `48357be6`. Final independent review returned
-`PASS — READY FOR PHASE 9 SAMPLE-STAGE ACCEPTANCE`, and Sebastien accepted the
-complete implementation checkpoint. The local implementation commit has 94
-focused tests, 119 inherited regression tests, and a 632-test full suite with
-zero failures and one expected MPS skip. It is one commit ahead of
-`origin/main`, with a clean worktree/index, and remains unpushed. No real
-checkpoint/corpus/evaluation execution or sealed access occurred. The next
-exact gate is separate push and remote-verification authorization.
+contract is remotely published at `48357be6`; the accepted implementation is
+remotely preserved at `41204d9`. Original accepted local pre-registration
+commit `13bedfa` failed post-commit review for stale governance; its reviewed
+correction was incorporated into `fd0890e`, whose final post-amend review found
+one remaining current-state self-reference issue. Its correction was
+incorporated into `940821`, whose independent verification found that current
+state still encoded ephemeral workflow mechanics. The accepted plan for
+`EXP-20260913-01` remains exact at SHA-256
+`582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9`
+in the current local unpushed checkpoint. That checkpoint is one commit ahead of
+live `origin/main` at `41204d9` and requires final independent verification of
+its complete committed state before any separate push gate. No development or
+sealed authorization, marker, artifact, evidence, result, real checkpoint/
+catalog/corpus access, generation, evaluation, baseline fit, or sealed access
+exists or is authorized.
