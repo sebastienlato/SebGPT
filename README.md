@@ -32,24 +32,20 @@ Gates 80 and 86. The one-file result commit
 `334119e63c716e4922cd0b67da4f5fc221faa886`, `Record Phase 8 training result`,
 is pushed and remotely verified.
 
-Phase 9 — Generation and Evaluation is at learning/design only. Sebastien has
-accepted DEC-0021's consolidated conceptual architecture: a Phase 9-owned
-read-only `best_validation` inference boundary; transparent rolling-context
-generation; greedy and locally seeded temperature/top-k sampling; and
-validation-led evaluation with controlled baselines, qualitative evidence, and
-a separately authorized one-shot sealed-test boundary. Documentation-only
-detailed-contract drafting is complete locally in proposed
-`docs/GENERATION_EVALUATION_SPEC.md`. Fresh independent review required five
-MAJOR and four MINOR contract corrections with no BLOCKER. The focused
-documentation-only correction resolved three MAJOR areas; focused re-review
-left four final documentation issues and no BLOCKER. Final focused review then
-returned `ACCEPT WITH MINOR CORRECTIONS`; its sole narrow correction is applied,
-and Sebastien explicitly accepted the exact contract at SHA-256
+Phase 9 — Generation and Evaluation has an independently reviewed, explicitly
+accepted contract at commit `48357be6f717e7d4e0445b96ca9886f122673a83` and
+specification SHA-256
 `61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`.
-Its exact six-file documentation checkpoint is authorized for publication. No
-Phase 9 implementation, tests, checkpoint load, generation, evaluation,
-artifact creation, or sealed-test access is authorized; implementation remains
-a separate post-publication gate.
+Under separate authorization, the Phase 9 inference/generation/evaluation
+package completed implementation review and focused correction. Final
+independent sample-stage re-review returned `PASS — READY FOR PHASE 9
+SAMPLE-STAGE ACCEPTANCE`, with no remaining finding, and Sebastien accepted the
+complete implementation checkpoint. Focused tests pass 94/94; inherited
+regressions pass 119/119; and the complete 632-test suite has 631 passes, one
+expected MPS skip, and zero failures. The accepted implementation checkpoint is
+committed locally and remains unpushed. No real checkpoint/corpus evaluation,
+trained-model generation, evidence artifact, or sealed-test access occurred or
+is authorized.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

@@ -605,26 +605,24 @@ architecture in DEC-0021: a Phase 9-owned read-only `best_validation` inference
 boundary; transparent rolling-context autoregressive generation without KV
 caching; greedy and local-generator temperature/top-k categorical decoding; and
 validation-led quantitative, baseline, qualitative, and separately gated
-sealed-test evaluation. Sebastien subsequently authorized documentation-only
-detailed-contract drafting. The proposed `docs/GENERATION_EVALUATION_SPEC.md`
-received fresh independent verdict `REQUIRES CORRECTION` with no BLOCKER, five
-MAJOR findings, and four MINOR findings. Documentation-only focused correction
-preserved DEC-0021 and the independently accepted core mathematics. Focused
-re-review accepted three prior MAJOR corrections and returned `REQUIRES
-CORRECTION` with no BLOCKER for four remaining documentation issues. Their final
-focused correction is complete locally. The final proposal has SHA-256
+sealed-test evaluation. The detailed contract completed independent review, was
+explicitly accepted, and was committed, pushed, and remotely verified at
+`48357be6f717e7d4e0445b96ca9886f122673a83`, `Define Phase 9 generation and
+evaluation contract`; its 2,371-line specification SHA-256 is
 `61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`.
-Final focused review returned `ACCEPT WITH MINOR CORRECTIONS`, with no BLOCKER
-or remaining/new MAJOR finding. The sole narrow minor correction is applied; no
-further independent contract re-review is required. The proposal is ready for
-explicit contract acceptance and later separately authorized publication.
-Sebastien explicitly accepted the exact 2,371-line contract at SHA-256
-`61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`
-and authorized its exact six-file documentation checkpoint with title `Define
-Phase 9 generation and evaluation contract`. After successful publication and
-live-remote verification, separate Phase 9 implementation authorization is the
-next stage. No Phase 9 source, tests, checkpoint load, generation, evaluation,
-artifact creation, or sealed-test access is authorized.
+Sebastien separately authorized implementation and synthetic testing under that
+exact authority. Successive Phase 9.1 reviews required focused correction. The
+latest focused re-review accepted sealed-consumption, reused-directory, and
+module-class corrections, then left one sample-stage closure defect. Sebastien
+authorized only its final narrow correction. Final independent sample-stage
+re-review returned `PASS — READY FOR PHASE 9 SAMPLE-STAGE ACCEPTANCE`, with no
+BLOCKER, MAJOR, or MINOR finding, and Sebastien explicitly accepted the complete
+implementation checkpoint. Fresh focused tests pass 94/94, inherited
+regressions pass 119/119, and the complete suite runs 632 tests with 631 passes,
+one expected MPS skip, and zero failures. The accepted implementation checkpoint
+is committed locally and remains unpushed. Real checkpoint/corpus execution,
+trained-model generation, evidence publication, and sealed-test access remain
+unauthorized.
 
 **Exit criteria:**
 

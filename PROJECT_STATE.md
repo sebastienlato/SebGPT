@@ -4,10 +4,11 @@
 
 ## Current phase
 
-Phase 9 — Generation and Evaluation (accepted conceptual architecture;
-exact detailed contract explicitly accepted after completed independent review;
-documentation/contract checkpoint publication authorized; implementation
-unauthorized)
+Phase 9 — Generation and Evaluation (accepted contract remotely published at
+`48357be6f717e7d4e0445b96ca9886f122673a83`; implementation and final
+sample-stage correction independently accepted; accepted implementation
+checkpoint committed locally and not pushed; real development/sealed execution
+remains unauthorized)
 
 ## Current milestone
 
@@ -81,17 +82,77 @@ sealed-test evaluation.
   at that SHA-256 and authorized one six-file documentation checkpoint titled
   `Define Phase 9 generation and evaluation contract`. Contract acceptance and
   publication do not authorize implementation.
+- The accepted six-file Phase 9 contract checkpoint was committed, pushed, and
+  remotely verified at `48357be6f717e7d4e0445b96ca9886f122673a83`, `Define
+  Phase 9 generation and evaluation contract`.
+- Sebastien separately authorized Phase 9 implementation and synthetic testing
+  under that exact checkpoint. The new `sebgpt.inference` package implements
+  the contract-owned types/errors, independent best-validation checkpoint
+  validation, transparent generation/sampling, pure metrics/baselines, and
+  governed development/sealed lifecycle boundaries. Synthetic focused tests
+  and all inherited regressions pass; no real Phase 9 execution occurred.
+- Fresh Work Phase 9.1 independent inspection returned `WORK CORRECTION
+  REQUIRED`. It identified incomplete sealed prerequisites, unsafe path-based
+  publication, partial record/evidence validation, unrelated-record parser
+  overreach, incomplete checkpoint entry and inherited-file validation,
+  incomplete post-load checks, direct-window continuity gaps, incorrect runner
+  ordering, and missing adversarial tests.
+- Sebastien authorized only focused implementation/synthetic-test correction.
+  The correction adds complete selected/frozen authority checks, scoped record
+  parsing, descriptor-relative no-follow publication and sealed reading,
+  entry-identity revalidation, exact evidence validators, content-safe failure
+  normalization, direct-window/baseline integrity, exact operation ordering,
+  and adversarial synthetic coverage. Acceptance remains pending independent
+  re-review.
+- Independent Codex review of that correction returned `REQUIRES CORRECTION`
+  with no BLOCKER, six MAJOR findings, and one MINOR finding: incomplete runtime/
+  payload mirroring, metric/failure cross-field validation, completed-result
+  sealed authority, durable unknown-marker consumption, ancestor-directory
+  fsync, exact shared MiniGPT structure, and sealed failure-stage attribution.
+- Sebastien authorized only those focused implementation/test corrections. The
+  second correction mirrors the complete accepted runtime and Phase 8 payload
+  envelope, closes evidence arithmetic/failure tables, requires exact completed
+  development authority and historical commit introduction, durably appends an
+  uncertain sealed result after unknown marker publication, fsyncs every new
+  publication ancestor, shares one exact MiniGPT structural oracle, and splits
+  sealed open from validation failures. Acceptance remains pending re-review.
+- The latest independent focused re-review accepted checkpoint runtime/payload
+  validation, the completed-development sealed prerequisite, and sealed
+  failure-stage attribution. It returned `REQUIRES CORRECTION` with no BLOCKER
+  for four remaining MAJOR findings: open-ended failure-invariant prefixes,
+  non-crash-safe unknown-marker consumption, reused-ancestor durability, and
+  missing exact module-class validation.
+- Sebastien authorized only those four corrections. Phase 9 now uses finite
+  exact failure-invariant sets, a cross-process locked deterministic durable
+  marker journal plus atomic uncertain-result publication, parent fsync and
+  entry revalidation for reused as well as created ancestors, and an exact
+  class oracle for every named MiniGPT module. Acceptance remains pending
+  focused re-review.
+- The latest focused re-review accepted crash/concurrency-safe sealed
+  consumption, reused-ancestor durability, and exact MiniGPT module classes. It
+  left one MAJOR defect: sample failure stages still used open-ended `sample_`
+  prefix acceptance despite exact invariant membership.
+- Sebastien authorized only that final narrow correction. One exact six-entry
+  sample-stage-to-sample-ID mapping now governs safe-fact selection, rule
+  selection, and failure normalization; invented stages and mismatched valid
+  pairs fail closed.
+- Final independent Codex sample-stage re-review returned `PASS — READY FOR
+  PHASE 9 SAMPLE-STAGE ACCEPTANCE`, with no BLOCKER, MAJOR, or MINOR findings.
+  It verified all six exact mappings, rejection of invented/suffixed/truncated/
+  case-mutated/empty stages and mismatched valid pairs, absence of prefix-based
+  acceptance, and satisfaction of obligation 35.
+- Sebastien explicitly accepted the reviewed Phase 9 implementation checkpoint
+  and authorized its complete local commit. Fresh focused tests pass 94/94,
+  inherited regressions pass 119/119, and the complete suite passes 631 tests
+  with one expected restricted-context MPS skip. Nothing was pushed.
 
 ## Current work
 
-The accepted continuity/conceptual documentation and proposed detailed contract
-are applied locally in `DECISIONS.md`, `LEARNING_NOTES.md`, `PROJECT_STATE.md`,
-`README.md`, `ROADMAP.md`, and new
-`docs/GENERATION_EVALUATION_SPEC.md`. Tracked edits remain unstaged, the new
-specification remains untracked, and everything is uncommitted and unpushed.
-Independent review and explicit acceptance of the final detailed contract are
-complete. The exact six-file documentation checkpoint is authorized for
-publication. No implementation or execution is authorized.
+The independently accepted Phase 9 implementation checkpoint is committed
+locally on `main` and remains unpushed. No implementation correction or real
+evaluation work is in progress. Real checkpoint loading, real train/validation
+execution, generation, evidence publication, and sealed-test access remain
+unauthorized.
 
 ## Current model status
 
@@ -100,50 +161,51 @@ of length `1..256` produces CPU-float32 logits `(T, 81)`. The model has four
 causal Transformer blocks, 90 unique trainable tensors, 63,825 parameters,
 eight local dropout generators, final normalization, and an untied biased head.
 
-Phase 9 will later select the canonical catalog's semantic `best_validation`
-role through a separately specified read-only inference loader. The accepted
-Phase 8 public loader remains a latest-only training-continuation interface and
-is not modified by DEC-0021.
+The new Phase 9 loader is designed to select the canonical catalog's semantic
+`best_validation` role after later execution authorization. The accepted Phase
+8 public loader remains a latest-only training-continuation interface and is
+unchanged.
 
 ## Last verified working state
 
-- Branch `main`, local `HEAD`, `origin/main`, and last queried live remote
-  `main` equal Phase 8 closure `6d086625cb293f61700bd59b551ea310a5b680b9`
-  at local ahead/behind `0/0`.
-- The index is empty. The only worktree changes are the six authorized
-  documentation paths; no source, test, checkpoint, experiment record, retained
-  artifact, or generated evaluation artifact changed.
+- Branch `main`; the accepted implementation checkpoint is the current local
+  `HEAD`, one commit ahead of `origin/main` and zero behind. The worktree and
+  index are clean; nothing was pushed.
+- Focused Phase 9 synthetic tests pass 94/94. Relevant tokenizer, vocabulary,
+  MiniGPT, and Phase 8 checkpoint regressions pass 119/119. The complete suite
+  runs 632 tests with 631 passes, one expected restricted-context MPS skip, and
+  zero failures.
 - Corrected specification SHA-256 is
   `61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`;
-  its 96 Markdown fences are balanced and `git diff --check` passes.
+  the accepted specification remains unmodified and `git diff --check` passes.
 - Canonical catalog, epoch-10 checkpoint, retained training evidence, and
   `EXPERIMENT_LOG.md` hashes remain exact.
-- No checkpoint/model was loaded; no train/validation/test prose was opened; no
-  prompt was tokenized; and no generation, baseline fitting, or metric
-  calculation occurred.
+- No real checkpoint/model was loaded; no real train/validation/test prose was
+  opened; no trained-model generation, real baseline fitting, or real metric
+  calculation occurred. Tests used only tracked vocabulary metadata and small
+  deterministic synthetic objects.
 
-This correction session does not rerun training or model tests and makes no new
-runtime or model-quality claim.
+This implementation session does not rerun training and makes no new runtime or
+model-quality claim.
 
 ## Next exact step
 
-After successful commit, push, and live-remote verification of this exact
-accepted documentation checkpoint, obtain separate explicit Phase 9
-implementation authorization.
+Obtain separate authorization to push and remotely verify the accepted Phase 9
+implementation checkpoint.
 
 ## Remaining workflow
 
-Publish and independently remote-verify the accepted contract checkpoint; then
-separately authorize implementation; independently review, correct, accept,
-commit, push, and remote-verify implementation; then pre-register and separately
-authorize any development evaluation and optional one-shot sealed-test event
-before result review, exit acceptance, and formal Phase 9 closure.
+Push and remote-verify the accepted implementation checkpoint only when
+separately authorized; then pre-register and separately authorize one
+development evaluation. Review and accept its result before any optional
+one-shot sealed-test authorization, result review, exit acceptance, and formal
+Phase 9 closure.
 
 ## Known issues
 
-- The Phase 8 public checkpoint loader is intentionally latest-only and restores
-  training state; Phase 9 needs the accepted distinct read-only inference
-  boundary before it can safely consume `best_validation`.
+- The Phase 8 public checkpoint loader remains intentionally latest-only and
+  byte-identical; the new Phase 9 loader is accepted but cannot be executed
+  against real artifacts until the applicable later execution authorization.
 - Runtime remains a material cost: the accepted Phase 8 run took `29m 23.81s`.
 - Optional NumPy interoperability is unavailable and intentionally unnecessary.
 - Processed corpus derivatives, checkpoints, and experiment evidence are
@@ -151,6 +213,7 @@ before result review, exit acceptance, and formal Phase 9 closure.
 - No independent contract-review finding remains. The final exact API,
   validation, lifecycle, record, schema, publication, evidence, and test
   mechanics are explicitly accepted.
+- No independent Phase 9 implementation-review finding remains.
 
 ## Important constraints
 
@@ -161,28 +224,26 @@ before result review, exit acceptance, and formal Phase 9 closure.
   the applicable later authorization.
 - Do not access *Twelfth Night* or the sealed test without a separate explicit
   one-shot authorization after the complete evaluation authority is frozen.
-- Do not correct or accept the detailed Phase 9 contract, implement source/tests,
-  stage, commit, or push without the applicable later authorization.
+- Do not push, run governed evaluation, or create Phase 9 experiment/evidence
+  records without the applicable later authorization.
 - Keep exploratory generation distinct from accepted evaluation evidence and
   do not silently change the accepted conceptual architecture.
 
 ## Open questions
 
 No model-architecture or detailed-contract choice remains open. The consolidated
-contract-level policy package is accepted. Future implementation authorization
-and the later optional sealed-test decision remain separate gates.
+contract-level policy package and implementation are accepted. Remote
+publication, later real development authorization, and the optional sealed-test
+decision remain separate gates.
 
 ## Session handoff
 
-Phase 8 is formally remotely closed at `6d086625`. The stale pre-closure
-current-state wording has been reconciled without rewriting historical entries.
-DEC-0021 records Sebastien's accepted Phase 9 conceptual architecture. Current
-changes now include the complete proposed detailed contract and remain
-documentation only. Tracked edits are unstaged, the specification is untracked,
-and everything is uncommitted and unpushed. No Phase 9 implementation,
-checkpoint loading, generation, evaluation, or sealed-test access is authorized.
-Final focused review returned `ACCEPT WITH MINOR CORRECTIONS`; the sole narrow
-minor edit is applied, no further independent re-review is required, and
-Sebastien explicitly accepted the exact contract. The six-file contract
-checkpoint is authorized for publication; after successful remote verification,
-the next exact step is separate Phase 9 implementation authorization.
+Phase 8 is formally remotely closed at `6d086625`. The exact accepted Phase 9
+contract is remotely published at `48357be6`. Final independent review returned
+`PASS — READY FOR PHASE 9 SAMPLE-STAGE ACCEPTANCE`, and Sebastien accepted the
+complete implementation checkpoint. The local implementation commit has 94
+focused tests, 119 inherited regression tests, and a 632-test full suite with
+zero failures and one expected MPS skip. It is one commit ahead of
+`origin/main`, with a clean worktree/index, and remains unpushed. No real
+checkpoint/corpus/evaluation execution or sealed access occurred. The next
+exact gate is separate push and remote-verification authorization.
