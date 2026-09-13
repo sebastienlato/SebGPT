@@ -580,11 +580,12 @@ catalog SHA-256 is
 `6d590f0355ec950d770e77b4c542d65cda15012fbea56349b97b154a0d614241`.
 Gate 78 independent review returned PASS / NO ISSUE with no remaining finding;
 Gates 80 and 86 accepted the technical exit and closure-ready state. Gate 88
-documentation-only closure bookkeeping is complete locally. Phase 8 is
-technically complete and ready for formal closure, but is not yet formally or
-remotely closed. No generation, sampling, Phase 9 work, or *Twelfth Night*/sealed-
-test access occurred. Gate 89 closure-commit authorization is the sole next
-gate; Phase 9 remains unauthorized through Gate 93.
+documentation-only closure bookkeeping was completed, and the exact five-file
+closure commit `6d086625cb293f61700bd59b551ea310a5b680b9`, `Complete Phase
+8 training and checkpointing`, was subsequently authorized, committed, pushed,
+and independently remote-verified through Gates 89–93. Phase 8 is formally
+remotely closed. No generation, sampling, Phase 9 implementation, or *Twelfth
+Night*/sealed-test access occurred during Phase 8 or its closure.
 
 **Exit criteria:**
 
@@ -596,6 +597,34 @@ gate; Phase 9 remains unauthorized through Gate 93.
 ## Phase 9 — Generation and Evaluation
 
 **Goal:** Generate text and evaluate model behavior with appropriately modest claims.
+
+Phase 8 is formally remotely closed at
+`6d086625cb293f61700bd59b551ea310a5b680b9`. Sebastien accepted the Phase 9
+learning/design continuity inspection and the consolidated conceptual
+architecture in DEC-0021: a Phase 9-owned read-only `best_validation` inference
+boundary; transparent rolling-context autoregressive generation without KV
+caching; greedy and local-generator temperature/top-k categorical decoding; and
+validation-led quantitative, baseline, qualitative, and separately gated
+sealed-test evaluation. Sebastien subsequently authorized documentation-only
+detailed-contract drafting. The proposed `docs/GENERATION_EVALUATION_SPEC.md`
+received fresh independent verdict `REQUIRES CORRECTION` with no BLOCKER, five
+MAJOR findings, and four MINOR findings. Documentation-only focused correction
+preserved DEC-0021 and the independently accepted core mathematics. Focused
+re-review accepted three prior MAJOR corrections and returned `REQUIRES
+CORRECTION` with no BLOCKER for four remaining documentation issues. Their final
+focused correction is complete locally. The final proposal has SHA-256
+`61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`.
+Final focused review returned `ACCEPT WITH MINOR CORRECTIONS`, with no BLOCKER
+or remaining/new MAJOR finding. The sole narrow minor correction is applied; no
+further independent contract re-review is required. The proposal is ready for
+explicit contract acceptance and later separately authorized publication.
+Sebastien explicitly accepted the exact 2,371-line contract at SHA-256
+`61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`
+and authorized its exact six-file documentation checkpoint with title `Define
+Phase 9 generation and evaluation contract`. After successful publication and
+live-remote verification, separate Phase 9 implementation authorization is the
+next stage. No Phase 9 source, tests, checkpoint load, generation, evaluation,
+artifact creation, or sealed-test access is authorized.
 
 **Exit criteria:**
 

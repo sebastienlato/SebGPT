@@ -6,16 +6,11 @@ The repository is the authoritative source of truth across working sessions. Beg
 
 ## Current status
 
-Phases 0–7 are complete and remotely closed. Phase 7 closure commit
-`33d4510421107848c4aa8a6014f4a7b1e391065a`, `Complete Phase 7 Mini-GPT`, is
-pushed and synchronized; its accepted contract and implementation checkpoints
-remain `60b2a9cce55da79ccc9fbd03fad014cb2a939290` and
-`3139b1736f005fe903e2ea111d91934478b5a683`.
-
-Phase 8 — Training and Checkpointing is technically complete, its result and
-exit state are accepted, and it is ready for formal closure. It is not yet
-formally or remotely closed. DEC-0020 remains the accepted conceptual policy;
-the corrected detailed contract is fixed at commit `c50d77a` and SHA-256
+Phases 0–8 are complete and remotely closed. Phase 8 closure commit
+`6d086625cb293f61700bd59b551ea310a5b680b9`, `Complete Phase 8 training and
+checkpointing`, is pushed and synchronized. DEC-0020 remains the accepted
+Phase 8 conceptual policy; the corrected detailed contract is fixed at commit
+`c50d77a` and SHA-256
 `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`;
 the accepted implementation and corrected provenance implementation are
 `8098343` and `3e0b9c6`.
@@ -37,11 +32,24 @@ Gates 80 and 86. The one-file result commit
 `334119e63c716e4922cd0b67da4f5fc221faa886`, `Record Phase 8 training result`,
 is pushed and remotely verified.
 
-Gate 88 documentation-only closure bookkeeping is complete locally. Gate 89
-separate closure-commit authorization is next. No generation or sampling
-occurred, *Twelfth Night* and the sealed test were not accessed, and Phase 9
-remains unauthorized until Gate 93 independently verifies formal remote Phase 8
-closure.
+Phase 9 — Generation and Evaluation is at learning/design only. Sebastien has
+accepted DEC-0021's consolidated conceptual architecture: a Phase 9-owned
+read-only `best_validation` inference boundary; transparent rolling-context
+generation; greedy and locally seeded temperature/top-k sampling; and
+validation-led evaluation with controlled baselines, qualitative evidence, and
+a separately authorized one-shot sealed-test boundary. Documentation-only
+detailed-contract drafting is complete locally in proposed
+`docs/GENERATION_EVALUATION_SPEC.md`. Fresh independent review required five
+MAJOR and four MINOR contract corrections with no BLOCKER. The focused
+documentation-only correction resolved three MAJOR areas; focused re-review
+left four final documentation issues and no BLOCKER. Final focused review then
+returned `ACCEPT WITH MINOR CORRECTIONS`; its sole narrow correction is applied,
+and Sebastien explicitly accepted the exact contract at SHA-256
+`61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`.
+Its exact six-file documentation checkpoint is authorized for publication. No
+Phase 9 implementation, tests, checkpoint load, generation, evaluation,
+artifact creation, or sealed-test access is authorized; implementation remains
+a separate post-publication gate.
 
 Run the read-only Phase 1 preflight from the repository root with:
 

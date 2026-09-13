@@ -4,199 +4,185 @@
 
 ## Current phase
 
-Phase 8 — Training and Checkpointing (technically complete, closure-state
-accepted, and Gate 88 closure bookkeeping complete locally; formal remote
-closure still requires Gates 89–93)
+Phase 9 — Generation and Evaluation (accepted conceptual architecture;
+exact detailed contract explicitly accepted after completed independent review;
+documentation/contract checkpoint publication authorized; implementation
+unauthorized)
 
 ## Current milestone
 
-Phases 0–7 are formally remotely closed. Phase 7 closure commit is
-`33d4510421107848c4aa8a6014f4a7b1e391065a`; its accepted contract and
-implementation commits are `60b2a9cce55da79ccc9fbd03fad014cb2a939290` and
-`3139b1736f005fe903e2ea111d91934478b5a683`.
+Phases 0–8 are formally remotely closed. Phase 8 closure commit is
+`6d086625cb293f61700bd59b551ea310a5b680b9`, `Complete Phase 8 training and
+checkpointing`. Its accepted result commit is
+`334119e63c716e4922cd0b67da4f5fc221faa886`; accepted implementation authority
+is `809834323d53407cb4a54ae539585bb3d78856eb`; corrected provenance contract
+and implementation commits are `c50d77ac935bdf924b9b429a5776c419982a5d11`
+and `3e0b9c69963702718446901b2fb85e4f5e38aea9`.
 
-Phase 8 policy DEC-0020, the corrected detailed contract, and the corrected
-implementation are accepted. Their current authority is:
-
-- implementation `Code commit`:
-  `809834323d53407cb4a54ae539585bb3d78856eb`;
-- corrected provenance-contract commit:
-  `c50d77ac935bdf924b9b429a5776c419982a5d11`;
-- corrected provenance implementation commit:
-  `3e0b9c69963702718446901b2fb85e4f5e38aea9`;
-- corrected specification SHA-256:
-  `1630f9c7a113ff4af6db709ba2c356e8dab450eb4d918a54d64b734084e70efd`;
-- accepted external `pre_registration_commit`:
-  `2871ebfa20a0b6fcd4f8f3519f7057aaf30a1a03`.
-
-The fixed real run `EXP-20260912-01` completed successfully. Gate 78 fresh
-independent experiment/checkpoint/exact-resume/provenance/exit review returned
-PASS / NO ISSUE, with no BLOCKER, IMPORTANT, or MINOR finding and exact
-recommendation `ACCEPT PHASE 8 RUN RESULT`. At Gate 79, Master Chat formally
-accepted the run result and checkpoint authority locally. Sebastien then
-explicitly completed Gate 80 by accepting the experiment result, retained
-checkpoint/evidence state, and technical Phase 8 exit.
-
-The accepted-result commit `334119e63c716e4922cd0b67da4f5fc221faa886`,
-`Record Phase 8 training result`, was pushed and independently remote-verified
-at Gate 85 with local `HEAD`, `main`, `origin/main`, and live remote `main`
-synchronized at ahead/behind `0/0`. Sebastien explicitly completed Gate 86 by
-accepting that Phase 8 is technically complete and ready for formal closure.
-This is not yet formal remote closure.
-
-Gate 87 authorized the exact documentation-only closure-bookkeeping scope, and
-Gate 88 applied it. Current continuity now records all Phase 8 exit criteria as
-verified and satisfied while preserving the distinction between technical
-completion and future formal remote closure.
+Sebastien accepted the Phase 9 learning/design continuity inspection and four
+consolidated conceptual directions. DEC-0021 records a Phase 9-owned read-only
+`best_validation` inference boundary; transparent rolling-context generation;
+greedy and local-generator temperature/top-k categorical decoding; and
+validation-led quantitative, baseline, qualitative, and separately gated
+sealed-test evaluation.
 
 ## Completed work
 
-- The accepted run used the fixed ten-epoch CPU-float32 configuration under
-  unchanged DEC-0020 and the accepted 94-gate specification.
-- Initialized training and validation losses were `4.750465878532` and
-  `4.754711149949085`.
-- Final training and validation losses were `2.4611534265660575` and
-  `2.4967258539791177`.
-- Best validation loss was `2.4967258539791177` at epoch `10`; training and
-  validation losses decreased at every completed epoch.
-- All ten epochs completed with `3880` optimizer updates. Stopping reason was
-  `maximum_epochs`.
-- The exact predicate
-  `min(completed-epoch training losses) < initialized training loss` passed.
-- Checkpoint/catalog validation passed. Latest checkpoint is epoch-10 object
-  `6990c89166d48732b0601aeae1edd57a9f0e22eec1c7c1160d5be1b8281c9148`;
-  best-validation is the same immutable object under its distinct role; catalog
+- Phase 8 Gates 89–93 are reconciled with their completed outcome: the exact
+  five-file closure commit was authorized, created, pushed, and independently
+  remote-verified at `6d086625cb293f61700bd59b551ea310a5b680b9`.
+- Phase 8 experiment `EXP-20260912-01` remains accepted PASS. Final training
+  loss is `2.4611534265660575`; final and best validation loss is
+  `2.4967258539791177` at epoch `10`; checkpoint/catalog validation and exact
+  resume passed.
+- The retained epoch-10 object SHA-256 is
+  `6990c89166d48732b0601aeae1edd57a9f0e22eec1c7c1160d5be1b8281c9148`.
+  It occupies distinct canonical `latest` and `best_validation` roles. Catalog
   SHA-256 is
   `6d590f0355ec950d770e77b4c542d65cda15012fbea56349b97b154a0d614241`.
-- The exact-resume audit passed. Control checkpoint is
-  `c406478feef00267120e0ee8b5f8188c803538a806e5321fc1ab4f91d1292210`;
-  restored/resumed checkpoint is
-  `a3a0c0ca98d8de70c5729a3eb433bac8dc091ee56f0de880bcee2b20765d3213`.
-  Both durable graphs and public reload paths passed, with semantic equality
-  except permitted lineage/hash/location differences.
-- Actual wall time was `1763.81` seconds (`29m 23.81s`), `109.01` seconds or
-  `6.59%` above the accepted `27.58`-minute estimate excluding checkpoint I/O.
-- No generation or sampling occurred. *Twelfth Night* and the sealed test were
-  not accessed. No Phase 9 work occurred.
+- The Phase 9 continuity inspection established the exact roadmap goal and exit
+  criteria, inherited authority, concepts, genuine design choices, and the
+  inference-loader gap without loading a checkpoint, constructing a model,
+  generating, evaluating, or accessing the sealed test.
+- Sebastien accepted the four consolidated Phase 9 conceptual directions, now
+  recorded in DEC-0021 without implementation-level mechanics.
+- Sebastien authorized documentation-only detailed-contract drafting.
+  Proposed `docs/GENERATION_EVALUATION_SPEC.md` defines exact authority,
+  interfaces, loading, generation, sampling, evaluation, baselines, qualitative
+  evidence, artifacts, sealed-test protection, errors, tests, exit mapping, and
+  governance.
+- Fresh independent contract review returned `REQUIRES CORRECTION` with no
+  BLOCKER, five MAJOR findings, and four MINOR findings. It independently
+  accepted the proposal's core generation, sampling, window, metric, uniform,
+  Laplace/add-one, and production-count mathematics.
+- The authorized focused correction resolves deterministic evaluation-ID and
+  record selection, pure-mechanics/production-runner separation, durable
+  development attempt lifecycle, exhaustive inherited executable-byte
+  protection, exact evidence/failure schemas, cross-predictor ownership,
+  baseline naming/rationale, workflow wording, and architecture-versus-contract
+  policy status. Corrected proposal SHA-256 is
+  `8c2eafd9ed1f4a86a80bafa11000fd1b62a68655382c6a824822789d9b5bdafc`.
+- Focused re-review accepted three prior MAJOR corrections and left only nested
+  result-reference/predecessor mechanics, import-closure completeness,
+  publication-state consistency, and one wording issue. The final authorized
+  documentation correction adds exact artifact/baseline/sample references,
+  bounded predecessor traversal, the two missing package initializers, one
+  unified four-state publication model, sealed-marker ambiguity consumption,
+  terminal mutual exclusion, and corrected first-failure language. Final
+  proposal SHA-256 is
+  `6625e6e045c80dedf17ea344384c9b4a3a325b6761e65e4c796b134a547c1e83`.
+- Final focused review returned `ACCEPT WITH MINOR CORRECTIONS`, with no
+  BLOCKER and no remaining/new MAJOR finding. The sole minor correction removes
+  unreachable `attempt_marker_publication` from development failure-artifact
+  stages while preserving all marker lifecycle semantics. No independent
+  re-review remains required. Final specification SHA-256 is
+  `61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`.
+- Sebastien explicitly accepted the exact 2,371-line Phase 9 detailed contract
+  at that SHA-256 and authorized one six-file documentation checkpoint titled
+  `Define Phase 9 generation and evaluation contract`. Contract acceptance and
+  publication do not authorize implementation.
 
 ## Current work
 
-Gate 78–80 acceptance bookkeeping and Gate 86 closure-state acceptance are
-recorded outside the byte-frozen result record. The completed 39-label record
-in `EXPERIMENT_LOG.md` has SHA-256
-`e7b40c888bc23c4e58d5abad10a766be16698d917ee8d8f54eaa6a1d199706d5`;
-the committed file has SHA-256
-`824f6897f048c3e27390421a054c7aea5ae60e89d6af6562873867aae2858fd4`;
-and the accepted pre-registration log remains an exact byte prefix. The result
-record is remotely authoritative in commit `334119e6`.
-
-The complete closure-ready working set is exactly `DECISIONS.md`,
-`LEARNING_NOTES.md`, `PROJECT_STATE.md`, `README.md`, and `ROADMAP.md`. It
-includes the carried Gate 78–80 and Gate 86 records plus Gate 88 reconciliation.
-Nothing is staged. Every changed path is documentation/continuity authority and
-is necessary for the final closure-ready state.
+The accepted continuity/conceptual documentation and proposed detailed contract
+are applied locally in `DECISIONS.md`, `LEARNING_NOTES.md`, `PROJECT_STATE.md`,
+`README.md`, `ROADMAP.md`, and new
+`docs/GENERATION_EVALUATION_SPEC.md`. Tracked edits remain unstaged, the new
+specification remains untracked, and everything is uncommitted and unpushed.
+Independent review and explicit acceptance of the final detailed contract are
+complete. The exact six-file documentation checkpoint is authorized for
+publication. No implementation or execution is authorized.
 
 ## Current model status
 
-The accepted Phase 7 MiniGPT architecture remains unchanged: one rank-one
-CPU-long sequence of length `1..256` produces CPU-float32 logits `(T, 81)`. It
-has 90 unique trainable tensors, 63,825 parameters, four accepted blocks, eight
-local dropout generators, final normalization, and an untied biased head.
+The accepted trained MiniGPT remains unchanged: one CPU-long rank-one sequence
+of length `1..256` produces CPU-float32 logits `(T, 81)`. The model has four
+causal Transformer blocks, 90 unique trainable tensors, 63,825 parameters,
+eight local dropout generators, final normalization, and an untied biased head.
 
-The accepted trained epoch-10 state is retained in the ignored canonical
-checkpoint object named above. The canonical catalog gives the object distinct
-`latest` and `best_validation` roles. The exact-resume control graph and run
-authority/training evidence remain retained and ignored.
+Phase 9 will later select the canonical catalog's semantic `best_validation`
+role through a separately specified read-only inference loader. The accepted
+Phase 8 public loader remains a latest-only training-continuation interface and
+is not modified by DEC-0021.
 
 ## Last verified working state
 
-Gate 85 remote verification established:
+- Branch `main`, local `HEAD`, `origin/main`, and last queried live remote
+  `main` equal Phase 8 closure `6d086625cb293f61700bd59b551ea310a5b680b9`
+  at local ahead/behind `0/0`.
+- The index is empty. The only worktree changes are the six authorized
+  documentation paths; no source, test, checkpoint, experiment record, retained
+  artifact, or generated evaluation artifact changed.
+- Corrected specification SHA-256 is
+  `61489c3a146d6fa6d3ff6a59f6052ff978ae283d42520c599bd1a25b14a71780`;
+  its 96 Markdown fences are balanced and `git diff --check` passes.
+- Canonical catalog, epoch-10 checkpoint, retained training evidence, and
+  `EXPERIMENT_LOG.md` hashes remain exact.
+- No checkpoint/model was loaded; no train/validation/test prose was opened; no
+  prompt was tokenized; and no generation, baseline fitting, or metric
+  calculation occurred.
 
-- local `HEAD`, `main`, `origin/main`, and live remote `main` all equal
-  `334119e63c716e4922cd0b67da4f5fc221faa886` at ahead/behind `0/0`;
-- the accepted-result commit has one parent, exact title
-  `Record Phase 8 training result`, and changes only `EXPERIMENT_LOG.md`;
-- committed log, result-record, and pre-registration-prefix hashes are exact;
-- all ten canonical objects and both audit-control objects match their
-  content-addressed filenames, and both catalogs and retained evidence match
-  their recorded hashes;
-- the Phase 8 specification, DEC-0020, accepted Phase 8 code/tests, and Phase 7
-  identities remain exact;
-- before Gate 88, the only tracked modifications were the unstaged
-  `DECISIONS.md` and `PROJECT_STATE.md` acceptance records; Gate 88 adds only
-  necessary `LEARNING_NOTES.md`, `README.md`, and `ROADMAP.md` closure
-  reconciliation; the index remains empty and accepted ignored artifacts are
-  intact.
-
-This bookkeeping session does not rerun training or tests and makes no claim of
-new runtime verification beyond Gate 78's accepted evidence and the read-only
-continuity checks.
+This correction session does not rerun training or model tests and makes no new
+runtime or model-quality claim.
 
 ## Next exact step
 
-Obtain separate Gate 89 authorization for the exact Phase 8 closure commit.
+After successful commit, push, and live-remote verification of this exact
+accepted documentation checkpoint, obtain separate explicit Phase 9
+implementation authorization.
 
 ## Remaining workflow
 
-The accepted specification requires every remaining action separately:
-
-1. Gate 89: authorize the exact closure commit.
-2. Gate 90: create that commit without amendment or extra files.
-3. Gates 91–93: separately authorize the closure push, push it, and independently
-   verify formal remote Phase 8 closure.
-4. Gate 94: only then consider separate Phase 9 learning/design authorization.
-
-The proposed Gate 89 scope is exactly `DECISIONS.md`, `LEARNING_NOTES.md`,
-`PROJECT_STATE.md`, `README.md`, and `ROADMAP.md`, with recommended title
-`Complete Phase 8 training and checkpointing`. This matches the established
-Phase 5–7 five-file closure convention. It remains a recommendation until Gate
-89 explicitly authorizes the exact title and paths.
+Publish and independently remote-verify the accepted contract checkpoint; then
+separately authorize implementation; independently review, correct, accept,
+commit, push, and remote-verify implementation; then pre-register and separately
+authorize any development evaluation and optional one-shot sealed-test event
+before result review, exit acceptance, and formal Phase 9 closure.
 
 ## Known issues
 
-- Runtime remains a material cost: the accepted run took `29m 23.81s`.
+- The Phase 8 public checkpoint loader is intentionally latest-only and restores
+  training state; Phase 9 needs the accepted distinct read-only inference
+  boundary before it can safely consume `best_validation`.
+- Runtime remains a material cost: the accepted Phase 8 run took `29m 23.81s`.
 - Optional NumPy interoperability is unavailable and intentionally unnecessary.
-- MPS may be unavailable in restricted contexts; Phase 8 is CPU-only.
 - Processed corpus derivatives, checkpoints, and experiment evidence are
-  intentionally ignored by Git. They must be preserved.
-- Content-addressed checkpoint objects may be orphaned by a publication failure
-  before catalog replacement; accepted policy preserves them for diagnosis.
+  intentionally ignored by Git and must be preserved.
+- No independent contract-review finding remains. The final exact API,
+  validation, lifecycle, record, schema, publication, evidence, and test
+  mechanics are explicitly accepted.
 
 ## Important constraints
 
-- Do not modify `EXPERIMENT_LOG.md`; its planned and completed records, canonical
-  JSON, whitespace, and full working-file bytes are accepted and frozen.
-- Do not modify DEC-0020, `docs/TRAINING_CHECKPOINTING_SPEC.md`, Phase 8 source or
-  tests, accepted Phase 7 files, or retained ignored run artifacts.
-- Do not stage, commit, push, or perform later gates without their separate
-  explicit authorizations.
-- Do not rerun or tune `EXP-20260912-01`.
-- Do not generate or sample, access the sealed test or *Twelfth Night*, or begin
-  Phase 9. Phase 9 remains unauthorized through Gate 93.
+- Do not modify the accepted Phase 7 model, DEC-0020, the accepted Phase 8
+  specification/source/tests, `EXP-20260912-01`, or retained Phase 8 artifacts.
+- Do not load a checkpoint, construct the trained model, generate, sample,
+  calculate Phase 9 metrics/baselines, or create evaluation artifacts before
+  the applicable later authorization.
+- Do not access *Twelfth Night* or the sealed test without a separate explicit
+  one-shot authorization after the complete evaluation authority is frozen.
+- Do not correct or accept the detailed Phase 9 contract, implement source/tests,
+  stage, commit, or push without the applicable later authorization.
+- Keep exploratory generation distinct from accepted evaluation evidence and
+  do not silently change the accepted conceptual architecture.
 
 ## Open questions
 
-- No Gate 78 review finding remains.
-- No run-result, checkpoint, exact-resume, provenance, or Phase 8 exit evidence
-  finding remains.
-- Gate 80 explicit Sebastien acceptance is complete.
-- Gates 81–85 accepted-result commit publication and remote verification are
-  complete.
-- Gate 86 closure-state acceptance is complete.
-- Gates 87–88 closure-bookkeeping authorization and application are complete.
-- Gate 89 closure-commit authorization is the sole current gate.
+No model-architecture or detailed-contract choice remains open. The consolidated
+contract-level policy package is accepted. Future implementation authorization
+and the later optional sealed-test decision remain separate gates.
 
 ## Session handoff
 
-Phase 8's fixed real run `EXP-20260912-01` passed its training-improvement
-predicate, checkpoint/catalog validation, and exact-resume audit. Gate 78
-returned PASS / NO ISSUE with no remaining finding and recommended `ACCEPT PHASE
-8 RUN RESULT`; Master Chat completed Gate 79 formal local result acceptance,
-and Sebastien explicitly accepted the experiment, checkpoints, and technical
-Phase 8 exit at Gate 80. The frozen result is remotely authoritative at
-`334119e63c716e4922cd0b67da4f5fc221faa886`, and Gate 85 remote verification is
-complete. Sebastien explicitly accepts at Gate 86 that Phase 8 is technically
-complete and ready for formal closure. Gate 88 closure bookkeeping is complete
-locally across the exact five-file documentation set; nothing is staged. Gate
-89 separate closure-commit authorization is next. Formal closure and Phase 9
-remain unauthorized.
+Phase 8 is formally remotely closed at `6d086625`. The stale pre-closure
+current-state wording has been reconciled without rewriting historical entries.
+DEC-0021 records Sebastien's accepted Phase 9 conceptual architecture. Current
+changes now include the complete proposed detailed contract and remain
+documentation only. Tracked edits are unstaged, the specification is untracked,
+and everything is uncommitted and unpushed. No Phase 9 implementation,
+checkpoint loading, generation, evaluation, or sealed-test access is authorized.
+Final focused review returned `ACCEPT WITH MINOR CORRECTIONS`; the sole narrow
+minor edit is applied, no further independent re-review is required, and
+Sebastien explicitly accepted the exact contract. The six-file contract
+checkpoint is authorized for publication; after successful remote verification,
+the next exact step is separate Phase 9 implementation authorization.
