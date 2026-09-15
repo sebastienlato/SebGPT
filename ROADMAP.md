@@ -641,17 +641,37 @@ correction subsequently passed independent review, was incorporated, and the
 complete accepted pre-registration checkpoint passed final verification.
 Commit `f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21` was pushed and
 live-remote verified with the plan unchanged. One exact `EXP-20260913-01`
-development-authorization record passed independent review and was explicitly
+development-authorization record passed independent review, was explicitly
 accepted at SHA-256
-`3e3a180a3ec1a80c5e3e0d7ab4294965ab513fe31af02b8f558d797f0d4702a2`.
-It is contained in the current local unpushed checkpoint and requires independent
-post-commit verification before a separate push/live-verification gate. Its
-required `authorized_once` status is not effective execution authority until
-remote launch authority is established. No development attempt, sealed-test
-authorization, marker, artifact, evidence, or result exists. Real checkpoint/
-catalog/corpus execution, trained-model generation, evaluation, baseline
-fitting, evidence or result publication, and sealed-test access remain
-unauthorized.
+`3e3a180a3ec1a80c5e3e0d7ab4294965ab513fe31af02b8f558d797f0d4702a2`,
+and was remotely preserved at `680949233c95c266a8ff790452441ddec821b580`.
+The separately authorized governed development attempt executed exactly once
+and completed successfully without retry. Immutable marker/evidence remain
+unchanged at SHA-256 values
+`5262543c930d06f9764ada8a19b7b441f0b1d2195b96d71f0b3df83a06139f6e`
+and `d1485cc1a84b26aaa072f267a278963b3c8e25085bee5c9e58665f5a267c9bf0`;
+independent evidence review returned PASS. Sebastien supplied the subsequent
+independent Codex result-review authority:
+`PASS — READY FOR PHASE 9 DEVELOPMENT-RESULT ACCEPTANCE`, with no BLOCKER,
+MAJOR, or MINOR findings. On 2026-09-15, Sebastien explicitly accepted the exact
+completed development-result record at SHA-256
+`1cceb5af08a9090b22db39b0064a0a104778fa280aab9f22b378d85f99e6381c`,
+classification `completed`, development predicate PASS. Its accepted bytes,
+including frozen next gate `independent_development_result_review`, are
+unchanged.
+
+Sebastien separately authorized the exact three-file local acceptance
+checkpoint containing `EXPERIMENT_LOG.md`, `PROJECT_STATE.md`, and `ROADMAP.md`.
+The accepted result and reconciled governance are committed locally under
+`Record accepted Phase 9 development result`, with parent
+`680949233c95c266a8ff790452441ddec821b580`, and remain unpushed. Independent
+post-commit verification of the complete checkpoint is the next gate; only on
+PASS may separately authorized push and live-remote verification proceed.
+Result acceptance and the local commit authorize no
+sealed work. No sealed plan or authorization exists; sealed planning/access
+remain unauthorized and *Twelfth Night* remains sealed. The evaluation ID is
+permanently consumed and cannot be rerun; its immutable evidence cannot be
+altered. Phase 9 remains open; exit acceptance and closure are later gates.
 
 **Exit criteria:**
 
