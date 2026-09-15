@@ -636,16 +636,22 @@ pre-amend SHA as current. That correction passed focused independent review and
 was incorporated into amended checkpoint
 `9408211609e2f19089c519acd77f091d2866fe10`. Its independent verification
 returned `FAIL — DO NOT PUSH` because durable current-state sections still
-encoded ephemeral correction/worktree/review mechanics. The accepted plan
-remains unchanged in the current local unpushed checkpoint. Local `main` is one
-commit ahead and zero behind live `origin/main` at
-`41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Before push, the complete current
-local checkpoint must pass final independent verification. A PASS advances only
-to a separate push/live-verification gate; a FAIL blocks push and requires
-correction and re-review. No development or sealed-test authorization, attempt
-marker, artifact, evidence, or result exists. Real checkpoint/catalog/corpus
-execution, trained-model generation, evaluation, baseline fitting, evidence or
-result publication, and sealed-test access remain unauthorized.
+encoded ephemeral correction/worktree/review mechanics. The durable-governance
+correction subsequently passed independent review, was incorporated, and the
+complete accepted pre-registration checkpoint passed final verification.
+Commit `f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21` was pushed and
+live-remote verified with the plan unchanged. One exact `EXP-20260913-01`
+development-authorization record passed independent review and was explicitly
+accepted at SHA-256
+`3e3a180a3ec1a80c5e3e0d7ab4294965ab513fe31af02b8f558d797f0d4702a2`.
+It is contained in the current local unpushed checkpoint and requires independent
+post-commit verification before a separate push/live-verification gate. Its
+required `authorized_once` status is not effective execution authority until
+remote launch authority is established. No development attempt, sealed-test
+authorization, marker, artifact, evidence, or result exists. Real checkpoint/
+catalog/corpus execution, trained-model generation, evaluation, baseline
+fitting, evidence or result publication, and sealed-test access remain
+unauthorized.
 
 **Exit criteria:**
 

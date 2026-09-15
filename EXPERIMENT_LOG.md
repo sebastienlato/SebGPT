@@ -150,3 +150,18 @@ _Historical pre-run state; superseded by the append-only completed entry below._
 - **Next gate:** "independent_pre_registration_review"
 
 _Documentation-only plan; development authorization and execution remain absent._
+
+### EXP-20260913-01 — Phase 9 development authorization
+
+- **Evaluation ID:** "EXP-20260913-01"
+- **Entry kind:** "development_authorization"
+- **Scope:** "development"
+- **Status:** "authorized_once"
+- **Development plan record SHA-256:** "582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9"
+- **Development pre-registration commit:** "f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21"
+- **Phase 9 implementation commit:** "41204d9dabd811d630ee82f49b7bcd3fd6b12d5a"
+- **Checkpoint SHA-256:** "6990c89166d48732b0601aeae1edd57a9f0e22eec1c7c1160d5be1b8281c9148"
+- **Authorization:** "Authorize exactly one governed development attempt for this evaluation ID; sealed-test access remains unauthorized."
+- **Next gate:** "execute_authorized_development_attempt"
+
+_Accepted record; execution authority remains ineffective pending push and live verification._

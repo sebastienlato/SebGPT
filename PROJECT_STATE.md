@@ -9,9 +9,11 @@ Phase 9 — Generation and Evaluation (accepted contract remotely published at
 sample-stage correction independently accepted; accepted implementation
 checkpoint remotely preserved at
 `41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`; accepted development
-pre-registration contained in the current local unpushed checkpoint; final
-independent verification of the complete committed checkpoint required before
-push; real development/sealed execution remains unauthorized)
+pre-registration remotely preserved at
+`f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21`; development authorization
+independently reviewed and accepted in the current local unpushed checkpoint
+but not effective until push/live verification; real development/sealed
+execution remains unauthorized)
 
 ## Current milestone
 
@@ -196,19 +198,34 @@ sealed-test evaluation.
   remained unchanged. Sebastien authorized a narrow durable-governance wording
   correction that preserves history while keeping transient mechanics out of
   current state.
+- Independent review passed the durable-governance correction with no remaining
+  finding. It was incorporated into the accepted pre-registration checkpoint,
+  whose complete committed state then passed final independent verification.
+  Commit `f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21`, `Pre-register Phase 9
+  development evaluation`, was pushed and live-remote verified unchanged.
+- Sebastien authorized documentation-only drafting of the exact same-ID
+  development-authorization record. The proposed record is not effective
+  execution authority unless it later passes independent review, is explicitly
+  accepted, committed, pushed, and live-verified.
+- Independent Codex review returned `PASS — READY FOR PHASE 9 DEVELOPMENT-
+  AUTHORIZATION ACCEPTANCE`, with no BLOCKER, MAJOR, or MINOR finding. Sebastien
+  accepted the exact authorization record at SHA-256
+  `3e3a180a3ec1a80c5e3e0d7ab4294965ab513fe31af02b8f558d797f0d4702a2`
+  and authorized its local acceptance checkpoint. Acceptance does not make the
+  authorization effective before push and live verification.
 
 ## Current work
 
-The accepted `EXP-20260913-01` development plan remains unchanged in the current
-local unpushed Phase 9 development pre-registration checkpoint. Local `main` is
-one commit ahead of live `origin/main` at
-`41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Before push, the complete current
-local checkpoint must pass final independent verification. A PASS advances only
-to a separate push/live-verification gate; a FAIL blocks push and requires
-correction and re-review. No development authorization or sealed-test
-authorization exists. Real checkpoint loading, train/validation corpus access,
-generation, evaluation, baseline fitting, evidence publication, result
-publication, and sealed-test access remain unauthorized.
+The accepted `EXP-20260913-01` development pre-registration is remotely
+preserved at `f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21`, with its plan
+unchanged. The exact same-ID development authorization has passed independent
+review and is accepted in the current local unpushed checkpoint. Status
+`authorized_once` remains ineffective execution authority until that complete
+checkpoint passes independent post-commit verification and is separately
+authorized for push and live verification. No sealed-test authorization exists.
+Real checkpoint loading, train/validation corpus access, generation, evaluation,
+baseline fitting, evidence publication, result publication, and sealed-test
+access remain unauthorized.
 
 ## Current model status
 
@@ -224,10 +241,9 @@ unchanged.
 
 ## Last verified working state
 
-- Branch `main`; the accepted pre-registration is in current local `HEAD`; live
-  `origin/main` remains accepted implementation commit
-  `41204d9dabd811d630ee82f49b7bcd3fd6b12d5a`. Local `main` is ahead 1 and
-  behind 0.
+- Branch `main`; the accepted development authorization is in current local
+  `HEAD`, one commit ahead and zero behind live `origin/main` at accepted
+  pre-registration commit `f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21`.
 - Focused Phase 9 synthetic tests pass 94/94. Relevant tokenizer, vocabulary,
   MiniGPT, and Phase 8 checkpoint regressions pass 119/119. The complete suite
   runs 632 tests with 631 passes, one expected restricted-context MPS skip, and
@@ -250,19 +266,17 @@ model-quality claim.
 
 ## Next exact step
 
-Obtain final independent verification of the complete committed current local
-Phase 9 development pre-registration checkpoint.
+Obtain independent post-commit verification of the complete current local Phase
+9 development-authorization checkpoint.
 
 ## Remaining workflow
 
-Final independent verification must cover the complete committed current local
-pre-registration checkpoint. A PASS may advance only to separate push and live-
-remote verification; a FAIL blocks push and requires correction and re-review.
-Only after remote preservation may a distinct development-authorization record
-be drafted, reviewed, accepted, committed, and pushed before any one-shot
-development attempt. Review and accept its result before any optional one-shot
-sealed-test authorization, result review, exit acceptance, and formal Phase 9
-closure.
+Independently verify the complete local development-authorization checkpoint.
+Only a PASS may advance to separate push and live-verification authorization.
+Only after that remote authority is established may the one governed development
+attempt be executed under its exact evaluation ID. Review and accept its result
+before any optional one-shot sealed-test authorization, result review, exit
+acceptance, and formal Phase 9 closure.
 
 ## Known issues
 
@@ -280,9 +294,9 @@ closure.
 - The ordinary interactive runtime is not the accepted execution envelope;
   later authorized execution must use a fresh dedicated process with the exact
   frozen CPU/determinism/thread/MKLDNN identity before runner preflight.
-- The accepted development pre-registration is not yet remotely preserved and
-  cannot be pushed until final independent verification of the complete current
-  local checkpoint returns PASS.
+- The accepted development authorization remains local and ineffective; it
+  cannot authorize execution until independent post-commit verification passes
+  and separate push/live verification establishes remote launch authority.
 
 ## Important constraints
 
@@ -293,9 +307,9 @@ closure.
   the applicable later authorization.
 - Do not access *Twelfth Night* or the sealed test without a separate explicit
   one-shot authorization after the complete evaluation authority is frozen.
-- Do not append a development authorization/result, stage, amend, replace,
-  commit, push, run governed evaluation, or create Phase 9 attempt/evidence
-  artifacts without the applicable later authorization.
+- Do not push, execute against, or create a result from the accepted local
+  development authorization without the applicable later authorization and
+  required remote verification.
 - Keep exploratory generation distinct from accepted evaluation evidence and
   do not silently change the accepted conceptual architecture.
 
@@ -303,8 +317,8 @@ closure.
 
 No model-architecture or detailed-contract choice remains open. The consolidated
 contract-level policy package and implementation are accepted. Development
-pre-registration final verification/publication, later real development
-authorization, and the optional sealed-test decision remain separate gates.
+authorization post-commit verification/publication, later real development
+execution, and the optional sealed-test decision remain separate gates.
 
 ## Session handoff
 
@@ -315,12 +329,14 @@ commit `13bedfa` failed post-commit review for stale governance; its reviewed
 correction was incorporated into `fd0890e`, whose final post-amend review found
 one remaining current-state self-reference issue. Its correction was
 incorporated into `940821`, whose independent verification found that current
-state still encoded ephemeral workflow mechanics. The accepted plan for
-`EXP-20260913-01` remains exact at SHA-256
-`582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9`
-in the current local unpushed checkpoint. That checkpoint is one commit ahead of
-live `origin/main` at `41204d9` and requires final independent verification of
-its complete committed state before any separate push gate. No development or
+state still encoded ephemeral workflow mechanics. The durable correction and
+complete checkpoint then passed independent verification, and accepted
+pre-registration `EXP-20260913-01` is remotely preserved at `f6dd0a5` with
+unchanged plan SHA-256
+`582025519d994f74363831128af7ef4851c2cd5e41fdfaa2af0ba0a31516f0c9`.
+The exact same-ID development-authorization record is independently reviewed
+and accepted in the current local unpushed checkpoint. It remains ineffective
+until post-commit verification and separate push/live verification succeed. No
 sealed authorization, marker, artifact, evidence, result, real checkpoint/
 catalog/corpus access, generation, evaluation, baseline fit, or sealed access
 exists or is authorized.
