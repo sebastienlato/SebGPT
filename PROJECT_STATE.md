@@ -13,8 +13,8 @@ pre-registration remotely preserved at
 `f6dd0a57c61ecfaa008dda4a40fc7645b14c0f21`; development authorization remotely
 preserved at `680949233c95c266a8ff790452441ddec821b580`; one governed
 development attempt completed with immutable evidence; completed result record
-independently reviewed, explicitly accepted, and committed locally; the result
-checkpoint remains unpushed pending independent post-commit verification;
+independently reviewed, explicitly accepted, and remotely preserved at
+`c80fd7586fddb8bff7a11e8f4d6d440bb4ae4ed1` after push/live verification;
 sealed planning and execution remain unauthorized)
 
 ## Current milestone
@@ -242,11 +242,16 @@ sealed-test evaluation.
   frozen `Next gate: independent_development_result_review` value.
 - Sebastien separately authorized the exact three-file local acceptance
   checkpoint: `EXPERIMENT_LOG.md`, `PROJECT_STATE.md`, and `ROADMAP.md`.
-  The accepted result and reconciled governance are committed locally under
+  The accepted result and reconciled governance were committed under
   `Record accepted Phase 9 development result`, with development-authorization
-  commit `680949233c95c266a8ff790452441ddec821b580` as parent. The checkpoint
-  remains unpushed; independent post-commit verification is required before
-  any separately authorized push/live verification. No sealed work is authorized.
+  commit `680949233c95c266a8ff790452441ddec821b580` as parent.
+- Independent Codex post-commit review returned
+  `PASS — READY TO PUSH PHASE 9 DEVELOPMENT RESULT`, with no BLOCKER, MAJOR,
+  or MINOR findings. Sebastien separately authorized push/live verification.
+  Acceptance commit `c80fd7586fddb8bff7a11e8f4d6d440bb4ae4ed1` was pushed
+  unchanged to `origin/main` and live-verified at ahead/behind `0/0`.
+  The Phase 9 development result is accepted and remotely preserved. No sealed
+  work or Phase 9 closure was authorized by those completed publication gates.
 
 ## Current work
 
@@ -257,11 +262,12 @@ unchanged. Its accepted development authorization is remotely preserved at
 attempt executed exactly once, completed successfully, and is permanently
 consumed. Its unchanged immutable marker/evidence passed independent review.
 The exact completed development-result record subsequently passed independent
-review and is explicitly accepted. The accepted result and reconciled
-governance are committed locally in the current unpushed acceptance checkpoint.
-Independent post-commit verification is required before separately authorized
-push/live verification. The attempt may never be rerun and its
-artifacts may never be modified. No sealed plan or authorization exists;
+review and is explicitly accepted. Its acceptance checkpoint
+`c80fd7586fddb8bff7a11e8f4d6d440bb4ae4ed1` passed independent post-commit
+review, was pushed unchanged, and was live-verified. The Phase 9 development
+result is accepted and remotely preserved. The development portion may never
+be rerun and its immutable artifacts may never be modified. No sealed-test
+plan, authorization, result, or artifact exists;
 sealed planning/access remain unauthorized and *Twelfth Night* remains sealed.
 Phase 9 remains open.
 
@@ -279,10 +285,12 @@ unchanged.
 
 ## Last verified working state
 
-- Branch `main`; the current local development-result acceptance checkpoint
-  has parent `680949233c95c266a8ff790452441ddec821b580`. Live `origin/main`
-  remains at that development-authorization commit; local `main` is ahead one
-  commit and behind zero, with a clean worktree and index.
+- Branch `main`; `HEAD`, tracking `origin/main`, and live remote `main` match
+  accepted development-result checkpoint
+  `c80fd7586fddb8bff7a11e8f4d6d440bb4ae4ed1`, ahead/behind `0/0`.
+  Its parent is `680949233c95c266a8ff790452441ddec821b580`; remote containment
+  is verified. Push/live verification and the pre-reconciliation check both
+  confirmed a clean worktree and index.
 - Focused Phase 9 synthetic tests pass 94/94. Relevant tokenizer, vocabulary,
   MiniGPT, and Phase 8 checkpoint regressions pass 119/119. The complete suite
   runs 632 tests with 631 passes, one expected restricted-context MPS skip, and
@@ -314,17 +322,17 @@ makes no new runtime or model-quality claim.
 
 ## Next exact step
 
-Obtain independent post-commit verification of the complete current local
-`EXP-20260913-01` development-result acceptance checkpoint.
+Obtain Sebastien's explicit decision whether to proceed with the optional
+sealed-test stage under its separate governed workflow.
 
 ## Remaining workflow
 
-Obtain independent post-commit verification of the local acceptance checkpoint.
-Only on PASS may separate authorization permit push and live-remote verification.
-Only afterward may an optional sealed-test plan be considered under its own
-authorization, review, acceptance, publication, and explicit one-shot access
-gates. Result acceptance itself authorizes no sealed work. Phase 9 exit
-acceptance and closure remain later gates.
+Development-result review, acceptance, post-commit verification, push, and live
+verification are complete. Sebastien must now explicitly decide whether to
+proceed with the optional sealed-test stage. A decision to proceed still
+requires its separate planning authorization, plan review/acceptance/publication,
+and explicit one-shot access gates. Development-result publication authorizes
+no sealed work. Phase 9 exit acceptance and closure remain later gates.
 
 ## Known issues
 
@@ -342,10 +350,9 @@ acceptance and closure remain later gates.
 - The ordinary interactive runtime is not the accepted execution envelope;
   later authorized execution must use a fresh dedicated process with the exact
   frozen CPU/determinism/thread/MKLDNN identity before runner preflight.
-- The completed development result is independently reviewed and explicitly
-  accepted and committed locally. Remote publication remains pending:
-  independent post-commit PASS and separately authorized push/live verification
-  are required before any separately authorized sealed planning.
+- No development-result review or publication gate remains pending. The result
+  is accepted and remotely preserved; the optional sealed-test decision and its
+  separate authorization gates remain outstanding.
 
 ## Important constraints
 
@@ -357,8 +364,8 @@ acceptance and closure remain later gates.
 - Do not access *Twelfth Night* or the sealed test without a separate explicit
   one-shot authorization after the complete evaluation authority is frozen.
 - Do not rerun `EXP-20260913-01` or alter its accepted result or marker/evidence.
-  Do not push or use the accepted result for sealed planning without the
-  applicable later authorization and verification gates.
+  Do not use the remotely preserved result for sealed planning without the
+  applicable separate authorization and verification gates.
 - Keep exploratory generation distinct from accepted evaluation evidence and
   do not silently change the accepted conceptual architecture.
 
@@ -366,8 +373,8 @@ acceptance and closure remain later gates.
 
 No model-architecture or detailed-contract choice remains open. The consolidated
 contract-level policy package, implementation, and completed development result
-are accepted. Result publication and the optional sealed-test decision remain
-separate gates.
+are accepted, and the development result is remotely preserved. Sebastien's
+decision whether to proceed with the optional sealed-test stage remains open.
 
 ## Session handoff
 
@@ -392,10 +399,11 @@ passed. Subsequent independent result review returned
 MAJOR, or MINOR findings. Sebastien explicitly accepted result SHA-256
 `1cceb5af08a9090b22db39b0064a0a104778fa280aab9f22b378d85f99e6381c`.
 The accepted result bytes and immutable artifacts are unchanged. The accepted
-result and reconciled governance are committed locally in the current unpushed
-acceptance checkpoint. Its parent and live `origin/main` remain `6809492`;
-`main` is ahead one commit and behind zero, with a clean worktree and index.
-Next: obtain independent post-commit verification of the complete checkpoint;
-require PASS before separately authorized push/live verification.
-No sealed plan or authorization exists; sealed planning/access
+development result is remotely preserved at
+`c80fd7586fddb8bff7a11e8f4d6d440bb4ae4ed1` after independent post-commit
+PASS, separately authorized push, and live verification. `HEAD`, tracking
+`origin/main`, and live remote `main` match that checkpoint at ahead/behind
+`0/0`. Next: obtain Sebastien's explicit decision whether to proceed with the
+optional sealed-test stage under its separate governed workflow.
+No sealed-test plan, authorization, result, or artifact exists; sealed planning/access
 remain unauthorized, *Twelfth Night* remains sealed, and Phase 9 remains open.
